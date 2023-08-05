@@ -27,9 +27,10 @@ For a live demonstration of the eCommerce Application, visit [Future deploy]()
 
 ### Installation
 ```
-$ git clone ...
-$ npm i
-$ npm run ...
+$ git clone https://github.com/eugenekhovaiev/eCommerce-Application.git
+$ git checkout develop
+$ npm install
+$ npm run dev
 ```
 
 ### Available Scripts
