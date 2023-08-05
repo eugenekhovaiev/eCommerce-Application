@@ -58,6 +58,3 @@ Runs code formatting for all files in the src folder.
 
 #### **`test`**
 Runs the test suite to check the functionality and correctness of the code.
-
-
-<!-- todo: outcome from this project -->
