@@ -35,11 +35,20 @@ $ npm run ...
 ### Available Scripts
 To run any script, use the following command: `npm run <script-name>`
 
+#### **`dev`**
+Starts the development server, allowing you to work on the project with live reloading and other development features.
+
+#### **`build`**
+Bundles the project for production.
+
+#### **`preview`**
+Locally previews the production build, allowing you to see how the application will behave in a production-like environment.
+
 #### **`lint`**
-Runs linting for all files in `src` folder.
+Runs linting for all files in the src folder.
 
 #### **`prettier`**
-Runs formatting for all files in `src` folder.
+Runs code formatting for all files in the src folder.
 
 #### **`test`**
-Runs tests.
+Runs the test suite to check the functionality and correctness of the code.
