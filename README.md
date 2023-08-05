@@ -28,6 +28,7 @@ For a live demonstration of the eCommerce Application, visit [Future deploy]()
 - **[Prettier](https://prettier.io/)**: A code formatting tool
 - **[Jest](https://jestjs.io/)**: A Testing Framework
 - **[Vite](https://vitejs.dev/)**: A project bundler
+- **[Husky](https://typicode.github.io/husky/)**: A commit improver tool
 - **External API**: [CommerceTools](https://commercetools.com/).
 
 ### Installation
