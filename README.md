@@ -2,7 +2,12 @@
 ## This is the [Final Task](https://github.com/rolling-scopes-school/tasks/tree/master/tasks/eCommerce-Application) for the "JavaScript/Front-end" course from [RS School](https://rs.school/)
 
 ### Description
-The eCommerce Application represents an online shopping portal that provides users access to a wide range of products, detailed product descriptions, and easy interface interaction.
+The eCommerce Application represents an online shopping portal that provides users with access to a wide range of products, detailed product descriptions, and an easy interface for interacting with the application.
+
+The project aims to achieve the following:
+- Provide a practical implementation of the concepts learned in the "JavaScript/Front-end" course from [RS School](https://rs.school/);
+- Create a responsive, feature-rich application with essential functionalities such as user registration and login, product search, product categorization, shopping cart management, and smooth checkout process;
+- Establish a good, effective collaboration among team members.
 
 ### Features
 - User Registration and Login;
@@ -53,3 +58,6 @@ Runs code formatting for all files in the src folder.
 
 #### **`test`**
 Runs the test suite to check the functionality and correctness of the code.
+
+
+<!-- todo: outcome from this project -->
