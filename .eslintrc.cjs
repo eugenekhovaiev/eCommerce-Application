@@ -8,7 +8,7 @@ module.exports = {
     'prettier',
     'plugin:prettier/recommended',
   ],
-  ignorePatterns: ['dist', '.eslintrc.cjs'],
+  ignorePatterns: ['dist', '.eslintrc.cjs', 'vite.config.ts'],
   parser: '@typescript-eslint/parser',
   parserOptions: {
     ecmaVersion: 2020,
@@ -34,6 +34,26 @@ module.exports = {
     ],
     'max-lines-per-function': ['error', 40],
     'react-refresh/only-export-components': ['warn', { allowConstantExport: true }],
+    '@typescript-eslint/no-inferrable-types': 'off',
+    '@typescript-eslint/array-type': [
+      'error',
+      {
+        default: 'array',
+      },
+    ],
+    '@typescript-eslint/explicit-member-accessibility': [
+      'error',
+      {
+        accessibility: 'explicit',
+        overrides: {
+          accessors: 'explicit',
+          constructors: 'off',
+          methods: 'explicit',
+          properties: 'explicit',
+          parameterProperties: 'explicit',
+        },
+      },
+    ],
     '@typescript-eslint/explicit-function-return-type': 'error',
     '@typescript-eslint/ban-ts-comment': 'error',
     '@typescript-eslint/no-unnecessary-type-assertion': 'error',
