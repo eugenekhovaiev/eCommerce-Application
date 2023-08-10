@@ -1,0 +1,5 @@
+
+curl https://auth.europe-west1.gcp.commercetools.com/oauth/token \
+     --basic --user "c8zuPHXVEouCz8hbmU_mDXik:jMVpSdPNGD00SdA6NGbKyo1C3enmI7hK" \
+     -X POST \
+     -d "grant_type=client_credentials&scope=manage_project:ffm-rss-ecommerce-application"
