@@ -12,6 +12,7 @@ import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import { useForm, useFormState, Controller, SubmitHandler } from 'react-hook-form';
 import { FormHelperText } from '@mui/material';
 import { emailValidation, passwordValidation } from '../../../shared/validation/inputValidation';
+import '../LoginForm/login-form.css';
 interface ISignInForm {
     email: string;
     password: string;
