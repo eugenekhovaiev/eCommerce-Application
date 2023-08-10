@@ -14,83 +14,80 @@ import { FormHelperText } from '@mui/material';
 import { emailValidation, passwordValidation } from '../../../shared/validation/inputValidation';
 import '../LoginForm/login-form.css';
 interface ISignInForm {
-    email: string;
-    password: string;
+  email: string;
+  password: string;
 }
 
 export const LoginForm: React.FC = () => {
-    const { handleSubmit, control} = useForm<ISignInForm>();
-    const { errors } = useFormState({
-        control
-    });
+  const { handleSubmit, control } = useForm<ISignInForm>();
+  const { errors } = useFormState({
+    control,
+  });
 
-    const onSubmit: SubmitHandler<ISignInForm> = data => console.log(data);
+  const onSubmit: SubmitHandler<ISignInForm> = (data) => console.log(data);
 
-    const [showPassword, setShowPassword] = React.useState(false);
+  const [showPassword, setShowPassword] = React.useState(false);
 
-    const handleClickShowPassword = () => setShowPassword((show) => !show);
-  
-    const handleMouseDownPassword = (event: React.MouseEvent<HTMLButtonElement>) => {
-      event.preventDefault();
-    };
+  const handleClickShowPassword = () => setShowPassword((show) => !show);
 
-    return (
-        <div className="login-form">
-           <Typography variant="h3" gutterBottom className='login-form__title'>
-                Login
-            </Typography> 
-            <form className='login-form__fields' onSubmit={handleSubmit(onSubmit)}>
-                <Controller
-                control={control}
-                name="email"
-                rules={ emailValidation }
-                render={({ field }) => (
-                <TextField
-                id="standard-email"
-                label="Email"
-                type="email"
-                variant="standard"
+  const handleMouseDownPassword = (event: React.MouseEvent<HTMLButtonElement>) => {
+    event.preventDefault();
+  };
+
+  return (
+    <div className="login-form">
+      <Typography variant="h3" gutterBottom className="login-form__title">
+        Login
+      </Typography>
+      <form className="login-form__fields" onSubmit={handleSubmit(onSubmit)}>
+        <Controller
+          control={control}
+          name="email"
+          rules={emailValidation}
+          render={({ field }) => (
+            <TextField
+              id="standard-email"
+              label="Email"
+              type="email"
+              variant="standard"
+              onChange={(e) => field.onChange(e)}
+              value={field.value || ''}
+              error={!!errors.email?.message}
+              helperText={errors.email?.message}
+            />
+          )}
+        />
+
+        <Controller
+          control={control}
+          name="password"
+          rules={passwordValidation}
+          render={({ field }) => (
+            <FormControl variant="standard" error={!!errors.password?.message}>
+              <InputLabel htmlFor="standard-adornment-password">Password</InputLabel>
+              <Input
+                id="standard-adornment-password"
+                type={showPassword ? 'text' : 'password'}
                 onChange={(e) => field.onChange(e)}
-                value={ field.value || "" }
-                error={ !!errors.email?.message }
-                helperText={ errors.email?.message }
-                />
-                )}
-                />
-                
-                <Controller
-                 control={control}
-                 name="password"
-                 rules={ passwordValidation }
-                 render={({ field }) => (
-                <FormControl variant="standard" error={ !!errors.password?.message }>
-                    <InputLabel htmlFor="standard-adornment-password">Password</InputLabel>
-                    <Input
-                    id="standard-adornment-password"
-                    type={showPassword ? 'text' : 'password'}
-                    onChange={(e) => field.onChange(e)}
-                    value={ field.value || "" }
-                    endAdornment={
-                    <InputAdornment position="end">
-                        <IconButton
-                        aria-label="toggle password visibility"
-                        onClick={handleClickShowPassword}
-                        onMouseDown={handleMouseDownPassword}
-                        >
-                        {showPassword ? <VisibilityOff /> : <Visibility />}
-                        </IconButton>
-                    </InputAdornment>
-                    }
-                    />
-                    <FormHelperText>{ errors.password?.message }</FormHelperText>
-                </FormControl>
-                 )}
-                 />  
-                <Button
-                type='submit'>
-                    LOG IN
-                    </Button>
-            </form> 
-        </div>
-    )
-}
+                value={field.value || ''}
+                endAdornment={
+                  <InputAdornment position="end">
+                    <IconButton
+                      aria-label="toggle password visibility"
+                      onClick={handleClickShowPassword}
+                      onMouseDown={handleMouseDownPassword}
+                    >
+                      {showPassword ? <VisibilityOff /> : <Visibility />}
+                    </IconButton>
+                  </InputAdornment>
+                }
+              />
+              <FormHelperText>{errors.password?.message}</FormHelperText>
+            </FormControl>
+          )}
+        />
+        <Button type="submit">LOG IN</Button>
+      </form>
+    </div>
+  );
+};
