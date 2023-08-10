@@ -10,12 +10,18 @@ import Button from '@mui/material/Button';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import { useForm, useFormState, Controller } from 'react-hook-form';
+interface ISignInForm {
+    email: string;
+    password: string;
+}
 
 export const LoginForm: React.FC = () => {
-    const { handleSubmit, control} = useForm();
+    const { handleSubmit, control} = useForm<ISignInForm>();
     const { errors } = useFormState({
         control
     });
+
+    const onSubmit: SubmitHandler<ISignInForm> = data => console.log(data);
 
     const [showPassword, setShowPassword] = React.useState(false);
 
