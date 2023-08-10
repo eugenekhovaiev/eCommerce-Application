@@ -11,6 +11,7 @@ import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import { useForm, useFormState, Controller, SubmitHandler } from 'react-hook-form';
 import { FormHelperText } from '@mui/material';
+import { emailValidation } from '../../../shared/validation/inputValidation';
 interface ISignInForm {
     email: string;
     password: string;
@@ -41,7 +42,7 @@ export const LoginForm: React.FC = () => {
                 <Controller
                 control={control}
                 name="email"
-                rules={{required: 'Required'}}
+                rules={ emailValidation }
                 render={({ field }) => (
                 <TextField
                 id="standard-email"
