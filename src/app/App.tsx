@@ -1,9 +1,10 @@
+import Login from '../pages/Login/Login';
 import './styles/App.css';
 
-function App(): JSX.Element {
+function App() {
   return (
     <>
-      <div>eCommerce-Application</div>
+      <Login />
     </>
   );
 }
