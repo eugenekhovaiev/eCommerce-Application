@@ -9,7 +9,8 @@ import IconButton from '@mui/material/IconButton';
 import Button from '@mui/material/Button';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
-import { useForm, useFormState, Controller } from 'react-hook-form';
+import { useForm, useFormState, Controller, SubmitHandler } from 'react-hook-form';
+import { FormHelperText } from '@mui/material';
 interface ISignInForm {
     email: string;
     password: string;
@@ -36,7 +37,7 @@ export const LoginForm: React.FC = () => {
            <Typography variant="h3" gutterBottom className='login-form__title'>
                 Login
             </Typography> 
-            <form className='login-form__fields'>
+            <form className='login-form__fields' onSubmit={handleSubmit(onSubmit)}>
                 <Controller
                 control={control}
                 name="email"
@@ -47,6 +48,9 @@ export const LoginForm: React.FC = () => {
                 type="email"
                 variant="standard"
                 onChange={(e) => field.onChange(e)}
+                value={ field.value || "" }
+                error={ !!errors.email?.message }
+                helperText={ errors.email?.message }
                 />
                 )}
                 />
@@ -55,12 +59,13 @@ export const LoginForm: React.FC = () => {
                  control={control}
                  name="password"
                  render={({ field }) => (
-                <FormControl variant="standard">
+                <FormControl variant="standard" error={ !!errors.password?.message }>
                     <InputLabel htmlFor="standard-adornment-password">Password</InputLabel>
                     <Input
                     id="standard-adornment-password"
                     type={showPassword ? 'text' : 'password'}
                     onChange={(e) => field.onChange(e)}
+                    value={ field.value || "" }
                     endAdornment={
                     <InputAdornment position="end">
                         <IconButton
@@ -73,6 +78,7 @@ export const LoginForm: React.FC = () => {
                     </InputAdornment>
                     }
                     />
+                    <FormHelperText>{ errors.password?.message }</FormHelperText>
                 </FormControl>
                  )}
                  />  
