@@ -41,6 +41,7 @@ export const LoginForm: React.FC = () => {
                 <Controller
                 control={control}
                 name="email"
+                rules={{required: 'Required'}}
                 render={({ field }) => (
                 <TextField
                 id="standard-email"
@@ -58,6 +59,7 @@ export const LoginForm: React.FC = () => {
                 <Controller
                  control={control}
                  name="password"
+                 rules={{required: 'Required'}}
                  render={({ field }) => (
                 <FormControl variant="standard" error={ !!errors.password?.message }>
                     <InputLabel htmlFor="standard-adornment-password">Password</InputLabel>
