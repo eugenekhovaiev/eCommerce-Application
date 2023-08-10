@@ -32,7 +32,6 @@ module.exports = {
         arrowParens: 'always',
       },
     ],
-    'max-lines-per-function': ['error', 40],
     'react-refresh/only-export-components': ['warn', { allowConstantExport: true }],
     '@typescript-eslint/no-inferrable-types': 'off',
     '@typescript-eslint/array-type': [
@@ -54,7 +53,6 @@ module.exports = {
         },
       },
     ],
-    '@typescript-eslint/explicit-function-return-type': 'error',
     '@typescript-eslint/ban-ts-comment': 'error',
     '@typescript-eslint/no-unnecessary-type-assertion': 'error',
     '@typescript-eslint/no-explicit-any': 'error',
