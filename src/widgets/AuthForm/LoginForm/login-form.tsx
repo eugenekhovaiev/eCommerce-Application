@@ -6,14 +6,15 @@ import InputLabel from '@mui/material/InputLabel';
 import Input from '@mui/material/Input';
 import InputAdornment from '@mui/material/InputAdornment';
 import IconButton from '@mui/material/IconButton';
-import Button from '@mui/material/Button';
+// import Button from '@mui/material/Button';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import { useForm, useFormState, Controller, SubmitHandler } from 'react-hook-form';
 import { FormHelperText } from '@mui/material';
-import { passwordValidation } from '../../../shared/validation/passwordValidation';
-import { emailValidation } from '../../../shared/validation/emailValidation';
+import { emailValidation } from '../../../shared/lib/validation/emailValidation';
+import { passwordValidation } from '../../../shared/lib/validation/passwordValidation';
 import '../LoginForm/login-form.css';
+import ButtonAuth from '../../../shared/UI/Buttons/buttonAuth';
 interface ISignInForm {
   email: string;
   password: string;
@@ -87,7 +88,7 @@ export const LoginForm: React.FC = () => {
             </FormControl>
           )}
         />
-        <Button type="submit">LOG IN</Button>
+        <ButtonAuth title="LOG IN"></ButtonAuth>
       </form>
     </div>
   );
