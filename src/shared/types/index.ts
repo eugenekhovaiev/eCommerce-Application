@@ -11,4 +11,10 @@ type ImgProps = {
   alt: string;
 };
 
-export type { LinkProps, ImgProps };
+type LogoProps = {
+  title?: string;
+  iconSrc?: string;
+  onClick?: React.MouseEventHandler<HTMLElement>;
+};
+
+export type { LinkProps, ImgProps, LogoProps };
