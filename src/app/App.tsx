@@ -1,9 +1,10 @@
 import './styles/App.css';
+import Main from '../pages/main/Main';
 
 function App(): JSX.Element {
   return (
     <>
-      <div>eCommerce-Application</div>
+      <Main></Main>
     </>
   );
 }

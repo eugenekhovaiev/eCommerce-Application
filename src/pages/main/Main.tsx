@@ -3,6 +3,9 @@ function Main(): JSX.Element {
   return (
     <>
       <Header></Header>
+      <main>
+        <div>eCommerce-Application</div>
+      </main>
     </>
   );
 }
