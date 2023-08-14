@@ -1,24 +1,23 @@
 @import '../../shared/styles/mixins.scss';
 @import '../../shared/styles/variables.scss';
 
-.header-container {
+.start-screen-container {
   @include container();
+  background-color: $color-primary;
 }
 
-.header {
+.start-screen {
   width: 100%;
   max-width: 1280px;
-  margin: 20px auto;
+  min-height: 60vh;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   font-family: $font-primary;
-  color: $color-font-dark-xl;
 }
 
-.nav {
-  width: 25%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+.start-screen_title {
+  font-weight: 600;
+  font-size: 3rem;
+  color: $color-font-dark-l;
 }

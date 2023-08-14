@@ -7,13 +7,15 @@ import HeaderProps from './types';
 
 function Header(props: HeaderProps): JSX.Element {
   return (
-    <header className="header">
-      <Logo onClick={props.logoClick} title="Home" />
-      <nav className="nav">
-        <SignIn />
-        <SignUp />
-        <CartIcon />
-      </nav>
+    <header className="header-container">
+      <div className="header">
+        <Logo onClick={props.logoClick} title="Home" />
+        <nav className="nav">
+          <SignIn />
+          <SignUp />
+          <CartIcon />
+        </nav>
+      </div>
     </header>
   );
 }
