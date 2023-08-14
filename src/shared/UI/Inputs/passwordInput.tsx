@@ -9,7 +9,7 @@ import IconButton from '@mui/material/IconButton';
 import { FormHelperText } from '@mui/material';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
-import { ISignInForm } from '../../../widgets/AuthForm/LoginForm/login-form';
+import { ISignInForm } from '../../types';
 
 type PasswordInputProps = {
   control: Control<ISignInForm>;
@@ -34,7 +34,7 @@ export const PasswordInput: React.FC<PasswordInputProps> = (props) => {
           <InputLabel htmlFor="standard-adornment-password">Password</InputLabel>
           <Input
             id="standard-adornment-password"
-            type={showPassword ? 'text' : 'password'}
+            type={showPassword ? 'text' : 'password'}login-form
             onChange={(e): void => field.onChange(e)}
             value={field.value || ''}
             endAdornment={

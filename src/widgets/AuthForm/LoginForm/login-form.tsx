@@ -5,10 +5,7 @@ import '../LoginForm/login-form.css';
 import ButtonAuth from '../../../shared/UI/Buttons/buttonAuth';
 import { EmailInput } from '../../../shared/UI/Inputs/emailInput';
 import { PasswordInput } from '../../../shared/UI/Inputs/passwordInput';
-export interface ISignInForm {
-  email: string;
-  password: string;
-}
+import { ISignInForm } from '../../../shared/types';
 
 export const LoginForm: React.FC = () => {
   const { handleSubmit, control } = useForm<ISignInForm>();
