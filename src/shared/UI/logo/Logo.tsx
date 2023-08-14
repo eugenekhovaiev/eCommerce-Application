@@ -7,7 +7,7 @@ function Logo(props: LogoProps): JSX.Element {
   if (props.iconSrc) {
     return (
       <h1 className={className} onClick={props.onClick}>
-        {props.title}
+        <span>{props.title}</span>
         <img className="icon" src={props.iconSrc} alt="logo"></img>
       </h1>
     );
