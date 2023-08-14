@@ -9,19 +9,19 @@ type EmailInputProps = {
   errors: FieldErrors<ISignInForm>;
 };
 
-export const EmailInput: React.FC<EmailInputProps>= (props) => {
+export const EmailInput: React.FC<EmailInputProps> = (props): JSX.Element => {
   return (
     <Controller
       control={props.control}
       name="email"
       rules={emailValidation}
-      render={({ field }) => (
+      render={({ field }): JSX.Element => (
         <TextField
           id="standard-email"
           label="Email"
           type="email"
           variant="standard"
-          onChange={(e) => field.onChange(e)}
+          onChange={(e): void => field.onChange(e)}
           value={field.value || ''}
           error={!!props.errors.email?.message}
           helperText={props.errors.email?.message}

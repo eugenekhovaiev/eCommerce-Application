@@ -1,5 +1,5 @@
 import React from 'react';
-import { Controller, Control, FieldErrors} from 'react-hook-form';
+import { Controller, Control, FieldErrors } from 'react-hook-form';
 import { passwordValidation } from '../../lib/validation/passwordValidation';
 import FormControl from '@mui/material/FormControl';
 import InputLabel from '@mui/material/InputLabel';
@@ -12,16 +12,16 @@ import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import { ISignInForm } from '../../../widgets/AuthForm/LoginForm/login-form';
 
 type PasswordInputProps = {
-    control: Control<ISignInForm>;
-    errors: FieldErrors<ISignInForm>;
-}; 
+  control: Control<ISignInForm>;
+  errors: FieldErrors<ISignInForm>;
+};
 
 export const PasswordInput: React.FC<PasswordInputProps> = (props) => {
   const [showPassword, setShowPassword] = React.useState(false);
 
-  const handleClickShowPassword = () => setShowPassword((show) => !show);
+  const handleClickShowPassword = (): void => setShowPassword((show) => !show);
 
-  const handleMouseDownPassword = (event: React.MouseEvent<HTMLButtonElement>) => {
+  const handleMouseDownPassword = (event: React.MouseEvent<HTMLButtonElement>): void => {
     event.preventDefault();
   };
   return (
@@ -29,13 +29,13 @@ export const PasswordInput: React.FC<PasswordInputProps> = (props) => {
       control={props.control}
       name="password"
       rules={passwordValidation}
-      render={({ field }) => (
+      render={({ field }): JSX.Element => (
         <FormControl variant="standard" error={!!props.errors.password?.message}>
           <InputLabel htmlFor="standard-adornment-password">Password</InputLabel>
           <Input
             id="standard-adornment-password"
             type={showPassword ? 'text' : 'password'}
-            onChange={(e) => field.onChange(e)}
+            onChange={(e): void => field.onChange(e)}
             value={field.value || ''}
             endAdornment={
               <InputAdornment position="end">

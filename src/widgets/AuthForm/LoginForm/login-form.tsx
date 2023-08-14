@@ -1,6 +1,6 @@
 import React from 'react';
 import Typography from '@mui/material/Typography';
-import { useForm, SubmitHandler } from 'react-hook-form';
+import { useForm, useFormState, SubmitHandler } from 'react-hook-form';
 import '../LoginForm/login-form.css';
 import ButtonAuth from '../../../shared/UI/Buttons/buttonAuth';
 import { EmailInput } from '../../../shared/UI/Inputs/emailInput';
@@ -11,8 +11,10 @@ export interface ISignInForm {
 }
 
 export const LoginForm: React.FC = () => {
-  const { handleSubmit } = useForm<ISignInForm>();
-
+  const { handleSubmit, control } = useForm<ISignInForm>();
+  const { errors } = useFormState({
+    control,
+  });
   const onSubmit: SubmitHandler<ISignInForm> = (data) => console.log(data);
 
   return (
@@ -21,9 +23,9 @@ export const LoginForm: React.FC = () => {
         Login
       </Typography>
       <form className="login-form__fields" onSubmit={handleSubmit(onSubmit)}>
-        <EmailInput/>
-        <PasswordInput/>
-        <ButtonAuth title="LOG IN"/>
+        <EmailInput control={control} errors={errors} />
+        <PasswordInput control={control} errors={errors} />
+        <ButtonAuth title="LOG IN" />
       </form>
     </div>
   );
