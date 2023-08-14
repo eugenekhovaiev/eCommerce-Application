@@ -35,7 +35,6 @@ export const PasswordInput: React.FC<PasswordInputProps> = (props) => {
           <Input
             id="standard-adornment-password"
             type={showPassword ? 'text' : 'password'}
-            login-form
             onChange={(e): void => field.onChange(e)}
             value={field.value || ''}
             endAdornment={

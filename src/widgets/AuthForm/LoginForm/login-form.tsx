@@ -7,7 +7,7 @@ import { EmailInput } from '../../../shared/UI/Inputs/emailInput';
 import { PasswordInput } from '../../../shared/UI/Inputs/passwordInput';
 import { ISignInForm } from '../../../shared/types';
 
-export const LoginForm: React.FC = () => {
+export const LoginForm: React.FC = (): JSX.Element => {
   const { handleSubmit, control } = useForm<ISignInForm>();
   const { errors } = useFormState({
     control,
