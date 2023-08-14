@@ -1,15 +1,10 @@
 import React from 'react';
+import { IEmailInputProps } from '../../types';
 import TextField from '@mui/material/TextField';
 import { emailValidation } from '../../lib/validation/emailValidation';
-import { ISignInForm } from '../../types';
-import { Controller, Control, FieldErrors } from 'react-hook-form';
+import { Controller } from 'react-hook-form';
 
-type EmailInputProps = {
-  control: Control<ISignInForm>;
-  errors: FieldErrors<ISignInForm>;
-};
-
-export const EmailInput: React.FC<EmailInputProps> = (props): JSX.Element => {
+export const EmailInput: React.FC<IEmailInputProps> = (props): JSX.Element => {
   return (
     <Controller
       control={props.control}

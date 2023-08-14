@@ -1,8 +1,6 @@
-import Button from '@mui/material/Button';
+import { IButtonProps } from '../../types';
 
-interface IButtonProps {
-  title: string;
-}
+import Button from '@mui/material/Button';
 
 const ButtonAuth: React.FC<IButtonProps> = ({ title }) => {
   return <Button type="submit">{title}</Button>;
