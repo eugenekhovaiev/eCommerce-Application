@@ -1,7 +1,7 @@
 import React from 'react';
 import TextField from '@mui/material/TextField';
 import { emailValidation } from '../../lib/validation/emailValidation';
-import { ISignInForm } from '../../types'; 
+import { ISignInForm } from '../../types';
 import { Controller, Control, FieldErrors } from 'react-hook-form';
 
 type EmailInputProps = {
