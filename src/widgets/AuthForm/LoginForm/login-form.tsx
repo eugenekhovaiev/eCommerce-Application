@@ -21,9 +21,9 @@ export const LoginForm: React.FC = () => {
         Login
       </Typography>
       <form className="login-form__fields" onSubmit={handleSubmit(onSubmit)}>
-        <EmailInput />
-        <PasswordInput />
-        <ButtonAuth title="LOG IN"></ButtonAuth>
+        <EmailInput/>
+        <PasswordInput/>
+        <ButtonAuth title="LOG IN"/>
       </form>
     </div>
   );
