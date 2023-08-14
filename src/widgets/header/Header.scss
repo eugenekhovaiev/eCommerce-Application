@@ -1,7 +1,7 @@
 @import '../../app/styles/mixins.scss';
 @import '../../app/styles/variables.scss';
 
-.header {
+.header__wrapper {
   width: 100%;
   max-width: 1280px;
   margin: 1.5rem auto;
@@ -18,7 +18,7 @@
   font-weight: 400;
 }
 
-.nav {
+.header__nav {
   width: 25%;
   display: flex;
   justify-content: space-between;
