@@ -1,10 +1,10 @@
 import './Main.scss';
-import Header from '../../widgets/header/Header';
+// import Header from '../../widgets/header/Header';
 
 function Main(): JSX.Element {
   return (
     <div className="main">
-      <Header></Header>
+      {/* <Header></Header> */}
       <main className="main_content">
         <div className="start-screen-container">
           <div className="start-screen">

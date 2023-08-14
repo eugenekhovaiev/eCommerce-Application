@@ -1,19 +1,20 @@
 @import '../../app/styles/mixins.scss';
 @import '../../app/styles/variables.scss';
 
-.header-container {
-  @include container();
-}
-
 .header {
   width: 100%;
   max-width: 1280px;
-  margin: 20px auto;
+  margin: 1.5rem auto;
   display: flex;
   justify-content: space-between;
   align-items: center;
   font-family: $font-primary;
   color: $color-font-dark-xl;
+}
+
+.header__logo {
+  box-sizing: border-box;
+  max-width: 7rem;
 }
 
 .nav {

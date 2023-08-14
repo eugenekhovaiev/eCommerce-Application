@@ -1,20 +1,21 @@
-type LinkProps = {
+export type LinkProps = {
   href?: string;
   target?: string;
   title?: string;
+  className?: string;
   children?: JSX.Element;
   onClick?: React.MouseEventHandler<HTMLAnchorElement>;
 };
 
-type ImgProps = {
+export type ImgProps = {
   src?: string;
   alt: string;
+  className?: string;
 };
 
-type LogoProps = {
+export type LogoProps = {
   title?: string;
   iconSrc?: string;
+  className?: string;
   onClick?: React.MouseEventHandler<HTMLElement>;
 };
-
-export type { LinkProps, ImgProps, LogoProps };

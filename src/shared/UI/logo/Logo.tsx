@@ -1,17 +1,19 @@
 import './Logo.scss';
 import { LogoProps } from '../../types';
+import getClassName from '../../lib/helpers/getClassName';
 
 function Logo(props: LogoProps): JSX.Element {
+  const className = getClassName('logo', props.className);
   if (props.iconSrc) {
     return (
-      <h1 className="logo" onClick={props.onClick}>
+      <h1 className={className} onClick={props.onClick}>
         {props.title}
-        <img src={props.iconSrc} alt="logo"></img>
+        <img className="icon" src={props.iconSrc} alt="logo"></img>
       </h1>
     );
   }
   return (
-    <h1 className="logo" onClick={props.onClick}>
+    <h1 className={className} onClick={props.onClick}>
       {props.title}
     </h1>
   );
