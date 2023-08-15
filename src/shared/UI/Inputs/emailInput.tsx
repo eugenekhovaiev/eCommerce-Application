@@ -1,10 +1,10 @@
 import React from 'react';
-import { IEmailInputProps } from '../../types';
+import { IInputProps } from '../../types';
 import TextField from '@mui/material/TextField';
-import { emailValidation } from '../../lib/validation/emailValidation';
+import emailValidation from '../../lib/validation/emailValidation';
 import { Controller } from 'react-hook-form';
 
-export const EmailInput: React.FC<IEmailInputProps> = (props): JSX.Element => {
+const EmailInput: React.FC<IInputProps> = (props): JSX.Element => {
   return (
     <Controller
       control={props.control}
@@ -25,3 +25,5 @@ export const EmailInput: React.FC<IEmailInputProps> = (props): JSX.Element => {
     />
   );
 };
+
+export default EmailInput;
