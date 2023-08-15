@@ -1,5 +1,5 @@
-function clickSignUp(): void {
+function handleClickSignUp(): void {
   console.log('Click Sign Up!');
 }
 
-export default clickSignUp;
+export default handleClickSignUp;
