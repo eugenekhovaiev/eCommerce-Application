@@ -38,7 +38,8 @@
     "normalize.css": "^8.0.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-hook-form": "^7.45.4"
+    "react-hook-form": "^7.45.4",
+    "react-router-dom": "^6.15.0"
   },
   "devDependencies": {
     "@commercetools/platform-sdk": "^5.0.0",
