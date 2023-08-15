@@ -1,8 +1,8 @@
 import './Logo.scss';
-import { LogoProps } from '../../types';
+import { ILogoProps } from '../../types';
 import getClassName from '../../lib/helpers/getClassName';
 
-function Logo(props: LogoProps): JSX.Element {
+function Logo(props: ILogoProps): JSX.Element {
   const className = getClassName('logo', props.className);
   if (props.iconSrc) {
     return (

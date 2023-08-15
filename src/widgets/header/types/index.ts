@@ -1,5 +1,3 @@
-type HeaderProps = {
+export interface IHeaderProps {
   logoClick?: React.MouseEventHandler<HTMLElement>;
-};
-
-export default HeaderProps;
+}

@@ -3,10 +3,10 @@ import SignIn from '../../features/Login/UI/SignIn';
 import SignUp from '../../features/Login/UI/SignUp';
 import CartIcon from '../../entities/Cart/UI/CartIcon';
 import Logo from '../../shared/UI/logo/Logo';
-import HeaderProps from './types';
+import { IHeaderProps } from './types';
 import logoIcon from '../../shared/assets/logo.svg';
 
-function Header(props: HeaderProps): JSX.Element {
+function Header(props: IHeaderProps): JSX.Element {
   return (
     <header className="header">
       <div className="container">

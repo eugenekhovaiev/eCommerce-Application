@@ -1,11 +1,9 @@
-type SignInProps = {
+export interface ISignInProps {
   className?: string;
   onClick?: React.MouseEventHandler<HTMLAnchorElement>;
-};
+}
 
-type SignUpProps = {
+export interface ISignUpProps {
   className?: string;
   onClick?: React.MouseEventHandler<HTMLAnchorElement>;
-};
-
-export type { SignInProps, SignUpProps };
+}
