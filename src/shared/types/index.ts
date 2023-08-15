@@ -22,21 +22,22 @@ export interface ILogoProps {
   onClick?: React.MouseEventHandler<HTMLElement>;
 }
 
-export interface ISignInForm {
+export interface IForm {
   email: string;
   password: string;
+  firstName?: string;
+  lastName?: string;
+  dateOfBirth?: string;
+  street?: string;
+  postalCode?: string;
+  country?: string;
 }
 
 export interface IButtonProps {
   title: string;
 }
 
-export interface IEmailInputProps {
-  control: Control<ISignInForm>;
-  errors: FieldErrors<ISignInForm>;
-}
-
-export interface IPasswordInputProps {
-  control: Control<ISignInForm>;
-  errors: FieldErrors<ISignInForm>;
+export interface IInputProps {
+  control: Control<IForm>;
+  errors: FieldErrors<IForm>;
 }
