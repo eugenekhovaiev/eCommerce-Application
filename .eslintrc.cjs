@@ -5,6 +5,7 @@ module.exports = {
     'eslint:recommended',
     'plugin:@typescript-eslint/recommended',
     'plugin:react-hooks/recommended',
+    'plugin:react/recommended',
     'prettier',
     'plugin:prettier/recommended',
   ],
@@ -33,6 +34,12 @@ module.exports = {
       },
     ],
     'max-lines-per-function': ['error', 40],
+    'react/react-in-jsx-scope': 'off',
+    'react/prop-types': 'off',
+    'react/self-closing-comp': ['error', {
+      "component": true,
+      "html": true
+    }],
     'react-refresh/only-export-components': ['warn', { allowConstantExport: true }],
     '@typescript-eslint/no-inferrable-types': 'off',
     '@typescript-eslint/array-type': [
