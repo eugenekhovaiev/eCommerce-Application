@@ -13,7 +13,7 @@ function App(): JSX.Element {
       <Login />
       <Main />
       <Routes>
-        <Route path="/" element={<Main />} />
+        <Route path="/main" element={<Main />} />
         <Route path="/login" element={<Login />} />
         {/* <Route path='/registration' element={<Registration />} />
         <Route path='*' element={<Page404 />} /> */}
