@@ -54,6 +54,9 @@ Locally previews the production build, allowing you to see how the application w
 #### **`lint`**
 Runs linting for all files in the src folder.
 
+#### **`lint-fix`**
+Runs to fix linting issues.
+
 #### **`prettier`**
 Runs code formatting for all files in the src folder.
 
