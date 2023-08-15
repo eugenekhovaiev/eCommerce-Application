@@ -1,0 +1,25 @@
+@import '../../app/styles/variables.scss';
+
+.header__wrapper {
+  width: 100%;
+  max-width: 1280px;
+  margin: 1.5rem auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: $font-primary;
+  color: $color-font-dark-xl;
+}
+
+.header__logo {
+  max-width: 7rem;
+  font-size: 1.5rem;
+  font-weight: 400;
+}
+
+.header__nav {
+  width: 25%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
