@@ -6,7 +6,7 @@ import { ICartIconProps } from '../types';
 function CartIcon(props: ICartIconProps): JSX.Element {
   return (
     <Link className={props.className}>
-      <Img src={Basket} alt="cart"></Img>
+      <Img src={Basket} alt="cart" />
     </Link>
   );
 }

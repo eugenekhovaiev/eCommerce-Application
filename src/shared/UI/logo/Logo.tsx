@@ -8,7 +8,7 @@ function Logo(props: ILogoProps): JSX.Element {
     return (
       <h1 className={className} onClick={props.onClick}>
         <span className="logo__title">{props.title}</span>
-        <img className="logo__icon" src={props.iconSrc} alt="logo"></img>
+        <img className="logo__icon" src={props.iconSrc} alt="logo" />
       </h1>
     );
   }
