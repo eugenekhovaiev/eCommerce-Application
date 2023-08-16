@@ -2,7 +2,6 @@ import 'normalize.css';
 import './styles/reset.scss';
 import './styles/App.scss';
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import Login from '../pages/Login/Login';
 // import Registration;
 import Main from '../pages/main/Main';
