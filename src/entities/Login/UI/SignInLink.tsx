@@ -1,4 +1,4 @@
-import LinkElement from '../../../shared/UI/link/Link';
+import LinkElement from '../../../shared/UI/link/LinkElement';
 import { ISignInProps } from '../types';
 
 function SignInLink(props: ISignInProps): JSX.Element {

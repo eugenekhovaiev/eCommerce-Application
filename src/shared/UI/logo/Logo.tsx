@@ -1,7 +1,7 @@
 import './Logo.scss';
 import { ILogoProps } from '../../types';
 import getClassName from '../../lib/helpers/getClassName';
-import LinkElement from '../link/Link';
+import LinkElement from '../link/LinkElement';
 
 function Logo(props: ILogoProps): JSX.Element {
   const className = getClassName('logo', props.className);

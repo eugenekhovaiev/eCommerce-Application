@@ -1,4 +1,4 @@
-import './Link.scss';
+import './LinkElement.scss';
 import { ILinkProps } from '../../types';
 import getClassName from '../../lib/helpers/getClassName';
 import { Link } from 'react-router-dom';
