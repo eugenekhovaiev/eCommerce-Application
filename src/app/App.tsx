@@ -10,10 +10,10 @@ function App(): JSX.Element {
   return (
     <>
       <Header />
-      <Login />
-      <Main />
+      {/* <Login /> */}
+      {/* <Main /> */}
       <Routes>
-        <Route path="/main" element={<Main />} />
+        <Route path="/" element={<Main />} />
         <Route path="/login" element={<Login />} />
         {/* <Route path='/registration' element={<Registration />} />
         <Route path='*' element={<Page404 />} /> */}
