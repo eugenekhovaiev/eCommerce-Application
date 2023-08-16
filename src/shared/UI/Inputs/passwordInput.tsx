@@ -29,13 +29,16 @@ const PasswordInput: React.FC<IInputProps> = (props) => {
       name="password"
       rules={passwordValidation}
       render={({ field }): JSX.Element => (
-        <FormControl variant="standard" error={!!props.errors.password?.message}>
-          <InputLabel htmlFor="standard-adornment-password">Password</InputLabel>
+        <FormControl className={props.className} variant="standard" error={!!props.errors.password?.message}>
+          <InputLabel color="secondary" htmlFor="standard-adornment-password">
+            Password
+          </InputLabel>
           <Input
             id="standard-adornment-password"
             type={showPassword ? 'text' : 'password'}
             onChange={(e): void => field.onChange(e)}
             value={field.value || ''}
+            color="secondary"
             endAdornment={
               <InputAdornment position="end">
                 <IconButton

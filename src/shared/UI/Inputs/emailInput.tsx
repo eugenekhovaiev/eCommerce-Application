@@ -15,7 +15,9 @@ const EmailInput: React.FC<IInputProps> = (props): JSX.Element => {
           id="standard-email"
           label="Email"
           type="email"
-          variant="standard"
+          variant={props.variant || 'standard'}
+          color="secondary"
+          className={props.className}
           onChange={(e): void => field.onChange(e)}
           value={field.value || ''}
           error={!!props.errors.email?.message}

@@ -1,7 +1,17 @@
-import { TextField } from '@mui/material';
+import { IInputProps } from '../../types';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+// import { DatePicker } from '@mui/x-date-pickers/DatePicker';
+import { DateField } from '@mui/x-date-pickers';
 
-const DateOfBirthInput = (): JSX.Element => {
-  return <TextField type="text" label="Date Of Birth" className="form__date-of-birth" variant="standard" />;
+const DateOfBirthInput = (props: IInputProps): JSX.Element => {
+  return (
+    <LocalizationProvider dateAdapter={AdapterDayjs}>
+      {/* <DatePicker className={props.className} /> */}
+      <DateField color="secondary" className={props.className} />
+      {/* <DateCalendar className={props.className} /> */}
+    </LocalizationProvider>
+  );
 };
 
 export default DateOfBirthInput;

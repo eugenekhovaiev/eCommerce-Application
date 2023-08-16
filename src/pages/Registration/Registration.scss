@@ -1,3 +1,14 @@
+@import '../../app/styles/variables.scss';
+
+.registration {
+  padding-top: 5rem;
+  background-color: $color-primary-s;
+}
+
+.MuiTypography-h3.registration__title {
+  font-family: $font-primary;
+}
+
 .registration__wrapper {
   display: flex;
   flex-direction: column;

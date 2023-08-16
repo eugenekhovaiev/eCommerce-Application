@@ -1,7 +1,16 @@
 import { TextField } from '@mui/material';
+import { IInputProps } from '../../../types';
 
-const StreetInput = (): JSX.Element => {
-  return <TextField type="text" label="Street" className="form__street" variant="standard" />;
+const StreetInput = (props: IInputProps): JSX.Element => {
+  return (
+    <TextField
+      type="text"
+      label="Street Address"
+      color="secondary"
+      className={props.className}
+      variant={props.variant || 'standard'}
+    />
+  );
 };
 
 export default StreetInput;

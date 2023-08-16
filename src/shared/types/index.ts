@@ -1,3 +1,5 @@
+import { TextFieldVariants } from '@mui/material';
+// import { TextFieldPropsColorOverrides } from '@mui/material';
 import { Control, FieldErrors } from 'react-hook-form';
 
 export interface ILinkProps {
@@ -35,9 +37,13 @@ export interface IForm {
 
 export interface IButtonProps {
   title: string;
+  className?: string;
 }
 
 export interface IInputProps {
   control: Control<IForm>;
   errors: FieldErrors<IForm>;
+  variant?: TextFieldVariants;
+  className?: string;
+  // color?: OverridableStringUnion<"error" | "primary" | "secondary" | "info" | "success" | "warning", TextFieldPropsColorOverrides>
 }

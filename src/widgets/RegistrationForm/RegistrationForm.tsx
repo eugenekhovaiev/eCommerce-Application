@@ -24,18 +24,29 @@ const RegistrationForm = (): JSX.Element => {
 
   return (
     <form className="registration__form form">
-      <Typography variant="h5">User data (хз как это назвать)</Typography>
-      <EmailInput control={control} errors={errors} />
-      <PasswordInput control={control} errors={errors} />
-      <FirstNameInput />
-      <LastNameInput />
-      <DateOfBirthInput />
-      <Typography variant="h5">Address</Typography>
-      <StreetInput />
-      <CityInput />
-      <PostalCodeInput />
-      <CountryInput />
-      <ButtonAuth title="Register" />
+      {/* <Typography variant="h5">User data (хз как это назвать)</Typography> */}
+      <div className="registration__user-info">
+        <FirstNameInput variant="outlined" className="form__input form__input_name" control={control} errors={errors} />
+        <LastNameInput variant="outlined" className="form__input form__input_name" control={control} errors={errors} />
+        <EmailInput variant="outlined" className="form__input form__input_email" control={control} errors={errors} />
+        <PasswordInput className="form__input form__input_password" control={control} errors={errors} />
+        <DateOfBirthInput className="form__input form__input_dob" control={control} errors={errors} />
+      </div>
+      <Typography variant="h5" className="form__title">
+        Address
+      </Typography>
+      <div className="registartion__address-info">
+        <StreetInput variant="outlined" className="form__input form__input_street" control={control} errors={errors} />
+        <CityInput variant="outlined" className="form__input form__input_city" control={control} errors={errors} />
+        <PostalCodeInput variant="outlined" className="form__input form__input_zip" control={control} errors={errors} />
+        <CountryInput
+          variant="outlined"
+          className="form__input form__input_country"
+          control={control}
+          errors={errors}
+        />
+      </div>
+      <ButtonAuth title="Register" className="form__submit" />
     </form>
   );
 };

@@ -1,7 +1,16 @@
 import { TextField } from '@mui/material';
+import { IInputProps } from '../../../types';
 
-const PostalCodeInput = (): JSX.Element => {
-  return <TextField type="text" label="Postal Code" className="form__posatal-code" variant="standard" />;
+const PostalCodeInput = (props: IInputProps): JSX.Element => {
+  return (
+    <TextField
+      type="text"
+      label="Postal / Zip code"
+      color="secondary"
+      className={props.className}
+      variant={props.variant || 'standard'}
+    />
+  );
 };
 
 export default PostalCodeInput;
