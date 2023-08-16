@@ -1,16 +1,20 @@
+import { CustomerDraft } from '@commercetools/platform-sdk';
 import { apiRoot } from '../../../../shared/api/user/UserClient';
 
 // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
-const createCustomer = () => {
+const createCustomer = (newCustomerData: CustomerDraft) => {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const testCustomerDraft: CustomerDraft = {
+    email: 'test@test.com',
+    password: 'testPassword1-',
+    firstName: 'TestFirstName',
+    lastName: 'TestLastName',
+  };
+
   return apiRoot
     .customers()
     .post({
-      body: {
-        email: 'test@test.com',
-        password: 'testPassword',
-        firstName: 'TestFirstName',
-        lastName: 'TestLastName',
-      },
+      body: newCustomerData,
     })
     .execute();
 };
