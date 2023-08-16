@@ -27,8 +27,8 @@ export interface ILogoProps {
 export interface IForm {
   email: string;
   password: string;
-  firstName?: string;
-  lastName?: string;
+  firstName: string;
+  lastName: string;
   dateOfBirth?: string;
   street?: string;
   postalCode?: string;

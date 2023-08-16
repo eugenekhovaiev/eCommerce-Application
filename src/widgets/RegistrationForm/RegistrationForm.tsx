@@ -1,4 +1,5 @@
-import { useForm, useFormState } from 'react-hook-form';
+import { useForm, useFormState, SubmitHandler } from 'react-hook-form';
+
 import Typography from '@mui/material/Typography';
 
 import { IForm } from '../../shared/types';
@@ -17,14 +18,15 @@ import ButtonAuth from '../../shared/UI/Buttons/buttonAuth';
 import './RegistrationForm.scss';
 
 const RegistrationForm = (): JSX.Element => {
-  const { control } = useForm<IForm>();
+  const { handleSubmit, control } = useForm<IForm>();
   const { errors } = useFormState({
     control,
   });
 
+  const onSubmit: SubmitHandler<IForm> = (data) => console.log(data);
+
   return (
-    <form className="registration__form form">
-      {/* <Typography variant="h5">User data (хз как это назвать)</Typography> */}
+    <form className="registration__form form" onSubmit={handleSubmit(onSubmit)}>
       <div className="registration__user-info">
         <FirstNameInput variant="outlined" className="form__input form__input_name" control={control} errors={errors} />
         <LastNameInput variant="outlined" className="form__input form__input_name" control={control} errors={errors} />
