@@ -18,13 +18,17 @@ img {
     height: auto;
   }
 
+body {
+  background-color: #f3c63e;
+}
 
 .page404-container {
     margin: 0 auto;
     height: 100vh;
+    position: relative;
     display: flex;
     flex-direction: column;
-    gap: 1rem;
+    gap: 3rem;
     background-color: #f3c63e;
     background-image: url(../../shared/assets/back.png);
     background-size: contain;
