@@ -1,5 +1,7 @@
 body {
   background-color: #f3c63e;
+  background-image: url(../../shared/assets/back.png);
+  background-size: contain;
 }
 
 .page404-container {
@@ -9,9 +11,6 @@ body {
     display: flex;
     flex-direction: column;
     gap: 3rem;
-    background-color: #f3c63e;
-    background-image: url(../../shared/assets/back.png);
-    background-size: contain;
     color: white;
 }
 
