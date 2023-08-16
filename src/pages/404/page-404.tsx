@@ -1,4 +1,5 @@
 import '../404/page-404.css';
+
 const Page404 = (): JSX.Element => {
   return (
     <div className="page404-container">

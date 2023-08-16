@@ -1,4 +1,5 @@
 import Page404 from '../pages/404/page-404';
+import './styles/reset.css';
 import './styles/App.css';
 
 function App(): JSX.Element {
