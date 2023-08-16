@@ -8,6 +8,8 @@
     "dev": "vite",
     "build": "tsc && vite build",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
+    "lint-fix": "eslint --fix --ext .ts,.tsx .",
+    "prettier": "prettier src --write",
     "preview": "vite preview",
     "prepare": "husky install",
     "test": "jest"
@@ -30,10 +32,15 @@
   },
   "homepage": "https://github.com/eugenekhovaiev/eCommerce-Application#readme",
   "dependencies": {
+    "@emotion/react": "^11.11.1",
+    "@emotion/styled": "^11.11.0",
+    "@mui/icons-material": "^5.14.3",
+    "@mui/material": "^5.14.4",
     "isomorphic-fetch": "^3.0.0",
     "normalize.css": "^8.0.1",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "react-hook-form": "^7.45.4"
   },
   "devDependencies": {
     "@commercetools/platform-sdk": "^5.0.0",

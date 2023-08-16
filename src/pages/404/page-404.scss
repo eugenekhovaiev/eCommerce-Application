@@ -1,12 +1,9 @@
 .page404 {
     background-color: #f3c63e;
-    // background-image: url(../../shared/assets/back.png);
     background: #f3c63e url('../../shared/assets/back.png') center center/cover no-repeat;
     height: 100vh;
     
     &__container {
-        max-width: 1280px;
-        margin: 0 auto;
         position: relative;
         display: flex;
         flex-direction: column;
