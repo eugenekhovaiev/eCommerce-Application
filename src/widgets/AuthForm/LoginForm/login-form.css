@@ -8,6 +8,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  gap: 1rem;
 }
 
 .login-form__fields {
@@ -15,4 +16,12 @@
   flex-direction: column;
   gap: 20px;
   width: 50%;
+}
+
+.login-form__success-message {
+  color: green;
+}
+
+.login-form__error-message {
+  color: red;
 }
