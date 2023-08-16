@@ -7,12 +7,17 @@ import { EmailInput } from '../../../shared/UI/Inputs/emailInput';
 import { PasswordInput } from '../../../shared/UI/Inputs/passwordInput';
 import { ISignInForm } from '../../../shared/types';
 
+import createCustomer from './api/createCustomer';
+
 export const LoginForm: React.FC = (): JSX.Element => {
   const { handleSubmit, control } = useForm<ISignInForm>();
   const { errors } = useFormState({
     control,
   });
-  const onSubmit: SubmitHandler<ISignInForm> = (data) => console.log(data);
+  const onSubmit: SubmitHandler<ISignInForm> = (data) => {
+    console.log(data);
+    createCustomer();
+  };
 
   return (
     <div className="login-form">
