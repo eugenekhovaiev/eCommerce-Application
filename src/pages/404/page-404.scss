@@ -1,0 +1,31 @@
+.page404 {
+    background-color: #f3c63e;
+    background: #f3c63e url('../../shared/assets/back.png') center center/cover no-repeat;
+    height: 100vh;
+    
+    &__container {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        gap: 3rem;
+
+        text-align: center;
+        color: white;
+    }
+
+    &__title {
+        font-size: 8rem;
+        font-weight: bold;
+    }
+    
+    &__subtitle {
+        font-size: 2rem;
+        font-weight: bold;
+    }
+    
+    &__describe {
+        font-size: 2rem;
+    }
+}
+
+
