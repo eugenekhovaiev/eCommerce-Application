@@ -1,6 +1,6 @@
 import 'normalize.css';
-import './styles/reset.css';
-import './styles/App.css';
+import './styles/reset.scss';
+import './styles/App.scss';
 
 import Page404 from '../pages/404/page-404';
 
