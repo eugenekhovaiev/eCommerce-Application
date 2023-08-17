@@ -38,7 +38,9 @@ export const LoginForm: React.FC = (): JSX.Element => {
       setLoginError(false);
       setCustomerData(customer);
       // redirectToMainPage();
-      return navigate(from, { replace: true });
+      setTimeout(() => {
+        return navigate(from, { replace: true });
+      }, 1500);
     } catch (error) {
       setCustomerData(null);
       setLoginError(true);
