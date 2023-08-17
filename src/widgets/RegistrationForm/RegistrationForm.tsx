@@ -14,6 +14,7 @@ import PostalCodeInput from '../../shared/UI/Inputs/address/PostalCodeInput';
 import StreetInput from '../../shared/UI/Inputs/address/StreetInput';
 import DateOfBirthInput from '../../shared/UI/Inputs/DateOfBirthInput';
 import ButtonAuth from '../../shared/UI/Buttons/buttonAuth';
+import dayjs from 'dayjs';
 
 import './RegistrationForm.scss';
 
@@ -23,7 +24,7 @@ const RegistrationForm = (): JSX.Element => {
     control,
   });
 
-  const onSubmit: SubmitHandler<IForm> = (data) => console.log(data);
+  const onSubmit: SubmitHandler<IForm> = (data) => console.log(data, dayjs(data.dateOfBirth).toDate());
 
   return (
     <form className="registration__form form" onSubmit={handleSubmit(onSubmit)}>

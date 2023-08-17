@@ -29,7 +29,7 @@ export interface IForm {
   password: string;
   firstName: string;
   lastName: string;
-  dateOfBirth?: string;
+  dateOfBirth: string;
   street?: string;
   postalCode?: string;
   country?: string;
