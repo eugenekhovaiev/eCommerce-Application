@@ -17,11 +17,3 @@
   gap: 20px;
   width: 50%;
 }
-
-.login-form__success-message {
-  color: green;
-}
-
-.login-form__error-message {
-  color: red;
-}

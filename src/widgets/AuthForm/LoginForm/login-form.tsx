@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useForm, useFormState, SubmitHandler } from 'react-hook-form';
 
 import Typography from '@mui/material/Typography';
+import { Alert } from '@mui/material';
 
 import '../LoginForm/login-form.css';
 import ButtonAuth from '../../../shared/UI/Buttons/buttonAuth';
@@ -44,10 +45,14 @@ export const LoginForm: React.FC = (): JSX.Element => {
         Login
       </Typography>
       {customerData && (
-        <Typography className="login-form__success-message">Welcome, {customerData.firstName}!</Typography>
+        <Alert severity="success" className="login-form__success-message">
+          Welcome, {customerData.firstName}!
+        </Alert>
       )}
       {loginError && (
-        <Typography className="login-form__error-message">Wrong email or password! Please, retry.</Typography>
+        <Alert severity="error" className="login-form__error-message">
+          Wrong email or password! Please, retry.
+        </Alert>
       )}
       <form className="login-form__fields" onSubmit={handleSubmit(onSubmit)}>
         <EmailInput control={control} errors={errors} />
