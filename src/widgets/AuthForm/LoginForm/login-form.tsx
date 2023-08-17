@@ -15,7 +15,6 @@ import { Customer } from '@commercetools/platform-sdk';
 import loginCustomer from './api/loginCustomer';
 
 import { useNavigate, useLocation } from 'react-router-dom';
-// import redirectToMainPage from './lib/redirectToMainPage';
 
 // eslint-disable-next-line max-lines-per-function
 export const LoginForm: React.FC = (): JSX.Element => {
@@ -37,7 +36,6 @@ export const LoginForm: React.FC = (): JSX.Element => {
       const customer = loginResponse.body.customer;
       setLoginError(false);
       setCustomerData(customer);
-      // redirectToMainPage();
       setTimeout(() => {
         return navigate(from, { replace: true });
       }, 1500);
