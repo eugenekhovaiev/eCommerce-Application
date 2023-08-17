@@ -32,7 +32,7 @@ export interface IForm {
   dateOfBirth: string;
   street: string;
   city: string;
-  postalCode?: string;
+  postalCode: string;
   country: string;
 }
 
