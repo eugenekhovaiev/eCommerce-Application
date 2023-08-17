@@ -3,11 +3,11 @@ import { IInputProps } from '../../../types';
 import { Controller } from 'react-hook-form';
 import postCodeValidation from '../../../lib/validation/postCodeValidation';
 
-const PostalCodeInput = (props: IInputProps): JSX.Element => {
+const PostalCodeBillingInput = (props: IInputProps): JSX.Element => {
   return (
     <Controller
       control={props.control}
-      name="postalCode"
+      name="postalCodeBilling"
       rules={postCodeValidation}
       render={({ field }): JSX.Element => (
         <TextField
@@ -18,12 +18,12 @@ const PostalCodeInput = (props: IInputProps): JSX.Element => {
           variant={props.variant || 'standard'}
           onChange={(e): void => field.onChange(e)}
           value={field.value || ''}
-          error={!!props.errors.postalCode?.message}
-          helperText={props.errors.postalCode?.message}
+          error={!!props.errors.postalCodeBilling?.message}
+          helperText={props.errors.postalCodeBilling?.message}
         />
       )}
     />
   );
 };
 
-export default PostalCodeInput;
+export default PostalCodeBillingInput;

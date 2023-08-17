@@ -5,11 +5,11 @@ import MenuItem from '@mui/material/MenuItem/MenuItem';
 import { Controller } from 'react-hook-form';
 import { IInputProps } from '../../../types';
 
-const CountryInput = (props: IInputProps): JSX.Element => {
+const CountryBillingInput = (props: IInputProps): JSX.Element => {
   return (
     <Controller
       control={props.control}
-      name="country"
+      name="countryBilling"
       render={({ field }): JSX.Element => (
         <FormControl className={props.className} color="secondary">
           <InputLabel color="secondary" id="select-country">
@@ -39,4 +39,4 @@ const CountryInput = (props: IInputProps): JSX.Element => {
   );
 };
 
-export default CountryInput;
+export default CountryBillingInput;

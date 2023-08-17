@@ -1,0 +1,33 @@
+import CityBillingInput from '../../../shared/UI/Inputs/address/CityBillingInput';
+import StreetBillingInput from '../../../shared/UI/Inputs/address/StreetBillingInput';
+import PostalCodeBillingInput from '../../../shared/UI/Inputs/address/PostalCodeBillingInput';
+import CountryBillingInput from '../../../shared/UI/Inputs/address/CountryBillingInput';
+import { IInputProps } from '../../../shared/types';
+
+const RegistrationBillingAddress = (props: IInputProps): JSX.Element => {
+  return (
+    <div className="registration__address-info">
+      <StreetBillingInput
+        variant="outlined"
+        className="form__input form__input_street"
+        control={props.control}
+        errors={props.errors}
+      />
+      <CityBillingInput
+        variant="outlined"
+        className="form__input form__input_city"
+        control={props.control}
+        errors={props.errors}
+      />
+      <PostalCodeBillingInput
+        variant="outlined"
+        className="form__input form__input_zip"
+        control={props.control}
+        errors={props.errors}
+      />
+      <CountryBillingInput className="form__input form__input_country" control={props.control} errors={props.errors} />
+    </div>
+  );
+};
+
+export default RegistrationBillingAddress;

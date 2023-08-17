@@ -4,6 +4,7 @@
   margin-bottom: 2rem;
   display: flex;
   flex-direction: column;
+  align-items: center;
   gap: 2rem;
 }
 
@@ -30,6 +31,13 @@
   }
 }
 
+.form__checkbox {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: $font-primary;
+}
+
 .registration__form {
   width: 60vw;
   max-width: 900px;
@@ -46,7 +54,7 @@
   row-gap: 2rem;
 }
 
-.registartion__address-info {
+.registration__address-info {
   display: grid;
   justify-content: center;
   justify-items: center;

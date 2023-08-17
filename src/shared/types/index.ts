@@ -30,10 +30,15 @@ export interface IForm {
   firstName: string;
   lastName: string;
   dateOfBirth: string;
-  street: string;
-  city: string;
-  postalCode: string;
-  country: string;
+  streetShipping: string;
+  streetBilling: string;
+  cityShipping: string;
+  cityBilling: string;
+  postalCodeShipping: string;
+  postalCodeBilling: string;
+  countryShipping: string;
+  countryBilling: string;
+  defaultAddress: boolean;
 }
 
 export interface IButtonProps {
@@ -46,5 +51,4 @@ export interface IInputProps {
   errors: FieldErrors<IForm>;
   variant?: TextFieldVariants;
   className?: string;
-  // color?: OverridableStringUnion<"error" | "primary" | "secondary" | "info" | "success" | "warning", TextFieldPropsColorOverrides>
 }

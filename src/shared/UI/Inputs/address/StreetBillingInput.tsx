@@ -3,11 +3,11 @@ import { IInputProps } from '../../../types';
 import { Controller } from 'react-hook-form';
 import streetValidation from '../../../lib/validation/streetValidation';
 
-const StreetInput = (props: IInputProps): JSX.Element => {
+const StreetBillingInput = (props: IInputProps): JSX.Element => {
   return (
     <Controller
       control={props.control}
-      name="street"
+      name="streetBilling"
       rules={streetValidation}
       render={({ field }): JSX.Element => (
         <TextField
@@ -18,12 +18,12 @@ const StreetInput = (props: IInputProps): JSX.Element => {
           variant={props.variant || 'standard'}
           onChange={(e): void => field.onChange(e)}
           value={field.value || ''}
-          error={!!props.errors.street?.message}
-          helperText={props.errors.street?.message}
+          error={!!props.errors.streetBilling?.message}
+          helperText={props.errors.streetBilling?.message}
         />
       )}
     />
   );
 };
 
-export default StreetInput;
+export default StreetBillingInput;
