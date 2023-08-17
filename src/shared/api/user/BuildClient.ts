@@ -1,22 +1,22 @@
 import fetch from 'node-fetch';
 import { ClientBuilder, type AuthMiddlewareOptions, type HttpMiddlewareOptions } from '@commercetools/sdk-client-v2';
-import ADMIN_KEYS from './keys/ADMIN_KEYS';
+import USER_KEYS from './keys/USER_KEYS';
 
 // Configure authMiddlewareOptions
 const authMiddlewareOptions: AuthMiddlewareOptions = {
-  host: ADMIN_KEYS.AUTH_URL,
-  projectKey: ADMIN_KEYS.PROJECT_KEY,
+  host: USER_KEYS.AUTH_URL,
+  projectKey: USER_KEYS.PROJECT_KEY,
   credentials: {
-    clientId: ADMIN_KEYS.CLIENT_ID,
-    clientSecret: ADMIN_KEYS.CLIENT_SECRET,
+    clientId: USER_KEYS.CLIENT_ID,
+    clientSecret: USER_KEYS.CLIENT_SECRET,
   },
-  scopes: ADMIN_KEYS.SCOPES,
+  scopes: USER_KEYS.SCOPES,
   fetch,
 };
 
 // Configure httpMiddlewareOptions
 const httpMiddlewareOptions: HttpMiddlewareOptions = {
-  host: ADMIN_KEYS.API_URL,
+  host: USER_KEYS.API_URL,
   fetch,
 };
 
