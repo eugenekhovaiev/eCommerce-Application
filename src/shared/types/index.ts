@@ -30,7 +30,7 @@ export interface IForm {
   firstName: string;
   lastName: string;
   dateOfBirth: string;
-  street?: string;
+  street: string;
   postalCode?: string;
   country?: string;
 }
