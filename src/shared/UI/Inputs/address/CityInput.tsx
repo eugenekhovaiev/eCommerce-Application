@@ -23,13 +23,6 @@ const CityInput = (props: IInputProps): JSX.Element => {
         />
       )}
     />
-    // <TextField
-    //   type="text"
-    //   label="City"
-    //   color="secondary"
-    //   className={props.className}
-    //   variant={props.variant || 'standard'}
-    // />
   );
 };
 
