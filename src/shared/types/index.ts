@@ -1,7 +1,7 @@
 import { Control, FieldErrors } from 'react-hook-form';
 
 export interface ILinkProps {
-  href?: string;
+  to: string;
   target?: string;
   title?: string;
   className?: string;
