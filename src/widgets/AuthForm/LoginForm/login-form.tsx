@@ -14,7 +14,8 @@ import { Customer } from '@commercetools/platform-sdk';
 
 import loginCustomer from './api/loginCustomer';
 
-import redirectToMainPage from './lib/redirectToMainPage';
+import { useNavigate, useLocation } from 'react-router-dom';
+// import redirectToMainPage from './lib/redirectToMainPage';
 
 // eslint-disable-next-line max-lines-per-function
 export const LoginForm: React.FC = (): JSX.Element => {
@@ -22,6 +23,10 @@ export const LoginForm: React.FC = (): JSX.Element => {
   const { errors } = useFormState({
     control,
   });
+
+  const navigate = useNavigate();
+  const location = useLocation();
+  const from = location.state?.from?.pathname || '/';
 
   const [customerData, setCustomerData] = useState<Customer | null>(null);
   const [loginError, setLoginError] = useState(false);
@@ -32,7 +37,8 @@ export const LoginForm: React.FC = (): JSX.Element => {
       const customer = loginResponse.body.customer;
       setLoginError(false);
       setCustomerData(customer);
-      redirectToMainPage();
+      // redirectToMainPage();
+      return navigate(from, { replace: true });
     } catch (error) {
       setCustomerData(null);
       setLoginError(true);

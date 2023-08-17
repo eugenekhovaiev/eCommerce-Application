@@ -1,7 +1,10 @@
+import { Navigate } from 'react-router-dom';
+
 const redirectToMainPage = (): void => {
   setTimeout(() => {
-    // TODO добавить редирект на страницу main на месте следующей строки
     console.log('Redirect to main');
+    return <Navigate to="/" />;
+    // console.log('Redirect to main');
   }, 1500);
 };
 
