@@ -16,7 +16,7 @@ const DateOfBirthInput = (props: IInputProps): JSX.Element => {
         <LocalizationProvider dateAdapter={AdapterDayjs}>
           {/* <DatePicker className={props.className} /> */}
           <DateField
-            format="MM-DD-YYYY"
+            format="DD-MM-YYYY"
             color="secondary"
             value={field.value}
             className={props.className}
