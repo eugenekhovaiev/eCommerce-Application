@@ -4,7 +4,7 @@ import RegistrationForm from '../../widgets/RegistrationForm/RegistrationForm';
 
 import './Registration.scss';
 
-export const Registration = (): JSX.Element => {
+const Registration = (): JSX.Element => {
   return (
     <main className="registration">
       <div className="container registration__wrapper">
@@ -16,3 +16,5 @@ export const Registration = (): JSX.Element => {
     </main>
   );
 };
+
+export default Registration;

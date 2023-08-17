@@ -1,4 +1,4 @@
-import Link from '../../../shared/UI/link/Link';
+import Link from '../../../shared/UI/link/LinkElement';
 import Img from '../../../shared/UI/image/Img';
 import Basket from '../../../shared/assets/Basket.svg';
 import { ICartIconProps } from '../types';
