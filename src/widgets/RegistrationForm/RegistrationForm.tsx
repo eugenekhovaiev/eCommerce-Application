@@ -42,12 +42,7 @@ const RegistrationForm = (): JSX.Element => {
         <StreetInput variant="outlined" className="form__input form__input_street" control={control} errors={errors} />
         <CityInput variant="outlined" className="form__input form__input_city" control={control} errors={errors} />
         <PostalCodeInput variant="outlined" className="form__input form__input_zip" control={control} errors={errors} />
-        <CountryInput
-          variant="outlined"
-          className="form__input form__input_country"
-          control={control}
-          errors={errors}
-        />
+        <CountryInput className="form__input form__input_country" control={control} errors={errors} />
       </div>
       <ButtonAuth title="Register" className="form__submit" />
     </form>

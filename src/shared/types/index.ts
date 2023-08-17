@@ -33,7 +33,7 @@ export interface IForm {
   street: string;
   city: string;
   postalCode?: string;
-  country?: string;
+  country: string;
 }
 
 export interface IButtonProps {
