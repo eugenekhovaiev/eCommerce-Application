@@ -14,14 +14,14 @@ import VisibilityOff from '@mui/icons-material/VisibilityOff';
 
 import { IInputProps } from '../../types';
 
+const handleMouseDownPassword = (event: React.MouseEvent<HTMLButtonElement>): void => {
+  event.preventDefault();
+};
+
 const PasswordInput: React.FC<IInputProps> = (props) => {
   const [showPassword, setShowPassword] = React.useState(false);
 
   const handleClickShowPassword = (): void => setShowPassword((show) => !show);
-
-  const handleMouseDownPassword = (event: React.MouseEvent<HTMLButtonElement>): void => {
-    event.preventDefault();
-  };
 
   return (
     <Controller
