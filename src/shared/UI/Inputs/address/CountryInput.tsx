@@ -23,6 +23,12 @@ const CountryInput = (props: IInputProps): JSX.Element => {
             required
             onChange={(e): void => field.onChange(e)}
           >
+            <MenuItem color="secondary" value={'Ukraine'}>
+              Ukraine
+            </MenuItem>
+            <MenuItem color="secondary" value={'Poland'}>
+              Poland
+            </MenuItem>
             <MenuItem color="secondary" value={'USA'}>
               USA
             </MenuItem>
