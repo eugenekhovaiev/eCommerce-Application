@@ -12,7 +12,8 @@ const dateOfBirthValidtion = {
     const dobDay = dateOfBirth.getDate();
 
     const age = today.getFullYear() - dobYear;
-
+    if (dateOfBirth.toString() === 'Invalid Date') return 'Enter valid date';
+    if (dateOfBirth.getFullYear() < 1900) return 'Enter valid date';
     if (
       age < minAge ||
       (age === minAge && (today.getMonth() < dobMonth || (today.getMonth() === dobMonth && today.getDate() < dobDay)))

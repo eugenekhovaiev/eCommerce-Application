@@ -18,8 +18,8 @@ const DateOfBirthInput = (props: IInputProps): JSX.Element => {
           <DateField
             format="MM-DD-YYYY"
             color="secondary"
-            className={props.className}
             value={field.value}
+            className={props.className}
             onChange={(e): void => field.onChange(e)}
             helperText={props.errors.dateOfBirth?.message}
           />
