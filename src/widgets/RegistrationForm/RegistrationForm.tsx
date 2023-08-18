@@ -13,12 +13,11 @@ import ButtonAuth from '../../shared/UI/Buttons/buttonAuth';
 import AddressCheckbox from '../../shared/UI/Checkbox/AddressCheckbox';
 import RegistrationShippingAddress from '../../entities/RegistrationAddress/UI/RegistrationShippingAddress';
 import RegistrationBillingAddress from '../../entities/RegistrationAddress/UI/RegistrationBillingAddress';
-// import FormControlLabel from '@mui/material/FormControlLabel/FormControlLabel';
+import getAddresses from '../../shared/lib/helpers/getAddresses';
 import dayjs from 'dayjs';
 
 import './RegistrationForm.scss';
 
-// eslint-disable-next-line max-lines-per-function
 const RegistrationForm = (): JSX.Element => {
   const { handleSubmit, control } = useForm<IForm>();
   const { errors } = useFormState({
@@ -27,23 +26,20 @@ const RegistrationForm = (): JSX.Element => {
 
   const onSubmit: SubmitHandler<IForm> = (data) => {
     console.log(data, dayjs(data.dateOfBirth).toDate());
-    // const addresses = [
-    //   {
-    //     country: data.countryShipping,
-    //     streetName: data.streetShipping,
-    //     postalCode: data.postalCodeShipping,
-    //     city: data.cityShipping,
-
-    //   },
-    // ];
-    const customer = {
+    const addresses = getAddresses(data);
+    const newCustomerData = {
       email: data.email,
       password: data.password,
       firstName: data.firstName,
       lastName: data.lastName,
       dataOfBirth: dayjs(data.dateOfBirth).format('YYYY-MM-DD'),
+      addresses,
+      defaultShippingAddress: 0,
+      shippingAddresses: [0],
+      defaultBillingAddress: 1,
+      billingAddresses: [1],
     };
-    console.log(customer);
+    console.log(newCustomerData);
   };
 
   return (

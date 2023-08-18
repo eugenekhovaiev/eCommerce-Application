@@ -45,6 +45,15 @@ export interface IForm {
   defaultAddress: boolean;
 }
 
+export interface IAddress {
+  country: string;
+  streetName: string;
+  building: string;
+  apartment: string;
+  postalCode: string;
+  city: string;
+}
+
 export interface IButtonProps {
   title: string;
   className?: string;

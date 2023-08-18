@@ -23,13 +23,13 @@ const CountryBillingInput = (props: IInputProps): JSX.Element => {
             required
             onChange={(e): void => field.onChange(e)}
           >
-            <MenuItem color="secondary" value={'Ukraine'}>
+            <MenuItem color="secondary" value={'UA'}>
               Ukraine
             </MenuItem>
-            <MenuItem color="secondary" value={'Poland'}>
+            <MenuItem color="secondary" value={'PL'}>
               Poland
             </MenuItem>
-            <MenuItem color="secondary" value={'USA'}>
+            <MenuItem color="secondary" value={'US'}>
               USA
             </MenuItem>
           </Select>
