@@ -15,6 +15,8 @@ import { Customer } from '@commercetools/platform-sdk';
 
 import loginCustomer from './api/loginCustomer';
 
+import { useNavigate, useLocation } from 'react-router-dom';
+
 // eslint-disable-next-line max-lines-per-function
 export const LoginForm: React.FC = (): JSX.Element => {
   const { handleSubmit, control } = useForm<IForm>();
