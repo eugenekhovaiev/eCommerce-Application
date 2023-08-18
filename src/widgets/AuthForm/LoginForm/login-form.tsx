@@ -36,6 +36,7 @@ export const LoginForm: React.FC = (): JSX.Element => {
       const customer = loginResponse.body.customer;
       setLoginError(false);
       setCustomerData(customer);
+      localStorage.setItem('isAuth', 'true');
       setTimeout(() => {
         return navigate(from, { replace: true });
       }, 1500);
