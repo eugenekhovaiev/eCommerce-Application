@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useForm, useFormState, SubmitHandler } from 'react-hook-form';
+import { useNavigate, useLocation } from 'react-router-dom';
 
 import Typography from '@mui/material/Typography';
 import { Alert } from '@mui/material';
@@ -16,6 +17,7 @@ import loginCustomer from './api/loginCustomer';
 
 import { useNavigate, useLocation } from 'react-router-dom';
 
+// eslint-disable-next-line max-lines-per-function
 export const LoginForm: React.FC = (): JSX.Element => {
   const { handleSubmit, control } = useForm<IForm>();
   const { errors } = useFormState({
