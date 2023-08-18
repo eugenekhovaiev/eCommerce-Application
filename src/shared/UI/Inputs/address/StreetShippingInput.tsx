@@ -12,7 +12,7 @@ const StreetShippingInput = (props: IInputProps): JSX.Element => {
       render={({ field }): JSX.Element => (
         <TextField
           type="text"
-          label="Street Address"
+          label="Street"
           color="secondary"
           className={props.className}
           variant={props.variant || 'standard'}

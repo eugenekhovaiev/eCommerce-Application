@@ -32,6 +32,10 @@ export interface IForm {
   dateOfBirth: string;
   streetShipping: string;
   streetBilling: string;
+  buildingShipping: string;
+  buildingBilling: string;
+  unitShipping: string;
+  unitBilling: string;
   cityShipping: string;
   cityBilling: string;
   postalCodeShipping: string;

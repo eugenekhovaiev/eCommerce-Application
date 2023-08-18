@@ -18,13 +18,33 @@ import dayjs from 'dayjs';
 
 import './RegistrationForm.scss';
 
+// eslint-disable-next-line max-lines-per-function
 const RegistrationForm = (): JSX.Element => {
   const { handleSubmit, control } = useForm<IForm>();
   const { errors } = useFormState({
     control,
   });
 
-  const onSubmit: SubmitHandler<IForm> = (data) => console.log(data, dayjs(data.dateOfBirth).toDate());
+  const onSubmit: SubmitHandler<IForm> = (data) => {
+    console.log(data, dayjs(data.dateOfBirth).toDate());
+    // const addresses = [
+    //   {
+    //     country: data.countryShipping,
+    //     streetName: data.streetShipping,
+    //     postalCode: data.postalCodeShipping,
+    //     city: data.cityShipping,
+
+    //   },
+    // ];
+    const customer = {
+      email: data.email,
+      password: data.password,
+      firstName: data.firstName,
+      lastName: data.lastName,
+      dataOfBirth: dayjs(data.dateOfBirth).format('YYYY-MM-DD'),
+    };
+    console.log(customer);
+  };
 
   return (
     <form className="registration__form form" onSubmit={handleSubmit(onSubmit)}>
