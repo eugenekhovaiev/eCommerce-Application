@@ -1,3 +1,4 @@
+/* eslint-disable max-lines-per-function */
 import { useState } from 'react';
 import { useForm, useFormState, SubmitHandler } from 'react-hook-form';
 import { useNavigate, useLocation } from 'react-router-dom';
@@ -6,7 +7,7 @@ import Typography from '@mui/material/Typography';
 import { Alert } from '@mui/material';
 
 import { IForm } from '../../shared/types';
-import { Customer, CustomerDraft } from '@commercetools/platform-sdk';
+import { Customer, CustomerDraft, CustomerSignin } from '@commercetools/platform-sdk';
 
 import EmailInput from '../../shared/UI/Inputs/emailInput';
 import PasswordInput from '../../shared/UI/Inputs/passwordInput';
@@ -20,10 +21,11 @@ import DateOfBirthInput from '../../shared/UI/Inputs/DateOfBirthInput';
 import ButtonAuth from '../../shared/UI/Buttons/buttonAuth';
 
 import createCustomer from './api/createCustomer';
+// TODO change structure to avoid cross-module import
+import loginCustomer from '../AuthForm/LoginForm/api/loginCustomer';
 
 import './RegistrationForm.scss';
 
-// eslint-disable-next-line max-lines-per-function
 const RegistrationForm = (): JSX.Element => {
   const { handleSubmit, control } = useForm<IForm>();
   const { errors } = useFormState({
@@ -58,8 +60,15 @@ const RegistrationForm = (): JSX.Element => {
     };
 
     try {
-      const registerResponse = await createCustomer(newCustomerData);
-      const customer = registerResponse.body.customer;
+      await createCustomer(newCustomerData);
+
+      const loginData: CustomerSignin = {
+        email: data.email,
+        password: data.password,
+      };
+      const loginResponse = await loginCustomer(loginData);
+      const customer = loginResponse.body.customer;
+
       setRegisterError(false);
       setCustomerData(customer);
       setTimeout(() => {
@@ -67,6 +76,8 @@ const RegistrationForm = (): JSX.Element => {
       }, 1500);
     } catch (error) {
       // TODO track error type
+      console.log(error);
+
       setCustomerData(null);
       setRegisterError(true);
     }
