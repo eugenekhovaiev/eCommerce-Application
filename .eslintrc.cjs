@@ -33,7 +33,7 @@ module.exports = {
         arrowParens: 'always',
       },
     ],
-    // 'max-lines-per-function': ['error', 40],
+    'max-lines-per-function': ['error', 40],
     'react/react-in-jsx-scope': 'off',
     'react/prop-types': 'off',
     'react/self-closing-comp': ['error', {
