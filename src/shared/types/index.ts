@@ -65,3 +65,8 @@ export interface IInputProps {
   variant?: TextFieldVariants;
   className?: string;
 }
+
+export interface ICheckboxProps extends IInputProps {
+  onChange: ((event: React.ChangeEvent<HTMLInputElement>, checked: boolean) => void) | undefined;
+  checked: boolean;
+}

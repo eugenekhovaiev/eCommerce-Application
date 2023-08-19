@@ -1,19 +1,15 @@
 import { Checkbox } from '@mui/material';
-import { IInputProps } from '../../types';
+// import { IInputProps } from '../../types';
+import { ICheckboxProps } from '../../types';
 import { Controller } from 'react-hook-form';
 
-const AddressCheckbox = (props: IInputProps): JSX.Element => {
+const AddressCheckbox = (props: ICheckboxProps): JSX.Element => {
   return (
     <Controller
       control={props.control}
       name="defaultAddress"
-      render={({ field }): JSX.Element => (
-        <Checkbox
-          className={props.className}
-          color="secondary"
-          onChange={(e): void => field.onChange(e)}
-          value={field.value || false}
-        />
+      render={(): JSX.Element => (
+        <Checkbox className={props.className} color="secondary" onChange={props.onChange} checked={props.checked} />
       )}
     />
   );
