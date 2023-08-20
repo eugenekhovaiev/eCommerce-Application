@@ -15,6 +15,7 @@ import { Customer } from '@commercetools/platform-sdk';
 import loginCustomer from './api/loginCustomer';
 
 import { useNavigate, useLocation } from 'react-router-dom';
+import LinkElement from '../../../shared/UI/link/LinkElement';
 
 // eslint-disable-next-line max-lines-per-function
 export const LoginForm: React.FC = (): JSX.Element => {
@@ -64,6 +65,7 @@ export const LoginForm: React.FC = (): JSX.Element => {
         <EmailInput control={control} errors={errors} />
         <PasswordInput control={control} errors={errors} />
         <ButtonAuth title="LOG IN" />
+        <LinkElement className="login-form__link" title="Don't have an account yet? Sign up" to="/" />
       </form>
     </div>
   );

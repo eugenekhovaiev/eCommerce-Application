@@ -17,3 +17,8 @@
   gap: 20px;
   width: 50%;
 }
+
+.login-form__link {
+  width: 70%;
+  margin: 0 auto;
+}
