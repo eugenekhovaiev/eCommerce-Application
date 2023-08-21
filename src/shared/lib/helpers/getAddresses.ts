@@ -1,7 +1,7 @@
+import { BaseAddress } from '@commercetools/platform-sdk';
 import { IForm } from '../../types';
-import { IAddress } from '../../types';
 
-const getAddresses = (data: IForm): IAddress[] => {
+const getAddresses = (data: IForm): BaseAddress[] => {
   return [
     {
       country: data.countryShipping,
