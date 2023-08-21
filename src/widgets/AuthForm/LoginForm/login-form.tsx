@@ -52,6 +52,7 @@ export const LoginForm: React.FC = (): JSX.Element => {
         <Typography variant="h3" className="login-form__title">
           Login
         </Typography>
+        <LinkElement className="login-form__link" title="Don't have an account yet? Sign up" to="/registration" />
         {customerData && (
           <Alert severity="success" className="login-form__success-message">
             Welcome, {customerData.firstName}!
@@ -66,7 +67,6 @@ export const LoginForm: React.FC = (): JSX.Element => {
           <EmailInput control={control} errors={errors} />
           <PasswordInput control={control} errors={errors} />
           <ButtonAuth title="LOG IN" />
-          <LinkElement className="login-form__link" title="Don't have an account yet? Sign up" to="/registration" />
         </form>
       </div>
     </section>
