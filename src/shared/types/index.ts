@@ -47,11 +47,11 @@ export interface IForm {
 
 export interface IAddress {
   country: string;
-  streetName: string;
-  building: string;
-  apartment: string;
-  postalCode: string;
-  city: string;
+  streetName?: string;
+  building?: string;
+  apartment?: string;
+  postalCode?: string;
+  city?: string;
 }
 
 export interface IButtonProps {
