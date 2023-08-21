@@ -4,7 +4,7 @@ import { useForm, useFormState, SubmitHandler } from 'react-hook-form';
 import Typography from '@mui/material/Typography';
 import { Alert } from '@mui/material';
 
-import '../LoginForm/login-form.css';
+import '../LoginForm/login-form.scss';
 import ButtonAuth from '../../shared/UI/Buttons/buttonAuth';
 import EmailInput from '../../shared/UI/Inputs/emailInput';
 import PasswordInput from '../../shared/UI/Inputs/passwordInput';

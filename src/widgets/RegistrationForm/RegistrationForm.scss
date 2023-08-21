@@ -38,6 +38,13 @@
   align-items: center;
   justify-content: center;
   font-family: $font-primary;
+  text-align: center;
+  @media screen and (max-width: 550px) {
+    font-size: 0.95rem;
+  }
+  @media screen and (max-width: 450px) {
+    font-size: 0.87rem;
+  }
 }
 
 .registration__form {
@@ -46,6 +53,14 @@
   margin-top: 2rem;
   padding: 3rem;
   background-color: $color-primary-xs;
+  @media screen and (max-width: 800px) {
+    padding: 2rem;
+    width: 90vw;
+  }
+  @media screen and (max-width: 650px) {
+    padding: 1rem;
+    width: 95vw;
+  }
 }
 
 .registration__user-info {
@@ -54,6 +69,10 @@
   justify-content: center;
   justify-items: center;
   row-gap: 2rem;
+  @media screen and (max-width: 450px) {
+    grid-template-columns: 100vw;
+    row-gap: 0.5rem;
+  }
 }
 
 .registration__address-info {
@@ -66,30 +85,28 @@
     'city city zip country country';
   row-gap: 1.5rem;
   column-gap: 1rem;
+  @media screen and (max-width: 550px) {
+    row-gap: 0.5rem;
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas:
+      'street street'
+      'building unit'
+      'city city'
+      'zip zip'
+      'country country';
+  }
 }
 
-.MuiTextField-root.form__input_street {
-  width: 100%;
-}
-
-.MuiTextField-root.form__input_building {
-  width: 90%;
-}
-
-.MuiTextField-root.form__input_unit {
-  width: 90%;
-}
-
-.MuiTextField-root.form__input_zip {
-  width: 100%;
-}
-
-.MuiTextField-root.form__input_city {
-  width: 100%;
-}
-
+.MuiTextField-root.form__input_street,
+.MuiTextField-root.form__input_building,
+.MuiTextField-root.form__input_unit,
+.MuiTextField-root.form__input_zip,
+.MuiTextField-root.form__input_city,
 .MuiFormControl-root.form__input_country {
   width: 100%;
+  @media screen and (max-width: 550px) {
+    
+  }
 }
 
 .form__input_street {
