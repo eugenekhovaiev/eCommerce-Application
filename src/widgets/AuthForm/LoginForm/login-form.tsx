@@ -15,6 +15,7 @@ import { Customer } from '@commercetools/platform-sdk';
 import loginCustomer from './api/loginCustomer';
 
 import { useNavigate, useLocation } from 'react-router-dom';
+import LinkElement from '../../../shared/UI/link/LinkElement';
 
 // eslint-disable-next-line max-lines-per-function
 export const LoginForm: React.FC = (): JSX.Element => {
@@ -46,25 +47,28 @@ export const LoginForm: React.FC = (): JSX.Element => {
   };
 
   return (
-    <div className="login-form">
-      <Typography variant="h3" className="login-form__title">
-        Login
-      </Typography>
-      {customerData && (
-        <Alert severity="success" className="login-form__success-message">
-          Welcome, {customerData.firstName}!
-        </Alert>
-      )}
-      {loginError && (
-        <Alert severity="error" className="login-form__error-message">
-          Wrong email or password! Please, retry.
-        </Alert>
-      )}
-      <form className="login-form__fields" onSubmit={handleSubmit(onSubmit)}>
-        <EmailInput control={control} errors={errors} />
-        <PasswordInput control={control} errors={errors} />
-        <ButtonAuth title="LOG IN" />
-      </form>
-    </div>
+    <section className="login-form">
+      <div className="login-form__wrapper">
+        <Typography variant="h3" className="login-form__title">
+          Login
+        </Typography>
+        <LinkElement className="login-form__link" title="Don't have an account yet? Sign up" to="/registration" />
+        {customerData && (
+          <Alert severity="success" className="login-form__success-message">
+            Welcome, {customerData.firstName}!
+          </Alert>
+        )}
+        {loginError && (
+          <Alert severity="error" className="login-form__error-message">
+            Wrong email or password! Please, retry.
+          </Alert>
+        )}
+        <form className="login-form__fields" onSubmit={handleSubmit(onSubmit)}>
+          <EmailInput control={control} errors={errors} />
+          <PasswordInput control={control} errors={errors} />
+          <ButtonAuth title="LOG IN" />
+        </form>
+      </div>
+    </section>
   );
 };
