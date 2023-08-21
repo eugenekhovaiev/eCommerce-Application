@@ -14,3 +14,9 @@
   flex-direction: column;
   align-items: center;
 }
+
+.registration__link {
+  font-family: $font-primary;
+  color: $color-secondary;
+  font-size: 0.95rem;
+}
