@@ -14,13 +14,19 @@ const DateOfBirthInput = (props: IInputProps): JSX.Element => {
       rules={dateOfBirthValidtion}
       render={({ field }): JSX.Element => (
         <LocalizationProvider dateAdapter={AdapterDayjs}>
-          {/* <DatePicker className={props.className} /> */}
           <DateField
             format="DD-MM-YYYY"
             color="secondary"
             value={field.value}
             className={props.className}
             onChange={(e): void => field.onChange(e)}
+            // onError={(error): void => console.log(error)}
+            slotProps={{
+              textField: {
+                error: !!props.errors.dateOfBirth?.message,
+                helperText: props.errors.dateOfBirth?.message,
+              },
+            }}
             helperText={props.errors.dateOfBirth?.message}
           />
         </LocalizationProvider>

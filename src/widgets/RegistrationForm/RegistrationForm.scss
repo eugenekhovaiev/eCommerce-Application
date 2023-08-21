@@ -10,6 +10,7 @@
 
 .MuiTypography-root.form__title {
   font-family: $font-primary;
+  cursor: default;
 }
 
 .MuiTextField-root.form__input,
@@ -32,6 +33,7 @@
 }
 
 .form__checkbox {
+  cursor: default;
   display: flex;
   align-items: center;
   justify-content: center;

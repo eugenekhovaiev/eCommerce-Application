@@ -1,6 +1,7 @@
 import { Typography } from '@mui/material';
 
 import RegistrationForm from '../../widgets/RegistrationForm/RegistrationForm';
+import LinkElement from '../../shared/UI/link/LinkElement';
 
 import './Registration.scss';
 
@@ -11,6 +12,7 @@ const Registration = (): JSX.Element => {
         <Typography variant="h3" gutterBottom className="registration__title">
           Registration
         </Typography>
+        <LinkElement className="registration__link" title="Already have an account? Sign in" to="/login" />
         <RegistrationForm />
       </div>
     </main>
