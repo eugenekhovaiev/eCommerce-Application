@@ -66,7 +66,7 @@ export const LoginForm: React.FC = (): JSX.Element => {
           <EmailInput control={control} errors={errors} />
           <PasswordInput control={control} errors={errors} />
           <ButtonAuth title="LOG IN" />
-          <LinkElement className="login-form__link" title="Don't have an account yet? Sign up" to="/" />
+          <LinkElement className="login-form__link" title="Don't have an account yet? Sign up" to="/registration" />
         </form>
       </div>
     </section>
