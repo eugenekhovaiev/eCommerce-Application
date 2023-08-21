@@ -6,16 +6,15 @@ import Typography from '@mui/material/Typography';
 import { Alert } from '@mui/material';
 
 import '../LoginForm/login-form.css';
-import ButtonAuth from '../../../shared/UI/Buttons/buttonAuth';
-import EmailInput from '../../../shared/UI/Inputs/emailInput';
-import PasswordInput from '../../../shared/UI/Inputs/passwordInput';
+import ButtonAuth from '../../shared/UI/Buttons/buttonAuth';
+import EmailInput from '../../shared/UI/Inputs/emailInput';
+import PasswordInput from '../../shared/UI/Inputs/passwordInput';
 
-import { IForm } from '../../../shared/types';
+import { IForm } from '../../shared/types';
 import { Customer } from '@commercetools/platform-sdk';
 
-import loginCustomer from './api/loginCustomer';
+import loginCustomer from '../../shared/api/user/loginCustomer';
 
-// eslint-disable-next-line max-lines-per-function
 export const LoginForm: React.FC = (): JSX.Element => {
   const { handleSubmit, control } = useForm<IForm>();
   const { errors } = useFormState({

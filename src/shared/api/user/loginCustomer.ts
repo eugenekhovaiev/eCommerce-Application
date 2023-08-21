@@ -1,5 +1,5 @@
 import { CustomerSignin } from '@commercetools/platform-sdk';
-import { apiRoot } from '../../../../shared/api/user/UserClient';
+import { apiRoot } from './getUserApiRoot';
 
 import { ClientResponse, CustomerSignInResult } from '@commercetools/platform-sdk';
 

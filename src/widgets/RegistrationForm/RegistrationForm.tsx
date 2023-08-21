@@ -1,4 +1,3 @@
-/* eslint-disable max-lines-per-function */
 import { useState } from 'react';
 import { useForm, useFormState, SubmitHandler } from 'react-hook-form';
 import { useNavigate, useLocation } from 'react-router-dom';
@@ -20,9 +19,8 @@ import RegistrationShippingAddress from '../../entities/RegistrationAddress/UI/R
 import RegistrationBillingAddress from '../../entities/RegistrationAddress/UI/RegistrationBillingAddress';
 import getNewCustomerData from '../../shared/lib/helpers/getNewCustomerData';
 
-import createCustomer from './api/createCustomer';
-// TODO change structure to avoid cross-module import
-import loginCustomer from '../AuthForm/LoginForm/api/loginCustomer';
+import createCustomer from '../../shared/api/user/createCustomer';
+import loginCustomer from '../../shared/api/user/loginCustomer';
 
 import './RegistrationForm.scss';
 
@@ -45,7 +43,6 @@ const RegistrationForm = (): JSX.Element => {
 
   const onSubmit: SubmitHandler<IForm> = async (data) => {
     const newCustomerData = getNewCustomerData(data, sameAsShipping);
-    console.log(newCustomerData);
 
     try {
       await createCustomer(newCustomerData);
@@ -63,9 +60,6 @@ const RegistrationForm = (): JSX.Element => {
         return navigate(from, { replace: true });
       }, 1500);
     } catch (error) {
-      // TODO track error type
-      console.log(error);
-
       setCustomerData(null);
       setRegisterError(true);
     }
