@@ -4,7 +4,6 @@ import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DateField } from '@mui/x-date-pickers';
 import { Controller } from 'react-hook-form';
 import dateOfBirthValidtion from '../../lib/validation/dateValidation';
-// import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 
 const DateOfBirthInput = (props: IInputProps): JSX.Element => {
   return (
@@ -20,7 +19,6 @@ const DateOfBirthInput = (props: IInputProps): JSX.Element => {
             value={field.value}
             className={props.className}
             onChange={(e): void => field.onChange(e)}
-            // onError={(error): void => console.log(error)}
             slotProps={{
               textField: {
                 error: !!props.errors.dateOfBirth?.message,

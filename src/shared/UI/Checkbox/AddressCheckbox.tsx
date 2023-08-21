@@ -1,5 +1,4 @@
 import { Checkbox } from '@mui/material';
-// import { IInputProps } from '../../types';
 import { ICheckboxProps } from '../../types';
 import { Controller } from 'react-hook-form';
 
