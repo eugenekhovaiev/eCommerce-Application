@@ -1,3 +1,4 @@
+import { TextFieldVariants } from '@mui/material';
 import { Control, FieldErrors } from 'react-hook-form';
 
 export interface ILinkProps {
@@ -22,21 +23,40 @@ export interface ILogoProps {
   onClick?: React.MouseEventHandler<HTMLElement>;
 }
 
-export interface ISignInForm {
+export interface IForm {
   email: string;
   password: string;
+  firstName: string;
+  lastName: string;
+  dateOfBirth: string;
+  streetShipping: string;
+  streetBilling: string;
+  buildingShipping: string;
+  buildingBilling: string;
+  unitShipping: string;
+  unitBilling: string;
+  cityShipping: string;
+  cityBilling: string;
+  postalCodeShipping: string;
+  postalCodeBilling: string;
+  countryShipping: string;
+  countryBilling: string;
+  defaultAddress: boolean;
 }
 
 export interface IButtonProps {
   title: string;
+  className?: string;
 }
 
-export interface IEmailInputProps {
-  control: Control<ISignInForm>;
-  errors: FieldErrors<ISignInForm>;
+export interface IInputProps {
+  control: Control<IForm>;
+  errors: FieldErrors<IForm>;
+  variant?: TextFieldVariants;
+  className?: string;
 }
 
-export interface IPasswordInputProps {
-  control: Control<ISignInForm>;
-  errors: FieldErrors<ISignInForm>;
+export interface ICheckboxProps extends IInputProps {
+  onChange: ((event: React.ChangeEvent<HTMLInputElement>, checked: boolean) => void) | undefined;
+  checked: boolean;
 }

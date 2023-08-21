@@ -5,21 +5,20 @@ import Typography from '@mui/material/Typography';
 import { Alert } from '@mui/material';
 
 import '../LoginForm/login-form.css';
-import ButtonAuth from '../../../shared/UI/Buttons/buttonAuth';
-import { EmailInput } from '../../../shared/UI/Inputs/emailInput';
-import { PasswordInput } from '../../../shared/UI/Inputs/passwordInput';
+import ButtonAuth from '../../shared/UI/Buttons/buttonAuth';
+import EmailInput from '../../shared/UI/Inputs/emailInput';
+import PasswordInput from '../../shared/UI/Inputs/passwordInput';
 
-import { ISignInForm } from '../../../shared/types';
+import { IForm } from '../../shared/types';
 import { Customer } from '@commercetools/platform-sdk';
 
-import loginCustomer from './api/loginCustomer';
+import loginCustomer from '../../shared/api/user/loginCustomer';
 
 import { useNavigate, useLocation } from 'react-router-dom';
-import LinkElement from '../../../shared/UI/link/LinkElement';
+import LinkElement from '../../shared/UI/link/LinkElement';
 
-// eslint-disable-next-line max-lines-per-function
 export const LoginForm: React.FC = (): JSX.Element => {
-  const { handleSubmit, control } = useForm<ISignInForm>();
+  const { handleSubmit, control } = useForm<IForm>();
   const { errors } = useFormState({
     control,
   });
@@ -31,7 +30,7 @@ export const LoginForm: React.FC = (): JSX.Element => {
   const [customerData, setCustomerData] = useState<Customer | null>(null);
   const [loginError, setLoginError] = useState(false);
 
-  const onSubmit: SubmitHandler<ISignInForm> = async (data) => {
+  const onSubmit: SubmitHandler<IForm> = async (data) => {
     try {
       const loginResponse = await loginCustomer(data);
       const customer = loginResponse.body.customer;
