@@ -1,7 +1,7 @@
 import { CustomerDraft, CustomerSignInResult } from '@commercetools/platform-sdk';
 import { ClientResponse } from '@commercetools/platform-sdk';
 
-import { apiRoot } from '../../../shared/api/user/UserClient';
+import { apiRoot } from './getUserApiRoot';
 
 const createCustomer = (newCustomerData: CustomerDraft): Promise<ClientResponse<CustomerSignInResult>> => {
   return apiRoot

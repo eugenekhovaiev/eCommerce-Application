@@ -1,4 +1,3 @@
-/* eslint-disable max-lines-per-function */
 import { useState } from 'react';
 import { useForm, useFormState, SubmitHandler } from 'react-hook-form';
 import { useNavigate, useLocation } from 'react-router-dom';
@@ -16,9 +15,8 @@ import LastNameInput from '../../shared/UI/Inputs/LastNameInput';
 import DateOfBirthInput from '../../shared/UI/Inputs/DateOfBirthInput';
 import ButtonAuth from '../../shared/UI/Buttons/buttonAuth';
 
-import createCustomer from './api/createCustomer';
-// TODO change structure to avoid cross-module import
-import loginCustomer from '../AuthForm/LoginForm/api/loginCustomer';
+import createCustomer from '../../shared/api/user/createCustomer';
+import loginCustomer from '../../shared/api/user/loginCustomer';
 
 import AddressCheckbox from '../../shared/UI/Checkbox/AddressCheckbox';
 import RegistrationShippingAddress from '../../entities/RegistrationAddress/UI/RegistrationShippingAddress';
@@ -42,38 +40,19 @@ const RegistrationForm = (): JSX.Element => {
   const [registerError, setRegisterError] = useState(false);
 
   const onSubmit: SubmitHandler<IForm> = async (data) => {
-    // console.log(data);
     const addresses = getAddresses(data);
-//     const newCustomerData = {
-//       email: data.email,
-//       password: data.password,
-//       firstName: data.firstName,
-//       lastName: data.lastName,
-//       dataOfBirth: dayjs(data.dateOfBirth).format('YYYY-MM-DD'),
-//       addresses,
-//       defaultShippingAddress: 0,
-//       shippingAddresses: [0],
-//       defaultBillingAddress: 1,
-//       billingAddresses: [1],
-//     };
-
     const newCustomerData: CustomerDraft = {
-      firstName: data.firstName,
-      lastName: data.lastName,
       email: data.email,
       password: data.password,
-      dateOfBirth: '1970-01-01',
-      addresses: [
-        {
-          streetName: 'Бумажная',
-          building: '42',
-          postalCode: '03228',
-          city: 'Крижополь',
-          country: 'UA',
-        },
-      ],
+      firstName: data.firstName,
+      lastName: data.lastName,
+      dateOfBirth: dayjs(data.dateOfBirth).format('YYYY-MM-DD'),
+      addresses,
+      defaultShippingAddress: 0,
+      shippingAddresses: [0],
+      defaultBillingAddress: 1,
+      billingAddresses: [1],
     };
-    console.log(addresses, newCustomerData);
 
     try {
       await createCustomer(newCustomerData);
@@ -91,9 +70,6 @@ const RegistrationForm = (): JSX.Element => {
         return navigate(from, { replace: true });
       }, 1500);
     } catch (error) {
-      // TODO track error type
-      console.log(error);
-
       setCustomerData(null);
       setRegisterError(true);
     }
