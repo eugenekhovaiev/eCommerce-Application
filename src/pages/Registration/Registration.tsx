@@ -12,7 +12,7 @@ const Registration = (): JSX.Element => {
         <Typography variant="h3" gutterBottom className="registration__title">
           Registration
         </Typography>
-        <LinkElement className="registration__link" title="Already have an account? Sign in" to="/login" />
+        <LinkElement className="registration__link" title="Already have an account? Log in" to="/login" />
         <RegistrationForm />
       </div>
     </main>

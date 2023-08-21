@@ -11,7 +11,7 @@ function Header(props: IHeaderProps): JSX.Element {
     <header className="header">
       <div className="container">
         <div className="header__wrapper">
-          <Logo className={'header__logo'} onClick={props.logoClick} title="Home" iconSrc={logoIcon} />
+          <Logo className={'header__logo'} onClick={props.logoClick} title="4Dogs" iconSrc={logoIcon} />
           <nav className="nav header__nav">
             <SignIn className="nav__link" />
             <SignUp className="nav__link" />
