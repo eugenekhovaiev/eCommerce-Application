@@ -1,5 +1,0 @@
-
-curl https://auth.europe-west1.gcp.commercetools.com/oauth/token \
-     --basic --user "nP7kdw_EpJe5z_LwQ2DoiJxN:3r4SE0144oAusZVGN1e63to55M-NGYDr" \
-     -X POST \
-     -d "grant_type=client_credentials&scope=manage_my_profile:ffm-rss-ecommerce-application view_categories:ffm-rss-ecommerce-application view_published_products:ffm-rss-ecommerce-application manage_my_quotes:ffm-rss-ecommerce-application manage_my_payments:ffm-rss-ecommerce-application manage_my_quote_requests:ffm-rss-ecommerce-application manage_my_business_units:ffm-rss-ecommerce-application manage_my_orders:ffm-rss-ecommerce-application create_anonymous_token:ffm-rss-ecommerce-application manage_customers:ffm-rss-ecommerce-application manage_my_shopping_lists:ffm-rss-ecommerce-application"
