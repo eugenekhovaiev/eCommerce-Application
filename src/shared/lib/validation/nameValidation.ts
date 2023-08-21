@@ -4,7 +4,7 @@ const nameValidation = {
     if (value.match(/^[a-zA-Zа-яА-Я'-]+$/i)) {
       return true;
     }
-    return 'Name should contain only letters (Latin/Cyrillic), apostrophes, and hyphens.';
+    return 'Name should contain only letters (Latin/Cyrillic), apostrophes, or hyphens.';
   },
 };
 

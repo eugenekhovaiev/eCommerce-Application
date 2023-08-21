@@ -1,11 +1,11 @@
 const unitValidation = {
   validate: (value: string): boolean | string => {
     if (value) {
-      if (value.trim().match(/^[a-zA-Z0-9\s\-/._#]+$/i)) {
+      if (value.trim().match(/^[a-zA-Zа-яА-Я0-9\s\-/._#]+$/i)) {
         return true;
       }
 
-      return 'Invalid unit number. Use letters, digits, spaces, hyphens, slashes, periods, underscores, or hash symbols.';
+      return 'Invalid unit number. It should not contain special characters.';
     }
     return true;
   },

@@ -4,7 +4,7 @@ const cityValidation = {
     if (value.match(/^[^\d!@#$%^&*()_+=[\]{};':"\\|,.<>/?]+$/iu)) {
       return true;
     }
-    return 'City should not contain any digits or special characters: !@#$%^&*()_+=[]{};:\'"\\|,.<>/?';
+    return 'City should not contain any digits or special characters!';
   },
 };
 
