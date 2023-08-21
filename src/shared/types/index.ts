@@ -1,5 +1,4 @@
 import { TextFieldVariants } from '@mui/material';
-// import { TextFieldPropsColorOverrides } from '@mui/material';
 import { Control, FieldErrors } from 'react-hook-form';
 
 export interface ILinkProps {
@@ -43,15 +42,6 @@ export interface IForm {
   countryShipping: string;
   countryBilling: string;
   defaultAddress: boolean;
-}
-
-export interface IAddress {
-  country: string;
-  streetName?: string;
-  building?: string;
-  apartment?: string;
-  postalCode?: string;
-  city?: string;
 }
 
 export interface IButtonProps {

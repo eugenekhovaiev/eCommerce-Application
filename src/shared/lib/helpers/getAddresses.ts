@@ -1,46 +1,23 @@
-/* eslint-disable max-lines-per-function */
+import { BaseAddress } from '@commercetools/platform-sdk';
 import { IForm } from '../../types';
-import { IAddress } from '../../types';
 
-const getAddresses = (data: IForm, sameAsShipping: boolean): IAddress[] => {
-  const shippingAddress: IAddress = {
+const getAddresses = (data: IForm, sameAsShipping: boolean): BaseAddress[] => {
+  const shippingAddress: BaseAddress = {
     country: data.countryShipping,
+    streetName: data.streetShipping,
+    building: data.buildingShipping,
+    apartment: data.unitShipping,
+    postalCode: data.postalCodeShipping,
+    city: data.cityShipping,
   };
-  const billingAddress: IAddress = {
+  const billingAddress: BaseAddress = {
     country: data.countryBilling,
+    streetName: data.streetBilling,
+    building: data.buildingBilling,
+    apartment: data.unitBilling,
+    postalCode: data.postalCodeBilling,
+    city: data.cityBilling,
   };
-
-  if (data.streetShipping) {
-    shippingAddress.streetName = data.streetShipping;
-  }
-  if (data.buildingShipping) {
-    shippingAddress.building = data.buildingShipping;
-  }
-  if (data.unitShipping) {
-    shippingAddress.apartment = data.unitShipping;
-  }
-  if (data.postalCodeShipping) {
-    shippingAddress.postalCode = data.postalCodeShipping;
-  }
-  if (data.cityShipping) {
-    shippingAddress.city = data.cityShipping;
-  }
-
-  if (data.streetBilling) {
-    billingAddress.streetName = data.streetBilling;
-  }
-  if (data.buildingBilling) {
-    billingAddress.building = data.buildingBilling;
-  }
-  if (data.unitBilling) {
-    billingAddress.apartment = data.unitBilling;
-  }
-  if (data.postalCodeBilling) {
-    billingAddress.postalCode = data.postalCodeBilling;
-  }
-  if (data.cityBilling) {
-    billingAddress.city = data.cityBilling;
-  }
 
   if (sameAsShipping) {
     return [shippingAddress];
