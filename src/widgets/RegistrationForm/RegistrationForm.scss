@@ -1,0 +1,140 @@
+@import '../../app/styles/variables.scss';
+.form {
+  width: 50%;
+  margin-bottom: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+}
+
+.MuiTypography-root.form__title {
+  font-family: $font-primary;
+  cursor: default;
+}
+
+.MuiTextField-root.form__input,
+.MuiFormControl-root.form__input {
+  width: 80%;
+  font-family: $font-primary;
+}
+
+.form__input .MuiOutlinedInput-notchedOutline {
+  border: 3px solid $color-primary;
+  font-family: $font-primary;
+}
+
+.form__input_password .MuiInputBase-root {
+  font-family: $font-primary;
+  padding-bottom: 0.5rem;
+  &::before {
+    border-bottom: 3px solid $color-primary;
+  }
+}
+
+.form__checkbox {
+  cursor: default;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: $font-primary;
+  text-align: center;
+  @media screen and (max-width: 550px) {
+    font-size: 0.95rem;
+  }
+  @media screen and (max-width: 450px) {
+    font-size: 0.87rem;
+  }
+}
+
+.registration__form {
+  width: 70vw;
+  max-width: 900px;
+  margin-top: 2rem;
+  padding: 3rem;
+  background-color: $color-primary-xs;
+  @media screen and (max-width: 800px) {
+    padding: 2rem;
+    width: 90vw;
+  }
+  @media screen and (max-width: 650px) {
+    padding: 1rem;
+    width: 95vw;
+  }
+}
+
+.registration__user-info {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  justify-content: center;
+  justify-items: center;
+  row-gap: 2rem;
+  @media screen and (max-width: 450px) {
+    grid-template-columns: 100vw;
+    row-gap: 0.5rem;
+  }
+}
+
+.registration__address-info {
+  display: grid;
+  justify-content: center;
+  justify-items: center;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  grid-template-areas:
+    'street street street building unit'
+    'city city zip country country';
+  row-gap: 1.5rem;
+  column-gap: 1rem;
+  @media screen and (max-width: 550px) {
+    row-gap: 0.5rem;
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas:
+      'street street'
+      'building unit'
+      'city city'
+      'zip zip'
+      'country country';
+  }
+}
+
+.MuiTextField-root.form__input_street,
+.MuiTextField-root.form__input_building,
+.MuiTextField-root.form__input_unit,
+.MuiTextField-root.form__input_zip,
+.MuiTextField-root.form__input_city,
+.MuiFormControl-root.form__input_country {
+  width: 100%;
+  @media screen and (max-width: 550px) {
+  }
+}
+
+.form__input_street {
+  grid-area: street;
+}
+
+.form__input_building {
+  grid-area: building;
+}
+
+.form__input_unit {
+  grid-area: unit;
+}
+
+.form__input_city {
+  grid-area: city;
+}
+
+.form__input_zip {
+  grid-area: zip;
+}
+
+.form__input_country {
+  grid-area: country;
+}
+
+.MuiButtonBase-root.form__submit {
+  width: 10rem;
+  background-color: $color-primary;
+  font-family: $font-primary;
+  align-self: center;
+}

@@ -1,4 +1,4 @@
-export const emailValidation = {
+const emailValidation = {
   required: 'Required',
   validate: (value: string): boolean | string => {
     if (
@@ -11,3 +11,5 @@ export const emailValidation = {
     return 'Enter valid email';
   },
 };
+
+export default emailValidation;

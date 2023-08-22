@@ -1,4 +1,4 @@
-export const passwordValidation = {
+const passwordValidation = {
   required: 'Required',
   validate: (value: string): boolean | string => {
     if (value.match(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[-#!$@%^&*_+~=:;?/])[-\w#!$@%^&*+~=:;?/]{8,}$/)) {
@@ -17,3 +17,5 @@ export const passwordValidation = {
     return 'Enter valid password';
   },
 };
+
+export default passwordValidation;

@@ -1,0 +1,59 @@
+@import '../../app/styles/variables.scss';
+
+.login-form {
+  max-width: 1280px;
+  height: 100vh;
+  margin: 0 auto;
+  padding-top: 6rem;
+}
+
+.login-form__wrapper {
+  width: 45%;
+  margin: 0 auto;
+  background-color: white;
+  text-align: center;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  @media screen and (max-width: 1000px) {
+    width: 60%;
+  }
+  @media screen and (max-width: 800px) {
+    width: 80%;
+  }
+  @media screen and (max-width: 600px) {
+    width: 95%;
+  }
+  @media screen and (max-width: 450px) {
+    width: 100%;
+  }
+}
+
+.login-form__fields {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  width: 60%;
+  @media screen and (max-width: 450px) {
+    width: 80%;
+  }
+}
+
+.login-form__link {
+  width: 100%;
+  margin: 0 auto;
+  font-family: $font-primary;
+  @media screen and (max-width: 450px) {
+    font-size: 0.85rem;
+  }
+}
+
+.MuiTypography-root.login-form__title {
+  font-family: $font-primary;
+  @media screen and (max-width: 450px) {
+    font-size: 2.5rem;
+  }
+}
