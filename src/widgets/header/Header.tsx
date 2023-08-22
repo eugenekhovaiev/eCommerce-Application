@@ -8,9 +8,18 @@ import logoIcon from '../../shared/assets/logo.svg';
 import { useHeaderContext } from './HeaderContext';
 
 import LogOut from '../../features/Login/UI/LogOut';
+import { useEffect } from 'react';
 
 function Header(props: IHeaderProps): JSX.Element {
-  const { isLoggedIn } = useHeaderContext();
+  const { isLoggedIn, updateHeader } = useHeaderContext();
+
+  useEffect(() => {
+    const savedHasHeaderChanged = localStorage.getItem('isAuth');
+
+    if (savedHasHeaderChanged === 'true') {
+      updateHeader(true);
+    }
+  }, [updateHeader]);
 
   return (
     <header className="header">

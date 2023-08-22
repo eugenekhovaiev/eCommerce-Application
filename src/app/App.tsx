@@ -10,18 +10,19 @@ import Page404 from '../pages/404/page-404';
 import { Routes, Route, Navigate } from 'react-router-dom';
 import './styles/App.scss';
 
+import { useHeaderContext } from '../widgets/header/HeaderContext';
+
 function App(): JSX.Element {
+  const { isLoggedIn } = useHeaderContext();
+
   return (
     <>
       <Header />
       <Routes>
         <Route path="/" element={<Main />} />
-        <Route
-          path="/login"
-          element={localStorage.getItem('isAuth') === 'true' ? <Navigate to="/" replace /> : <Login />}
-        />
+        <Route path="/login" element={isLoggedIn ? <Navigate to="/" replace /> : <Login />} />
         <Route path="*" element={<Page404 />} />
-        <Route path="/registration" element={<Registration />} />
+        <Route path="/registration" element={isLoggedIn ? <Navigate to="/" replace /> : <Registration />} />
       </Routes>
     </>
   );
