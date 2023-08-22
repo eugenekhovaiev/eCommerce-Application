@@ -7,15 +7,15 @@ import { Controller } from 'react-hook-form';
 import validateRealTime from '../../lib/validation/validateRealTime';
 
 const EmailInput: React.FC<IInputProps> = (props): JSX.Element => {
-  const [isValidEmail, setIsValidEmail] = useState(true);
-  const [emailMessage, setEmailMessage] = useState('');
+  const [isValid, setIsValidEmail] = useState(true);
+  const [message, setEmailMessage] = useState('');
 
-  const handleEmailChang = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>): void => {
-    const email = e.target.value;
-    const isValid = validateRealTime(email, emailValidation.validate).isValid;
-    const message = validateRealTime(email, emailValidation.validate).message;
-    setIsValidEmail(isValid);
-    setEmailMessage(message);
+  const handleValueChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>): void => {
+    const value = e.target.value;
+    const isValidValue = validateRealTime(value, emailValidation.validate).isValid;
+    const messageValue = validateRealTime(value, emailValidation.validate).message;
+    setIsValidEmail(isValidValue);
+    setEmailMessage(messageValue);
   };
 
   return (
@@ -33,11 +33,11 @@ const EmailInput: React.FC<IInputProps> = (props): JSX.Element => {
           className={props.className}
           onChange={(e): void => {
             field.onChange(e);
-            handleEmailChang(e);
+            handleValueChange(e);
           }}
           value={field.value || ''}
-          error={!!props.errors.email?.message || !isValidEmail}
-          helperText={!isValidEmail ? emailMessage : props.errors.email?.message}
+          error={!!props.errors.email?.message || !isValid}
+          helperText={!isValid ? message : props.errors.email?.message}
         />
       )}
     />
