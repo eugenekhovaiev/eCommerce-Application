@@ -39,14 +39,22 @@ const RegistrationForm = (): JSX.Element => {
   const [customerData, setCustomerData] = useState<Customer | null>(null);
   const [registerError, setRegisterError] = useState(false);
   const [sameAsShipping, setSameAsShipping] = useState(false);
+  const [defaultShipping, setDefaulShipping] = useState(false);
+  const [defaultBilling, setDefaultBilling] = useState(false);
   const handleCheckboxClick = (): void => {
     setSameAsShipping(!sameAsShipping);
+  };
+  const handleDefaultShippingClick = (): void => {
+    setDefaulShipping(!defaultShipping);
+  };
+  const handleDefaultBillingClick = (): void => {
+    setDefaultBilling(!defaultBilling);
   };
 
   const { updateHeader } = useHeaderContext();
 
   const onSubmit: SubmitHandler<IForm> = async (data) => {
-    const newCustomerData = getNewCustomerData(data, sameAsShipping);
+    const newCustomerData = getNewCustomerData(data, sameAsShipping, defaultShipping, defaultBilling);
 
     try {
       await createCustomer(newCustomerData);
@@ -94,9 +102,20 @@ const RegistrationForm = (): JSX.Element => {
         Shipping Address
       </Typography>
       <RegistrationShippingAddress control={control} errors={errors} />
-      <div className="form__checkbox">
-        Set this address as a default billing and shipping address?
-        <AddressCheckbox onChange={handleCheckboxClick} checked={sameAsShipping} control={control} errors={errors} />
+      <div className="form__checkbox-container">
+        <div className="form__checkbox">
+          <AddressCheckbox
+            onChange={handleDefaultShippingClick}
+            checked={defaultShipping}
+            control={control}
+            errors={errors}
+          />
+          Set this address as a default shipping address?
+        </div>
+        <div className="form__checkbox">
+          <AddressCheckbox onChange={handleCheckboxClick} checked={sameAsShipping} control={control} errors={errors} />
+          Set this address as a billing address?
+        </div>
       </div>
       <Typography variant="h5" className="form__title">
         Billing Address
@@ -106,6 +125,17 @@ const RegistrationForm = (): JSX.Element => {
       ) : (
         <RegistrationBillingAddress control={control} errors={errors} />
       )}
+      <div className="form__checkbox-container">
+        <div className="form__checkbox">
+          <AddressCheckbox
+            onChange={handleDefaultBillingClick}
+            checked={defaultBilling}
+            control={control}
+            errors={errors}
+          />
+          Set this address as a default billing address?
+        </div>
+      </div>
       <ButtonAuth title="Register" className="form__submit" />
     </form>
   );
