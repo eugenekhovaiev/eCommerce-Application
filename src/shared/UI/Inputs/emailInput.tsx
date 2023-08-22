@@ -14,7 +14,7 @@ const EmailInput: React.FC<IInputProps> = (props): JSX.Element => {
         <TextField
           id="standard-email"
           label="Email"
-          type="email"
+          type="text"
           variant={props.variant || 'standard'}
           color="secondary"
           className={props.className}
