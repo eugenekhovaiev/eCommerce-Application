@@ -60,3 +60,8 @@ export interface ICheckboxProps extends IInputProps {
   onChange: ((event: React.ChangeEvent<HTMLInputElement>, checked: boolean) => void) | undefined;
   checked: boolean;
 }
+
+export interface IValidationRealTime {
+  isValid: boolean;
+  message: string;
+}
