@@ -22,6 +22,8 @@ import getNewCustomerData from '../../shared/lib/helpers/getNewCustomerData';
 import createCustomer from '../../shared/api/user/createCustomer';
 import loginCustomer from '../../shared/api/user/loginCustomer';
 
+import { useHeaderContext } from '../header/HeaderContext';
+
 import './RegistrationForm.scss';
 
 const RegistrationForm = (): JSX.Element => {
@@ -41,6 +43,8 @@ const RegistrationForm = (): JSX.Element => {
     setSameAsShipping(!sameAsShipping);
   };
 
+  const { updateHeader } = useHeaderContext();
+
   const onSubmit: SubmitHandler<IForm> = async (data) => {
     const newCustomerData = getNewCustomerData(data, sameAsShipping);
 
@@ -56,7 +60,9 @@ const RegistrationForm = (): JSX.Element => {
 
       setRegisterError(false);
       setCustomerData(customer);
+      localStorage.setItem('isAuth', 'true');
       setTimeout(() => {
+        updateHeader(true);
         return navigate(from, { replace: true });
       }, 1500);
     } catch (error) {

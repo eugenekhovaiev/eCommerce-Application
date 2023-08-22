@@ -9,13 +9,15 @@ import ButtonAuth from '../../shared/UI/Buttons/buttonAuth';
 import EmailInput from '../../shared/UI/Inputs/emailInput';
 import PasswordInput from '../../shared/UI/Inputs/passwordInput';
 
+import LinkElement from '../../shared/UI/link/LinkElement';
+
 import { IForm } from '../../shared/types';
 import { Customer } from '@commercetools/platform-sdk';
 
 import loginCustomer from '../../shared/api/user/loginCustomer';
 
 import { useNavigate, useLocation } from 'react-router-dom';
-import LinkElement from '../../shared/UI/link/LinkElement';
+import { useHeaderContext } from '../header/HeaderContext';
 
 export const LoginForm: React.FC = (): JSX.Element => {
   const { handleSubmit, control } = useForm<IForm>();
@@ -30,13 +32,17 @@ export const LoginForm: React.FC = (): JSX.Element => {
   const [customerData, setCustomerData] = useState<Customer | null>(null);
   const [loginError, setLoginError] = useState(false);
 
+  const { updateHeader } = useHeaderContext();
+
   const onSubmit: SubmitHandler<IForm> = async (data) => {
     try {
       const loginResponse = await loginCustomer(data);
       const customer = loginResponse.body.customer;
       setLoginError(false);
       setCustomerData(customer);
+      localStorage.setItem('isAuth', 'true');
       setTimeout(() => {
+        updateHeader(true);
         return navigate(from, { replace: true });
       }, 1500);
     } catch (error) {

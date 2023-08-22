@@ -1,7 +1,7 @@
 import LinkElement from '../../../shared/UI/link/LinkElement';
-import { ISignUpProps } from '../types';
+import { ILinkProps } from '../types';
 
-function SignUpLink(props: ISignUpProps): JSX.Element {
+function SignUpLink(props: ILinkProps): JSX.Element {
   return <LinkElement className={props.className} title="Sign Up" onClick={props.onClick} to="/registration" />;
 }
 

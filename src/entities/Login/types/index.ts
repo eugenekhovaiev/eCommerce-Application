@@ -1,9 +1,4 @@
-export interface ISignInProps {
-  className?: string;
-  onClick?: React.MouseEventHandler<HTMLAnchorElement>;
-}
-
-export interface ISignUpProps {
+export interface ILinkProps {
   className?: string;
   onClick?: React.MouseEventHandler<HTMLAnchorElement>;
 }
