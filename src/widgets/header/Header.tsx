@@ -28,8 +28,8 @@ function Header(props: IHeaderProps): JSX.Element {
           <Logo className={'header__logo'} onClick={props.logoClick} title="4Dogs" iconSrc={logoIcon} />
           <nav className="nav header__nav">
             {isLoggedIn && <LogOut className="nav__link" />}
-            {!isLoggedIn && <SignIn className="nav__link" />}
-            {!isLoggedIn && <SignUp className="nav__link" />}
+            <SignIn className="nav__link" />
+            <SignUp className="nav__link" />
             {/* <CartIcon className="nav__cart" /> */}
           </nav>
         </div>
