@@ -8,6 +8,7 @@ import '../LoginForm/login-form.scss';
 import ButtonAuth from '../../shared/UI/Buttons/buttonAuth';
 import EmailInput from '../../shared/UI/Inputs/emailInput';
 import PasswordInput from '../../shared/UI/Inputs/passwordInput';
+
 import LinkElement from '../../shared/UI/link/LinkElement';
 
 import { IForm } from '../../shared/types';
