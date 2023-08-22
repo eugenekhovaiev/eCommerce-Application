@@ -15,6 +15,7 @@ import { Customer } from '@commercetools/platform-sdk';
 import loginCustomer from './api/loginCustomer';
 
 import { useNavigate, useLocation } from 'react-router-dom';
+import { useHeaderContext } from '../../header/HeaderContext';
 
 // eslint-disable-next-line max-lines-per-function
 export const LoginForm: React.FC = (): JSX.Element => {
@@ -30,6 +31,8 @@ export const LoginForm: React.FC = (): JSX.Element => {
   const [customerData, setCustomerData] = useState<Customer | null>(null);
   const [loginError, setLoginError] = useState(false);
 
+  const { updateHeader } = useHeaderContext();
+
   const onSubmit: SubmitHandler<ISignInForm> = async (data) => {
     try {
       const loginResponse = await loginCustomer(data);
@@ -38,6 +41,7 @@ export const LoginForm: React.FC = (): JSX.Element => {
       setCustomerData(customer);
       localStorage.setItem('isAuth', 'true');
       setTimeout(() => {
+        updateHeader(true);
         return navigate(from, { replace: true });
       }, 1500);
     } catch (error) {
