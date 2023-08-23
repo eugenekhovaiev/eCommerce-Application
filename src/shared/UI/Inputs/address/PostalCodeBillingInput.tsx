@@ -3,7 +3,6 @@ import { IInputProps } from '../../../types';
 import { Controller } from 'react-hook-form';
 import postCodeValidation from '../../../lib/validation/postCodeValidation';
 import { useState } from 'react';
-import validateRealTime from '../../../lib/validation/validateRealTime';
 
 const PostalCodeBillingInput = (props: IInputProps): JSX.Element => {
   const [isValid, setIsValid] = useState(true);
@@ -11,8 +10,9 @@ const PostalCodeBillingInput = (props: IInputProps): JSX.Element => {
 
   const handleValueChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>): void => {
     const value = e.target.value;
-    const isValidValue = validateRealTime(value, postCodeValidation.validate).isValid;
-    const messageValue = validateRealTime(value, postCodeValidation.validate).message;
+    const isValidValue = postCodeValidation(value, props.selected) !== true ? false : true;
+    const messageValue =
+      postCodeValidation(value, props.selected) !== true ? postCodeValidation(value, props.selected).toString() : '';
     setIsValid(isValidValue);
     setMessage(messageValue);
   };
@@ -21,7 +21,13 @@ const PostalCodeBillingInput = (props: IInputProps): JSX.Element => {
     <Controller
       control={props.control}
       name="postalCodeBilling"
-      rules={postCodeValidation}
+      rules={{
+        required: 'Required',
+        validate: (value: string): string | boolean => {
+          console.log('validate');
+          return postCodeValidation(value, props.selected);
+        },
+      }}
       render={({ field }): JSX.Element => (
         <TextField
           type="text"

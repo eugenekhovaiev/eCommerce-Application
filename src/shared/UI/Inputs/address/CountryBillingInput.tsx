@@ -4,13 +4,13 @@ import Select from '@mui/material/Select/Select';
 import MenuItem from '@mui/material/MenuItem/MenuItem';
 import countryValidation from '../../../lib/validation/countryValidation';
 import { Controller } from 'react-hook-form';
-import { IInputProps } from '../../../types';
+import { ISelectProps } from '../../../types';
 import { useState } from 'react';
 import validateRealTime from '../../../lib/validation/validateRealTime';
 import { SelectChangeEvent } from '@mui/material/Select/Select';
 import { FormHelperText } from '@mui/material';
 
-const CountryBillingInput = (props: IInputProps): JSX.Element => {
+const CountryBillingInput = (props: ISelectProps): JSX.Element => {
   const [isValid, setIsValid] = useState(true);
   const [message, setMessage] = useState('');
 
@@ -20,6 +20,7 @@ const CountryBillingInput = (props: IInputProps): JSX.Element => {
     const messageValue = validateRealTime(value, countryValidation.validate).message;
     setIsValid(isValidValue);
     setMessage(messageValue);
+    props.setSelect(value);
   };
   return (
     <Controller

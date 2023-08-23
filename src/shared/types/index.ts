@@ -54,11 +54,17 @@ export interface IInputProps {
   errors: FieldErrors<IForm>;
   variant?: TextFieldVariants;
   className?: string;
+  selected?: string;
+  setSelect?: React.Dispatch<React.SetStateAction<string>>;
 }
 
 export interface ICheckboxProps extends IInputProps {
   onChange: ((event: React.ChangeEvent<HTMLInputElement>, checked: boolean) => void) | undefined;
   checked: boolean;
+}
+
+export interface ISelectProps extends IInputProps {
+  setSelect: React.Dispatch<React.SetStateAction<string>>;
 }
 
 export interface IValidationRealTime {
