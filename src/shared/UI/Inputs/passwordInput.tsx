@@ -11,6 +11,8 @@ import IconButton from '@mui/material/IconButton';
 import { FormHelperText } from '@mui/material';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
+import { useState } from 'react';
+import validateRealTime from '../../lib/validation/validateRealTime';
 
 import { IInputProps } from '../../types';
 
@@ -20,6 +22,16 @@ const handleMouseDownPassword = (event: React.MouseEvent<HTMLButtonElement>): vo
 
 const PasswordInput: React.FC<IInputProps> = (props) => {
   const [showPassword, setShowPassword] = React.useState(false);
+  const [isValid, setIsValid] = useState(true);
+  const [message, setMessage] = useState('');
+
+  const handleValueChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>): void => {
+    const value = e.target.value;
+    const isValidValue = validateRealTime(value, passwordValidation.validate).isValid;
+    const messageValue = validateRealTime(value, passwordValidation.validate).message;
+    setIsValid(isValidValue);
+    setMessage(messageValue);
+  };
 
   const handleClickShowPassword = (): void => setShowPassword((show) => !show);
 
@@ -29,14 +41,21 @@ const PasswordInput: React.FC<IInputProps> = (props) => {
       name="password"
       rules={passwordValidation}
       render={({ field }): JSX.Element => (
-        <FormControl className={props.className} variant="standard" error={!!props.errors.password?.message}>
+        <FormControl
+          className={props.className}
+          variant="standard"
+          error={!!props.errors.password?.message || !isValid}
+        >
           <InputLabel color="secondary" htmlFor="standard-adornment-password">
             Password
           </InputLabel>
           <Input
             id="standard-adornment-password"
             type={showPassword ? 'text' : 'password'}
-            onChange={(e): void => field.onChange(e)}
+            onChange={(e): void => {
+              field.onChange(e);
+              handleValueChange(e);
+            }}
             value={field.value || ''}
             color="secondary"
             endAdornment={
@@ -51,7 +70,7 @@ const PasswordInput: React.FC<IInputProps> = (props) => {
               </InputAdornment>
             }
           />
-          <FormHelperText>{props.errors.password?.message}</FormHelperText>
+          <FormHelperText>{!isValid ? message : props.errors.password?.message}</FormHelperText>
         </FormControl>
       )}
     />

@@ -1,7 +1,7 @@
 const buildingValidation = {
   validate: (value: string): boolean | string => {
     if (value) {
-      if (value.trim().match(/^[a-zA-Zа-яА-Я0-9\s\-/._#]+$/i)) {
+      if (value.match(/^[a-zA-Zа-яА-Я0-9\-/._#]+$/i)) {
         return true;
       }
 

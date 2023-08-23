@@ -25,6 +25,7 @@ import loginCustomer from '../../shared/api/user/loginCustomer';
 import { useHeaderContext } from '../header/HeaderContext';
 
 import './RegistrationForm.scss';
+import { CountryProvider } from '../../entities/RegistrationAddress/UI/countryContext';
 
 const RegistrationForm = (): JSX.Element => {
   const { handleSubmit, control } = useForm<IForm>();
@@ -80,64 +81,79 @@ const RegistrationForm = (): JSX.Element => {
   };
 
   return (
-    <form className="registration__form form" onSubmit={handleSubmit(onSubmit)}>
-      {customerData && (
-        <Alert severity="success" className="registration__success-message">
-          Welcome, {customerData.firstName}!
-        </Alert>
-      )}
-      {registerError && (
-        <Alert severity="error" className="registration__error-message">
-          User with such email already exists. Try to log in.
-        </Alert>
-      )}
-      <div className="registration__user-info">
-        <FirstNameInput variant="outlined" className="form__input form__input_name" control={control} errors={errors} />
-        <LastNameInput variant="outlined" className="form__input form__input_name" control={control} errors={errors} />
-        <EmailInput variant="outlined" className="form__input form__input_email" control={control} errors={errors} />
-        <PasswordInput className="form__input form__input_password" control={control} errors={errors} />
-        <DateOfBirthInput className="form__input form__input_dob" control={control} errors={errors} />
-      </div>
-      <Typography variant="h5" className="form__title">
-        Shipping Address
-      </Typography>
-      <RegistrationShippingAddress control={control} errors={errors} />
-      <div className="form__checkbox-container">
-        <div className="form__checkbox">
-          <AddressCheckbox
-            onChange={handleDefaultShippingClick}
-            checked={defaultShipping}
+    <CountryProvider>
+      <form className="registration__form form" onSubmit={handleSubmit(onSubmit)}>
+        {customerData && (
+          <Alert severity="success" className="registration__success-message">
+            Welcome, {customerData.firstName}!
+          </Alert>
+        )}
+        {registerError && (
+          <Alert severity="error" className="registration__error-message">
+            User with such email already exists. Try to log in.
+          </Alert>
+        )}
+        <div className="registration__user-info">
+          <FirstNameInput
+            variant="outlined"
+            className="form__input form__input_name"
             control={control}
             errors={errors}
           />
-          Set this address as a default shipping address?
+          <LastNameInput
+            variant="outlined"
+            className="form__input form__input_name"
+            control={control}
+            errors={errors}
+          />
+          <EmailInput variant="outlined" className="form__input form__input_email" control={control} errors={errors} />
+          <PasswordInput className="form__input form__input_password" control={control} errors={errors} />
+          <DateOfBirthInput className="form__input form__input_dob" control={control} errors={errors} />
         </div>
-        <div className="form__checkbox">
-          <AddressCheckbox onChange={handleCheckboxClick} checked={sameAsShipping} control={control} errors={errors} />
-          Set this address as a billing address?
-        </div>
-      </div>
-      <Typography variant="h5" className="form__title">
-        Billing Address
-      </Typography>
-      {sameAsShipping ? (
+        <Typography variant="h5" className="form__title">
+          Shipping Address
+        </Typography>
         <RegistrationShippingAddress control={control} errors={errors} />
-      ) : (
-        <RegistrationBillingAddress control={control} errors={errors} />
-      )}
-      <div className="form__checkbox-container">
-        <div className="form__checkbox">
-          <AddressCheckbox
-            onChange={handleDefaultBillingClick}
-            checked={defaultBilling}
-            control={control}
-            errors={errors}
-          />
-          Set this address as a default billing address?
+        <div className="form__checkbox-container">
+          <div className="form__checkbox">
+            <AddressCheckbox
+              onChange={handleDefaultShippingClick}
+              checked={defaultShipping}
+              control={control}
+              errors={errors}
+            />
+            Set this address as a default shipping address?
+          </div>
+          <div className="form__checkbox">
+            <AddressCheckbox
+              onChange={handleCheckboxClick}
+              checked={sameAsShipping}
+              control={control}
+              errors={errors}
+            />
+            Set this address as a billing address?
+          </div>
         </div>
-      </div>
-      <ButtonAuth title="Register" className="form__submit" />
-    </form>
+        {!sameAsShipping && (
+          <Typography variant="h5" className="form__title">
+            Billing Address
+          </Typography>
+        )}
+        {!sameAsShipping && <RegistrationBillingAddress control={control} errors={errors} />}
+        <div className="form__checkbox-container">
+          <div className="form__checkbox">
+            <AddressCheckbox
+              onChange={handleDefaultBillingClick}
+              checked={defaultBilling}
+              control={control}
+              errors={errors}
+            />
+            Set this address as a default billing address?
+          </div>
+        </div>
+        <ButtonAuth title="Register" className="form__submit" />
+      </form>
+    </CountryProvider>
   );
 };
 
