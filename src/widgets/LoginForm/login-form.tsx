@@ -58,19 +58,19 @@ export const LoginForm: React.FC = (): JSX.Element => {
           Login
         </Typography>
         <LinkElement className="login-form__link" title="Don't have an account yet? Sign up" to="/registration" />
-        {customerData && (
-          <Alert severity="success" className="login-form__success-message">
-            Welcome, {customerData.firstName}!
-          </Alert>
-        )}
-        {loginError && (
-          <Alert severity="error" className="login-form__error-message">
-            Wrong email or password! Please, retry.
-          </Alert>
-        )}
         <form className="login-form__fields" onSubmit={handleSubmit(onSubmit)}>
           <EmailInput control={control} errors={errors} />
           <PasswordInput control={control} errors={errors} />
+          {customerData && (
+            <Alert severity="success" className="login-form__success-message">
+              Welcome, {customerData.firstName}!
+            </Alert>
+          )}
+          {loginError && (
+            <Alert severity="error" className="login-form__error-message">
+              Wrong email or password! Please, retry.
+            </Alert>
+          )}
           <ButtonAuth title="LOG IN" />
         </form>
       </div>

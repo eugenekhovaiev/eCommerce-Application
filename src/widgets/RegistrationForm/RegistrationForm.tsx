@@ -83,16 +83,6 @@ const RegistrationForm = (): JSX.Element => {
   return (
     <CountryProvider>
       <form className="registration__form form" onSubmit={handleSubmit(onSubmit)}>
-        {customerData && (
-          <Alert severity="success" className="registration__success-message">
-            Welcome, {customerData.firstName}!
-          </Alert>
-        )}
-        {registerError && (
-          <Alert severity="error" className="registration__error-message">
-            User with such email already exists. Try to log in.
-          </Alert>
-        )}
         <div className="registration__user-info">
           <FirstNameInput
             variant="outlined"
@@ -151,6 +141,16 @@ const RegistrationForm = (): JSX.Element => {
             Set this address as a default billing address?
           </div>
         </div>
+        {customerData && (
+          <Alert severity="success" className="registration__success-message">
+            Welcome, {customerData.firstName}!
+          </Alert>
+        )}
+        {registerError && (
+          <Alert severity="error" className="registration__error-message">
+            User with such email already exists. Try to log in.
+          </Alert>
+        )}
         <ButtonAuth title="Register" className="form__submit" />
       </form>
     </CountryProvider>
