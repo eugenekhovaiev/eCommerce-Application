@@ -5,11 +5,8 @@ import UnitShippingInput from '../../../shared/UI/Inputs/address/UnitShippingInp
 import PostalCodeShippingInput from '../../../shared/UI/Inputs/address/PostalCodeShippingInput';
 import CountryShippingInput from '../../../shared/UI/Inputs/address/CountryShippingInput';
 import { IInputProps } from '../../../shared/types';
-import { useState } from 'react';
 
 const RegistrationShippingAddress = (props: IInputProps): JSX.Element => {
-  const [select, setSelect] = useState('');
-
   return (
     <div className="registration__address-info">
       <StreetShippingInput
@@ -39,17 +36,10 @@ const RegistrationShippingAddress = (props: IInputProps): JSX.Element => {
       <PostalCodeShippingInput
         variant="outlined"
         className="form__input form__input_zip"
-        selected={select}
         control={props.control}
         errors={props.errors}
       />
-      <CountryShippingInput
-        selected={select}
-        setSelect={setSelect}
-        className="form__input form__input_country"
-        control={props.control}
-        errors={props.errors}
-      />
+      <CountryShippingInput className="form__input form__input_country" control={props.control} errors={props.errors} />
     </div>
   );
 };

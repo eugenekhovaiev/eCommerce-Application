@@ -16,7 +16,6 @@ const postCodeValidation = (postalCode: string, country: string | undefined): st
       }
       return 'Ukrainian postal code should be a 5-digit number.';
   }
-  console.log(country, postalCode);
   return 'Please select a country';
 };
 

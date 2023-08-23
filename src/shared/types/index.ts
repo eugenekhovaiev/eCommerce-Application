@@ -63,10 +63,6 @@ export interface ICheckboxProps extends IInputProps {
   checked: boolean;
 }
 
-export interface ISelectProps extends IInputProps {
-  setSelect: React.Dispatch<React.SetStateAction<string>>;
-}
-
 export interface IValidationRealTime {
   isValid: boolean;
   message: string;

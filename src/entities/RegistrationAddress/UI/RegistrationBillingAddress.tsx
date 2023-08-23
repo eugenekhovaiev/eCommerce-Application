@@ -5,11 +5,8 @@ import UnitBillingInput from '../../../shared/UI/Inputs/address/UnitBillingInput
 import PostalCodeBillingInput from '../../../shared/UI/Inputs/address/PostalCodeBillingInput';
 import CountryBillingInput from '../../../shared/UI/Inputs/address/CountryBillingInput';
 import { IInputProps } from '../../../shared/types';
-import { useState } from 'react';
 
 const RegistrationBillingAddress = (props: IInputProps): JSX.Element => {
-  const [select, setSelect] = useState('');
-
   return (
     <div className="registration__address-info">
       <StreetBillingInput
@@ -39,17 +36,10 @@ const RegistrationBillingAddress = (props: IInputProps): JSX.Element => {
       <PostalCodeBillingInput
         variant="outlined"
         className="form__input form__input_zip"
-        selected={select}
         control={props.control}
         errors={props.errors}
       />
-      <CountryBillingInput
-        selected={select}
-        setSelect={setSelect}
-        className="form__input form__input_country"
-        control={props.control}
-        errors={props.errors}
-      />
+      <CountryBillingInput className="form__input form__input_country" control={props.control} errors={props.errors} />
     </div>
   );
 };
