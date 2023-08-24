@@ -54,8 +54,7 @@ export interface IInputProps {
   errors: FieldErrors<IForm>;
   variant?: TextFieldVariants;
   className?: string;
-  selected?: string;
-  setSelect?: React.Dispatch<React.SetStateAction<string>>;
+  isShipping?: boolean;
 }
 
 export interface ICheckboxProps extends IInputProps {

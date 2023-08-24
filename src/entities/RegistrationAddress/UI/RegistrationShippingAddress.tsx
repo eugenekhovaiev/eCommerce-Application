@@ -1,6 +1,6 @@
 import CityShippingInput from '../../../shared/UI/Inputs/address/CityShippingInput';
 import StreetShippingInput from '../../../shared/UI/Inputs/address/StreetShippingInput';
-import BuildingShippingInput from '../../../shared/UI/Inputs/address/BuildingShippingInput';
+import BuildingInput from '../../../shared/UI/Inputs/address/BuildingInput';
 import UnitShippingInput from '../../../shared/UI/Inputs/address/UnitShippingInput';
 import PostalCodeShippingInput from '../../../shared/UI/Inputs/address/PostalCodeShippingInput';
 import CountryShippingInput from '../../../shared/UI/Inputs/address/CountryShippingInput';
@@ -12,34 +12,44 @@ const RegistrationShippingAddress = (props: IInputProps): JSX.Element => {
       <StreetShippingInput
         variant="outlined"
         className="form__input form__input_street"
+        isShipping={true}
         control={props.control}
         errors={props.errors}
       />
-      <BuildingShippingInput
+      <BuildingInput
         variant="outlined"
         className="form__input form__input_building"
+        isShipping={true}
         control={props.control}
         errors={props.errors}
       />
       <UnitShippingInput
         variant="outlined"
         className="form__input form__input_unit"
+        isShipping={true}
         control={props.control}
         errors={props.errors}
       />
       <CityShippingInput
         variant="outlined"
         className="form__input form__input_city"
+        isShipping={true}
         control={props.control}
         errors={props.errors}
       />
       <PostalCodeShippingInput
         variant="outlined"
         className="form__input form__input_zip"
+        isShipping={true}
         control={props.control}
         errors={props.errors}
       />
-      <CountryShippingInput className="form__input form__input_country" control={props.control} errors={props.errors} />
+      <CountryShippingInput
+        className="form__input form__input_country"
+        isShipping={true}
+        control={props.control}
+        errors={props.errors}
+      />
     </div>
   );
 };
