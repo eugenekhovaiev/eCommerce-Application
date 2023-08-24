@@ -5,7 +5,7 @@ import unitValidation from '../../../lib/validation/unitValidation';
 import { useState } from 'react';
 import validateRealTime from '../../../lib/validation/validateRealTime';
 
-const UnitShippingInput = (props: IInputProps): JSX.Element => {
+const UnitInput = (props: IInputProps): JSX.Element => {
   const [isValid, setIsValid] = useState(true);
   const [message, setMessage] = useState('');
 
@@ -20,7 +20,7 @@ const UnitShippingInput = (props: IInputProps): JSX.Element => {
   return (
     <Controller
       control={props.control}
-      name="unitShipping"
+      name={props.isShipping ? 'unitShipping' : 'unitBilling'}
       rules={unitValidation}
       render={({ field }): JSX.Element => (
         <TextField
@@ -34,12 +34,12 @@ const UnitShippingInput = (props: IInputProps): JSX.Element => {
             handleValueChange(e);
           }}
           value={field.value || ''}
-          error={!!props.errors.unitShipping?.message || !isValid}
-          helperText={!isValid ? message : props.errors.unitShipping?.message}
+          error={!!props.errors.unitBilling?.message || !isValid}
+          helperText={!isValid ? message : props.errors.unitBilling?.message}
         />
       )}
     />
   );
 };
 
-export default UnitShippingInput;
+export default UnitInput;

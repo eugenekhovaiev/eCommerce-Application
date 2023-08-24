@@ -1,7 +1,7 @@
 import CityInput from '../../../shared/UI/Inputs/address/CityInput';
 import StreetInput from '../../../shared/UI/Inputs/address/StreetInput';
 import BuildingInput from '../../../shared/UI/Inputs/address/BuildingInput';
-import UnitShippingInput from '../../../shared/UI/Inputs/address/UnitShippingInput';
+import UnitInput from '../../../shared/UI/Inputs/address/UnitInput';
 import PostalCodeInput from '../../../shared/UI/Inputs/address/PostalCodeInput';
 import CountryInput from '../../../shared/UI/Inputs/address/CountryInput';
 import { IInputProps } from '../../../shared/types';
@@ -23,7 +23,7 @@ const RegistrationShippingAddress = (props: IInputProps): JSX.Element => {
         control={props.control}
         errors={props.errors}
       />
-      <UnitShippingInput
+      <UnitInput
         variant="outlined"
         className="form__input form__input_unit"
         isShipping={true}
