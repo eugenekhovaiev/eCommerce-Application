@@ -1,7 +1,8 @@
 import './Header.scss';
 import SignIn from '../../features/Login/UI/SignIn';
 import SignUp from '../../features/Login/UI/SignUp';
-// import CartIcon from '../../entities/Cart/UI/CartIcon';
+import CartIcon from '../../entities/Cart/UI/CartIcon';
+import LinkElement from '../../shared/UI/link/LinkElement';
 import Logo from '../../shared/UI/logo/Logo';
 import { IHeaderProps } from './types';
 import logoIcon from '../../shared/assets/logo.svg';
@@ -28,9 +29,18 @@ function Header(props: IHeaderProps): JSX.Element {
           <Logo className={'header__logo'} onClick={props.logoClick} title="4Dogs" iconSrc={logoIcon} />
           <nav className="nav header__nav">
             {isLoggedIn && <LogOut className="nav__link" />}
+            <LinkElement to="/about">
+              <div>About Us</div>
+            </LinkElement>
+            <LinkElement to="/catalog">
+              <div>Our Products</div>
+            </LinkElement>
+            <LinkElement to="/profile">
+              <div>Your Profile</div>
+            </LinkElement>
             <SignIn className="nav__link" />
             <SignUp className="nav__link" />
-            {/* <CartIcon className="nav__cart" /> */}
+            <CartIcon className="nav__cart" />
           </nav>
         </div>
       </div>
