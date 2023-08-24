@@ -1,3 +1,5 @@
+import SignInLink from '../../entities/Login/UI/SignInLink';
+import SignUpLink from '../../entities/Login/UI/SignUpLink';
 import './Main.scss';
 
 function Main(): JSX.Element {
@@ -7,6 +9,8 @@ function Main(): JSX.Element {
         <div className="container">
           <div className="start-screen__wrapper">
             <h2 className="start-screen__title">eCommerce-Application</h2>
+            <SignInLink />
+            <SignUpLink />
           </div>
         </div>
       </section>
