@@ -5,7 +5,7 @@ import cityValidation from '../../../lib/validation/cityValidation';
 import { useState } from 'react';
 import validateRealTime from '../../../lib/validation/validateRealTime';
 
-const CityShippingInput = (props: IInputProps): JSX.Element => {
+const CityInput = (props: IInputProps): JSX.Element => {
   const [isValid, setIsValid] = useState(true);
   const [message, setMessage] = useState('');
 
@@ -20,7 +20,7 @@ const CityShippingInput = (props: IInputProps): JSX.Element => {
   return (
     <Controller
       control={props.control}
-      name="cityShipping"
+      name={props.isShipping ? 'cityShipping' : 'cityBilling'}
       rules={cityValidation}
       render={({ field }): JSX.Element => (
         <TextField
@@ -34,12 +34,12 @@ const CityShippingInput = (props: IInputProps): JSX.Element => {
             handleValueChange(e);
           }}
           value={field.value || ''}
-          error={!!props.errors.cityShipping?.message || !isValid}
-          helperText={!isValid ? message : props.errors.cityShipping?.message}
+          error={!!props.errors.cityBilling?.message || !isValid}
+          helperText={!isValid ? message : props.errors.cityBilling?.message}
         />
       )}
     />
   );
 };
 
-export default CityShippingInput;
+export default CityInput;
