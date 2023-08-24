@@ -1,5 +1,5 @@
-import StreetBillingInput from '../../../shared/UI/Inputs/address/StreetBillingInput';
 import CityInput from '../../../shared/UI/Inputs/address/CityInput';
+import StreetInput from '../../../shared/UI/Inputs/address/StreetInput';
 import BuildingInput from '../../../shared/UI/Inputs/address/BuildingInput';
 import UnitBillingInput from '../../../shared/UI/Inputs/address/UnitBillingInput';
 import PostalCodeInput from '../../../shared/UI/Inputs/address/PostalCodeInput';
@@ -9,7 +9,7 @@ import { IInputProps } from '../../../shared/types';
 const RegistrationBillingAddress = (props: IInputProps): JSX.Element => {
   return (
     <div className="registration__address-info">
-      <StreetBillingInput
+      <StreetInput
         variant="outlined"
         className="form__input form__input_street"
         isShipping={false}

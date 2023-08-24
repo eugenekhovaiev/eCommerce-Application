@@ -5,7 +5,7 @@ import streetValidation from '../../../lib/validation/streetValidation';
 import { useState } from 'react';
 import validateRealTime from '../../../lib/validation/validateRealTime';
 
-const StreetBillingInput = (props: IInputProps): JSX.Element => {
+const StreetInput = (props: IInputProps): JSX.Element => {
   const [isValid, setIsValid] = useState(true);
   const [message, setMessage] = useState('');
 
@@ -19,7 +19,7 @@ const StreetBillingInput = (props: IInputProps): JSX.Element => {
   return (
     <Controller
       control={props.control}
-      name="streetBilling"
+      name={props.isShipping ? 'streetShipping' : 'streetBilling'}
       rules={streetValidation}
       render={({ field }): JSX.Element => (
         <TextField
@@ -41,4 +41,4 @@ const StreetBillingInput = (props: IInputProps): JSX.Element => {
   );
 };
 
-export default StreetBillingInput;
+export default StreetInput;
