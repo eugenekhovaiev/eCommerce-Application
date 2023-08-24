@@ -2,7 +2,7 @@ import StreetBillingInput from '../../../shared/UI/Inputs/address/StreetBillingI
 import CityInput from '../../../shared/UI/Inputs/address/CityInput';
 import BuildingInput from '../../../shared/UI/Inputs/address/BuildingInput';
 import UnitBillingInput from '../../../shared/UI/Inputs/address/UnitBillingInput';
-import PostalCodeBillingInput from '../../../shared/UI/Inputs/address/PostalCodeBillingInput';
+import PostalCodeInput from '../../../shared/UI/Inputs/address/PostalCodeInput';
 import CountryInput from '../../../shared/UI/Inputs/address/CountryInput';
 import { IInputProps } from '../../../shared/types';
 
@@ -37,7 +37,7 @@ const RegistrationBillingAddress = (props: IInputProps): JSX.Element => {
         control={props.control}
         errors={props.errors}
       />
-      <PostalCodeBillingInput
+      <PostalCodeInput
         variant="outlined"
         className="form__input form__input_zip"
         isShipping={false}

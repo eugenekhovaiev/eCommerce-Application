@@ -2,7 +2,7 @@ import StreetShippingInput from '../../../shared/UI/Inputs/address/StreetShippin
 import CityInput from '../../../shared/UI/Inputs/address/CityInput';
 import BuildingInput from '../../../shared/UI/Inputs/address/BuildingInput';
 import UnitShippingInput from '../../../shared/UI/Inputs/address/UnitShippingInput';
-import PostalCodeShippingInput from '../../../shared/UI/Inputs/address/PostalCodeShippingInput';
+import PostalCodeInput from '../../../shared/UI/Inputs/address/PostalCodeInput';
 import CountryInput from '../../../shared/UI/Inputs/address/CountryInput';
 import { IInputProps } from '../../../shared/types';
 
@@ -37,7 +37,7 @@ const RegistrationShippingAddress = (props: IInputProps): JSX.Element => {
         control={props.control}
         errors={props.errors}
       />
-      <PostalCodeShippingInput
+      <PostalCodeInput
         variant="outlined"
         className="form__input form__input_zip"
         isShipping={true}

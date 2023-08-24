@@ -6,27 +6,26 @@ import { useState, useEffect } from 'react';
 
 import { useCountryContext } from '../../../../entities/RegistrationAddress/UI/countryContext';
 
-const PostalCodeBillingInput = (props: IInputProps): JSX.Element => {
+const PostalCodeInput = (props: IInputProps): JSX.Element => {
   const [isValid, setIsValid] = useState(true);
   const [message, setMessage] = useState('');
   const [postalCode, setPostalCode] = useState('');
-
   const { selectedBillingCountry } = useCountryContext();
+  const { selectedShippingCountry } = useCountryContext();
+  const selectedCountry = props.isShipping ? selectedShippingCountry : selectedBillingCountry;
 
   useEffect(() => {
     setMessage('New country selected.');
     setPostalCode('');
-  }, [selectedBillingCountry]);
+  }, [selectedCountry]);
 
   const handleValueChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>): void => {
     const value = e.target.value;
 
     setPostalCode(value);
-    const isValidValue = postCodeValidation(value, selectedBillingCountry) !== true ? false : true;
+    const isValidValue = postCodeValidation(value, selectedCountry) !== true ? false : true;
     const messageValue =
-      postCodeValidation(value, selectedBillingCountry) !== true
-        ? postCodeValidation(value, selectedBillingCountry).toString()
-        : '';
+      postCodeValidation(value, selectedCountry) !== true ? postCodeValidation(value, selectedCountry).toString() : '';
     setIsValid(isValidValue);
     setMessage(messageValue);
   };
@@ -34,11 +33,11 @@ const PostalCodeBillingInput = (props: IInputProps): JSX.Element => {
   return (
     <Controller
       control={props.control}
-      name="postalCodeBilling"
+      name={props.isShipping ? 'postalCodeShipping' : 'postalCodeBilling'}
       rules={{
         required: 'Required',
         validate: (value: string): string | boolean => {
-          return postCodeValidation(value, selectedBillingCountry);
+          return postCodeValidation(value, selectedCountry);
         },
       }}
       render={({ field }): JSX.Element => (
@@ -62,4 +61,4 @@ const PostalCodeBillingInput = (props: IInputProps): JSX.Element => {
   );
 };
 
-export default PostalCodeBillingInput;
+export default PostalCodeInput;
