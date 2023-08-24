@@ -3,7 +3,7 @@ import CityInput from '../../../shared/UI/Inputs/address/CityInput';
 import BuildingInput from '../../../shared/UI/Inputs/address/BuildingInput';
 import UnitShippingInput from '../../../shared/UI/Inputs/address/UnitShippingInput';
 import PostalCodeShippingInput from '../../../shared/UI/Inputs/address/PostalCodeShippingInput';
-import CountryShippingInput from '../../../shared/UI/Inputs/address/CountryShippingInput';
+import CountryInput from '../../../shared/UI/Inputs/address/CountryInput';
 import { IInputProps } from '../../../shared/types';
 
 const RegistrationShippingAddress = (props: IInputProps): JSX.Element => {
@@ -44,7 +44,7 @@ const RegistrationShippingAddress = (props: IInputProps): JSX.Element => {
         control={props.control}
         errors={props.errors}
       />
-      <CountryShippingInput
+      <CountryInput
         className="form__input form__input_country"
         isShipping={true}
         control={props.control}
