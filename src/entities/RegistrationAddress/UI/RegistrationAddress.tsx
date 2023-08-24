@@ -6,47 +6,47 @@ import PostalCodeInput from '../../../shared/UI/Inputs/address/PostalCodeInput';
 import CountryInput from '../../../shared/UI/Inputs/address/CountryInput';
 import { IInputProps } from '../../../shared/types';
 
-const RegistrationShippingAddress = (props: IInputProps): JSX.Element => {
+const RegistrationAddress = (props: IInputProps): JSX.Element => {
   return (
     <div className="registration__address-info">
       <StreetInput
         variant="outlined"
         className="form__input form__input_street"
-        isShipping={true}
+        isShipping={props.isShipping}
         control={props.control}
         errors={props.errors}
       />
       <BuildingInput
         variant="outlined"
         className="form__input form__input_building"
-        isShipping={true}
+        isShipping={props.isShipping}
         control={props.control}
         errors={props.errors}
       />
       <UnitInput
         variant="outlined"
         className="form__input form__input_unit"
-        isShipping={true}
+        isShipping={props.isShipping}
         control={props.control}
         errors={props.errors}
       />
       <CityInput
         variant="outlined"
         className="form__input form__input_city"
-        isShipping={true}
+        isShipping={props.isShipping}
         control={props.control}
         errors={props.errors}
       />
       <PostalCodeInput
         variant="outlined"
         className="form__input form__input_zip"
-        isShipping={true}
+        isShipping={props.isShipping}
         control={props.control}
         errors={props.errors}
       />
       <CountryInput
         className="form__input form__input_country"
-        isShipping={true}
+        isShipping={props.isShipping}
         control={props.control}
         errors={props.errors}
       />
@@ -54,4 +54,4 @@ const RegistrationShippingAddress = (props: IInputProps): JSX.Element => {
   );
 };
 
-export default RegistrationShippingAddress;
+export default RegistrationAddress;

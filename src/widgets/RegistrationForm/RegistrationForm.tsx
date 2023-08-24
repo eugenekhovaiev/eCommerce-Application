@@ -15,8 +15,7 @@ import LastNameInput from '../../shared/UI/Inputs/LastNameInput';
 import DateOfBirthInput from '../../shared/UI/Inputs/DateOfBirthInput';
 import ButtonAuth from '../../shared/UI/Buttons/buttonAuth';
 import AddressCheckbox from '../../shared/UI/Checkbox/AddressCheckbox';
-import RegistrationShippingAddress from '../../entities/RegistrationAddress/UI/RegistrationShippingAddress';
-import RegistrationBillingAddress from '../../entities/RegistrationAddress/UI/RegistrationBillingAddress';
+import RegistrationAddress from '../../entities/RegistrationAddress/UI/RegistrationAddress';
 import getNewCustomerData from '../../shared/lib/helpers/getNewCustomerData';
 
 import createCustomer from '../../shared/api/user/createCustomer';
@@ -103,7 +102,7 @@ const RegistrationForm = (): JSX.Element => {
         <Typography variant="h5" className="form__title">
           Shipping Address
         </Typography>
-        <RegistrationShippingAddress control={control} errors={errors} />
+        <RegistrationAddress isShipping={true} control={control} errors={errors} />
         <div className="form__checkbox-container">
           <div className="form__checkbox">
             <AddressCheckbox
@@ -129,7 +128,7 @@ const RegistrationForm = (): JSX.Element => {
             Billing Address
           </Typography>
         )}
-        {!sameAsShipping && <RegistrationBillingAddress control={control} errors={errors} />}
+        {!sameAsShipping && <RegistrationAddress isShipping={false} control={control} errors={errors} />}
         <div className="form__checkbox-container">
           <div className="form__checkbox">
             <AddressCheckbox
