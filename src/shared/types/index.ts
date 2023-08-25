@@ -55,6 +55,7 @@ export interface IInputProps {
   variant?: TextFieldVariants;
   className?: string;
   isShipping?: boolean;
+  isFirstName?: boolean;
 }
 
 export interface ICheckboxProps extends IInputProps {

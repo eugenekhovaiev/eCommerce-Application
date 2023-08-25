@@ -10,8 +10,7 @@ import { Customer, CustomerSignin } from '@commercetools/platform-sdk';
 
 import EmailInput from '../../shared/UI/Inputs/emailInput';
 import PasswordInput from '../../shared/UI/Inputs/passwordInput';
-import FirstNameInput from '../../shared/UI/Inputs/FirstNameInput';
-import LastNameInput from '../../shared/UI/Inputs/LastNameInput';
+import NameInput from '../../shared/UI/Inputs/NameInput';
 import DateOfBirthInput from '../../shared/UI/Inputs/DateOfBirthInput';
 import ButtonAuth from '../../shared/UI/Buttons/buttonAuth';
 import AddressCheckbox from '../../shared/UI/Checkbox/AddressCheckbox';
@@ -83,15 +82,17 @@ const RegistrationForm = (): JSX.Element => {
     <CountryProvider>
       <form className="registration__form form" onSubmit={handleSubmit(onSubmit)}>
         <div className="registration__user-info">
-          <FirstNameInput
+          <NameInput
             variant="outlined"
             className="form__input form__input_name"
+            isFirstName={true}
             control={control}
             errors={errors}
           />
-          <LastNameInput
+          <NameInput
             variant="outlined"
             className="form__input form__input_name"
+            isFirstName={false}
             control={control}
             errors={errors}
           />

@@ -5,7 +5,7 @@ import nameValidation from '../../lib/validation/nameValidation';
 import { useState } from 'react';
 import validateRealTime from '../../lib/validation/validateRealTime';
 
-const FirstNameInput = (props: IInputProps): JSX.Element => {
+const NameInput = (props: IInputProps): JSX.Element => {
   const [isValid, setIsValid] = useState(true);
   const [message, setMessage] = useState('');
 
@@ -20,12 +20,12 @@ const FirstNameInput = (props: IInputProps): JSX.Element => {
   return (
     <Controller
       control={props.control}
-      name="firstName"
+      name={props.isFirstName ? 'firstName' : 'lastName'}
       rules={nameValidation}
       render={({ field }): JSX.Element => (
         <TextField
           type="text"
-          label="First Name"
+          label={props.isFirstName ? 'First Name' : 'Last Name'}
           className={props.className}
           color="secondary"
           variant={props.variant || 'standard'}
@@ -42,4 +42,4 @@ const FirstNameInput = (props: IInputProps): JSX.Element => {
   );
 };
 
-export default FirstNameInput;
+export default NameInput;
