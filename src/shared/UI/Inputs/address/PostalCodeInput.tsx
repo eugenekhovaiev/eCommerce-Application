@@ -4,7 +4,8 @@ import { Controller } from 'react-hook-form';
 import postCodeValidation from '../../../lib/validation/postCodeValidation';
 import { useState, useEffect } from 'react';
 
-import { useCountryContext } from '../../../../entities/RegistrationAddress/UI/countryContext';
+// import { useCountryContext } from '../../../../entities/RegistrationAddress/UI/countryContext';
+import { useCountryContext } from '../../../../entities/RegistrationFormComponents/UI/countryContext';
 
 const PostalCodeInput = (props: IInputProps): JSX.Element => {
   const [isValid, setIsValid] = useState(true);

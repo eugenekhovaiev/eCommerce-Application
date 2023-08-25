@@ -10,7 +10,8 @@ import validateRealTime from '../../../lib/validation/validateRealTime';
 import { SelectChangeEvent } from '@mui/material/Select/Select';
 import { FormHelperText } from '@mui/material';
 
-import { useCountryContext } from '../../../../entities/RegistrationAddress/UI/countryContext';
+// import { useCountryContext } from '../../../../entities/RegistrationAddress/UI/countryContext';
+import { useCountryContext } from '../../../../entities/RegistrationFormComponents/UI/countryContext';
 import COUNTRY_CODE from './consts/COUNTRY_CODE';
 
 const CountryInput = (props: IInputProps): JSX.Element => {
