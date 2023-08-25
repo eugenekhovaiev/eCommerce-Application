@@ -11,6 +11,7 @@ import { SelectChangeEvent } from '@mui/material/Select/Select';
 import { FormHelperText } from '@mui/material';
 
 import { useCountryContext } from '../../../../entities/RegistrationAddress/UI/countryContext';
+import COUNTRY_CODE from './consts/countryCodes';
 
 const CountryInput = (props: IInputProps): JSX.Element => {
   const [isValid, setIsValid] = useState(true);
@@ -52,15 +53,11 @@ const CountryInput = (props: IInputProps): JSX.Element => {
               handleValueChange(e);
             }}
           >
-            <MenuItem color="secondary" value={'UA'}>
-              Ukraine
-            </MenuItem>
-            <MenuItem color="secondary" value={'PL'}>
-              Poland
-            </MenuItem>
-            <MenuItem color="secondary" value={'US'}>
-              USA
-            </MenuItem>
+            {Object.entries(COUNTRY_CODE).map((item) => (
+              <MenuItem key={item[0]} color="secondary" value={item[0]}>
+                {item[1]}
+              </MenuItem>
+            ))}
           </Select>
           <FormHelperText>{!isValid ? message : props.errors.countryBilling?.message}</FormHelperText>
         </FormControl>
