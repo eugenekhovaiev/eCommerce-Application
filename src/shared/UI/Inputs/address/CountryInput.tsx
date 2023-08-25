@@ -11,7 +11,7 @@ import { SelectChangeEvent } from '@mui/material/Select/Select';
 import { FormHelperText } from '@mui/material';
 
 import { useCountryContext } from '../../../../entities/RegistrationAddress/UI/countryContext';
-import COUNTRY_CODE from './consts/countryCodes';
+import COUNTRY_CODE from './consts/COUNTRY_CODE';
 
 const CountryInput = (props: IInputProps): JSX.Element => {
   const [isValid, setIsValid] = useState(true);
