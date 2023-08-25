@@ -1,26 +1,29 @@
 import './Header.scss';
-import SignIn from '../../features/Login/UI/SignIn';
-import SignUp from '../../features/Login/UI/SignUp';
-import CartIcon from '../../entities/Cart/UI/CartIcon';
-import LinkElement from '../../shared/UI/link/LinkElement';
-import Logo from '../../shared/UI/logo/Logo';
+import CartLink from '../../entities/Links/CartLink';
+import LogInLink from '../../entities/Links/LogInLink';
+import SignUpLink from '../../entities/Links/SignUpLink';
+import AboutUsLink from '../../entities/Links/AboutUsLink';
+import ProfileLink from '../../entities/Links/ProfileLink';
+import CatalogLink from '../../entities/Links/CatalogLink';
+import Logo from '../../entities/Logo/Logo';
+
 import { IHeaderProps } from './types';
 import logoIcon from '../../shared/assets/logo.svg';
-import { useHeaderContext } from './HeaderContext';
+import { useLoggedInContext } from '../../shared/lib/contexts/LoggedInContext';
 
-import LogOut from '../../features/Login/UI/LogOut';
 import { useEffect } from 'react';
+import LogOutLink from '../../entities/Links/LogOutLink';
 
 function Header(props: IHeaderProps): JSX.Element {
-  const { isLoggedIn, updateHeader } = useHeaderContext();
+  const { isLoggedIn, updateLoggedIn } = useLoggedInContext();
 
   useEffect(() => {
     const savedHasHeaderChanged = localStorage.getItem('isAuth');
 
     if (savedHasHeaderChanged === 'true') {
-      updateHeader(true);
+      updateLoggedIn(true);
     }
-  }, [updateHeader]);
+  }, [updateLoggedIn]);
 
   return (
     <header className="header">
@@ -28,19 +31,13 @@ function Header(props: IHeaderProps): JSX.Element {
         <div className="header__wrapper">
           <Logo className={'header__logo'} onClick={props.logoClick} title="4Dogs" iconSrc={logoIcon} />
           <nav className="nav header__nav">
-            {isLoggedIn && <LogOut className="nav__link" />}
-            <LinkElement to="/about">
-              <div>About Us</div>
-            </LinkElement>
-            <LinkElement to="/catalog">
-              <div>Our Products</div>
-            </LinkElement>
-            <LinkElement to="/profile">
-              <div>Your Profile</div>
-            </LinkElement>
-            <SignIn className="nav__link" />
-            <SignUp className="nav__link" />
-            <CartIcon className="nav__cart" />
+            <AboutUsLink additionalClassName="nav__link" />
+            <CatalogLink additionalClassName="nav__link" />
+            <ProfileLink additionalClassName="nav__link" />
+            {!isLoggedIn && <LogInLink additionalClassName="nav__link" />}
+            {!isLoggedIn && <SignUpLink additionalClassName="nav__link" />}
+            {isLoggedIn && <LogOutLink additionalClassName="nav__link" />}
+            <CartLink additionalClassName="nav__link" />
           </nav>
         </div>
       </div>

@@ -1,11 +1,11 @@
 import { TextField } from '@mui/material';
-import { IInputProps } from '../../../types';
+import { InputProps } from '../../../types';
 import { Controller } from 'react-hook-form';
 import streetValidation from '../../../lib/validation/streetValidation';
 import { useState } from 'react';
 import validateRealTime from '../../../lib/validation/validateRealTime';
 
-const StreetInput = (props: IInputProps): JSX.Element => {
+const StreetInput = (props: InputProps): JSX.Element => {
   const [isValid, setIsValid] = useState(true);
   const [message, setMessage] = useState('');
 

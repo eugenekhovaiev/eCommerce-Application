@@ -9,18 +9,18 @@ import ButtonAuth from '../../shared/UI/Buttons/buttonAuth';
 import EmailInput from '../../shared/UI/Inputs/emailInput';
 import PasswordInput from '../../shared/UI/Inputs/passwordInput';
 
-import LinkElement from '../../shared/UI/link/LinkElement';
+import LinkElement from '../../shared/UI/LinkElement/LinkElement';
 
-import { IForm } from '../../shared/types';
+import { Form } from '../../shared/types';
 import { Customer } from '@commercetools/platform-sdk';
 
 import loginCustomer from '../../shared/api/user/loginCustomer';
 
 import { useNavigate, useLocation } from 'react-router-dom';
-import { useHeaderContext } from '../header/HeaderContext';
+import { useLoggedInContext } from '../../shared/lib/contexts/LoggedInContext';
 
 export const LoginForm: React.FC = (): JSX.Element => {
-  const { handleSubmit, control } = useForm<IForm>();
+  const { handleSubmit, control } = useForm<Form>();
   const { errors } = useFormState({
     control,
   });
@@ -32,9 +32,9 @@ export const LoginForm: React.FC = (): JSX.Element => {
   const [customerData, setCustomerData] = useState<Customer | null>(null);
   const [loginError, setLoginError] = useState(false);
 
-  const { updateHeader } = useHeaderContext();
+  const { updateLoggedIn } = useLoggedInContext();
 
-  const onSubmit: SubmitHandler<IForm> = async (data) => {
+  const onSubmit: SubmitHandler<Form> = async (data) => {
     try {
       const loginResponse = await loginCustomer(data);
       const customer = loginResponse.body.customer;
@@ -42,7 +42,7 @@ export const LoginForm: React.FC = (): JSX.Element => {
       setCustomerData(customer);
       localStorage.setItem('isAuth', 'true');
       setTimeout(() => {
-        updateHeader(true);
+        updateLoggedIn(true);
         return navigate(from, { replace: true });
       }, 1500);
     } catch (error) {
@@ -57,7 +57,11 @@ export const LoginForm: React.FC = (): JSX.Element => {
         <Typography variant="h3" className="login-form__title">
           Login
         </Typography>
-        <LinkElement className="login-form__link" title="Don't have an account yet? Sign up" to="/registration" />
+        <LinkElement
+          additionalClassName="login-form__link"
+          title="Don't have an account yet? Sign up"
+          to="/registration"
+        />
         <form className="login-form__fields" onSubmit={handleSubmit(onSubmit)}>
           <EmailInput control={control} errors={errors} />
           <PasswordInput control={control} errors={errors} />

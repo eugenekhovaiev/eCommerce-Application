@@ -1,10 +1,10 @@
-import { IInputProps } from '../../../shared/types';
+import { InputProps } from '../../../shared/types';
 import NameInput from '../../../shared/UI/Inputs/NameInput';
 import EmailInput from '../../../shared/UI/Inputs/emailInput';
 import PasswordInput from '../../../shared/UI/Inputs/passwordInput';
 import DateOfBirthInput from '../../../shared/UI/Inputs/DateOfBirthInput';
 
-const RegistrationUserInfo = (props: IInputProps): JSX.Element => {
+const RegistrationUserInfo = (props: InputProps): JSX.Element => {
   return (
     <div className="registration__user-info">
       <NameInput

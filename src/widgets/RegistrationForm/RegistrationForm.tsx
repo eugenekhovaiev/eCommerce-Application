@@ -5,7 +5,7 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import Typography from '@mui/material/Typography';
 import { Alert } from '@mui/material';
 
-import { IForm } from '../../shared/types';
+import { Form } from '../../shared/types';
 import { Customer, CustomerSignin } from '@commercetools/platform-sdk';
 
 import ButtonAuth from '../../shared/UI/Buttons/buttonAuth';
@@ -17,13 +17,13 @@ import getNewCustomerData from '../../shared/lib/helpers/getNewCustomerData';
 import createCustomer from '../../shared/api/user/createCustomer';
 import loginCustomer from '../../shared/api/user/loginCustomer';
 
-import { useHeaderContext } from '../header/HeaderContext';
+import { useLoggedInContext } from '../../shared/lib/contexts/LoggedInContext';
 
 import './RegistrationForm.scss';
 import { CountryProvider } from '../../entities/RegistrationFormComponents/UI/countryContext';
 
 const RegistrationForm = (): JSX.Element => {
-  const { handleSubmit, control } = useForm<IForm>();
+  const { handleSubmit, control } = useForm<Form>();
   const { errors } = useFormState({
     control,
   });
@@ -48,9 +48,9 @@ const RegistrationForm = (): JSX.Element => {
     setDefaultBilling(!defaultBilling);
   };
 
-  const { updateHeader } = useHeaderContext();
+  const { updateLoggedIn } = useLoggedInContext();
 
-  const onSubmit: SubmitHandler<IForm> = async (data) => {
+  const onSubmit: SubmitHandler<Form> = async (data) => {
     const newCustomerData = getNewCustomerData(data, sameAsShipping, defaultShipping, defaultBilling);
 
     try {
@@ -67,7 +67,7 @@ const RegistrationForm = (): JSX.Element => {
       setCustomerData(customer);
       localStorage.setItem('isAuth', 'true');
       setTimeout(() => {
-        updateHeader(true);
+        updateLoggedIn(true);
         return navigate(from, { replace: true });
       }, 1500);
     } catch (error) {

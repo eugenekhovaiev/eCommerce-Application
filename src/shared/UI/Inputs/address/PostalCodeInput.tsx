@@ -1,5 +1,5 @@
 import { TextField } from '@mui/material';
-import { IInputProps } from '../../../types';
+import { InputProps } from '../../../types';
 import { Controller } from 'react-hook-form';
 import postCodeValidation from '../../../lib/validation/postCodeValidation';
 import { useState, useEffect } from 'react';
@@ -7,7 +7,7 @@ import { useState, useEffect } from 'react';
 // import { useCountryContext } from '../../../../entities/RegistrationAddress/UI/countryContext';
 import { useCountryContext } from '../../../../entities/RegistrationFormComponents/UI/countryContext';
 
-const PostalCodeInput = (props: IInputProps): JSX.Element => {
+const PostalCodeInput = (props: InputProps): JSX.Element => {
   const [isValid, setIsValid] = useState(true);
   const [message, setMessage] = useState('');
   const [postalCode, setPostalCode] = useState('');

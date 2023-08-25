@@ -1,11 +1,11 @@
 import { TextField } from '@mui/material';
-import { IInputProps } from '../../types';
+import { InputProps } from '../../types';
 import { Controller } from 'react-hook-form';
 import nameValidation from '../../lib/validation/nameValidation';
 import { useState } from 'react';
 import validateRealTime from '../../lib/validation/validateRealTime';
 
-const NameInput = (props: IInputProps): JSX.Element => {
+const NameInput = (props: InputProps): JSX.Element => {
   const [isValid, setIsValid] = useState(true);
   const [message, setMessage] = useState('');
 

@@ -1,4 +1,4 @@
-import { IInputProps } from '../../types';
+import { InputProps } from '../../types';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DateField } from '@mui/x-date-pickers';
@@ -7,7 +7,7 @@ import dateOfBirthValidtion from '../../lib/validation/dateValidation';
 import { useState } from 'react';
 import validateRealTime from '../../lib/validation/validateRealTime';
 
-const DateOfBirthInput = (props: IInputProps): JSX.Element => {
+const DateOfBirthInput = (props: InputProps): JSX.Element => {
   const [isValid, setIsValid] = useState(true);
   const [message, setMessage] = useState('');
 

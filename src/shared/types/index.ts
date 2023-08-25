@@ -1,29 +1,29 @@
 import { TextFieldVariants } from '@mui/material';
 import { Control, FieldErrors } from 'react-hook-form';
 
-export interface ILinkProps {
-  to: string;
+export interface LinkProps {
+  to?: string;
   target?: string;
   title?: string;
-  className?: string;
+  additionalClassName?: string;
   children?: JSX.Element;
   onClick?: React.MouseEventHandler<HTMLAnchorElement>;
 }
 
-export interface IImgProps {
+export interface ImgProps {
   src?: string;
   alt: string;
   className?: string;
 }
 
-export interface ILogoProps {
+export interface LogoProps {
   title?: string;
   iconSrc?: string;
   className?: string;
   onClick?: React.MouseEventHandler<HTMLElement>;
 }
 
-export interface IForm {
+export interface Form {
   email: string;
   password: string;
   firstName: string;
@@ -44,26 +44,26 @@ export interface IForm {
   defaultAddress: boolean;
 }
 
-export interface IButtonProps {
+export interface ButtonProps {
   title: string;
   className?: string;
 }
 
-export interface IInputProps {
-  control: Control<IForm>;
-  errors: FieldErrors<IForm>;
+export interface InputProps {
+  control: Control<Form>;
+  errors: FieldErrors<Form>;
   variant?: TextFieldVariants;
   className?: string;
   isShipping?: boolean;
   isFirstName?: boolean;
 }
 
-export interface ICheckboxProps extends IInputProps {
+export interface CheckboxProps extends InputProps {
   onChange: ((event: React.ChangeEvent<HTMLInputElement>, checked: boolean) => void) | undefined;
   checked: boolean;
 }
 
-export interface IValidationRealTime {
+export interface ValidationRealTime {
   isValid: boolean;
   message: string;
 }

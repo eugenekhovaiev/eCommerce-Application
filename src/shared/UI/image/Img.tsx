@@ -1,8 +1,8 @@
-import { IImgProps } from '../../types';
-import getClassName from '../../lib/helpers/getClassName';
+import { ImgProps } from '../../types';
+import getFullClassName from '../../lib/helpers/getFullClassName';
 
-function Img(props: IImgProps): JSX.Element {
-  const className = getClassName('', props.className);
+function Img(props: ImgProps): JSX.Element {
+  const className = getFullClassName('', props.className);
   return <img className={className} src={props.src} alt={props.alt} />;
 }
 

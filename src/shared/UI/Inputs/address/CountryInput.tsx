@@ -4,7 +4,7 @@ import Select from '@mui/material/Select/Select';
 import MenuItem from '@mui/material/MenuItem/MenuItem';
 import countryValidation from '../../../lib/validation/countryValidation';
 import { Controller } from 'react-hook-form';
-import { IInputProps } from '../../../types';
+import { InputProps } from '../../../types';
 import { useState } from 'react';
 import validateRealTime from '../../../lib/validation/validateRealTime';
 import { SelectChangeEvent } from '@mui/material/Select/Select';
@@ -14,7 +14,7 @@ import { FormHelperText } from '@mui/material';
 import { useCountryContext } from '../../../../entities/RegistrationFormComponents/UI/countryContext';
 import COUNTRY_CODE from './consts/COUNTRY_CODE';
 
-const CountryInput = (props: IInputProps): JSX.Element => {
+const CountryInput = (props: InputProps): JSX.Element => {
   const [isValid, setIsValid] = useState(true);
   const [message, setMessage] = useState('');
   const { setSelectedBillingCountry, setSelectedShippingCountry } = useCountryContext();

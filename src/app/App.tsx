@@ -4,8 +4,8 @@ import './styles/App.scss';
 
 import Login from '../pages/Login/Login';
 import Registration from '../pages/Registration/Registration';
-import Main from '../pages/main/Main';
-import Header from '../widgets/header/Header';
+import Main from '../pages/Main/Main';
+import Header from '../widgets/Header/Header';
 import Page404 from '../pages/404/page-404';
 import Cart from '../pages/Cart/Cart';
 import Catalog from '../pages/Catalog/Catalog';
@@ -15,10 +15,10 @@ import About from '../pages/About/About';
 import { Routes, Route, Navigate } from 'react-router-dom';
 import './styles/App.scss';
 
-import { useHeaderContext } from '../widgets/header/HeaderContext';
+import { useLoggedInContext } from '../shared/lib/contexts/LoggedInContext';
 
 function App(): JSX.Element {
-  const { isLoggedIn } = useHeaderContext();
+  const { isLoggedIn } = useLoggedInContext();
 
   return (
     <>

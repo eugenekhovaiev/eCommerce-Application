@@ -1,12 +1,12 @@
 import React from 'react';
-import { IInputProps } from '../../types';
+import { InputProps } from '../../types';
 import TextField from '@mui/material/TextField';
 import emailValidation from '../../lib/validation/emailValidation';
 import { useState } from 'react';
 import { Controller } from 'react-hook-form';
 import validateRealTime from '../../lib/validation/validateRealTime';
 
-const EmailInput: React.FC<IInputProps> = (props): JSX.Element => {
+const EmailInput: React.FC<InputProps> = (props): JSX.Element => {
   const [isValid, setIsValidEmail] = useState(true);
   const [message, setEmailMessage] = useState('');
 

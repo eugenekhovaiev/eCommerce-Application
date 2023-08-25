@@ -14,13 +14,13 @@ import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import { useState } from 'react';
 import validateRealTime from '../../lib/validation/validateRealTime';
 
-import { IInputProps } from '../../types';
+import { InputProps } from '../../types';
 
 const handleMouseDownPassword = (event: React.MouseEvent<HTMLButtonElement>): void => {
   event.preventDefault();
 };
 
-const PasswordInput: React.FC<IInputProps> = (props) => {
+const PasswordInput: React.FC<InputProps> = (props) => {
   const [showPassword, setShowPassword] = React.useState(false);
   const [isValid, setIsValid] = useState(true);
   const [message, setMessage] = useState('');
