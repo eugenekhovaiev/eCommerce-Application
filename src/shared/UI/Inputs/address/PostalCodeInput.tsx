@@ -10,8 +10,7 @@ const PostalCodeInput = (props: IInputProps): JSX.Element => {
   const [isValid, setIsValid] = useState(true);
   const [message, setMessage] = useState('');
   const [postalCode, setPostalCode] = useState('');
-  const { selectedBillingCountry } = useCountryContext();
-  const { selectedShippingCountry } = useCountryContext();
+  const { selectedBillingCountry, selectedShippingCountry } = useCountryContext();
   const selectedCountry = props.isShipping ? selectedShippingCountry : selectedBillingCountry;
 
   useEffect(() => {

@@ -15,8 +15,7 @@ import { useCountryContext } from '../../../../entities/RegistrationAddress/UI/c
 const CountryInput = (props: IInputProps): JSX.Element => {
   const [isValid, setIsValid] = useState(true);
   const [message, setMessage] = useState('');
-  const { setSelectedBillingCountry } = useCountryContext();
-  const { setSelectedShippingCountry } = useCountryContext();
+  const { setSelectedBillingCountry, setSelectedShippingCountry } = useCountryContext();
   const setSelectedCountry = props.isShipping ? setSelectedShippingCountry : setSelectedBillingCountry;
 
   const handleValueChange = (e: SelectChangeEvent<string>): void => {
