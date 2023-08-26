@@ -1,4 +1,3 @@
-import './Header.scss';
 import CartLink from '../../entities/Links/CartLink';
 import LogInLink from '../../entities/Links/LogInLink';
 import SignUpLink from '../../entities/Links/SignUpLink';

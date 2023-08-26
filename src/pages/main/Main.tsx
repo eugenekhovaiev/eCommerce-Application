@@ -1,6 +1,5 @@
 import LogInLink from '../../entities/Links/LogInLink';
 import SignUpLink from '../../entities/Links/SignUpLink';
-import './Main.scss';
 
 function Main(): JSX.Element {
   return (

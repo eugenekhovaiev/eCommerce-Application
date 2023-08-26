@@ -1,4 +1,3 @@
-import './Logo.scss';
 import { LogoProps } from '../../shared/types';
 import getFullClassName from '../../shared/lib/helpers/getFullClassName';
 import LinkElement from '../../shared/UI/LinkElement/LinkElement';

@@ -1,7 +1,3 @@
-import 'normalize.css';
-import './styles/reset.scss';
-import './styles/App.scss';
-
 import Login from '../pages/Login/Login';
 import Registration from '../pages/Registration/Registration';
 import Main from '../pages/Main/Main';
@@ -13,7 +9,6 @@ import Profile from '../pages/Profile/Profile';
 import About from '../pages/About/About';
 
 import { Routes, Route, Navigate } from 'react-router-dom';
-import './styles/App.scss';
 
 import { useLoggedInContext } from '../shared/lib/contexts/LoggedInContext';
 

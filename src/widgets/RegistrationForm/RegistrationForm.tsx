@@ -19,7 +19,6 @@ import loginCustomer from '../../shared/api/user/loginCustomer';
 
 import { useLoggedInContext } from '../../shared/lib/contexts/LoggedInContext';
 
-import './RegistrationForm.scss';
 import { CountryProvider } from '../../entities/RegistrationFormComponents/UI/countryContext';
 
 const RegistrationForm = (): JSX.Element => {

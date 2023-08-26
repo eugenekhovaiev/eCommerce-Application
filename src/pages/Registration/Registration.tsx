@@ -3,8 +3,6 @@ import { Typography } from '@mui/material';
 import RegistrationForm from '../../widgets/RegistrationForm/RegistrationForm';
 import LinkElement from '../../shared/UI/LinkElement/LinkElement';
 
-import './Registration.scss';
-
 const Registration = (): JSX.Element => {
   return (
     <main className="registration">
