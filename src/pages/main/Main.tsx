@@ -8,8 +8,8 @@ function Main(): JSX.Element {
         <div className="container">
           <div className="start-screen__wrapper">
             <h2 className="start-screen__title">eCommerce-Application</h2>
-            <LogInLink />
-            <SignUpLink />
+            <LogInLink additionalClassName="start-screen__link" />
+            <SignUpLink additionalClassName="start-screen__link" />
           </div>
         </div>
       </section>

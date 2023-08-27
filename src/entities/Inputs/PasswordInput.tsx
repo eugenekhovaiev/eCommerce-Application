@@ -30,7 +30,6 @@ const PasswordInput: React.FC<RegistrationUserInfoProps> = (props) => {
   };
   const handleMouseDownPassword = (event: React.MouseEvent<HTMLButtonElement>): void => {
     event.preventDefault();
-    console.log(event.target);
   };
 
   return (

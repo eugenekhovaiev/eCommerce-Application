@@ -1,14 +1,11 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { useForm, useFormState, SubmitHandler } from 'react-hook-form';
 
-import Typography from '@mui/material/Typography';
 import { Alert } from '@mui/material';
 
 import ButtonElement from '../../shared/UI/ButtonElement/ButtonElement';
 import EmailInput from '../../entities/Inputs/EmailInput';
 import PasswordInput from '../../entities/Inputs/PasswordInput';
-
-import LinkElement from '../../shared/UI/LinkElement/LinkElement';
 
 import { Form } from '../../shared/types';
 import { Customer } from '@commercetools/platform-sdk';
@@ -18,7 +15,7 @@ import loginCustomer from '../../shared/api/user/loginCustomer';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { useLoggedInContext } from '../../shared/lib/contexts/LoggedInContext';
 
-export const LoginForm: React.FC = (): JSX.Element => {
+export const LoginForm = (): JSX.Element => {
   const { handleSubmit, control } = useForm<Form>();
   const { errors } = useFormState({
     control,
@@ -51,32 +48,25 @@ export const LoginForm: React.FC = (): JSX.Element => {
   };
 
   return (
-    <section className="login-form">
-      <div className="login-form__wrapper">
-        <Typography variant="h3" className="login-form__title">
-          Login
-        </Typography>
-        <LinkElement
-          additionalClassName="login-form__link"
-          title="Don't have an account yet? Sign up"
-          to="/registration"
-        />
-        <form className="login-form__fields" onSubmit={handleSubmit(onSubmit)}>
-          <EmailInput control={control} errors={errors} />
-          <PasswordInput control={control} errors={errors} />
-          {customerData && (
-            <Alert severity="success" className="login-form__success-message">
-              Welcome, {customerData.firstName}!
-            </Alert>
-          )}
-          {loginError && (
-            <Alert severity="error" className="login-form__error-message">
-              Wrong email or password! Please, retry.
-            </Alert>
-          )}
-          <ButtonElement type="submit" title="LOG IN" />
-        </form>
-      </div>
-    </section>
+    <form className="form login__form" onSubmit={handleSubmit(onSubmit)}>
+      <EmailInput variant="outlined" className="form__input form__input_email" control={control} errors={errors} />
+      <PasswordInput
+        variant="outlined"
+        className="form__input form__input_password"
+        control={control}
+        errors={errors}
+      />
+      {customerData && (
+        <Alert severity="success" className="form__success-message">
+          Welcome, {customerData.firstName}!
+        </Alert>
+      )}
+      {loginError && (
+        <Alert severity="error" className="form__error-message">
+          Wrong email or password! Please, retry.
+        </Alert>
+      )}
+      <ButtonElement type="submit" additionalClassName="form__submit" title="LOG IN" />
+    </form>
   );
 };

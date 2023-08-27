@@ -1,11 +1,20 @@
-import React from 'react';
-import { LoginForm } from '../../widgets/LoginForm/login-form';
+import { LoginForm } from '../../widgets/LoginForm/LoginForm';
+import { Typography } from '@mui/material';
+import SignUpLink from '../../entities/Links/SignUpLink';
 
-const Login: React.FC = () => {
+const Login = (): JSX.Element => {
   return (
-    <div className="login">
-      <LoginForm />
-    </div>
+    <main className="login">
+      <div className="container login__wrapper">
+        <Typography variant="h3" gutterBottom className="login__title">
+          Login
+        </Typography>
+        <Typography variant="subtitle1" className="login__subtitle">
+          Do not have an account yet? <SignUpLink additionalClassName="login__link" />
+        </Typography>
+        <LoginForm />
+      </div>
+    </main>
   );
 };
 
