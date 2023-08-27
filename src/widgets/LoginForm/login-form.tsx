@@ -5,8 +5,8 @@ import Typography from '@mui/material/Typography';
 import { Alert } from '@mui/material';
 
 import ButtonAuth from '../../shared/UI/Buttons/buttonAuth';
-import EmailInput from '../../shared/UI/Inputs/emailInput';
-import PasswordInput from '../../shared/UI/Inputs/passwordInput';
+import EmailInput from '../../entities/Inputs/EmailInput';
+import PasswordInput from '../../entities/Inputs/PasswordInput';
 
 import LinkElement from '../../shared/UI/LinkElement/LinkElement';
 

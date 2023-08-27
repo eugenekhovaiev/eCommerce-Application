@@ -1,9 +1,9 @@
-import { TextField } from '@mui/material';
-import { InputProps } from '../../../types';
-import { Controller } from 'react-hook-form';
-import streetValidation from '../../../lib/validation/streetValidation';
 import { useState } from 'react';
-import validateRealTime from '../../../lib/validation/validateRealTime';
+import { Controller } from 'react-hook-form';
+import streetValidation from '../../shared/lib/validation/streetValidation';
+import validateRealTime from '../../shared/lib/validation/validateRealTime';
+import TextFieldElement from '../../shared/UI/TextFieldElement/TextFieldElement';
+import { InputProps } from '../../shared/types';
 
 const StreetInput = (props: InputProps): JSX.Element => {
   const [isValid, setIsValid] = useState(true);
@@ -22,11 +22,9 @@ const StreetInput = (props: InputProps): JSX.Element => {
       name={props.isShipping ? 'streetShipping' : 'streetBilling'}
       rules={streetValidation}
       render={({ field }): JSX.Element => (
-        <TextField
-          type="text"
+        <TextFieldElement
           label="Street"
-          color="secondary"
-          className={props.className}
+          additionalClassName={props.className}
           variant={props.variant || 'standard'}
           onChange={(e): void => {
             field.onChange(e);

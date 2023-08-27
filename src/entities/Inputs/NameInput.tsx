@@ -1,9 +1,9 @@
-import { TextField } from '@mui/material';
-import { InputProps } from '../../types';
-import { Controller } from 'react-hook-form';
-import nameValidation from '../../lib/validation/nameValidation';
 import { useState } from 'react';
-import validateRealTime from '../../lib/validation/validateRealTime';
+import { Controller } from 'react-hook-form';
+import { InputProps } from '../../shared/types';
+import nameValidation from '../../shared/lib/validation/nameValidation';
+import validateRealTime from '../../shared/lib/validation/validateRealTime';
+import TextFieldElement from '../../shared/UI/TextFieldElement/TextFieldElement';
 
 const NameInput = (props: InputProps): JSX.Element => {
   const [isValid, setIsValid] = useState(true);
@@ -23,11 +23,9 @@ const NameInput = (props: InputProps): JSX.Element => {
       name={props.isFirstName ? 'firstName' : 'lastName'}
       rules={nameValidation}
       render={({ field }): JSX.Element => (
-        <TextField
-          type="text"
+        <TextFieldElement
           label={props.isFirstName ? 'First Name' : 'Last Name'}
-          className={props.className}
-          color="secondary"
+          additionalClassName={props.className}
           variant={props.variant || 'standard'}
           onChange={(e): void => {
             field.onChange(e);

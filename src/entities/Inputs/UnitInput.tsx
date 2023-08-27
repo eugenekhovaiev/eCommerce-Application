@@ -1,9 +1,9 @@
-import { TextField } from '@mui/material';
-import { InputProps } from '../../../types';
+import { InputProps } from '../../shared/types';
 import { Controller } from 'react-hook-form';
-import unitValidation from '../../../lib/validation/unitValidation';
+import unitValidation from '../../shared/lib/validation/unitValidation';
 import { useState } from 'react';
-import validateRealTime from '../../../lib/validation/validateRealTime';
+import validateRealTime from '../../shared/lib/validation/validateRealTime';
+import TextFieldElement from '../../shared/UI/TextFieldElement/TextFieldElement';
 
 const UnitInput = (props: InputProps): JSX.Element => {
   const [isValid, setIsValid] = useState(true);
@@ -23,11 +23,9 @@ const UnitInput = (props: InputProps): JSX.Element => {
       name={props.isShipping ? 'unitShipping' : 'unitBilling'}
       rules={unitValidation}
       render={({ field }): JSX.Element => (
-        <TextField
-          type="text"
+        <TextFieldElement
           label="Unit"
-          color="secondary"
-          className={props.className}
+          additionalClassName={props.className}
           variant={props.variant || 'standard'}
           onChange={(e): void => {
             field.onChange(e);

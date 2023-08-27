@@ -20,12 +20,12 @@
   border: 3px solid $color-primary;
 }
 
-.form__input_password .MuiInputBase-root {
-  padding-bottom: 0.5rem;
-  &::before {
-    border-bottom: 3px solid $color-primary;
-  }
-}
+// .form__input_password .MuiInputBase-root {
+//   padding-bottom: 0.5rem;
+//   &::before {
+//     border-bottom: 3px solid $color-primary;
+//   }
+// }
 
 .form__checkbox-container {
   align-self: flex-start;

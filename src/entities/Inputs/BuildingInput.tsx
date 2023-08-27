@@ -1,9 +1,9 @@
-import { TextField } from '@mui/material';
-import { InputProps } from '../../../types';
-import { Controller } from 'react-hook-form';
-import buildingValidation from '../../../lib/validation/buildingValidation';
 import { useState } from 'react';
-import validateRealTime from '../../../lib/validation/validateRealTime';
+import { Controller } from 'react-hook-form';
+import buildingValidation from '../../shared/lib/validation/buildingValidation';
+import validateRealTime from '../../shared/lib/validation/validateRealTime';
+import TextFieldElement from '../../shared/UI/TextFieldElement/TextFieldElement';
+import { InputProps } from '../../shared/types';
 
 const BuildingInput = (props: InputProps): JSX.Element => {
   const [isValid, setIsValid] = useState(true);
@@ -23,11 +23,9 @@ const BuildingInput = (props: InputProps): JSX.Element => {
       name={props.isShipping ? 'buildingShipping' : 'buildingBilling'}
       rules={buildingValidation}
       render={({ field }): JSX.Element => (
-        <TextField
-          type="text"
+        <TextFieldElement
           label="Building"
-          color="secondary"
-          className={props.className}
+          additionalClassName={props.className}
           variant={props.variant || 'standard'}
           onChange={(e): void => {
             field.onChange(e);

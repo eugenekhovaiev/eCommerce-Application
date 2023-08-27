@@ -1,5 +1,9 @@
-import { TextFieldVariants } from '@mui/material';
+import { ReactNode } from 'react';
 import { Control, FieldErrors } from 'react-hook-form';
+import { TextFieldVariants } from '@mui/material';
+import { SelectChangeEvent } from '@mui/material';
+import { FieldChangeHandler } from '@mui/x-date-pickers/internals';
+import { DateValidationError } from '@mui/x-date-pickers';
 
 export interface LinkProps {
   to?: string;
@@ -56,6 +60,36 @@ export interface InputProps {
   className?: string;
   isShipping?: boolean;
   isFirstName?: boolean;
+}
+
+export interface TextFieldProps {
+  label: string;
+  type?: string;
+  additionalClassName?: string;
+  value?: string;
+  error?: boolean;
+  helperText?: string;
+  variant?: TextFieldVariants;
+  onChange?: React.ChangeEventHandler<HTMLInputElement | HTMLTextAreaElement>;
+  endAdornment?: JSX.Element;
+}
+
+export interface DateFieldProps {
+  additionalClassName?: string;
+  value?: string;
+  error?: boolean;
+  helperText?: string;
+  onChange?: FieldChangeHandler<string | null, DateValidationError>
+}
+
+export interface SelectProps {
+  label: string;
+  selectItems: object;
+  additionalClassName?: string;
+  value?: string;
+  error?: boolean;
+  helperText?: string;
+  onChange?: (event: SelectChangeEvent<string>, child: ReactNode) => void;
 }
 
 export interface CheckboxProps extends InputProps {

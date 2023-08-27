@@ -1,8 +1,9 @@
 import { InputProps } from '../../../shared/types';
-import NameInput from '../../../shared/UI/Inputs/NameInput';
-import EmailInput from '../../../shared/UI/Inputs/emailInput';
-import PasswordInput from '../../../shared/UI/Inputs/passwordInput';
-import DateOfBirthInput from '../../../shared/UI/Inputs/DateOfBirthInput';
+import NameInput from '../../Inputs/NameInput';
+import EmailInput from '../../Inputs/EmailInput';
+// import PasswordInput from '../../../shared/UI/Inputs/passwordInput';
+import PasswordInput from '../../Inputs/PasswordInput';
+import DateOfBirthInput from '../../Inputs/DateOfBirthInput';
 
 const RegistrationUserInfo = (props: InputProps): JSX.Element => {
   return (
@@ -27,7 +28,12 @@ const RegistrationUserInfo = (props: InputProps): JSX.Element => {
         control={props.control}
         errors={props.errors}
       />
-      <PasswordInput className="form__input form__input_password" control={props.control} errors={props.errors} />
+      <PasswordInput
+        className="form__input form__input_password"
+        variant="outlined"
+        control={props.control}
+        errors={props.errors}
+      />
       <DateOfBirthInput className="form__input form__input_dob" control={props.control} errors={props.errors} />
     </div>
   );

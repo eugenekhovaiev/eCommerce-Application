@@ -1,11 +1,9 @@
-import { TextField } from '@mui/material';
-import { InputProps } from '../../../types';
-import { Controller } from 'react-hook-form';
-import postCodeValidation from '../../../lib/validation/postCodeValidation';
 import { useState, useEffect } from 'react';
-
-// import { useCountryContext } from '../../../../entities/RegistrationAddress/UI/countryContext';
-import { useCountryContext } from '../../../../entities/RegistrationFormComponents/UI/countryContext';
+import { Controller } from 'react-hook-form';
+import { useCountryContext } from '../RegistrationFormComponents/UI/countryContext';
+import postCodeValidation from '../../shared/lib/validation/postCodeValidation';
+import TextFieldElement from '../../shared/UI/TextFieldElement/TextFieldElement';
+import { InputProps } from '../../shared/types';
 
 const PostalCodeInput = (props: InputProps): JSX.Element => {
   const [isValid, setIsValid] = useState(true);
@@ -41,11 +39,9 @@ const PostalCodeInput = (props: InputProps): JSX.Element => {
         },
       }}
       render={({ field }): JSX.Element => (
-        <TextField
-          type="text"
+        <TextFieldElement
           label="Postal/Zip code"
-          color="secondary"
-          className={props.className}
+          additionalClassName={props.className}
           variant={props.variant || 'standard'}
           onChange={(e): void => {
             field.onChange(e);

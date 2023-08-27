@@ -1,10 +1,10 @@
 import React from 'react';
-import { InputProps } from '../../types';
-import TextField from '@mui/material/TextField';
-import emailValidation from '../../lib/validation/emailValidation';
 import { useState } from 'react';
 import { Controller } from 'react-hook-form';
-import validateRealTime from '../../lib/validation/validateRealTime';
+import { InputProps } from '../../shared/types';
+import emailValidation from '../../shared/lib/validation/emailValidation';
+import validateRealTime from '../../shared/lib/validation/validateRealTime';
+import TextFieldElement from '../../shared/UI/TextFieldElement/TextFieldElement';
 
 const EmailInput: React.FC<InputProps> = (props): JSX.Element => {
   const [isValid, setIsValidEmail] = useState(true);
@@ -24,13 +24,10 @@ const EmailInput: React.FC<InputProps> = (props): JSX.Element => {
       name="email"
       rules={emailValidation}
       render={({ field }): JSX.Element => (
-        <TextField
-          id="standard-email"
+        <TextFieldElement
           label="Email"
-          type="text"
           variant={props.variant || 'standard'}
-          color="secondary"
-          className={props.className}
+          additionalClassName={props.className}
           onChange={(e): void => {
             field.onChange(e);
             handleValueChange(e);
