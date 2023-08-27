@@ -1,7 +1,6 @@
 import { InputProps } from '../../../shared/types';
 import NameInput from '../../Inputs/NameInput';
 import EmailInput from '../../Inputs/EmailInput';
-// import PasswordInput from '../../../shared/UI/Inputs/passwordInput';
 import PasswordInput from '../../Inputs/PasswordInput';
 import DateOfBirthInput from '../../Inputs/DateOfBirthInput';
 

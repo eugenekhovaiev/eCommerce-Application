@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Controller } from 'react-hook-form';
-import { useCountryContext } from '../RegistrationFormComponents/UI/countryContext';
+import { useCountryContext } from '../../shared/lib/contexts/countryContext';
 import postCodeValidation from '../../shared/lib/validation/postCodeValidation';
 import TextFieldElement from '../../shared/UI/TextFieldElement/TextFieldElement';
 import { InputProps } from '../../shared/types';

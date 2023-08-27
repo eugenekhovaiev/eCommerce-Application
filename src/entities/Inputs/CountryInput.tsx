@@ -1,12 +1,12 @@
 import { useState } from 'react';
 import { Controller } from 'react-hook-form';
 import { SelectChangeEvent } from '@mui/material/Select/Select';
+import { useCountryContext } from '../../shared/lib/contexts/countryContext';
 import countryValidation from '../../shared/lib/validation/countryValidation';
 import validateRealTime from '../../shared/lib/validation/validateRealTime';
 import SelectElement from '../../shared/UI/SelectElement/SelectElement';
 import { InputProps } from '../../shared/types';
 
-import { useCountryContext } from '../RegistrationFormComponents/UI/countryContext';
 import COUNTRY_CODE from '../../shared/consts/COUNTRY_CODE';
 
 const CountryInput = (props: InputProps): JSX.Element => {

@@ -1,9 +1,9 @@
-import { InputProps } from '../../shared/types';
+import { useState } from 'react';
 import { Controller } from 'react-hook-form';
 import unitValidation from '../../shared/lib/validation/unitValidation';
-import { useState } from 'react';
 import validateRealTime from '../../shared/lib/validation/validateRealTime';
 import TextFieldElement from '../../shared/UI/TextFieldElement/TextFieldElement';
+import { InputProps } from '../../shared/types';
 
 const UnitInput = (props: InputProps): JSX.Element => {
   const [isValid, setIsValid] = useState(true);

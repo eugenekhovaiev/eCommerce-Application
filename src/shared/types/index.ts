@@ -79,7 +79,7 @@ export interface DateFieldProps {
   value?: string;
   error?: boolean;
   helperText?: string;
-  onChange?: FieldChangeHandler<string | null, DateValidationError>
+  onChange?: FieldChangeHandler<string | null, DateValidationError>;
 }
 
 export interface SelectProps {

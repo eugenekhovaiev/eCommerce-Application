@@ -5,21 +5,19 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import Typography from '@mui/material/Typography';
 import { Alert } from '@mui/material';
 
-import { Form } from '../../shared/types';
 import { Customer, CustomerSignin } from '@commercetools/platform-sdk';
 
-import ButtonAuth from '../../shared/UI/Buttons/buttonAuth';
-import AddressCheckbox from '../../shared/UI/Checkbox/AddressCheckbox';
 import RegistrationAddress from '../../entities/RegistrationFormComponents/UI/RegistrationAddress';
 import RegistrationUserInfo from '../../entities/RegistrationFormComponents/UI/RegistrationUserInfo';
 import getNewCustomerData from '../../shared/lib/helpers/getNewCustomerData';
+import { useLoggedInContext } from '../../shared/lib/contexts/LoggedInContext';
+import { CountryProvider } from '../../shared/lib/contexts/countryContext';
+import AddressCheckbox from '../../shared/UI/Checkbox/AddressCheckbox';
+import ButtonAuth from '../../shared/UI/Buttons/buttonAuth';
 
 import createCustomer from '../../shared/api/user/createCustomer';
 import loginCustomer from '../../shared/api/user/loginCustomer';
-
-import { useLoggedInContext } from '../../shared/lib/contexts/LoggedInContext';
-
-import { CountryProvider } from '../../entities/RegistrationFormComponents/UI/countryContext';
+import { Form } from '../../shared/types';
 
 const RegistrationForm = (): JSX.Element => {
   const { handleSubmit, control } = useForm<Form>();
