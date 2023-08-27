@@ -7,8 +7,8 @@ import { Alert } from '@mui/material';
 
 import { Customer, CustomerSignin } from '@commercetools/platform-sdk';
 
-import RegistrationAddress from '../../entities/RegistrationFormComponents/UI/RegistrationAddress';
-import RegistrationUserInfo from '../../entities/RegistrationFormComponents/UI/RegistrationUserInfo';
+import RegistrationAddress from '../../entities/RegistrationFormComponents/RegistrationAddress';
+import RegistrationUserInfo from '../../entities/RegistrationFormComponents/RegistrationUserInfo';
 import getNewCustomerData from '../../shared/lib/helpers/getNewCustomerData';
 import { useLoggedInContext } from '../../shared/lib/contexts/LoggedInContext';
 import { CountryProvider } from '../../shared/lib/contexts/countryContext';

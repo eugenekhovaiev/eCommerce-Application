@@ -1,10 +1,10 @@
-import CityInput from '../../Inputs/CityInput';
-import StreetInput from '../../Inputs/StreetInput';
-import BuildingInput from '../../Inputs/BuildingInput';
-import UnitInput from '../../Inputs/UnitInput';
-import PostalCodeInput from '../../Inputs/PostalCodeInput';
-import CountryInput from '../../Inputs/CountryInput';
-import { InputProps } from '../../../shared/types';
+import CityInput from '../Inputs/CityInput';
+import StreetInput from '../Inputs/StreetInput';
+import BuildingInput from '../Inputs/BuildingInput';
+import UnitInput from '../Inputs/UnitInput';
+import PostalCodeInput from '../Inputs/PostalCodeInput';
+import CountryInput from '../Inputs/CountryInput';
+import { InputProps } from '../../shared/types';
 
 const RegistrationAddress = (props: InputProps): JSX.Element => {
   return (
