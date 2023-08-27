@@ -11,7 +11,7 @@ import RegistrationAddress from '../../entities/RegistrationFormComponents/Regis
 import RegistrationUserInfo from '../../entities/RegistrationFormComponents/RegistrationUserInfo';
 import getNewCustomerData from '../../shared/lib/helpers/getNewCustomerData';
 import { useLoggedInContext } from '../../shared/lib/contexts/LoggedInContext';
-import { CountryProvider } from '../../shared/lib/contexts/countryContext';
+import { CountryProvider } from '../../shared/lib/contexts/СountryContext';
 import CheckboxElement from '../../shared/UI/CheckboxElement/CheckboxElement';
 import ButtonElement from '../../shared/UI/ButtonElement/ButtonElement';
 
@@ -81,7 +81,7 @@ const RegistrationForm = (): JSX.Element => {
           Shipping Address
         </Typography>
         <RegistrationAddress isShipping={true} control={control} errors={errors} />
-        <div className="form__checkbox-container">
+        <div className="form__checkbox-wrapper">
           <div className="form__checkbox">
             <CheckboxElement onChange={handleDefaultShippingClick} checked={defaultShipping} />
             Set this address as a default shipping address?
@@ -97,7 +97,7 @@ const RegistrationForm = (): JSX.Element => {
           </Typography>
         )}
         {!sameAsShipping && <RegistrationAddress isShipping={false} control={control} errors={errors} />}
-        <div className="form__checkbox-container">
+        <div className="form__checkbox-wrapper">
           <div className="form__checkbox">
             <CheckboxElement onChange={handleDefaultBillingClick} checked={defaultBilling} />
             Set this address as a default billing address?

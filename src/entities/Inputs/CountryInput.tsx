@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Controller } from 'react-hook-form';
 import { SelectChangeEvent } from '@mui/material/Select/Select';
-import { useCountryContext } from '../../shared/lib/contexts/countryContext';
+import { useCountryContext } from '../../shared/lib/contexts/СountryContext';
 import countryValidation from '../../shared/lib/validation/countryValidation';
 import validateRealTime from '../../shared/lib/validation/validateRealTime';
 import SelectElement from '../../shared/UI/SelectElement/SelectElement';
