@@ -94,9 +94,10 @@ export interface SelectProps {
   onChange?: (event: SelectChangeEvent<string>, child: ReactNode) => void;
 }
 
-export interface CheckboxProps extends InputProps {
+export interface CheckboxProps {
   onChange: ((event: React.ChangeEvent<HTMLInputElement>, checked: boolean) => void) | undefined;
   checked: boolean;
+  additionalClassName?: string;
 }
 
 export interface ValidationRealTime {

@@ -12,7 +12,7 @@ import RegistrationUserInfo from '../../entities/RegistrationFormComponents/Regi
 import getNewCustomerData from '../../shared/lib/helpers/getNewCustomerData';
 import { useLoggedInContext } from '../../shared/lib/contexts/LoggedInContext';
 import { CountryProvider } from '../../shared/lib/contexts/countryContext';
-import AddressCheckbox from '../../shared/UI/Checkbox/AddressCheckbox';
+import CheckboxElement from '../../shared/UI/CheckboxElement/CheckboxElement';
 import ButtonElement from '../../shared/UI/ButtonElement/ButtonElement';
 
 import createCustomer from '../../shared/api/user/createCustomer';
@@ -83,21 +83,11 @@ const RegistrationForm = (): JSX.Element => {
         <RegistrationAddress isShipping={true} control={control} errors={errors} />
         <div className="form__checkbox-container">
           <div className="form__checkbox">
-            <AddressCheckbox
-              onChange={handleDefaultShippingClick}
-              checked={defaultShipping}
-              control={control}
-              errors={errors}
-            />
+            <CheckboxElement onChange={handleDefaultShippingClick} checked={defaultShipping} />
             Set this address as a default shipping address?
           </div>
           <div className="form__checkbox">
-            <AddressCheckbox
-              onChange={handleCheckboxClick}
-              checked={sameAsShipping}
-              control={control}
-              errors={errors}
-            />
+            <CheckboxElement onChange={handleCheckboxClick} checked={sameAsShipping} />
             Set this address as a billing address?
           </div>
         </div>
@@ -109,12 +99,7 @@ const RegistrationForm = (): JSX.Element => {
         {!sameAsShipping && <RegistrationAddress isShipping={false} control={control} errors={errors} />}
         <div className="form__checkbox-container">
           <div className="form__checkbox">
-            <AddressCheckbox
-              onChange={handleDefaultBillingClick}
-              checked={defaultBilling}
-              control={control}
-              errors={errors}
-            />
+            <CheckboxElement onChange={handleDefaultBillingClick} checked={defaultBilling} />
             Set this address as a default billing address?
           </div>
         </div>
