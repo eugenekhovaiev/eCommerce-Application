@@ -4,7 +4,7 @@ import { useForm, useFormState, SubmitHandler } from 'react-hook-form';
 import Typography from '@mui/material/Typography';
 import { Alert } from '@mui/material';
 
-import ButtonAuth from '../../shared/UI/Buttons/buttonAuth';
+import ButtonElement from '../../shared/UI/ButtonElement/ButtonElement';
 import EmailInput from '../../entities/Inputs/EmailInput';
 import PasswordInput from '../../entities/Inputs/PasswordInput';
 
@@ -74,7 +74,7 @@ export const LoginForm: React.FC = (): JSX.Element => {
               Wrong email or password! Please, retry.
             </Alert>
           )}
-          <ButtonAuth title="LOG IN" />
+          <ButtonElement type="submit" title="LOG IN" />
         </form>
       </div>
     </section>

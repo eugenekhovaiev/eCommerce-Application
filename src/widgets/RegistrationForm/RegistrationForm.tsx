@@ -13,7 +13,7 @@ import getNewCustomerData from '../../shared/lib/helpers/getNewCustomerData';
 import { useLoggedInContext } from '../../shared/lib/contexts/LoggedInContext';
 import { CountryProvider } from '../../shared/lib/contexts/countryContext';
 import AddressCheckbox from '../../shared/UI/Checkbox/AddressCheckbox';
-import ButtonAuth from '../../shared/UI/Buttons/buttonAuth';
+import ButtonElement from '../../shared/UI/ButtonElement/ButtonElement';
 
 import createCustomer from '../../shared/api/user/createCustomer';
 import loginCustomer from '../../shared/api/user/loginCustomer';
@@ -128,7 +128,7 @@ const RegistrationForm = (): JSX.Element => {
             User with such email already exists. Try to log in.
           </Alert>
         )}
-        <ButtonAuth title="Register" className="form__submit" />
+        <ButtonElement type="submit" title="Register" additionalClassName="form__submit" />
       </form>
     </CountryProvider>
   );

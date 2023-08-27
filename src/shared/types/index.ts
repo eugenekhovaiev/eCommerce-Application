@@ -50,7 +50,9 @@ export interface Form {
 
 export interface ButtonProps {
   title: string;
-  className?: string;
+  additionalClassName?: string;
+  type?: "button" | "submit" | "reset";
+  children?: JSX.Element;
 }
 
 export interface InputProps {
