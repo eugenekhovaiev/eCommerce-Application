@@ -60,7 +60,13 @@ export interface InputProps {
   errors: FieldErrors<Form>;
   variant?: TextFieldVariants;
   className?: string;
+}
+
+export interface RegistrationAddressProps extends InputProps {
   isShipping?: boolean;
+}
+
+export interface RegistrationUserInfoProps extends InputProps {
   isFirstName?: boolean;
 }
 

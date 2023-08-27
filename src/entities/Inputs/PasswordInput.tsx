@@ -10,9 +10,9 @@ import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import validateRealTime from '../../shared/lib/validation/validateRealTime';
 import passwordValidation from '../../shared/lib/validation/passwordValidation';
 import TextFieldElement from '../../shared/UI/TextFieldElement/TextFieldElement';
-import { InputProps } from '../../shared/types';
+import { RegistrationUserInfoProps } from '../../shared/types';
 
-const PasswordInput: React.FC<InputProps> = (props) => {
+const PasswordInput: React.FC<RegistrationUserInfoProps> = (props) => {
   const [showPassword, setShowPassword] = React.useState(false);
   const [isValid, setIsValid] = useState(true);
   const [message, setMessage] = useState('');

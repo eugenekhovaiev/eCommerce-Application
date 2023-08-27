@@ -3,9 +3,9 @@ import { Controller } from 'react-hook-form';
 import streetValidation from '../../shared/lib/validation/streetValidation';
 import validateRealTime from '../../shared/lib/validation/validateRealTime';
 import TextFieldElement from '../../shared/UI/TextFieldElement/TextFieldElement';
-import { InputProps } from '../../shared/types';
+import { RegistrationAddressProps } from '../../shared/types';
 
-const StreetInput = (props: InputProps): JSX.Element => {
+const StreetInput = (props: RegistrationAddressProps): JSX.Element => {
   const [isValid, setIsValid] = useState(true);
   const [message, setMessage] = useState('');
 

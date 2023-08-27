@@ -1,11 +1,11 @@
 import { useState } from 'react';
 import { Controller } from 'react-hook-form';
-import { InputProps } from '../../shared/types';
+import { RegistrationUserInfoProps } from '../../shared/types';
 import nameValidation from '../../shared/lib/validation/nameValidation';
 import validateRealTime from '../../shared/lib/validation/validateRealTime';
 import TextFieldElement from '../../shared/UI/TextFieldElement/TextFieldElement';
 
-const NameInput = (props: InputProps): JSX.Element => {
+const NameInput = (props: RegistrationUserInfoProps): JSX.Element => {
   const [isValid, setIsValid] = useState(true);
   const [message, setMessage] = useState('');
 

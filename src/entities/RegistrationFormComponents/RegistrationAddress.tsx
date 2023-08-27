@@ -4,9 +4,9 @@ import BuildingInput from '../Inputs/BuildingInput';
 import UnitInput from '../Inputs/UnitInput';
 import PostalCodeInput from '../Inputs/PostalCodeInput';
 import CountryInput from '../Inputs/CountryInput';
-import { InputProps } from '../../shared/types';
+import { RegistrationAddressProps } from '../../shared/types';
 
-const RegistrationAddress = (props: InputProps): JSX.Element => {
+const RegistrationAddress = (props: RegistrationAddressProps): JSX.Element => {
   return (
     <div className="registration__address-info">
       <StreetInput

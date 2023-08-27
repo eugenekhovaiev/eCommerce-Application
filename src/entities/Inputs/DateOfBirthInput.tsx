@@ -3,9 +3,9 @@ import { Controller } from 'react-hook-form';
 import dateOfBirthValidtion from '../../shared/lib/validation/dateValidation';
 import validateRealTime from '../../shared/lib/validation/validateRealTime';
 import DateFieldElement from '../../shared/UI/DateFieldElement/DateFieldElement';
-import { InputProps } from '../../shared/types';
+import { RegistrationUserInfoProps } from '../../shared/types';
 
-const DateOfBirthInput = (props: InputProps): JSX.Element => {
+const DateOfBirthInput = (props: RegistrationUserInfoProps): JSX.Element => {
   const [isValid, setIsValid] = useState(true);
   const [message, setMessage] = useState('');
 

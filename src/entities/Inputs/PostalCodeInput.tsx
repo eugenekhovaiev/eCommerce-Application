@@ -3,9 +3,9 @@ import { Controller } from 'react-hook-form';
 import { useCountryContext } from '../../shared/lib/contexts/countryContext';
 import postCodeValidation from '../../shared/lib/validation/postCodeValidation';
 import TextFieldElement from '../../shared/UI/TextFieldElement/TextFieldElement';
-import { InputProps } from '../../shared/types';
+import { RegistrationAddressProps } from '../../shared/types';
 
-const PostalCodeInput = (props: InputProps): JSX.Element => {
+const PostalCodeInput = (props: RegistrationAddressProps): JSX.Element => {
   const [isValid, setIsValid] = useState(true);
   const [message, setMessage] = useState('');
   const [postalCode, setPostalCode] = useState('');
