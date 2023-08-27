@@ -1,4 +1,4 @@
-import Img from '../../shared/UI/image/Img';
+import ImageElement from '../../shared/UI/ImageElement/ImageElement';
 import Basket from '../../shared/assets/Basket.svg';
 import getFullClassName from '../../shared/lib/helpers/getFullClassName';
 import LinkElement from '../../shared/UI/LinkElement/LinkElement';
@@ -8,7 +8,7 @@ function CartLink(props: LinkProps): JSX.Element {
   const fullClassName = getFullClassName('link_cart', props.additionalClassName);
   return (
     <LinkElement additionalClassName={fullClassName} onClick={props.onClick} to="/cart">
-      <Img src={Basket} alt="cart" />
+      <ImageElement src={Basket} alt="cart" />
     </LinkElement>
   );
 }

@@ -17,7 +17,7 @@ export interface LinkProps {
 export interface ImgProps {
   src?: string;
   alt: string;
-  className?: string;
+  additionalClassName?: string;
 }
 
 export interface LogoProps {
@@ -51,7 +51,7 @@ export interface Form {
 export interface ButtonProps {
   title: string;
   additionalClassName?: string;
-  type?: "button" | "submit" | "reset";
+  type?: 'button' | 'submit' | 'reset';
   children?: JSX.Element;
 }
 
