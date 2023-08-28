@@ -1,6 +1,5 @@
-import SignInLink from '../../entities/Login/UI/SignInLink';
-import SignUpLink from '../../entities/Login/UI/SignUpLink';
-import './Main.scss';
+import LogInLink from '../../entities/links/LogInLink';
+import SignUpLink from '../../entities/links/SignUpLink';
 
 function Main(): JSX.Element {
   return (
@@ -9,8 +8,8 @@ function Main(): JSX.Element {
         <div className="container">
           <div className="start-screen__wrapper">
             <h2 className="start-screen__title">eCommerce-Application</h2>
-            <SignInLink />
-            <SignUpLink />
+            <LogInLink additionalClassName="start-screen__link" />
+            <SignUpLink additionalClassName="start-screen__link" />
           </div>
         </div>
       </section>

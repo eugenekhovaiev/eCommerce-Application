@@ -1,16 +1,18 @@
+import './app/sass/main.scss';
+
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { BrowserRouter } from 'react-router-dom';
 import App from './app/App.tsx';
 
-import { HeaderProvider } from './widgets/header/HeaderContext.tsx';
+import { LoggedInProvider } from './shared/lib/contexts/LoggedInContext.tsx';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
     <BrowserRouter>
-      <HeaderProvider>
+      <LoggedInProvider>
         <App />
-      </HeaderProvider>
+      </LoggedInProvider>
     </BrowserRouter>
   </React.StrictMode>,
 );

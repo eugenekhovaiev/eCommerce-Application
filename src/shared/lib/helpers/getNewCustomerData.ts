@@ -1,10 +1,10 @@
-import { IForm } from '../../types';
+import { Form } from '../../types';
 import { CustomerDraft } from '@commercetools/platform-sdk';
 import getAddresses from './getAddresses';
 import dayjs from 'dayjs';
 
 function getNewCustomerData(
-  data: IForm,
+  data: Form,
   sameAsShipping: boolean,
   defaulthipping: boolean,
   defaultBilling: boolean,

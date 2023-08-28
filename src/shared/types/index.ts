@@ -1,29 +1,33 @@
-import { TextFieldVariants } from '@mui/material';
+import { ReactNode } from 'react';
 import { Control, FieldErrors } from 'react-hook-form';
+import { TextFieldVariants } from '@mui/material';
+import { SelectChangeEvent } from '@mui/material';
+import { FieldChangeHandler } from '@mui/x-date-pickers/internals';
+import { DateValidationError } from '@mui/x-date-pickers';
 
-export interface ILinkProps {
-  to: string;
+export interface LinkProps {
+  to?: string;
   target?: string;
   title?: string;
-  className?: string;
+  additionalClassName?: string;
   children?: JSX.Element;
   onClick?: React.MouseEventHandler<HTMLAnchorElement>;
 }
 
-export interface IImgProps {
+export interface ImgProps {
   src?: string;
   alt: string;
-  className?: string;
+  additionalClassName?: string;
 }
 
-export interface ILogoProps {
+export interface LogoProps {
   title?: string;
   iconSrc?: string;
   className?: string;
   onClick?: React.MouseEventHandler<HTMLElement>;
 }
 
-export interface IForm {
+export interface Form {
   email: string;
   password: string;
   firstName: string;
@@ -44,26 +48,77 @@ export interface IForm {
   defaultAddress: boolean;
 }
 
-export interface IButtonProps {
+export interface ButtonProps {
   title: string;
-  className?: string;
+  additionalClassName?: string;
+  type?: 'button' | 'submit' | 'reset';
+  children?: JSX.Element;
 }
 
-export interface IInputProps {
-  control: Control<IForm>;
-  errors: FieldErrors<IForm>;
+export interface InputProps {
+  control: Control<Form>;
+  errors: FieldErrors<Form>;
   variant?: TextFieldVariants;
   className?: string;
-  selected?: string;
-  setSelect?: React.Dispatch<React.SetStateAction<string>>;
 }
 
-export interface ICheckboxProps extends IInputProps {
+export interface RegistrationAddressProps extends InputProps {
+  isShipping?: boolean;
+}
+
+export interface RegistrationUserInfoProps extends InputProps {
+  isFirstName?: boolean;
+}
+
+export interface TextFieldProps {
+  label: string;
+  type?: string;
+  additionalClassName?: string;
+  value?: string;
+  error?: boolean;
+  helperText?: string;
+  variant?: TextFieldVariants;
+  onChange?: React.ChangeEventHandler<HTMLInputElement | HTMLTextAreaElement>;
+  endAdornment?: JSX.Element;
+}
+
+export interface DateFieldProps {
+  additionalClassName?: string;
+  value?: string;
+  error?: boolean;
+  helperText?: string;
+  onChange?: FieldChangeHandler<string | null, DateValidationError>;
+}
+
+export interface SelectProps {
+  label: string;
+  selectItems: object;
+  additionalClassName?: string;
+  value?: string;
+  error?: boolean;
+  helperText?: string;
+  onChange?: (event: SelectChangeEvent<string>, child: ReactNode) => void;
+}
+
+export interface CheckboxProps {
   onChange: ((event: React.ChangeEvent<HTMLInputElement>, checked: boolean) => void) | undefined;
   checked: boolean;
+  additionalClassName?: string;
 }
 
-export interface IValidationRealTime {
+export interface ValidationRealTime {
   isValid: boolean;
   message: string;
+}
+
+export interface LoggedInContext {
+  isLoggedIn: boolean;
+  updateLoggedIn: (isLoggedIn: boolean) => void;
+}
+
+export interface CountryContext {
+  selectedShippingCountry: string;
+  setSelectedShippingCountry: (country: string) => void;
+  selectedBillingCountry: string;
+  setSelectedBillingCountry: (country: string) => void;
 }
