@@ -110,3 +110,15 @@ export interface ValidationRealTime {
   isValid: boolean;
   message: string;
 }
+
+export interface LoggedInContext {
+  isLoggedIn: boolean;
+  updateLoggedIn: (isLoggedIn: boolean) => void;
+}
+
+export interface CountryContext {
+  selectedShippingCountry: string;
+  setSelectedShippingCountry: (country: string) => void;
+  selectedBillingCountry: string;
+  setSelectedBillingCountry: (country: string) => void;
+}

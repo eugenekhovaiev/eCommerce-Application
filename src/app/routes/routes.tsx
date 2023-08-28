@@ -1,13 +1,13 @@
 import { Route, Routes, Navigate } from 'react-router-dom';
 
 import Main from '../../pages/main/Main';
-import Login from '../../pages/login/Login';
-import Page404 from '../../pages/page404/Page404';
-import Registration from '../../pages/registration/Registration';
-import Catalog from '../../pages/catalog/Catalog';
-import Profile from '../../pages/profile/Profile';
-import Cart from '../../pages/cart/Cart';
-import About from '../../pages/about/About';
+import Login from '../../pages/loginPage/Login';
+import Page404 from '../../pages/404page/Page404';
+import Registration from '../../pages/registrationPage/Registration';
+import Catalog from '../../pages/catalogPage/Catalog';
+import Profile from '../../pages/profilePage/Profile';
+import Cart from '../../pages/cartPage/Cart';
+import About from '../../pages/aboutPage/About';
 
 import { useLoggedInContext } from '../../shared/lib/contexts/LoggedInContext';
 

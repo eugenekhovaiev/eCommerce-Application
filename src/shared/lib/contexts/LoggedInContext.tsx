@@ -1,9 +1,6 @@
-import { ReactNode, createContext, useContext, useState } from 'react';
+import { LoggedInContext } from '../../types';
 
-interface LoggedInContext {
-  isLoggedIn: boolean;
-  updateLoggedIn: (isLoggedIn: boolean) => void;
-}
+import { ReactNode, createContext, useContext, useState } from 'react';
 
 const LoggedInContext = createContext<LoggedInContext | undefined>(undefined);
 
@@ -15,11 +12,7 @@ export const useLoggedInContext = (): LoggedInContext => {
   return context;
 };
 
-interface LoggedInProps {
-  children: ReactNode;
-}
-
-export const LoggedInProvider: React.FC<LoggedInProps> = ({ children }) => {
+export const LoggedInProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   const updateLoggedIn = (isLoggedIn: boolean): void => {

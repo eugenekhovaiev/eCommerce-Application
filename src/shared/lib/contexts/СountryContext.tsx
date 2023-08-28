@@ -1,13 +1,16 @@
 import React, { createContext, useContext, useState, ReactNode } from 'react';
 
-interface CountryContextType {
-  selectedShippingCountry: string;
-  setSelectedShippingCountry: (country: string) => void;
-  selectedBillingCountry: string;
-  setSelectedBillingCountry: (country: string) => void;
-}
+import { CountryContext } from '../../types';
 
-const CountryContext = createContext<CountryContextType | undefined>(undefined);
+const CountryContext = createContext<CountryContext | undefined>(undefined);
+
+export const useCountryContext = (): CountryContext => {
+  const context = useContext(CountryContext);
+  if (!context) {
+    throw new Error('useCountryContext must be used within a CountryContext');
+  }
+  return context;
+};
 
 export const CountryProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   const [selectedShippingCountry, setSelectedShippingCountry] = useState('');
@@ -20,12 +23,4 @@ export const CountryProvider: React.FC<{ children: ReactNode }> = ({ children })
       {children}
     </CountryContext.Provider>
   );
-};
-
-export const useCountryContext = (): CountryContextType => {
-  const context = useContext(CountryContext);
-  if (!context) {
-    throw new Error('useCountryContext must be used within a CountryContext');
-  }
-  return context;
 };
