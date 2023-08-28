@@ -1,5 +1,7 @@
 {
   "compilerOptions": {
+    /* types: [vite/client] - allow import images */
+    "types": ["vite/client", "jest"],
     "target": "ESNext",
     "useDefineForClassFields": true,
     "lib": ["ESNext", "DOM", "DOM.Iterable"],

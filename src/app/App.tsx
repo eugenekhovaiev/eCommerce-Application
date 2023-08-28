@@ -1,9 +1,13 @@
-import './styles/App.css';
+import Header from '../widgets/header/Header';
+import useRoutes from './routes/routes';
 
 function App(): JSX.Element {
+  const routes = useRoutes();
+
   return (
     <>
-      <div>eCommerce-Application</div>
+      <Header />
+      {routes}
     </>
   );
 }
