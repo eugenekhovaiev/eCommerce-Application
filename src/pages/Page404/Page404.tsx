@@ -1,4 +1,4 @@
-import LinkElement from '../../shared/UI/LinkElement/LinkElement';
+import LinkElement from '../../shared/UI/linkElement/LinkElement';
 
 const Page404 = (): JSX.Element => {
   return (

@@ -1,7 +1,7 @@
-import ImageElement from '../../shared/UI/ImageElement/ImageElement';
+import ImageElement from '../../shared/UI/imageElement/ImageElement';
 import Basket from '../../shared/assets/Basket.svg';
 import getFullClassName from '../../shared/lib/helpers/getFullClassName';
-import LinkElement from '../../shared/UI/LinkElement/LinkElement';
+import LinkElement from '../../shared/UI/linkElement/LinkElement';
 import { LinkProps } from '../../shared/types';
 
 function CartLink(props: LinkProps): JSX.Element {

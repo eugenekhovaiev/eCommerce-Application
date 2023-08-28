@@ -1,6 +1,6 @@
-import { LoginForm } from '../../widgets/LoginForm/LoginForm';
+import { LoginForm } from '../../widgets/loginForm/LoginForm';
 import { Typography } from '@mui/material';
-import SignUpLink from '../../entities/Links/SignUpLink';
+import SignUpLink from '../../entities/links/SignUpLink';
 
 const Login = (): JSX.Element => {
   return (

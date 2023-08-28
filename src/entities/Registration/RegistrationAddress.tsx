@@ -1,9 +1,9 @@
-import CityInput from '../Inputs/CityInput';
-import StreetInput from '../Inputs/StreetInput';
-import BuildingInput from '../Inputs/BuildingInput';
-import UnitInput from '../Inputs/UnitInput';
-import PostalCodeInput from '../Inputs/PostalCodeInput';
-import CountryInput from '../Inputs/CountryInput';
+import CityInput from '../inputs/CityInput';
+import StreetInput from '../inputs/StreetInput';
+import BuildingInput from '../inputs/BuildingInput';
+import UnitInput from '../inputs/UnitInput';
+import PostalCodeInput from '../inputs/PostalCodeInput';
+import CountryInput from '../inputs/CountryInput';
 import { RegistrationAddressProps } from '../../shared/types';
 
 const RegistrationAddress = (props: RegistrationAddressProps): JSX.Element => {

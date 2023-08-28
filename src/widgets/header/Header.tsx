@@ -1,17 +1,17 @@
-import CartLink from '../../entities/Links/CartLink';
-import LogInLink from '../../entities/Links/LogInLink';
-import SignUpLink from '../../entities/Links/SignUpLink';
-import AboutUsLink from '../../entities/Links/AboutUsLink';
-import ProfileLink from '../../entities/Links/ProfileLink';
-import CatalogLink from '../../entities/Links/CatalogLink';
-import Logo from '../../entities/Logo/Logo';
+import CartLink from '../../entities/links/CartLink';
+import LogInLink from '../../entities/links/LogInLink';
+import SignUpLink from '../../entities/links/SignUpLink';
+import AboutUsLink from '../../entities/links/AboutUsLink';
+import ProfileLink from '../../entities/links/ProfileLink';
+import CatalogLink from '../../entities/links/CatalogLink';
+import Logo from '../../entities/logo/Logo';
 
 import { IHeaderProps } from './types';
 import logoIcon from '../../shared/assets/logo.svg';
 import { useLoggedInContext } from '../../shared/lib/contexts/LoggedInContext';
 
 import { useEffect } from 'react';
-import LogOutLink from '../../entities/Links/LogOutLink';
+import LogOutLink from '../../entities/links/LogOutLink';
 
 function Header(props: IHeaderProps): JSX.Element {
   const { isLoggedIn, updateLoggedIn } = useLoggedInContext();

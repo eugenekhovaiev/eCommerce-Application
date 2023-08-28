@@ -1,6 +1,6 @@
 import { LogoProps } from '../../shared/types';
 import getFullClassName from '../../shared/lib/helpers/getFullClassName';
-import LinkElement from '../../shared/UI/LinkElement/LinkElement';
+import LinkElement from '../../shared/UI/linkElement/LinkElement';
 
 function Logo(props: LogoProps): JSX.Element {
   const className = getFullClassName('logo', props.className);

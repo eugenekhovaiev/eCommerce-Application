@@ -3,9 +3,9 @@ import { useForm, useFormState, SubmitHandler } from 'react-hook-form';
 
 import { Alert } from '@mui/material';
 
-import ButtonElement from '../../shared/UI/ButtonElement/ButtonElement';
-import EmailInput from '../../entities/Inputs/EmailInput';
-import PasswordInput from '../../entities/Inputs/PasswordInput';
+import ButtonElement from '../../shared/UI/buttonElement/ButtonElement';
+import EmailInput from '../../entities/inputs/EmailInput';
+import PasswordInput from '../../entities/inputs/PasswordInput';
 
 import { Form } from '../../shared/types';
 import { Customer } from '@commercetools/platform-sdk';

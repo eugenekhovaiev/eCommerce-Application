@@ -1,4 +1,4 @@
-import LinkElement from '../../shared/UI/LinkElement/LinkElement';
+import LinkElement from '../../shared/UI/linkElement/LinkElement';
 import getFullClassName from '../../shared/lib/helpers/getFullClassName';
 import { LinkProps } from '../../shared/types';
 

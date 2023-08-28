@@ -4,7 +4,7 @@ import { Controller } from 'react-hook-form';
 import { RegistrationUserInfoProps } from '../../shared/types';
 import emailValidation from '../../shared/lib/validation/emailValidation';
 import validateRealTime from '../../shared/lib/validation/validateRealTime';
-import TextFieldElement from '../../shared/UI/TextFieldElement/TextFieldElement';
+import TextFieldElement from '../../shared/UI/textFieldElement/TextFieldElement';
 
 const EmailInput: React.FC<RegistrationUserInfoProps> = (props): JSX.Element => {
   const [isValid, setIsValidEmail] = useState(true);

@@ -9,7 +9,7 @@ import VisibilityOff from '@mui/icons-material/VisibilityOff';
 
 import validateRealTime from '../../shared/lib/validation/validateRealTime';
 import passwordValidation from '../../shared/lib/validation/passwordValidation';
-import TextFieldElement from '../../shared/UI/TextFieldElement/TextFieldElement';
+import TextFieldElement from '../../shared/UI/textFieldElement/TextFieldElement';
 import { RegistrationUserInfoProps } from '../../shared/types';
 
 const PasswordInput: React.FC<RegistrationUserInfoProps> = (props) => {

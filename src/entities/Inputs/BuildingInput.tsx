@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Controller } from 'react-hook-form';
 import buildingValidation from '../../shared/lib/validation/buildingValidation';
 import validateRealTime from '../../shared/lib/validation/validateRealTime';
-import TextFieldElement from '../../shared/UI/TextFieldElement/TextFieldElement';
+import TextFieldElement from '../../shared/UI/textFieldElement/TextFieldElement';
 import { RegistrationAddressProps } from '../../shared/types';
 
 const BuildingInput = (props: RegistrationAddressProps): JSX.Element => {

@@ -1,7 +1,7 @@
 import { Typography } from '@mui/material';
 
-import RegistrationForm from '../../widgets/RegistrationForm/RegistrationForm';
-import LinkElement from '../../shared/UI/LinkElement/LinkElement';
+import RegistrationForm from '../../widgets/registrationForm/RegistrationForm';
+import LinkElement from '../../shared/UI/linkElement/LinkElement';
 
 const Registration = (): JSX.Element => {
   return (

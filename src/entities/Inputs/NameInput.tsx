@@ -3,7 +3,7 @@ import { Controller } from 'react-hook-form';
 import { RegistrationUserInfoProps } from '../../shared/types';
 import nameValidation from '../../shared/lib/validation/nameValidation';
 import validateRealTime from '../../shared/lib/validation/validateRealTime';
-import TextFieldElement from '../../shared/UI/TextFieldElement/TextFieldElement';
+import TextFieldElement from '../../shared/UI/textFieldElement/TextFieldElement';
 
 const NameInput = (props: RegistrationUserInfoProps): JSX.Element => {
   const [isValid, setIsValid] = useState(true);

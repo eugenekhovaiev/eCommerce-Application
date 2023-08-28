@@ -1,5 +1,5 @@
-import LogInLink from '../../entities/Links/LogInLink';
-import SignUpLink from '../../entities/Links/SignUpLink';
+import LogInLink from '../../entities/links/LogInLink';
+import SignUpLink from '../../entities/links/SignUpLink';
 
 function Main(): JSX.Element {
   return (

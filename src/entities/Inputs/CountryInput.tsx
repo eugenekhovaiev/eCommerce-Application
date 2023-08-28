@@ -4,7 +4,7 @@ import { SelectChangeEvent } from '@mui/material/Select/Select';
 import { useCountryContext } from '../../shared/lib/contexts/СountryContext';
 import countryValidation from '../../shared/lib/validation/countryValidation';
 import validateRealTime from '../../shared/lib/validation/validateRealTime';
-import SelectElement from '../../shared/UI/SelectElement/SelectElement';
+import SelectElement from '../../shared/UI/selectElement/SelectElement';
 import { RegistrationAddressProps } from '../../shared/types';
 
 import COUNTRY_CODE from '../../shared/consts/COUNTRY_CODE';

@@ -7,13 +7,13 @@ import { Alert } from '@mui/material';
 
 import { Customer, CustomerSignin } from '@commercetools/platform-sdk';
 
-import RegistrationAddress from '../../entities/Registration/RegistrationAddress';
-import RegistrationUserInfo from '../../entities/Registration/RegistrationUserInfo';
+import RegistrationAddress from '../../entities/registration/RegistrationAddress';
+import RegistrationUserInfo from '../../entities/registration/RegistrationUserInfo';
 import getNewCustomerData from '../../shared/lib/helpers/getNewCustomerData';
 import { useLoggedInContext } from '../../shared/lib/contexts/LoggedInContext';
 import { CountryProvider } from '../../shared/lib/contexts/СountryContext';
-import CheckboxElement from '../../shared/UI/CheckboxElement/CheckboxElement';
-import ButtonElement from '../../shared/UI/ButtonElement/ButtonElement';
+import CheckboxElement from '../../shared/UI/checkboxElement/CheckboxElement';
+import ButtonElement from '../../shared/UI/buttonElement/ButtonElement';
 
 import createCustomer from '../../shared/api/user/createCustomer';
 import loginCustomer from '../../shared/api/user/loginCustomer';

@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Controller } from 'react-hook-form';
 import cityValidation from '../../shared/lib/validation/cityValidation';
 import validateRealTime from '../../shared/lib/validation/validateRealTime';
-import TextFieldElement from '../../shared/UI/TextFieldElement/TextFieldElement';
+import TextFieldElement from '../../shared/UI/textFieldElement/TextFieldElement';
 import { RegistrationAddressProps } from '../../shared/types';
 
 const CityInput = (props: RegistrationAddressProps): JSX.Element => {
