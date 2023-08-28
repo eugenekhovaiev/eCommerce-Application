@@ -53,6 +53,7 @@ export interface ButtonProps {
   additionalClassName?: string;
   type?: 'button' | 'submit' | 'reset';
   children?: JSX.Element;
+  onClick?: React.MouseEventHandler<HTMLButtonElement>;
 }
 
 export interface InputProps {
