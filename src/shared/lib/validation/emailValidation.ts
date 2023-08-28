@@ -10,7 +10,7 @@ const emailValidation = {
     } else if (value === '') {
       return 'Required';
     } else if (value.includes(' ') === true) {
-      return 'Email address must not contain  whitespace';
+      return 'Email address must not contain whitespace';
     } else if (value.search(/@/) === -1) {
       return 'Email address must contain an "@" symbol';
     } else if (value.lastIndexOf('@') === value.length - 1) {
