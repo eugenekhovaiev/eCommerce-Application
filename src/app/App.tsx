@@ -1,8 +1,8 @@
 import { Navigate, Route, Routes } from 'react-router-dom';
 import { useLoggedInContext } from '../shared/lib/contexts/LoggedInContext';
-import Header from '../widgets/Header/Header';
-import Main from '../pages/Main/Main';
-import { Login } from '@mui/icons-material';
+import Header from '../widgets/Header/Header.tsx';
+import Main from '../pages/Main/Main.tsx';
+import Login from '../pages/Login/Login';
 import Page404 from '../pages/Page404/Page404';
 import Registration from '../pages/Registration/Registration';
 import Catalog from '../pages/Catalog/Catalog';
