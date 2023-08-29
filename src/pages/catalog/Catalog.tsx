@@ -1,19 +1,19 @@
 import { useState } from 'react';
-import ImageElement from '../../shared/UI/imageElement/ImageElement';
+// import ImageElement from '../../shared/UI/imageElement/ImageElement';
 import LinkElement from '../../shared/UI/linkElement/LinkElement';
 import getProducts from '../../shared/api/user/getProducts';
+import ProductCard from '../../entities/productCard/ProductCard';
+import { Product } from '@commercetools/platform-sdk';
+// import { ProductCardProps } from '../../shared/types';
 
 const Catalog = (): JSX.Element => {
-  const [imageUrl, setImageUrl] = useState('src/shared/assets/logo.svg');
+  const [productsArr, setProductsArr] = useState<Product[] | []>([]);
 
   const handleClick = async (): Promise<void> => {
     try {
-      const products = await getProducts();
-      console.log(products);
-      const testProductImages = products.body.results[1].masterData.current.masterVariant.images;
-      const testProductImageUrl = testProductImages ? testProductImages[0].url : '../../shared/assets/logo.svg';
-      console.log(testProductImageUrl);
-      setImageUrl(testProductImageUrl);
+      const productsObj = await getProducts();
+      console.log(productsObj);
+      setProductsArr(productsObj.body.results);
     } catch (error) {
       console.log(error);
     }
@@ -24,7 +24,19 @@ const Catalog = (): JSX.Element => {
       <div className="container catalog__container">
         <h2 className="catalog__title">Catalog page content will be here.</h2>
         <LinkElement title="Show products" onClick={handleClick} to="/catalog" />
-        <ImageElement src={imageUrl} alt="product image" />
+        {productsArr.map((product, index) => {
+          const productImages = product.masterData.current.masterVariant.images;
+          const productPreviewUrl =
+            productImages && productImages[0] ? productImages[0].url : 'src/shared/assets/image-placeholder.svg';
+          return (
+            <ProductCard
+              image={productPreviewUrl}
+              name={product.masterData.current.name}
+              description={product.masterData.current.description}
+              key={index}
+            />
+          );
+        })}
       </div>
     </main>
   );
