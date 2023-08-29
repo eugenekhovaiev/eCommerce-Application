@@ -1,16 +1,19 @@
-import { Card, CardContent, Typography, Button, Avatar } from '@mui/material';
+import { Card, CardContent, Typography, Avatar } from '@mui/material';
 import { AccountCircle } from '@mui/icons-material';
+import ButtonElement from '../../shared/UI/buttonElement/ButtonElement';
 
 const Profile = (): JSX.Element => {
   return (
     <section className="profile">
       <div className="container profile__container">
-        <h2 className="profile__title">Information</h2>
-        <Card>
-          <Avatar>
-            <AccountCircle />
+        <Typography variant="h3" gutterBottom className="profile__title">
+          Information
+        </Typography>
+        <Card className="profile__card">
+          <Avatar sx={{ width: '30vh', height: '30vh', marginBottom: 2 }}>
+            <AccountCircle sx={{ width: '100%', height: '100%' }} />
           </Avatar>
-          <CardContent>
+          <CardContent className="profile__card-content">
             <div className="profile__row">
               <Typography variant="h6" gutterBottom>
                 Full name
@@ -55,7 +58,7 @@ const Profile = (): JSX.Element => {
                 Poland
               </Typography>
             </div>
-            <Button variant="contained">Edit Profile</Button>
+            <ButtonElement type="submit" title="Edit Profile" additionalClassName="form__submit profile__edit" />
           </CardContent>
         </Card>
       </div>
