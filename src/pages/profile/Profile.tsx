@@ -1,6 +1,7 @@
 import { Card, CardContent, Typography, Avatar } from '@mui/material';
 import { AccountCircle } from '@mui/icons-material';
 import ButtonElement from '../../shared/UI/buttonElement/ButtonElement';
+import ProfileSection from '../../entities/profileSection/ProfileSection';
 
 const Profile = (): JSX.Element => {
   return (
@@ -14,50 +15,15 @@ const Profile = (): JSX.Element => {
             <AccountCircle sx={{ width: '100%', height: '100%' }} />
           </Avatar>
           <CardContent className="profile__card-content">
-            <div className="profile__row">
-              <Typography variant="h6" gutterBottom>
-                Full name
-              </Typography>
-              <Typography variant="body1" gutterBottom>
-                First name Last name
-              </Typography>
-            </div>
+            <ProfileSection title="Full name" content="First name Last name" />
             <hr />
-            <div className="profile__row">
-              <Typography variant="h6" gutterBottom>
-                Date of birth
-              </Typography>
-              <Typography variant="body1" gutterBottom>
-                12.12.2008
-              </Typography>
-            </div>
+            <ProfileSection title="Date of birth" content="12.12.2008" />
             <hr />
-            <div className="profile__row">
-              <Typography variant="h6" gutterBottom>
-                Email
-              </Typography>
-              <Typography variant="body1" gutterBottom>
-                user@user.com
-              </Typography>
-            </div>
+            <ProfileSection title="Email" content="user@user.com" />
             <hr />
-            <div className="profile__row">
-              <Typography variant="h6" gutterBottom>
-                Shipping Address
-              </Typography>
-              <Typography variant="body1" gutterBottom>
-                USA
-              </Typography>
-            </div>
+            <ProfileSection title="Shipping Address" content="USA" />
             <hr />
-            <div className="profile__row">
-              <Typography variant="h6" gutterBottom>
-                Billing Address
-              </Typography>
-              <Typography variant="body1" gutterBottom>
-                Poland
-              </Typography>
-            </div>
+            <ProfileSection title="Billing Address" content="Poland" />
             <ButtonElement type="submit" title="Edit Profile" additionalClassName="form__submit profile__edit" />
           </CardContent>
         </Card>
