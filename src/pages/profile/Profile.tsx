@@ -1,10 +1,14 @@
+import { Typography } from '@mui/material';
+
 const Profile = (): JSX.Element => {
   return (
-    <main className="profile">
+    <section className="profile">
       <div className="container profile__container">
-        <h2 className="profile__title">Profile page content will be here.</h2>
+        <h2 className="profile__title">Information</h2>
+        <Typography variant="h6">First name Last name</Typography>
+        <Typography>date of birth</Typography>
       </div>
-    </main>
+    </section>
   );
 };
 
