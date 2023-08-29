@@ -62,7 +62,7 @@ const RegistrationForm = (): JSX.Element => {
 
       setRegisterError(false);
       setCustomerData(customer);
-      localStorage.setItem('isAuth', 'true');
+      localStorage.setItem('currentUser', JSON.stringify(customer));
       setTimeout(() => {
         updateLoggedIn(true);
         return navigate(from, { replace: true });

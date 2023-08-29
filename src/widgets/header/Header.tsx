@@ -16,9 +16,9 @@ function Header(): JSX.Element {
   const { isLoggedIn, updateLoggedIn } = useLoggedInContext();
 
   useEffect(() => {
-    const savedHasHeaderChanged = localStorage.getItem('isAuth');
+    const savedHasHeaderChanged = localStorage.getItem('currentUser');
 
-    if (savedHasHeaderChanged === 'true') {
+    if (savedHasHeaderChanged) {
       updateLoggedIn(true);
     }
   }, [updateLoggedIn]);
