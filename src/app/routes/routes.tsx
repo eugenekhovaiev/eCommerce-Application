@@ -21,7 +21,7 @@ export const useRoutes = (): JSX.Element => {
       <Route path="*" element={<Page404 />} />
       <Route path="/registration" element={isLoggedIn ? <Navigate to="/" replace /> : <Registration />} />
       <Route path="/catalog" element={<Catalog />} />
-      <Route path="/profile" element={<Profile />} />
+      <Route path="/profile" element={!isLoggedIn ? <Navigate to="/login" replace /> : <Profile />} />
       <Route path="/cart" element={<Cart />} />
       <Route path="/about" element={<About />} />
     </Routes>

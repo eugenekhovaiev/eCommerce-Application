@@ -31,7 +31,7 @@ function Header(): JSX.Element {
           <nav className="nav header__nav">
             <AboutUsLink additionalClassName="nav__link" />
             <CatalogLink additionalClassName="nav__link" />
-            <ProfileLink additionalClassName="nav__link" />
+            {isLoggedIn && <ProfileLink additionalClassName="nav__link" />}
             {!isLoggedIn && <LogInLink additionalClassName="nav__link" />}
             {!isLoggedIn && <SignUpLink additionalClassName="nav__link" />}
             {isLoggedIn && <LogOutLink additionalClassName="nav__link" />}

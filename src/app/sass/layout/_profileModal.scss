@@ -1,27 +1,27 @@
 .modal {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+
+  &__content {
+    width: 75vw;
+    height: 85vh;
+    margin: 0 auto;
+    background-color: $color-primary-s;
     display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
+    flex-direction: column;
+    gap: 1rem;
+    padding: 1rem;
+    overflow: auto;
+  }
 
-    &__content {
-        width: 75vw;
-        height: 85vh;
-        margin: 0 auto;
-        background-color: $color-primary-s;
-        display: flex;
-        flex-direction: column;
-        gap: 1rem;
-        padding: 1rem;
-        overflow: auto;
-    }
+  &__buttons {
+    display: flex;
+    justify-content: space-around;
+  }
 
-    &__buttons {
-        display: flex;
-        justify-content: space-around;
-    }
-
-    &__button {
-        width: 8rem;
-    }
+  &__button {
+    width: 8rem;
+  }
 }
