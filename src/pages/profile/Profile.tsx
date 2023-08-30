@@ -4,6 +4,7 @@ import ButtonElement from '../../shared/UI/buttonElement/ButtonElement';
 import ProfileSection from '../../entities/profileSection/ProfileSection';
 
 const Profile = (): JSX.Element => {
+  const userData = JSON.parse(localStorage.getItem('currentUser')!);
   return (
     <section className="profile">
       <div className="container profile__container">
@@ -15,16 +16,58 @@ const Profile = (): JSX.Element => {
             <AccountCircle sx={{ width: '100%', height: '100%' }} />
           </Avatar>
           <CardContent className="profile__card-content">
-            <ProfileSection title="Full name" content="First name Last name" />
+            <ProfileSection title="Full name" content={userData.firstName + ' ' + userData.lastName} />
             <hr />
-            <ProfileSection title="Date of birth" content="12.12.2008" />
+            <ProfileSection title="Date of birth" content={userData.dateOfBirth} />
             <hr />
-            <ProfileSection title="Email" content="user@user.com" />
+            <ProfileSection title="Email" content={userData.email} />
             <hr />
-            <ProfileSection title="Shipping Address" content="USA" />
+            <ProfileSection
+              title="Shipping Address"
+              content={
+                userData.addresses[0].country +
+                ', ' +
+                userData.addresses[0].city +
+                ', ' +
+                userData.addresses[0].streetName +
+                ', ' +
+                userData.addresses[0].building +
+                ', ' +
+                userData.addresses[0].apartment +
+                ', ' +
+                userData.addresses[0].postalCode
+              }
+            />
             <hr />
-            <ProfileSection title="Billing Address" content="Poland" />
-            <ButtonElement type="submit" title="Edit Profile" additionalClassName="form__submit profile__edit" />
+            <ProfileSection
+              title="Billing Address"
+              content={
+                userData.addresses[1] === undefined
+                  ? userData.addresses[0].country +
+                    ', ' +
+                    userData.addresses[0].city +
+                    ', ' +
+                    userData.addresses[0].streetName +
+                    ', ' +
+                    userData.addresses[0].building +
+                    ', ' +
+                    userData.addresses[0].apartment +
+                    ', ' +
+                    userData.addresses[0].postalCode
+                  : userData.addresses[1].country +
+                    ', ' +
+                    userData.addresses[1].city +
+                    ', ' +
+                    userData.addresses[1].streetName +
+                    ', ' +
+                    userData.addresses[1].building +
+                    ', ' +
+                    userData.addresses[1].apartment +
+                    ', ' +
+                    userData.addresses[1].postalCode
+              }
+            />
+            <ButtonElement title="Edit Profile" additionalClassName="form__submit profile__edit" />
           </CardContent>
         </Card>
       </div>
