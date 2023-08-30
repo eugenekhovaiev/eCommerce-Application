@@ -48,6 +48,13 @@ export interface Form {
   defaultAddress: boolean;
 }
 
+export interface FilterFormFields {
+  category1: string;
+  category2: string;
+  category3: string;
+  category4: string;
+}
+
 export interface ButtonProps {
   title: string;
   additionalClassName?: string;
@@ -61,6 +68,29 @@ export interface InputProps {
   errors: FieldErrors<Form>;
   variant?: TextFieldVariants;
   className?: string;
+}
+
+export interface CatalogFilterProps {
+  name: keyof FilterFormFields;
+  label: string;
+  control: Control<FilterFormFields>;
+  selectItems: object;
+  errors: FieldErrors<FilterFormFields>;
+  className?: string;
+}
+
+export interface AccordionProps {
+  label: string;
+  additionalClassName?: string;
+  details?: JSX.Element;
+}
+
+export interface AccordionCheckboxProps {
+  label: string;
+  states: boolean[];
+  setStates: React.Dispatch<React.SetStateAction<boolean[]>>;
+  selectItems?: object;
+  additionalClassName?: string;
 }
 
 export interface RegistrationAddressProps extends InputProps {
@@ -95,11 +125,22 @@ export interface SelectProps {
   label: string;
   selectItems: object;
   additionalClassName?: string;
-  value?: string;
+  variant?: TextFieldVariants;
   error?: boolean;
   helperText?: string;
+  value?: string;
   onChange?: (event: SelectChangeEvent<string>, child: ReactNode) => void;
 }
+
+// export interface SelectSingleProps extends SelectProps {
+//   value?: string;
+//   onChange?: (event: SelectChangeEvent<string>, child: ReactNode) => void;
+// }
+
+// export interface SelectMultipleProps extends SelectProps {
+//   value?: string[];
+//   onChange?: (event: SelectChangeEvent<string[]>, child: ReactNode) => void;
+// }
 
 export interface CheckboxProps {
   onChange: ((event: React.ChangeEvent<HTMLInputElement>, checked: boolean) => void) | undefined;

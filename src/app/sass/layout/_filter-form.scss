@@ -1,0 +1,16 @@
+.filter-form {
+  width: 25%;
+  gap: 0.2rem;
+}
+
+.filter-form__item {
+  width: 90%;
+}
+
+.MuiButtonBase-root.filter-form__submit {
+  margin-top: 2rem;
+}
+
+.MuiPaper-root.Mui-expanded.filter-form__item {
+  margin: 0px;
+}
