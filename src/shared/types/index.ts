@@ -164,7 +164,7 @@ export interface SliderProps {
   step?: number;
   additionalClassName?: string;
   value: number | number[];
-  onChange?: ((event: Event, value: number | number[], activeThumb: number) => void)
+  onChange?: (event: Event, value: number | number[], activeThumb: number) => void;
 }
 
 export interface ValidationRealTime {
