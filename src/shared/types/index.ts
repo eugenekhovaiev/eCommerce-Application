@@ -127,5 +127,27 @@ export interface CountryContext {
 export interface ProductCardProps {
   image: string;
   name: LocalizedString;
+  price?: string | number;
   description?: LocalizedString;
+}
+
+interface FilterAttribute {
+  enumName: string;
+  value: string;
+}
+
+export interface ProductsQueryParams {
+  sort?: {
+    by: 'price' | 'name.en';
+    order: 'asc' | 'desc';
+  };
+  filters?: {
+    categoriesIds?: string;
+    priceRange?: {
+      from: number;
+      to: number;
+    };
+    attributes?: FilterAttribute[];
+    searchKeywords?: string;
+  };
 }

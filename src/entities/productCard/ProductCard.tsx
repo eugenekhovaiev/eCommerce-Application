@@ -15,6 +15,9 @@ function ProductCard(props: ProductCardProps): JSX.Element {
           <Typography gutterBottom variant="h5" component="div">
             {props.name['en-US']}
           </Typography>
+          <Typography gutterBottom variant="h5" component="div">
+            {props.price}
+          </Typography>
           <Typography variant="body2" color="text.secondary">
             {props.description ? props.description['en-US'] : 'Missing description'}
           </Typography>
@@ -22,7 +25,7 @@ function ProductCard(props: ProductCardProps): JSX.Element {
       </CardActionArea>
       <CardActions>
         <Button size="small" color="primary">
-          Viev details
+          View details
         </Button>
       </CardActions>
     </Card>
