@@ -93,6 +93,16 @@ export interface AccordionCheckboxProps {
   additionalClassName?: string;
 }
 
+export interface AccordionSliderProps {
+  label: string;
+  state: number[];
+  setState: React.Dispatch<React.SetStateAction<number[]>>;
+  additionalClassName?: string;
+  min?: number;
+  max?: number;
+  step?: number;
+}
+
 export interface RegistrationAddressProps extends InputProps {
   isShipping?: boolean;
 }
@@ -146,6 +156,15 @@ export interface CheckboxProps {
   onChange: ((event: React.ChangeEvent<HTMLInputElement>, checked: boolean) => void) | undefined;
   checked: boolean;
   additionalClassName?: string;
+}
+
+export interface SliderProps {
+  min?: number;
+  max?: number;
+  step?: number;
+  additionalClassName?: string;
+  value: number | number[];
+  onChange?: ((event: Event, value: number | number[], activeThumb: number) => void)
 }
 
 export interface ValidationRealTime {
