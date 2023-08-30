@@ -9,7 +9,13 @@ const Catalog = (): JSX.Element => {
 
   const handleClick = async (): Promise<void> => {
     try {
-      const productsObj = await getProducts({ sort: { by: 'price', order: 'asc' } });
+      const productsObj = await getProducts({
+        // sort: { by: 'name.en-US', order: 'asc' },
+        // filters: { categoriesIds: '1ce34364-a540-4fc4-a3dd-13c2ba382c79' },
+        // filters: { attributes: [{ enumName: 'color', value: 'Pink' }] },
+        // filters: { attributes: [{ enumName: 'size', value: 'Medium' }] },
+        // filters: { searchKeywords: 'skinny' },
+      });
       console.log(productsObj);
       setProductsArr(productsObj.body.results);
     } catch (error) {

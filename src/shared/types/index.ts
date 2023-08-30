@@ -136,18 +136,20 @@ interface FilterAttribute {
   value: string;
 }
 
+export interface Filters {
+  categoriesIds?: string;
+  priceRange?: {
+    from: number;
+    to: number;
+  };
+  attributes?: FilterAttribute[];
+  searchKeywords?: string;
+}
+
 export interface ProductsQueryParams {
   sort?: {
-    by: 'price' | 'name.en';
+    by: 'price' | 'name.en-US';
     order: 'asc' | 'desc';
   };
-  filters?: {
-    categoriesIds?: string;
-    priceRange?: {
-      from: number;
-      to: number;
-    };
-    attributes?: FilterAttribute[];
-    searchKeywords?: string;
-  };
+  filters?: Filters;
 }
