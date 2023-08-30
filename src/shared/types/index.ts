@@ -60,6 +60,7 @@ export interface InputProps {
   errors: FieldErrors<Form>;
   variant?: TextFieldVariants;
   className?: string;
+  value?: string;
 }
 
 export interface RegistrationAddressProps extends InputProps {

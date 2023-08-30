@@ -1,10 +1,13 @@
+// import { useState } from 'react';
 import { Card, CardContent, Typography, Avatar } from '@mui/material';
 import { AccountCircle } from '@mui/icons-material';
-import ButtonElement from '../../shared/UI/buttonElement/ButtonElement';
+// import ButtonElement from '../../shared/UI/buttonElement/ButtonElement';
 import ProfileSection from '../../entities/profileSection/ProfileSection';
+import ProfileModal from '../../widgets/userProfile-modal/profileModal';
 
 const Profile = (): JSX.Element => {
   const userData = JSON.parse(localStorage.getItem('currentUser')!);
+
   return (
     <section className="profile">
       <div className="container profile__container">
@@ -67,7 +70,8 @@ const Profile = (): JSX.Element => {
                     userData.addresses[1].postalCode
               }
             />
-            <ButtonElement title="Edit Profile" additionalClassName="form__submit profile__edit" />
+            <ProfileModal />
+            {/* <ButtonElement title="Edit Profile" additionalClassName="form__submit profile__edit" /> */}
           </CardContent>
         </Card>
       </div>
