@@ -3,6 +3,7 @@ import FilterForm from '../../widgets/filter/FilterForm';
 import ProductCard from '../../entities/productCard/ProductCard';
 import LinkElement from '../../shared/UI/linkElement/LinkElement';
 import getProducts from '../../shared/api/user/getProducts';
+import getCategories from '../../shared/api/user/getCategories';
 import { ProductProjection } from '@commercetools/platform-sdk';
 
 const Catalog = (): JSX.Element => {
@@ -10,6 +11,7 @@ const Catalog = (): JSX.Element => {
 
   const handleClick = async (): Promise<void> => {
     try {
+      const categories = await getCategories();
       const productsObj = await getProducts({
         // sort: { by: 'name.en-US', order: 'asc' },
         // filters: { categoriesIds: '1ce34364-a540-4fc4-a3dd-13c2ba382c79' },
@@ -18,6 +20,7 @@ const Catalog = (): JSX.Element => {
         // filters: { searchKeywords: 'skinny' },
       });
       console.log(productsObj);
+      console.log(categories);
       setProductsArr(productsObj.body.results);
     } catch (error) {
       console.log(error);

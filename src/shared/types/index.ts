@@ -81,13 +81,13 @@ export interface CatalogFilterProps {
 }
 
 export interface AccordionProps {
-  label: string;
+  label: JSX.Element;
   additionalClassName?: string;
   details?: JSX.Element;
 }
 
 export interface AccordionCheckboxProps {
-  label: string;
+  label: JSX.Element;
   states: boolean[];
   setStates: React.Dispatch<React.SetStateAction<boolean[]>>;
   selectItems?: object;

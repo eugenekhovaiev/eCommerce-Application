@@ -23,7 +23,7 @@ const AccordionSlider = (props: AccordionSliderProps): JSX.Element => {
   return (
     <AccordionElement
       additionalClassName={fullClassName}
-      label={props.label}
+      label={<Typography>{props.label}</Typography>}
       details={
         <div className="form__slider-wrapper">
           <SliderElement
