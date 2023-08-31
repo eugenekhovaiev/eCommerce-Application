@@ -4,6 +4,7 @@ import { TextFieldVariants } from '@mui/material';
 import { SelectChangeEvent } from '@mui/material';
 import { FieldChangeHandler } from '@mui/x-date-pickers/internals';
 import { DateValidationError } from '@mui/x-date-pickers';
+import { CustomerDraft } from '@commercetools/platform-sdk';
 
 export interface LinkProps {
   to?: string;
@@ -112,9 +113,9 @@ export interface ValidationRealTime {
   message: string;
 }
 
-export interface LoggedInContext {
-  isLoggedIn: boolean;
-  updateLoggedIn: (isLoggedIn: boolean) => void;
+export interface UserDataContext {
+  userData: CustomerDraft | undefined;
+  updateUserData: (userData: CustomerDraft | undefined) => void;
 }
 
 export interface CountryContext {

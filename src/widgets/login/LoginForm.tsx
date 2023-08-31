@@ -13,7 +13,7 @@ import { Customer } from '@commercetools/platform-sdk';
 import loginCustomer from '../../shared/api/user/loginCustomer';
 
 import { useNavigate, useLocation } from 'react-router-dom';
-import { useLoggedInContext } from '../../shared/lib/contexts/LoggedInContext';
+import { useUserDataContext } from '../../shared/lib/contexts/UserDataContext';
 
 const LoginForm = (): JSX.Element => {
   const { handleSubmit, control } = useForm<Form>();
@@ -28,17 +28,18 @@ const LoginForm = (): JSX.Element => {
   const [customerData, setCustomerData] = useState<Customer | null>(null);
   const [loginError, setLoginError] = useState(false);
 
-  const { updateLoggedIn } = useLoggedInContext();
+  const { updateUserData } = useUserDataContext();
 
   const onSubmit: SubmitHandler<Form> = async (data) => {
     try {
       const loginResponse = await loginCustomer(data);
       const customer = loginResponse.body.customer;
+
       setLoginError(false);
       setCustomerData(customer);
       localStorage.setItem('currentUser', JSON.stringify(customer));
       setTimeout(() => {
-        updateLoggedIn(true);
+        updateUserData(customer);
         return navigate(from, { replace: true });
       }, 1500);
     } catch (error) {

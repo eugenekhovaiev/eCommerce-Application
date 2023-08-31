@@ -10,7 +10,7 @@ import { Customer, CustomerSignin } from '@commercetools/platform-sdk';
 import RegistrationAddress from '../../entities/registration/RegistrationAddress';
 import RegistrationUserInfo from '../../entities/registration/RegistrationUserInfo';
 import getNewCustomerData from '../../shared/lib/helpers/getNewCustomerData';
-import { useLoggedInContext } from '../../shared/lib/contexts/LoggedInContext';
+import { useUserDataContext } from '../../shared/lib/contexts/UserDataContext';
 import { CountryProvider } from '../../shared/lib/contexts/СountryContext';
 import CheckboxElement from '../../shared/UI/checkboxElement/CheckboxElement';
 import ButtonElement from '../../shared/UI/buttonElement/ButtonElement';
@@ -45,7 +45,7 @@ const RegistrationForm = (): JSX.Element => {
     setDefaultBilling(!defaultBilling);
   };
 
-  const { updateLoggedIn } = useLoggedInContext();
+  const { updateUserData } = useUserDataContext();
 
   const onSubmit: SubmitHandler<Form> = async (data) => {
     const newCustomerData = getNewCustomerData(data, sameAsShipping, defaultShipping, defaultBilling);
@@ -64,7 +64,7 @@ const RegistrationForm = (): JSX.Element => {
       setCustomerData(customer);
       localStorage.setItem('currentUser', JSON.stringify(customer));
       setTimeout(() => {
-        updateLoggedIn(true);
+        updateUserData(customer);
         return navigate(from, { replace: true });
       }, 1500);
     } catch (error) {
