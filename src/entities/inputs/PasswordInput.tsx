@@ -47,7 +47,7 @@ const PasswordInput: React.FC<RegistrationUserInfoProps> = (props) => {
             field.onChange(e);
             handleValueChange(e);
           }}
-          value={field.value || ''}
+          value={field.value || '' || props.value}
           error={!!props.errors.password?.message || !isValid}
           helperText={!isValid ? message : props.errors.password?.message}
           endAdornment={

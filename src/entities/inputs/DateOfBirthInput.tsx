@@ -25,7 +25,7 @@ const DateOfBirthInput = (props: RegistrationUserInfoProps): JSX.Element => {
       rules={dateOfBirthValidtion}
       render={({ field }): JSX.Element => (
         <DateFieldElement
-          value={field.value}
+          value={field.value || '' || props.value}
           additionalClassName={props.className}
           onChange={(e): void => {
             field.onChange(e);

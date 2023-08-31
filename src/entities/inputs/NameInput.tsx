@@ -31,7 +31,7 @@ const NameInput = (props: RegistrationUserInfoProps): JSX.Element => {
             field.onChange(e);
             handleValueChange(e);
           }}
-          value={field.value || ''}
+          value={field.value || props.value || ''}
           error={!!props.errors.firstName?.message || !isValid}
           helperText={!isValid ? message : props.errors.firstName?.message}
         />

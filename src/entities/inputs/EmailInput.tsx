@@ -32,7 +32,7 @@ const EmailInput: React.FC<RegistrationUserInfoProps> = (props): JSX.Element => 
             field.onChange(e);
             handleValueChange(e);
           }}
-          value={field.value || ''}
+          value={field.value || '' || props.value}
           error={!!props.errors.email?.message || !isValid}
           helperText={!isValid ? message : props.errors.email?.message}
         />

@@ -2,14 +2,21 @@ import { useState } from 'react';
 import { useForm, useFormState } from 'react-hook-form';
 import { Modal, Typography, Button } from '@mui/material';
 import { Form } from '../../shared/types';
-import RegistrationUserInfo from '../../entities/registration/RegistrationUserInfo';
+// import RegistrationUserInfo from '../../entities/registration/RegistrationUserInfo';
 import RegistrationAddress from '../../entities/registration/RegistrationAddress';
 import CheckboxElement from '../../shared/UI/checkboxElement/CheckboxElement';
 import { Customer } from '@commercetools/platform-sdk';
 import { Alert } from '@mui/material';
 import { CountryProvider } from '../../shared/lib/contexts/СountryContext';
+import { useUserDataContext } from '../../shared/lib/contexts/UserDataContext';
+import NameInput from '../../entities/inputs/NameInput';
+import EmailInput from '../../entities/inputs/EmailInput';
+import PasswordInput from '../../entities/inputs/PasswordInput';
+// import DateOfBirthInput from '../../entities/inputs/DateOfBirthInput';
 
 const ProfileModal: React.FC = () => {
+  const { userData } = useUserDataContext();
+
   const { control } = useForm<Form>();
   const { errors } = useFormState({
     control,
@@ -54,7 +61,43 @@ const ProfileModal: React.FC = () => {
         <Modal open={modalIsOpen} onClose={closeModal} className="modal">
           <div className="modal__content">
             <Typography variant="h5">Edit Profile</Typography>
-            <RegistrationUserInfo control={control} errors={errors} />
+            <NameInput
+              variant="outlined"
+              className="form__input form__input_name"
+              isFirstName={true}
+              control={control}
+              errors={errors}
+              value={userData?.firstName || ''}
+            />
+            <NameInput
+              variant="outlined"
+              className="form__input form__input_name"
+              isFirstName={false}
+              control={control}
+              errors={errors}
+              value={userData?.lastName}
+            />
+            <EmailInput
+              variant="outlined"
+              className="form__input form__input_email"
+              control={control}
+              errors={errors}
+              value={userData?.email}
+            />
+            <PasswordInput
+              className="form__input form__input_password"
+              variant="outlined"
+              control={control}
+              errors={errors}
+              value={userData?.password}
+            />
+            {/* <DateOfBirthInput
+              className="form__input form__input_dob"
+              control={control}
+              errors={errors}
+              value={userData?.dateOfBirth}
+            /> */}
+            {/* <RegistrationUserInfo control={control} errors={errors} /> */}
             <Typography variant="h5" className="form__title">
               Shipping Address
             </Typography>

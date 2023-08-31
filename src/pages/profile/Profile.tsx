@@ -77,7 +77,6 @@ const Profile = (): JSX.Element => {
               />
             )}
             <ProfileModal />
-            {/* <ButtonElement title="Edit Profile" additionalClassName="form__submit profile__edit" /> */}
           </CardContent>
         </Card>
       </div>
