@@ -7,7 +7,7 @@ import ProfileModal from '../../widgets/userProfile-modal/profileModal';
 import { useUserDataContext } from '../../shared/lib/contexts/UserDataContext';
 
 const Profile = (): JSX.Element => {
-  // const userData = JSON.parse(localStorage.getItem('currentUser')!);
+  const userDatalocal = JSON.parse(localStorage.getItem('currentUser')!);
   const { userData } = useUserDataContext();
 
   return (
@@ -45,6 +45,7 @@ const Profile = (): JSX.Element => {
                 }
               />
             )}
+            <p>{userDatalocal.defaultShippingAddressId !== undefined ? '(default)' : '(not default)'}</p>
             <hr />
             {userData?.addresses && (
               <ProfileSection
@@ -76,6 +77,7 @@ const Profile = (): JSX.Element => {
                 }
               />
             )}
+            <p>{userDatalocal.defaultBillingAddressId !== undefined ? '(default)' : '(not default)'}</p>
             <ProfileModal />
           </CardContent>
         </Card>
