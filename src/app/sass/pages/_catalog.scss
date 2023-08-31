@@ -2,4 +2,30 @@
   width: 90%;
   max-width: 1280px;
   margin: 1rem auto;
+  display: grid;
+  grid-template-areas:
+    'category category category category'
+    'filter products products products';
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2rem;
+}
+
+.catalog-products__categories {
+  grid-area: category;
+  display: flex;
+  justify-content: center;
+  gap: 10rem;
+}
+
+.catalog-products__filter {
+  grid-area: filter;
+  display: flex;
+  justify-content: center;
+}
+
+.catalog-products__products {
+  grid-area: products;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 1.5rem
 }
