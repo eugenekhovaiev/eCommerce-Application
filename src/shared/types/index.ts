@@ -126,9 +126,10 @@ export interface CountryContext {
 }
 
 export interface ProductCardProps {
-  image: string;
+  image?: string;
   name: LocalizedString;
   price?: string | number;
+  priceDiscounted?: string | number;
   description?: LocalizedString;
 }
 

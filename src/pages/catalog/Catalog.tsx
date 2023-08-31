@@ -11,7 +11,7 @@ const Catalog = (): JSX.Element => {
     try {
       const productsObj = await getProducts({
         // sort: { by: 'name.en-US', order: 'asc' },
-        // filters: { categoriesIds: '1ce34364-a540-4fc4-a3dd-13c2ba382c79' },
+        // filters: { categoriesIds: '133fbd9e-8fb8-465e-b008-699700693da4' },
         // filters: { attributes: [{ enumName: 'color', value: 'Pink' }] },
         // filters: { attributes: [{ enumName: 'size', value: 'Medium' }] },
         // filters: { searchKeywords: 'skinny' },
@@ -30,17 +30,20 @@ const Catalog = (): JSX.Element => {
         <LinkElement title="Show products" onClick={handleClick} to="/catalog" />
         {productsArr.map((product, index) => {
           const productImages = product.masterVariant.images;
-          const productPreviewUrl =
-            productImages && productImages[0] ? productImages[0].url : 'src/shared/assets/image-placeholder.svg';
+          const productPreviewUrl = productImages && productImages[0] && productImages[0].url;
 
           const productPrices = product.masterVariant.prices;
-          const productPrice =
-            productPrices && productPrices[0] ? productPrices[0].value.centAmount : 'Price is missing';
+          const productPrice = productPrices && productPrices[0] && productPrices[0].value.centAmount;
+
+          const productDiscountedPrice =
+            productPrices && productPrices[0] && productPrices[0].discounted?.value.centAmount;
+
           return (
             <ProductCard
               image={productPreviewUrl}
               name={product.name}
               price={productPrice}
+              priceDiscounted={productDiscountedPrice}
               description={product.description}
               key={index}
             />
