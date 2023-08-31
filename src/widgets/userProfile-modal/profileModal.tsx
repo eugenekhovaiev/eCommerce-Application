@@ -89,8 +89,8 @@ const ProfileModal: React.FC = () => {
               variant="outlined"
               control={control}
               errors={errors}
-              value={userData?.password}
             />
+            <p className="modal__content-description">* Enter a new password</p>
             {/* <DateOfBirthInput
               className="form__input form__input_dob"
               control={control}

@@ -16,6 +16,11 @@
     overflow: auto;
   }
 
+  &__content-description {
+    text-align: left;
+    font-weight: bold;
+  }
+
   &__buttons {
     display: flex;
     justify-content: space-around;
