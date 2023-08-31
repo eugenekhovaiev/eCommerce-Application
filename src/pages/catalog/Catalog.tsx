@@ -28,27 +28,29 @@ const Catalog = (): JSX.Element => {
       <div className="container catalog__container">
         <h2 className="catalog__title">Catalog page content will be here.</h2>
         <LinkElement title="Show products" onClick={handleClick} to="/catalog" />
-        {productsArr.map((product, index) => {
-          const productImages = product.masterVariant.images;
-          const productPreviewUrl = productImages && productImages[0] && productImages[0].url;
+        <div className="cards">
+          {productsArr.map((product, index) => {
+            const productImages = product.masterVariant.images;
+            const productPreviewUrl = productImages && productImages[0] && productImages[0].url;
 
-          const productPrices = product.masterVariant.prices;
-          const productPrice = productPrices && productPrices[0] && productPrices[0].value.centAmount;
+            const productPrices = product.masterVariant.prices;
+            const productOriginalPrice = productPrices && productPrices[0] && productPrices[0].value.centAmount;
+            const productDiscountedPrice =
+              productPrices && productPrices[0] && productPrices[0].discounted?.value.centAmount;
 
-          const productDiscountedPrice =
-            productPrices && productPrices[0] && productPrices[0].discounted?.value.centAmount;
-
-          return (
-            <ProductCard
-              image={productPreviewUrl}
-              name={product.name}
-              price={productPrice}
-              priceDiscounted={productDiscountedPrice}
-              description={product.description}
-              key={index}
-            />
-          );
-        })}
+            return (
+              <ProductCard
+                url={product.slug['en-US']}
+                image={productPreviewUrl}
+                name={product.name}
+                priceOriginal={productOriginalPrice}
+                priceDiscounted={productDiscountedPrice}
+                description={product.description}
+                key={index}
+              />
+            );
+          })}
+        </div>
       </div>
     </main>
   );
