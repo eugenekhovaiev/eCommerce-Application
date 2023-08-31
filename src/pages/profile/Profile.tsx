@@ -4,9 +4,11 @@ import { AccountCircle } from '@mui/icons-material';
 // import ButtonElement from '../../shared/UI/buttonElement/ButtonElement';
 import ProfileSection from '../../entities/profileSection/ProfileSection';
 import ProfileModal from '../../widgets/userProfile-modal/profileModal';
+import { useUserDataContext } from '../../shared/lib/contexts/UserDataContext';
 
 const Profile = (): JSX.Element => {
-  const userData = JSON.parse(localStorage.getItem('currentUser')!);
+  // const userData = JSON.parse(localStorage.getItem('currentUser')!);
+  const { userData } = useUserDataContext();
 
   return (
     <section className="profile">
@@ -19,57 +21,61 @@ const Profile = (): JSX.Element => {
             <AccountCircle sx={{ width: '100%', height: '100%' }} />
           </Avatar>
           <CardContent className="profile__card-content">
-            <ProfileSection title="Full name" content={userData.firstName + ' ' + userData.lastName} />
+            {userData && <ProfileSection title="Full name" content={userData.firstName + ' ' + userData.lastName} />}
             <hr />
-            <ProfileSection title="Date of birth" content={userData.dateOfBirth} />
+            {userData?.dateOfBirth && <ProfileSection title="Date of birth" content={userData.dateOfBirth} />}
             <hr />
-            <ProfileSection title="Email" content={userData.email} />
+            {userData && <ProfileSection title="Email" content={userData.email} />}
             <hr />
-            <ProfileSection
-              title="Shipping Address"
-              content={
-                userData.addresses[0].country +
-                ', ' +
-                userData.addresses[0].city +
-                ', ' +
-                userData.addresses[0].streetName +
-                ', ' +
-                userData.addresses[0].building +
-                ', ' +
-                userData.addresses[0].apartment +
-                ', ' +
-                userData.addresses[0].postalCode
-              }
-            />
+            {userData?.addresses && (
+              <ProfileSection
+                title="Shipping Address"
+                content={
+                  userData.addresses[0].country +
+                  ', ' +
+                  userData.addresses[0].city +
+                  ', ' +
+                  userData.addresses[0].streetName +
+                  ', ' +
+                  userData.addresses[0].building +
+                  ', ' +
+                  userData.addresses[0].apartment +
+                  ', ' +
+                  userData.addresses[0].postalCode
+                }
+              />
+            )}
             <hr />
-            <ProfileSection
-              title="Billing Address"
-              content={
-                userData.addresses[1] === undefined
-                  ? userData.addresses[0].country +
-                    ', ' +
-                    userData.addresses[0].city +
-                    ', ' +
-                    userData.addresses[0].streetName +
-                    ', ' +
-                    userData.addresses[0].building +
-                    ', ' +
-                    userData.addresses[0].apartment +
-                    ', ' +
-                    userData.addresses[0].postalCode
-                  : userData.addresses[1].country +
-                    ', ' +
-                    userData.addresses[1].city +
-                    ', ' +
-                    userData.addresses[1].streetName +
-                    ', ' +
-                    userData.addresses[1].building +
-                    ', ' +
-                    userData.addresses[1].apartment +
-                    ', ' +
-                    userData.addresses[1].postalCode
-              }
-            />
+            {userData?.addresses && (
+              <ProfileSection
+                title="Billing Address"
+                content={
+                  userData.addresses[1] === undefined
+                    ? userData.addresses[0].country +
+                      ', ' +
+                      userData.addresses[0].city +
+                      ', ' +
+                      userData.addresses[0].streetName +
+                      ', ' +
+                      userData.addresses[0].building +
+                      ', ' +
+                      userData.addresses[0].apartment +
+                      ', ' +
+                      userData.addresses[0].postalCode
+                    : userData.addresses[1].country +
+                      ', ' +
+                      userData.addresses[1].city +
+                      ', ' +
+                      userData.addresses[1].streetName +
+                      ', ' +
+                      userData.addresses[1].building +
+                      ', ' +
+                      userData.addresses[1].apartment +
+                      ', ' +
+                      userData.addresses[1].postalCode
+                }
+              />
+            )}
             <ProfileModal />
             {/* <ButtonElement title="Edit Profile" additionalClassName="form__submit profile__edit" /> */}
           </CardContent>
