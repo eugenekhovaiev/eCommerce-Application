@@ -6,7 +6,7 @@ import dayjs from 'dayjs';
 function getNewCustomerData(
   data: Form,
   sameAsShipping: boolean,
-  defaulthipping: boolean,
+  defaultShipping: boolean,
   defaultBilling: boolean,
 ): CustomerDraft {
   const addresses = getAddresses(data, sameAsShipping);
@@ -18,7 +18,7 @@ function getNewCustomerData(
     lastName: data.lastName,
     dateOfBirth: dayjs(data.dateOfBirth).format('YYYY-MM-DD'),
     addresses,
-    defaultShippingAddress: defaulthipping ? 0 : undefined,
+    defaultShippingAddress: defaultShipping ? 0 : undefined,
     shippingAddresses: [0],
     defaultBillingAddress: defaultBillingAddress,
     billingAddresses: sameAsShipping ? [0] : [1],

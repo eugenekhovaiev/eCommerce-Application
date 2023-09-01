@@ -5,9 +5,9 @@ import { AccountCircle } from '@mui/icons-material';
 import ProfileSection from '../../entities/profileSection/ProfileSection';
 import ProfileModal from '../../widgets/userProfile-modal/profileModal';
 import { useUserDataContext } from '../../shared/lib/contexts/UserDataContext';
+import getAddressString from '../../shared/lib/helpers/getAddressString';
 
 const Profile = (): JSX.Element => {
-  const userDatalocal = JSON.parse(localStorage.getItem('currentUser')!);
   const { userData } = useUserDataContext();
 
   return (
@@ -28,56 +28,21 @@ const Profile = (): JSX.Element => {
             {userData && <ProfileSection title="Email" content={userData.email} />}
             <hr />
             {userData?.addresses && (
-              <ProfileSection
-                title="Shipping Address"
-                content={
-                  userData.addresses[0].country +
-                  ', ' +
-                  userData.addresses[0].city +
-                  ', ' +
-                  userData.addresses[0].streetName +
-                  ', ' +
-                  userData.addresses[0].building +
-                  ', ' +
-                  userData.addresses[0].apartment +
-                  ', ' +
-                  userData.addresses[0].postalCode
-                }
-              />
+              <ProfileSection title="Shipping Address" content={getAddressString(userData.addresses[0])} />
             )}
-            <p>{userDatalocal.defaultShippingAddressId !== undefined ? '(default)' : '(not default)'}</p>
+            {userData?.defaultShippingAddressId && <p>(default)</p>}
             <hr />
             {userData?.addresses && (
               <ProfileSection
                 title="Billing Address"
                 content={
-                  userData.addresses[1] === undefined
-                    ? userData.addresses[0].country +
-                      ', ' +
-                      userData.addresses[0].city +
-                      ', ' +
-                      userData.addresses[0].streetName +
-                      ', ' +
-                      userData.addresses[0].building +
-                      ', ' +
-                      userData.addresses[0].apartment +
-                      ', ' +
-                      userData.addresses[0].postalCode
-                    : userData.addresses[1].country +
-                      ', ' +
-                      userData.addresses[1].city +
-                      ', ' +
-                      userData.addresses[1].streetName +
-                      ', ' +
-                      userData.addresses[1].building +
-                      ', ' +
-                      userData.addresses[1].apartment +
-                      ', ' +
-                      userData.addresses[1].postalCode
+                  userData.addresses.length === 1
+                    ? getAddressString(userData.addresses[0])
+                    : getAddressString(userData.addresses[1])
                 }
               />
             )}
-            <p>{userDatalocal.defaultBillingAddressId !== undefined ? '(default)' : '(not default)'}</p>
+            {userData?.defaultBillingAddressId && <p>(default)</p>}
             <ProfileModal />
           </CardContent>
         </Card>

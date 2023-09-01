@@ -31,7 +31,7 @@ const CityInput = (props: RegistrationAddressProps): JSX.Element => {
             field.onChange(e);
             handleValueChange(e);
           }}
-          value={field.value || ''}
+          defaultValue={props.defaultValue}
           error={!!props.errors.cityBilling?.message || !isValid}
           helperText={!isValid ? message : props.errors.cityBilling?.message}
         />

@@ -31,7 +31,7 @@ const UnitInput = (props: RegistrationAddressProps): JSX.Element => {
             field.onChange(e);
             handleValueChange(e);
           }}
-          value={field.value || ''}
+          defaultValue={props.defaultValue}
           error={!!props.errors.unitBilling?.message || !isValid}
           helperText={!isValid ? message : props.errors.unitBilling?.message}
         />

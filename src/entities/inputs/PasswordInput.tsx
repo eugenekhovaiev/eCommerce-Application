@@ -10,9 +10,9 @@ import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import validateRealTime from '../../shared/lib/validation/validateRealTime';
 import passwordValidation from '../../shared/lib/validation/passwordValidation';
 import TextFieldElement from '../../shared/UI/textFieldElement/TextFieldElement';
-import { RegistrationUserInfoProps } from '../../shared/types';
+import { InputProps } from '../../shared/types';
 
-const PasswordInput: React.FC<RegistrationUserInfoProps> = (props) => {
+const PasswordInput: React.FC<InputProps> = (props) => {
   const [showPassword, setShowPassword] = React.useState(false);
   const [isValid, setIsValid] = useState(true);
   const [message, setMessage] = useState('');
@@ -39,7 +39,7 @@ const PasswordInput: React.FC<RegistrationUserInfoProps> = (props) => {
       rules={passwordValidation}
       render={({ field }): JSX.Element => (
         <TextFieldElement
-          label="Password"
+          label={props.label || 'Password'}
           additionalClassName={props.className}
           variant={props.variant || 'standard'}
           type={showPassword ? 'text' : 'password'}
@@ -47,7 +47,6 @@ const PasswordInput: React.FC<RegistrationUserInfoProps> = (props) => {
             field.onChange(e);
             handleValueChange(e);
           }}
-          value={field.value || '' || props.value}
           error={!!props.errors.password?.message || !isValid}
           helperText={!isValid ? message : props.errors.password?.message}
           endAdornment={

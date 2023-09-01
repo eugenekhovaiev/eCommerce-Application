@@ -30,7 +30,7 @@ const StreetInput = (props: RegistrationAddressProps): JSX.Element => {
             field.onChange(e);
             handleValueChange(e);
           }}
-          value={field.value || ''}
+          defaultValue={props.defaultValue}
           error={!!props.errors.streetBilling?.message || !isValid}
           helperText={!isValid ? message : props.errors.streetBilling?.message}
         />

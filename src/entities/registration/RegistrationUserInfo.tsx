@@ -13,6 +13,7 @@ const RegistrationUserInfo = (props: RegistrationUserInfoProps): JSX.Element => 
         isFirstName={true}
         control={props.control}
         errors={props.errors}
+        defaultValue={props.defaultValues?.defaultFirstName}
       />
       <NameInput
         variant="outlined"
@@ -20,20 +21,28 @@ const RegistrationUserInfo = (props: RegistrationUserInfoProps): JSX.Element => 
         isFirstName={false}
         control={props.control}
         errors={props.errors}
+        defaultValue={props.defaultValues?.defaultLastName}
       />
       <EmailInput
         variant="outlined"
         className="form__input form__input_email"
         control={props.control}
         errors={props.errors}
+        defaultValue={props.defaultValues?.defaultEmail}
       />
       <PasswordInput
         className="form__input form__input_password"
         variant="outlined"
         control={props.control}
         errors={props.errors}
+        label={props.defaultValues?.passwordLabel}
       />
-      <DateOfBirthInput className="form__input form__input_dob" control={props.control} errors={props.errors} />
+      <DateOfBirthInput
+        className="form__input form__input_dob"
+        control={props.control}
+        errors={props.errors}
+        // defaultValue={props.defaultValues?.defaultDateOfBirth}
+      />
     </div>
   );
 };

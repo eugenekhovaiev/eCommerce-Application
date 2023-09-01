@@ -2,20 +2,24 @@ import { useState } from 'react';
 import { useForm, useFormState } from 'react-hook-form';
 import { Modal, Typography, Button } from '@mui/material';
 import { Form } from '../../shared/types';
-// import RegistrationUserInfo from '../../entities/registration/RegistrationUserInfo';
+import RegistrationUserInfo from '../../entities/registration/RegistrationUserInfo';
 import RegistrationAddress from '../../entities/registration/RegistrationAddress';
 import CheckboxElement from '../../shared/UI/checkboxElement/CheckboxElement';
-import { Customer } from '@commercetools/platform-sdk';
+import { Address, Customer } from '@commercetools/platform-sdk';
 import { Alert } from '@mui/material';
 import { CountryProvider } from '../../shared/lib/contexts/СountryContext';
 import { useUserDataContext } from '../../shared/lib/contexts/UserDataContext';
-import NameInput from '../../entities/inputs/NameInput';
-import EmailInput from '../../entities/inputs/EmailInput';
-import PasswordInput from '../../entities/inputs/PasswordInput';
+// import NameInput from '../../entities/inputs/NameInput';
+// import EmailInput from '../../entities/inputs/EmailInput';
+// import PasswordInput from '../../entities/inputs/PasswordInput';
 // import DateOfBirthInput from '../../entities/inputs/DateOfBirthInput';
 
-const ProfileModal: React.FC = () => {
+const ProfileModal = (): JSX.Element => {
   const { userData } = useUserDataContext();
+  const shippingAddress: Address | undefined = userData?.addresses[0];
+  const billingAddress: Address | undefined =
+    userData?.addresses.length === 1 ? shippingAddress : userData?.addresses[1];
+  // console.log(userData);
 
   const { control } = useForm<Form>();
   const { errors } = useFormState({
@@ -61,13 +65,13 @@ const ProfileModal: React.FC = () => {
         <Modal open={modalIsOpen} onClose={closeModal} className="modal">
           <div className="modal__content">
             <Typography variant="h5">Edit Profile</Typography>
-            <NameInput
+            {/* <NameInput
               variant="outlined"
               className="form__input form__input_name"
               isFirstName={true}
               control={control}
               errors={errors}
-              value={userData?.firstName || ''}
+              defaultValue={userData?.firstName}
             />
             <NameInput
               variant="outlined"
@@ -75,33 +79,57 @@ const ProfileModal: React.FC = () => {
               isFirstName={false}
               control={control}
               errors={errors}
-              value={userData?.lastName}
+              defaultValue={userData?.lastName}
             />
             <EmailInput
               variant="outlined"
               className="form__input form__input_email"
               control={control}
               errors={errors}
-              value={userData?.email}
+              defaultValue={userData?.email}
             />
             <PasswordInput
               className="form__input form__input_password"
               variant="outlined"
               control={control}
               errors={errors}
-            />
-            <p className="modal__content-description">* Enter a new password</p>
+              label="Enter new password"
+            /> */}
             {/* <DateOfBirthInput
               className="form__input form__input_dob"
               control={control}
               errors={errors}
               value={userData?.dateOfBirth}
             /> */}
-            {/* <RegistrationUserInfo control={control} errors={errors} /> */}
+            <RegistrationUserInfo
+              control={control}
+              errors={errors}
+              defaultValues={{
+                defaultFirstName: userData?.firstName,
+                defaultLastName: userData?.lastName,
+                defaultEmail: userData?.email,
+                passwordLabel: 'Enter new password',
+                defaultDateOfBirth: userData?.dateOfBirth,
+              }}
+            />
             <Typography variant="h5" className="form__title">
               Shipping Address
             </Typography>
-            <RegistrationAddress isShipping={true} control={control} errors={errors} />
+            {shippingAddress && (
+              <RegistrationAddress
+                isShipping={true}
+                control={control}
+                errors={errors}
+                defaultValues={{
+                  defaultStreet: shippingAddress.streetName,
+                  defaultBuilding: shippingAddress.building,
+                  defaultUnit: shippingAddress.apartment,
+                  defaultCity: shippingAddress.city,
+                  defaultPostalCode: shippingAddress.postalCode,
+                  defaultCountry: shippingAddress.country,
+                }}
+              />
+            )}
             <div className="form__checkbox-wrapper">
               <div className="form__checkbox">
                 <CheckboxElement onChange={handleDefaultShippingClick} checked={defaultShipping} />
@@ -117,7 +145,21 @@ const ProfileModal: React.FC = () => {
                 Billing Address
               </Typography>
             )}
-            {!sameAsShipping && <RegistrationAddress isShipping={false} control={control} errors={errors} />}
+            {!sameAsShipping && billingAddress && (
+              <RegistrationAddress
+                isShipping={false}
+                control={control}
+                errors={errors}
+                defaultValues={{
+                  defaultStreet: billingAddress.streetName,
+                  defaultBuilding: billingAddress.building,
+                  defaultUnit: billingAddress.apartment,
+                  defaultCity: billingAddress.city,
+                  defaultPostalCode: billingAddress.postalCode,
+                  defaultCountry: billingAddress.country,
+                }}
+              />
+            )}
             <div className="form__checkbox-wrapper">
               <div className="form__checkbox">
                 <CheckboxElement onChange={handleDefaultBillingClick} checked={defaultBilling} />

@@ -17,7 +17,7 @@ const SelectElement = (props: SelectProps): JSX.Element => {
       <Select
         labelId={`select-${props.label.toLowerCase()}`}
         color="secondary"
-        value={props.value}
+        defaultValue={props.defaultValue || ''}
         label={props.label}
         onChange={props.onChange}
       >

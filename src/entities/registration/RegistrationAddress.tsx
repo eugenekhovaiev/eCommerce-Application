@@ -15,6 +15,7 @@ const RegistrationAddress = (props: RegistrationAddressProps): JSX.Element => {
         isShipping={props.isShipping}
         control={props.control}
         errors={props.errors}
+        defaultValue={props.defaultValues?.defaultStreet}
       />
       <BuildingInput
         variant="outlined"
@@ -22,6 +23,7 @@ const RegistrationAddress = (props: RegistrationAddressProps): JSX.Element => {
         isShipping={props.isShipping}
         control={props.control}
         errors={props.errors}
+        defaultValue={props.defaultValues?.defaultBuilding}
       />
       <UnitInput
         variant="outlined"
@@ -29,6 +31,7 @@ const RegistrationAddress = (props: RegistrationAddressProps): JSX.Element => {
         isShipping={props.isShipping}
         control={props.control}
         errors={props.errors}
+        defaultValue={props.defaultValues?.defaultUnit}
       />
       <CityInput
         variant="outlined"
@@ -36,6 +39,7 @@ const RegistrationAddress = (props: RegistrationAddressProps): JSX.Element => {
         isShipping={props.isShipping}
         control={props.control}
         errors={props.errors}
+        defaultValue={props.defaultValues?.defaultCity}
       />
       <PostalCodeInput
         variant="outlined"
@@ -43,12 +47,14 @@ const RegistrationAddress = (props: RegistrationAddressProps): JSX.Element => {
         isShipping={props.isShipping}
         control={props.control}
         errors={props.errors}
+        value={props.defaultValues?.defaultPostalCode}
       />
       <CountryInput
         className="form__input form__input_country"
         isShipping={props.isShipping}
         control={props.control}
         errors={props.errors}
+        defaultValue={props.defaultValues?.defaultCountry}
       />
     </div>
   );

@@ -4,7 +4,7 @@ import { TextFieldVariants } from '@mui/material';
 import { SelectChangeEvent } from '@mui/material';
 import { FieldChangeHandler } from '@mui/x-date-pickers/internals';
 import { DateValidationError } from '@mui/x-date-pickers';
-import { CustomerDraft } from '@commercetools/platform-sdk';
+import { Customer } from '@commercetools/platform-sdk';
 
 export interface LinkProps {
   to?: string;
@@ -61,21 +61,39 @@ export interface InputProps {
   errors: FieldErrors<Form>;
   variant?: TextFieldVariants;
   className?: string;
+  label?: string;
+  defaultValue?: string;
   value?: string;
 }
 
 export interface RegistrationAddressProps extends InputProps {
   isShipping?: boolean;
+  defaultValues?: {
+    defaultStreet?: string;
+    defaultBuilding?: string;
+    defaultUnit?: string;
+    defaultCity?: string;
+    defaultPostalCode?: string;
+    defaultCountry?: string;
+  };
 }
 
 export interface RegistrationUserInfoProps extends InputProps {
   isFirstName?: boolean;
+  defaultValues?: {
+    defaultFirstName?: string;
+    defaultLastName?: string;
+    defaultEmail?: string;
+    passwordLabel?: string;
+    defaultDateOfBirth?: string;
+  };
 }
 
 export interface TextFieldProps {
   label: string;
   type?: string;
   additionalClassName?: string;
+  defaultValue?: string;
   value?: string;
   error?: boolean;
   helperText?: string;
@@ -96,7 +114,8 @@ export interface SelectProps {
   label: string;
   selectItems: object;
   additionalClassName?: string;
-  value?: string;
+  // value?: string;
+  defaultValue?: string;
   error?: boolean;
   helperText?: string;
   onChange?: (event: SelectChangeEvent<string>, child: ReactNode) => void;
@@ -114,8 +133,8 @@ export interface ValidationRealTime {
 }
 
 export interface UserDataContext {
-  userData: CustomerDraft | undefined;
-  updateUserData: (userData: CustomerDraft | undefined) => void;
+  userData: Customer | undefined;
+  updateUserData: (userData: Customer | undefined) => void;
 }
 
 export interface CountryContext {

@@ -1,4 +1,4 @@
-import { CustomerDraft } from '@commercetools/platform-sdk';
+import { Customer } from '@commercetools/platform-sdk';
 import { UserDataContext } from '../../types';
 
 import { ReactNode, createContext, useContext, useState } from 'react';
@@ -14,9 +14,9 @@ export const useUserDataContext = (): UserDataContext => {
 };
 
 export const UserDataProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
-  const [userData, setUserData] = useState<CustomerDraft | undefined>(undefined);
+  const [userData, setUserData] = useState<Customer | undefined>(undefined);
 
-  const updateUserData = (userData: CustomerDraft | undefined): void => {
+  const updateUserData = (userData: Customer | undefined): void => {
     setUserData(userData);
   };
 
