@@ -126,9 +126,11 @@ export interface CountryContext {
 }
 
 export interface ProductCardProps {
-  image: string;
+  url: string;
   name: LocalizedString;
-  price?: string | number;
+  image?: string;
+  priceOriginal?: string | number;
+  priceDiscounted?: string | number;
   description?: LocalizedString;
 }
 
@@ -153,4 +155,10 @@ export interface ProductsQueryParams {
     order: 'asc' | 'desc';
   };
   filters?: Filters;
+}
+
+export interface PriceProps {
+  priceOriginal?: string | number;
+  priceDiscounted?: string | number;
+  additionalClassName?: string;
 }
