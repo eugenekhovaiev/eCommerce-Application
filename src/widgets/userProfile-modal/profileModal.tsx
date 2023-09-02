@@ -43,8 +43,12 @@ const ProfileModal = (): JSX.Element => {
   const [customerData] = useState<Customer | null>(null);
   const [registerError] = useState(false);
   const [sameAsShipping, setSameAsShipping] = useState(false);
-  const [defaultShipping, setDefaulShipping] = useState(false);
-  const [defaultBilling, setDefaultBilling] = useState(false);
+  const [defaultShipping, setDefaulShipping] = useState(
+    userData?.defaultShippingAddressId ? !!userData?.defaultShippingAddressId : false,
+  );
+  const [defaultBilling, setDefaultBilling] = useState(
+    userData?.defaultBillingAddressId ? !!userData?.defaultBillingAddressId : false,
+  );
 
   const handleCheckboxClick = (): void => {
     setSameAsShipping(!sameAsShipping);
@@ -65,42 +69,6 @@ const ProfileModal = (): JSX.Element => {
         <Modal open={modalIsOpen} onClose={closeModal} className="modal">
           <div className="modal__content">
             <Typography variant="h5">Edit Profile</Typography>
-            {/* <NameInput
-              variant="outlined"
-              className="form__input form__input_name"
-              isFirstName={true}
-              control={control}
-              errors={errors}
-              defaultValue={userData?.firstName}
-            />
-            <NameInput
-              variant="outlined"
-              className="form__input form__input_name"
-              isFirstName={false}
-              control={control}
-              errors={errors}
-              defaultValue={userData?.lastName}
-            />
-            <EmailInput
-              variant="outlined"
-              className="form__input form__input_email"
-              control={control}
-              errors={errors}
-              defaultValue={userData?.email}
-            />
-            <PasswordInput
-              className="form__input form__input_password"
-              variant="outlined"
-              control={control}
-              errors={errors}
-              label="Enter new password"
-            /> */}
-            {/* <DateOfBirthInput
-              className="form__input form__input_dob"
-              control={control}
-              errors={errors}
-              value={userData?.dateOfBirth}
-            /> */}
             <RegistrationUserInfo
               control={control}
               errors={errors}
