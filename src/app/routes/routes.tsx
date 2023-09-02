@@ -8,6 +8,7 @@ import Catalog from '../../pages/catalog/Catalog';
 import Profile from '../../pages/profile/Profile';
 import Cart from '../../pages/cart/Cart';
 import About from '../../pages/about/About';
+import Product from '../../pages/product/Product';
 
 import { useLoggedInContext } from '../../shared/lib/contexts/LoggedInContext';
 
@@ -24,6 +25,7 @@ export const useRoutes = (): JSX.Element => {
       <Route path="/profile" element={<Profile />} />
       <Route path="/cart" element={<Cart />} />
       <Route path="/about" element={<About />} />
+      <Route path="/product" element={<Product />} />
     </Routes>
   );
 };
