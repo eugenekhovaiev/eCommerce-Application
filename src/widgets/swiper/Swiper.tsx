@@ -6,8 +6,6 @@ import 'swiper/scss/free-mode';
 import 'swiper/scss/navigation';
 import 'swiper/scss/thumbs';
 
-import '../../app/sass/components/_swiper.scss';
-
 import { FreeMode, Navigation, Thumbs } from 'swiper/modules';
 
 const SwiperElement = (): JSX.Element => {
@@ -15,6 +13,7 @@ const SwiperElement = (): JSX.Element => {
 
   return (
     <>
+      {/* <div className="swiper-wrapper"> */}
       <Swiper
         spaceBetween={10}
         navigation={true}
@@ -93,6 +92,7 @@ const SwiperElement = (): JSX.Element => {
           <img src="https://swiperjs.com/demos/images/nature-10.jpg" />
         </SwiperSlide>
       </Swiper>
+      {/* </div> */}
     </>
   );
 };

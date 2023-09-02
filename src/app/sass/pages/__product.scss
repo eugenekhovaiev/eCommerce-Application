@@ -1,0 +1,28 @@
+.product {
+
+    &__page-title {
+        font-weight: bold;
+        text-align: center;
+    }
+
+    &__description {
+        width: 35vw;
+        position: absolute;
+        top: 20vh;
+        right: 10vw;
+        padding-top: 1rem;
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+    }
+
+    &__title {
+        font-weight: bold !important;
+    }
+
+    &__price-promotion {
+        color: red;
+        font-weight: bold !important;
+    }
+
+}
