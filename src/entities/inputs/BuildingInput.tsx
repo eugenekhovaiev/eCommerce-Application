@@ -22,6 +22,7 @@ const BuildingInput = (props: RegistrationAddressProps): JSX.Element => {
       control={props.control}
       name={props.isShipping ? 'buildingShipping' : 'buildingBilling'}
       rules={buildingValidation}
+      defaultValue={props.defaultValue}
       render={({ field }): JSX.Element => (
         <TextFieldElement
           label="Building"

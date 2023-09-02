@@ -23,6 +23,7 @@ const DateOfBirthInput = (props: InputProps): JSX.Element => {
       control={props.control}
       name="dateOfBirth"
       rules={dateOfBirthValidtion}
+      // defaultValue={props.defaultValue}
       render={({ field }): JSX.Element => (
         <DateFieldElement
           value={field.value || ''}

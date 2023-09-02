@@ -23,6 +23,7 @@ const EmailInput: React.FC<InputProps> = (props): JSX.Element => {
       control={props.control}
       name="email"
       rules={emailValidation}
+      defaultValue={props.defaultValue}
       render={({ field }): JSX.Element => (
         <TextFieldElement
           label="Email"

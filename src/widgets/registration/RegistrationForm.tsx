@@ -104,12 +104,12 @@ const RegistrationForm = (): JSX.Element => {
           </div>
         </div>
         {customerData && (
-          <Alert severity="success" className="registration__success-message">
+          <Alert severity="success" className="form__success-message">
             Welcome, {customerData.firstName}!
           </Alert>
         )}
         {registerError && (
-          <Alert severity="error" className="registration__error-message">
+          <Alert severity="error" className="form__error-message">
             User with such email already exists. Try to log in.
           </Alert>
         )}

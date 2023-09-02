@@ -4,7 +4,7 @@ import { TextFieldVariants } from '@mui/material';
 import { SelectChangeEvent } from '@mui/material';
 import { FieldChangeHandler } from '@mui/x-date-pickers/internals';
 import { DateValidationError } from '@mui/x-date-pickers';
-import { Customer } from '@commercetools/platform-sdk';
+import { Customer, CustomerUpdate } from '@commercetools/platform-sdk';
 
 export interface LinkProps {
   to?: string;
@@ -142,4 +142,8 @@ export interface CountryContext {
   setSelectedShippingCountry: (country: string) => void;
   selectedBillingCountry: string;
   setSelectedBillingCountry: (country: string) => void;
+}
+
+export interface CustomerUpdateWithId extends CustomerUpdate {
+  id: string;
 }

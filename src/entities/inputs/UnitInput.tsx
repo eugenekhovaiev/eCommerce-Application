@@ -22,6 +22,7 @@ const UnitInput = (props: RegistrationAddressProps): JSX.Element => {
       control={props.control}
       name={props.isShipping ? 'unitShipping' : 'unitBilling'}
       rules={unitValidation}
+      defaultValue={props.defaultValue}
       render={({ field }): JSX.Element => (
         <TextFieldElement
           label="Unit"

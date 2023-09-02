@@ -22,6 +22,7 @@ const CityInput = (props: RegistrationAddressProps): JSX.Element => {
       control={props.control}
       name={props.isShipping ? 'cityShipping' : 'cityBilling'}
       rules={cityValidation}
+      defaultValue={props.defaultValue}
       render={({ field }): JSX.Element => (
         <TextFieldElement
           label="City"

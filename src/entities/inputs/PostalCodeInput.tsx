@@ -43,6 +43,7 @@ const PostalCodeInput = (props: RegistrationAddressProps): JSX.Element => {
           return postCodeValidation(value, selectedCountry);
         },
       }}
+      defaultValue={props.value}
       render={({ field }): JSX.Element => (
         <TextFieldElement
           label="Postal/Zip code"

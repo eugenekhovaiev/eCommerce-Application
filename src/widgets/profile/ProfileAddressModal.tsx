@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useForm, useFormState } from 'react-hook-form';
+import { useForm, useFormState, SubmitHandler } from 'react-hook-form';
 import { Modal, Typography, Button } from '@mui/material';
 import { Form } from '../../shared/types';
 import RegistrationUserInfo from '../../entities/registration/RegistrationUserInfo';
@@ -9,19 +9,20 @@ import { Address, Customer } from '@commercetools/platform-sdk';
 import { Alert } from '@mui/material';
 import { CountryProvider } from '../../shared/lib/contexts/СountryContext';
 import { useUserDataContext } from '../../shared/lib/contexts/UserDataContext';
+import ButtonElement from '../../shared/UI/buttonElement/ButtonElement';
+import getNewCustomerData from '../../shared/lib/helpers/getNewCustomerData';
 // import NameInput from '../../entities/inputs/NameInput';
 // import EmailInput from '../../entities/inputs/EmailInput';
-// import PasswordInput from '../../entities/inputs/PasswordInput';
 // import DateOfBirthInput from '../../entities/inputs/DateOfBirthInput';
 
-const ProfileModal = (): JSX.Element => {
-  const { userData } = useUserDataContext();
+const ProfileDataModal = (): JSX.Element => {
+  const { userData, updateUserData } = useUserDataContext();
+
   const shippingAddress: Address | undefined = userData?.addresses[0];
   const billingAddress: Address | undefined =
     userData?.addresses.length === 1 ? shippingAddress : userData?.addresses[1];
-  // console.log(userData);
 
-  const { control } = useForm<Form>();
+  const { handleSubmit, control } = useForm<Form>();
   const { errors } = useFormState({
     control,
   });
@@ -36,9 +37,9 @@ const ProfileModal = (): JSX.Element => {
     setModalIsOpen(false);
   };
 
-  const saveProfile = (): void => {
-    closeModal();
-  };
+  // const saveProfile = (): void => {
+  //   closeModal();
+  // };
 
   const [customerData] = useState<Customer | null>(null);
   const [registerError] = useState(false);
@@ -60,6 +61,14 @@ const ProfileModal = (): JSX.Element => {
     setDefaultBilling(!defaultBilling);
   };
 
+  const onSubmit: SubmitHandler<Form> = async (data) => {
+    console.log(data);
+    const newCustomerData = getNewCustomerData(data, sameAsShipping, defaultShipping, defaultBilling);
+    console.log(newCustomerData);
+    updateUserData(userData);
+    // closeModal();
+  };
+
   return (
     <div>
       <CountryProvider>
@@ -67,7 +76,7 @@ const ProfileModal = (): JSX.Element => {
           Edit Profile
         </Button>
         <Modal open={modalIsOpen} onClose={closeModal} className="modal">
-          <div className="modal__content">
+          <form className="modal__content modal__form form" onSubmit={handleSubmit(onSubmit)}>
             <Typography variant="h5">Edit Profile</Typography>
             <RegistrationUserInfo
               control={control}
@@ -136,7 +145,7 @@ const ProfileModal = (): JSX.Element => {
             </div>
             {customerData && (
               <Alert severity="success" className="registration__success-message">
-                Welcome, {customerData.firstName}!
+                Your data has been successfully saved!
               </Alert>
             )}
             {registerError && (
@@ -144,19 +153,20 @@ const ProfileModal = (): JSX.Element => {
                 User with such email already exists. Try to log in.
               </Alert>
             )}
-            <div className="modal__buttons">
+            <ButtonElement type="submit" title="Save" additionalClassName="form__submit" />
+            {/* <div className="modal__buttons">
               <Button variant="contained" onClick={saveProfile} className="modal__button">
                 Save
               </Button>
               <Button variant="contained" onClick={closeModal} className="modal__button">
                 Close
               </Button>
-            </div>
-          </div>
+            </div> */}
+          </form>
         </Modal>
       </CountryProvider>
     </div>
   );
 };
 
-export default ProfileModal;
+export default ProfileDataModal;

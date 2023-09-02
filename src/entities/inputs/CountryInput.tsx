@@ -37,16 +37,17 @@ const CountryInput = (props: RegistrationAddressProps): JSX.Element => {
       control={props.control}
       name={props.isShipping ? 'countryShipping' : 'countryBilling'}
       rules={countryValidation}
+      defaultValue={props.defaultValue}
       render={({ field }): JSX.Element => (
         <SelectElement
           label={'Country'}
           selectItems={COUNTRY_CODE}
           additionalClassName={props.className}
-          defaultValue={props.defaultValue}
           onChange={(e): void => {
             field.onChange(e);
             handleValueChange(e);
           }}
+          defaultValue={props.defaultValue}
           error={!!props.errors.countryBilling?.message || !isValid}
           helperText={!isValid ? message : props.errors.countryBilling?.message}
         />

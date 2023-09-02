@@ -21,6 +21,7 @@ const StreetInput = (props: RegistrationAddressProps): JSX.Element => {
       control={props.control}
       name={props.isShipping ? 'streetShipping' : 'streetBilling'}
       rules={streetValidation}
+      defaultValue={props.defaultValue}
       render={({ field }): JSX.Element => (
         <TextFieldElement
           label="Street"

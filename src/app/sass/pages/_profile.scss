@@ -15,11 +15,15 @@
   &__card-content {
     width: 35vw;
   }
+}
 
-  &__row {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+.row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  &__subtitle {
+    text-align: right;
   }
 }
 

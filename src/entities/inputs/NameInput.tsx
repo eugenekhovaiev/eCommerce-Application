@@ -22,6 +22,7 @@ const NameInput = (props: RegistrationUserInfoProps): JSX.Element => {
       control={props.control}
       name={props.isFirstName ? 'firstName' : 'lastName'}
       rules={nameValidation}
+      defaultValue={props.defaultValue}
       render={({ field }): JSX.Element => (
         <TextFieldElement
           label={props.isFirstName ? 'First Name' : 'Last Name'}

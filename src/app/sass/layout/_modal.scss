@@ -4,20 +4,20 @@
   justify-content: center;
 
   &__content {
+    margin: 0 auto;
+    padding: 1rem;
+
     width: 75vw;
     height: 85vh;
-    margin: 0 auto;
-    background-color: $color-primary-s;
+
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
     gap: 1rem;
-    padding: 1rem;
-    overflow: auto;
-  }
 
-  &__content-description {
-    text-align: left;
-    font-weight: bold;
+    overflow: auto;
+    background-color: $color-primary-s;
   }
 
   &__buttons {

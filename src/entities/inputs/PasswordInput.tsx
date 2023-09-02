@@ -37,6 +37,7 @@ const PasswordInput: React.FC<InputProps> = (props) => {
       control={props.control}
       name="password"
       rules={passwordValidation}
+      defaultValue={props.defaultValue}
       render={({ field }): JSX.Element => (
         <TextFieldElement
           label={props.label || 'Password'}
@@ -47,6 +48,7 @@ const PasswordInput: React.FC<InputProps> = (props) => {
             field.onChange(e);
             handleValueChange(e);
           }}
+          defaultValue={props.defaultValue}
           error={!!props.errors.password?.message || !isValid}
           helperText={!isValid ? message : props.errors.password?.message}
           endAdornment={
