@@ -1,25 +1,21 @@
-import React, { useRef, useState } from 'react';
+import { useState } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
-import 'swiper/css';
-import 'swiper/css/free-mode';
-import 'swiper/css/navigation';
-import 'swiper/css/thumbs';
+import 'swiper/scss';
+import 'swiper/scss/free-mode';
+import 'swiper/scss/navigation';
+import 'swiper/scss/thumbs';
 
-import './styles.css';
+import '../../app/sass/components/_swiper.scss';
 
 import { FreeMode, Navigation, Thumbs } from 'swiper/modules';
 
 const SwiperElement = (): JSX.Element => {
-  const [thumbsSwiper, setThumbsSwiper] = useState(null);
+  const [thumbsSwiper] = useState(null);
 
   return (
     <>
       <Swiper
-        style={{
-          '--swiper-navigation-color': '#fff',
-          '--swiper-pagination-color': '#fff',
-        }}
         spaceBetween={10}
         navigation={true}
         thumbs={{ swiper: thumbsSwiper }}
@@ -58,7 +54,7 @@ const SwiperElement = (): JSX.Element => {
         </SwiperSlide>
       </Swiper>
       <Swiper
-        onSwiper={setThumbsSwiper}
+        // onSwiper={setThumbsSwiper}
         spaceBetween={10}
         slidesPerView={4}
         freeMode={true}
@@ -99,6 +95,6 @@ const SwiperElement = (): JSX.Element => {
       </Swiper>
     </>
   );
-}
+};
 
 export default SwiperElement;

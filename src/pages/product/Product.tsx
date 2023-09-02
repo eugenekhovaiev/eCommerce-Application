@@ -1,4 +1,5 @@
 import { Typography } from '@mui/material';
+import SwiperElement from '../../widgets/swiper/Swiper';
 
 const Product = (): JSX.Element => {
   return (
@@ -7,6 +8,8 @@ const Product = (): JSX.Element => {
         <Typography variant="h3" gutterBottom className="product__title">
           Product
         </Typography>
+        <SwiperElement />
+        
       </div>
     </section>
   );
