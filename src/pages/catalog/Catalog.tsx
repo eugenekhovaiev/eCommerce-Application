@@ -43,6 +43,7 @@ const Catalog = (): JSX.Element => {
   const handleMouseLeave = (category: Category): void => {
     setVisibleCategory(category);
   };
+
   // const handleClick = async (): Promise<void> => {
   //   try {
   //     const productsObj = await getProducts({
@@ -116,17 +117,20 @@ const Catalog = (): JSX.Element => {
           <div className="catalog-products__products">
             {productsArr.map((product, index) => {
               const productImages = product.masterVariant.images;
-              const productPreviewUrl =
-                productImages && productImages[0] ? productImages[0].url : 'src/shared/assets/image-placeholder.svg';
+              const productPreviewUrl = productImages && productImages[0] && productImages[0].url;
 
               const productPrices = product.masterVariant.prices;
-              const productPrice =
-                productPrices && productPrices[0] ? productPrices[0].value.centAmount : 'Price is missing';
+              const productOriginalPrice = productPrices && productPrices[0] && productPrices[0].value.centAmount;
+              const productDiscountedPrice =
+                productPrices && productPrices[0] && productPrices[0].discounted?.value.centAmount;
+
               return (
                 <ProductCard
+                  url={product.slug['en-US']}
                   image={productPreviewUrl}
                   name={product.name}
-                  price={productPrice}
+                  priceOriginal={productOriginalPrice}
+                  priceDiscounted={productDiscountedPrice}
                   description={product.description}
                   key={index}
                 />

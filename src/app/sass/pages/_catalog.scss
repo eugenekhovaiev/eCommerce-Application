@@ -1,3 +1,10 @@
+.cards {
+  display: flex;
+  flex-wrap: wrap;
+
+  gap: 2rem;
+}
+
 .catalog .start-screen__wrapper {
   min-height: auto;
   background-color: $color-primary-xs;
