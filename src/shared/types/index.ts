@@ -13,6 +13,8 @@ export interface LinkProps {
   additionalClassName?: string;
   children?: JSX.Element;
   onClick?: React.MouseEventHandler<HTMLAnchorElement>;
+  onMouseEnter?: React.MouseEventHandler<HTMLAnchorElement>;
+  onMouseLeave?: React.MouseEventHandler<HTMLAnchorElement>;
 }
 
 export interface ImgProps {
