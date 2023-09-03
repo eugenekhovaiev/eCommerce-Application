@@ -2,13 +2,13 @@ import { useState } from 'react';
 import { useForm, useFormState, SubmitHandler } from 'react-hook-form';
 import { Modal, Typography, Button } from '@mui/material';
 import { CustomerUpdateWithId, Form } from '../../shared/types';
-// import { Customer } from '@commercetools/platform-sdk';
 import { Alert } from '@mui/material';
 import { useUserDataContext } from '../../shared/lib/contexts/UserDataContext';
 import ButtonElement from '../../shared/UI/buttonElement/ButtonElement';
 import NameInput from '../../entities/inputs/NameInput';
 import EmailInput from '../../entities/inputs/EmailInput';
 import DateOfBirthInput from '../../entities/inputs/DateOfBirthInput';
+import formatDate from '../../shared/lib/helpers/formatDate';
 import updateCustomer from '../../shared/api/user/updateCustomer';
 
 const ProfileDataModal = (): JSX.Element => {
@@ -41,10 +41,10 @@ const ProfileDataModal = (): JSX.Element => {
           { action: 'setFirstName', firstName: dataToUpdate.firstName },
           { action: 'setLastName', lastName: dataToUpdate.lastName },
           { action: 'changeEmail', email: dataToUpdate.email },
-          // { action: 'setDateOfBirth', dateOfBirth: dataToUpdate.dateOfBirth },
-          { action: 'setDateOfBirth', dateOfBirth: '2001-01-13' },
+          { action: 'setDateOfBirth', dateOfBirth: formatDate(dataToUpdate.dateOfBirth, 'YYYY-MM-DD') },
         ],
       };
+      // console.log(updateQuery);
       const updatedCustomerData = (await updateCustomer(updateQuery)).body;
       updateUserData(updatedCustomerData);
       localStorage.setItem('currentUser', JSON.stringify(updatedCustomerData));
@@ -63,6 +63,7 @@ const ProfileDataModal = (): JSX.Element => {
       setSuccessfullySaved(true);
       setTimeout(() => {
         closeModal();
+        setSuccessfullySaved(false);
       }, 1500);
     } catch {
       setSuccessfullySaved(false);
@@ -106,7 +107,7 @@ const ProfileDataModal = (): JSX.Element => {
               className="form__input form__input_dob"
               control={control}
               errors={errors}
-              // defaultValue={props.defaultValues?.defaultDateOfBirth}
+              // defaultValue={userData?.dateOfBirth}
             />
             {successfullySaved && (
               <Alert severity="success" className="form__success-message">
