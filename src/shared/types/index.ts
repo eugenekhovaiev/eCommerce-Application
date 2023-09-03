@@ -5,6 +5,7 @@ import { SelectChangeEvent } from '@mui/material';
 import { FieldChangeHandler } from '@mui/x-date-pickers/internals';
 import { DateValidationError } from '@mui/x-date-pickers';
 import { Customer, CustomerUpdate } from '@commercetools/platform-sdk';
+import { Dayjs } from 'dayjs';
 
 export interface LinkProps {
   to?: string;
@@ -105,9 +106,10 @@ export interface TextFieldProps {
 export interface DateFieldProps {
   additionalClassName?: string;
   value?: string;
+  defaultValue?: string;
   error?: boolean;
   helperText?: string;
-  onChange?: FieldChangeHandler<string | null, DateValidationError>;
+  onChange?: FieldChangeHandler<Dayjs | string | null, DateValidationError>;
 }
 
 export interface SelectProps {

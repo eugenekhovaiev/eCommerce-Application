@@ -11,7 +11,7 @@ import DateOfBirthInput from '../../entities/inputs/DateOfBirthInput';
 import formatDate from '../../shared/lib/helpers/formatDate';
 import updateCustomer from '../../shared/api/user/updateCustomer';
 
-const ProfileDataModal = (): JSX.Element => {
+const DataEditModal = (): JSX.Element => {
   const { userData, updateUserData } = useUserDataContext();
 
   const { handleSubmit, control } = useForm<Form>();
@@ -44,7 +44,6 @@ const ProfileDataModal = (): JSX.Element => {
           { action: 'setDateOfBirth', dateOfBirth: formatDate(dataToUpdate.dateOfBirth, 'YYYY-MM-DD') },
         ],
       };
-      // console.log(updateQuery);
       const updatedCustomerData = (await updateCustomer(updateQuery)).body;
       updateUserData(updatedCustomerData);
       localStorage.setItem('currentUser', JSON.stringify(updatedCustomerData));
@@ -66,6 +65,7 @@ const ProfileDataModal = (): JSX.Element => {
         setSuccessfullySaved(false);
       }, 1500);
     } catch {
+      // console.log(error);
       setSuccessfullySaved(false);
       setRequestError(true);
     }
@@ -107,7 +107,7 @@ const ProfileDataModal = (): JSX.Element => {
               className="form__input form__input_dob"
               control={control}
               errors={errors}
-              // defaultValue={userData?.dateOfBirth}
+              defaultValue={userData?.dateOfBirth}
             />
             {successfullySaved && (
               <Alert severity="success" className="form__success-message">
@@ -127,4 +127,4 @@ const ProfileDataModal = (): JSX.Element => {
   );
 };
 
-export default ProfileDataModal;
+export default DataEditModal;

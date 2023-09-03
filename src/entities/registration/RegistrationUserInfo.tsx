@@ -36,13 +36,12 @@ const RegistrationUserInfo = (props: RegistrationUserInfoProps): JSX.Element => 
         control={props.control}
         errors={props.errors}
         label={props.defaultValues?.passwordLabel}
-        defaultValue="testPassword1-"
       />
       <DateOfBirthInput
         className="form__input form__input_dob"
         control={props.control}
         errors={props.errors}
-        // defaultValue={props.defaultValues?.defaultDateOfBirth}
+        defaultValue={props.defaultValues?.defaultDateOfBirth}
       />
     </div>
   );

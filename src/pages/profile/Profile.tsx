@@ -2,7 +2,7 @@
 import { Card, CardContent, Typography, Avatar } from '@mui/material';
 import { AccountCircle } from '@mui/icons-material';
 import ProfileRow from '../../entities/profileRow/ProfileRow';
-import ProfileDataModal from '../../widgets/profile/ProfileDataModal';
+import DataEditModal from '../../widgets/profile/DataEditModal';
 import { useUserDataContext } from '../../shared/lib/contexts/UserDataContext';
 import getAddressString from '../../shared/lib/helpers/getAddressString';
 import formatDate from '../../shared/lib/helpers/formatDate';
@@ -45,7 +45,7 @@ const Profile = (): JSX.Element => {
               />
             )}
             {userData?.defaultBillingAddressId && <p>(default)</p>}
-            <ProfileDataModal />
+            <DataEditModal />
           </CardContent>
         </Card>
       </div>
