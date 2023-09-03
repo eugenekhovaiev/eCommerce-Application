@@ -6,6 +6,7 @@ import getProducts from '../../shared/api/user/getProducts';
 import buildCategoryTree from '../../shared/lib/helpers/buildCategoryTree';
 import Category from '../../shared/types/Category';
 import { ProductProjection } from '@commercetools/platform-sdk';
+import { useFilterContext } from '../../shared/lib/contexts/FilterContext';
 
 const Catalog = (): JSX.Element => {
   const [mainCategories, setMainCategories] = useState<Category[]>([]);
@@ -13,12 +14,15 @@ const Catalog = (): JSX.Element => {
   const [visibleCategory, setVisibleCategory] = useState<Category>();
   const [isSubCategories, setIsSubCategories] = useState(false);
   const [productsArr, setProductsArr] = useState<ProductProjection[] | []>([]);
+  const [categoryId, setCategoryId] = useState('');
+  const { updateIsCategoryUpdated } = useFilterContext();
 
   const handleShowPageClick = async (): Promise<void> => {
     try {
       const mainCategories = await buildCategoryTree();
       const productsObj = await getProducts();
       console.log(mainCategories);
+      console.log(productsObj.body.results);
       setIsFilter(true);
       setMainCategories(mainCategories);
       setProductsArr(productsObj.body.results);
@@ -32,6 +36,8 @@ const Catalog = (): JSX.Element => {
         filters: { categoriesIds: id },
       });
       setProductsArr(productsObj.body.results);
+      setCategoryId(id);
+      updateIsCategoryUpdated(true);
     } catch (error) {
       console.log(error);
     }
@@ -113,7 +119,15 @@ const Catalog = (): JSX.Element => {
           )}
         </div>
         <div className="container catalog-products__content">
-          <div className="catalog-products__filter">{isFilter && <FilterForm />}</div>
+          <div className="catalog-products__filter">
+            {isFilter && (
+              <FilterForm
+                setProducts={setProductsArr}
+                categoriesIds={categoryId}
+                // isCategoryUpdates={isCategoryUpdated}
+              />
+            )}
+          </div>
           <div className="catalog-products__products">
             {productsArr.map((product, index) => {
               const productImages = product.masterVariant.images;

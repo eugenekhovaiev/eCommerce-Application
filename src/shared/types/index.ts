@@ -5,6 +5,9 @@ import { SelectChangeEvent } from '@mui/material';
 import { FieldChangeHandler } from '@mui/x-date-pickers/internals';
 import { DateValidationError } from '@mui/x-date-pickers';
 import { LocalizedString } from '@commercetools/platform-sdk';
+// import FilterForm from '../../widgets/filter/FilterForm';
+import { ProductProjection } from '@commercetools/platform-sdk';
+
 
 export interface LinkProps {
   to?: string;
@@ -187,6 +190,11 @@ export interface CountryContext {
   setSelectedBillingCountry: (country: string) => void;
 }
 
+export interface FilterContext {
+  isCategoryUpdated: boolean;
+  updateIsCategoryUpdated: (isCategoryUpdated: boolean) => void;
+}
+
 export interface ProductCardProps {
   url: string;
   name: LocalizedString;
@@ -196,7 +204,7 @@ export interface ProductCardProps {
   description?: LocalizedString;
 }
 
-interface FilterAttribute {
+export interface FilterAttribute {
   enumName: string;
   value: string;
 }
@@ -209,6 +217,12 @@ export interface Filters {
   };
   attributes?: FilterAttribute[];
   searchKeywords?: string;
+}
+
+export interface FilterFormProps {
+  setProducts: React.Dispatch<React.SetStateAction<[] | ProductProjection[]>>;
+  // isCategoryUpdated: boolean;
+  categoriesIds?: string;
 }
 
 export interface ProductsQueryParams {
