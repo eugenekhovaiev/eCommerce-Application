@@ -11,7 +11,7 @@ const ProfileRow: React.FC<ProfileSectionProps> = ({ title, content }) => (
       {title}
     </Typography>
     <Typography className="row__subtitle" variant="body1" gutterBottom>
-      {content.split('-').reverse().join('-')}
+      {content}
     </Typography>
   </div>
 );

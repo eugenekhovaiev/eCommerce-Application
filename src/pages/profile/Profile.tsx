@@ -5,6 +5,7 @@ import ProfileRow from '../../entities/profileRow/ProfileRow';
 import ProfileDataModal from '../../widgets/profile/ProfileDataModal';
 import { useUserDataContext } from '../../shared/lib/contexts/UserDataContext';
 import getAddressString from '../../shared/lib/helpers/getAddressString';
+import formatDate from '../../shared/lib/helpers/formatDate';
 
 const Profile = (): JSX.Element => {
   const { userData } = useUserDataContext();
@@ -22,7 +23,9 @@ const Profile = (): JSX.Element => {
           <CardContent className="profile__card-content">
             {userData && <ProfileRow title="Full name" content={userData.firstName + ' ' + userData.lastName} />}
             <hr />
-            {userData?.dateOfBirth && <ProfileRow title="Date of birth" content={userData.dateOfBirth} />}
+            {userData?.dateOfBirth && (
+              <ProfileRow title="Date of birth" content={formatDate(userData.dateOfBirth, 'DD-MM-YYYY')} />
+            )}
             <hr />
             {userData && <ProfileRow title="Email" content={userData.email} />}
             <hr />
