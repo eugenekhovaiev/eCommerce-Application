@@ -8,7 +8,6 @@ import { LocalizedString } from '@commercetools/platform-sdk';
 // import FilterForm from '../../widgets/filter/FilterForm';
 import { ProductProjection } from '@commercetools/platform-sdk';
 
-
 export interface LinkProps {
   to?: string;
   target?: string;
