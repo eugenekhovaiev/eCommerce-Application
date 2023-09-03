@@ -32,10 +32,12 @@ const CountryInput = (props: RegistrationAddressProps): JSX.Element => {
     setSelectedCountry(value);
   };
 
+  const name = props.default ? 'country' : props.isShipping ? 'countryShipping' : 'countryBilling';
+
   return (
     <Controller
       control={props.control}
-      name={props.isShipping ? 'countryShipping' : 'countryBilling'}
+      name={name}
       rules={countryValidation}
       defaultValue={props.defaultValue}
       render={({ field }): JSX.Element => (

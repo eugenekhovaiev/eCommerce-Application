@@ -17,10 +17,12 @@ const CityInput = (props: RegistrationAddressProps): JSX.Element => {
     setMessage(messageValue);
   };
 
+  const name = props.default ? 'city' : props.isShipping ? 'cityShipping' : 'cityBilling';
+
   return (
     <Controller
       control={props.control}
-      name={props.isShipping ? 'cityShipping' : 'cityBilling'}
+      name={name}
       rules={cityValidation}
       defaultValue={props.defaultValue}
       render={({ field }): JSX.Element => (

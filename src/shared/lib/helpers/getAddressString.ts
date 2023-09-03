@@ -1,7 +1,7 @@
-import { BaseAddress } from '@commercetools/platform-sdk';
+import { Address } from '@commercetools/platform-sdk';
 import COUNTRY_CODE from '../../consts/COUNTRY_CODE';
 
-function getAddressString(addressObj: BaseAddress): string {
+function getAddressString(addressObj: Address): string {
   const { country, city, streetName, building, apartment, postalCode } = addressObj;
   return `${COUNTRY_CODE[country]}${city ? `, ${city}` : ''}${streetName ? `, ${streetName}` : ''}${
     building ? ` ${building}` : ''

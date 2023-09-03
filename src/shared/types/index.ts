@@ -38,16 +38,22 @@ export interface Form {
   firstName: string;
   lastName: string;
   dateOfBirth: string;
+  street: string;
   streetShipping: string;
   streetBilling: string;
+  building: string;
   buildingShipping: string;
   buildingBilling: string;
+  unit: string;
   unitShipping: string;
   unitBilling: string;
+  city: string;
   cityShipping: string;
   cityBilling: string;
+  postalCode: string;
   postalCodeShipping: string;
   postalCodeBilling: string;
+  country: string;
   countryShipping: string;
   countryBilling: string;
   defaultAddress: boolean;
@@ -76,6 +82,7 @@ export interface PasswordInputProps extends InputProps {
 
 export interface RegistrationAddressProps extends InputProps {
   isShipping?: boolean;
+  default?: boolean;
   defaultValues?: {
     defaultStreet?: string;
     defaultBuilding?: string;

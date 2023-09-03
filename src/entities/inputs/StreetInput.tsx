@@ -16,10 +16,13 @@ const StreetInput = (props: RegistrationAddressProps): JSX.Element => {
     setIsValid(isValidValue);
     setMessage(messageValue);
   };
+
+  const name = props.default ? 'street' : props.isShipping ? 'streetShipping' : 'streetBilling';
+
   return (
     <Controller
       control={props.control}
-      name={props.isShipping ? 'streetShipping' : 'streetBilling'}
+      name={name}
       rules={streetValidation}
       defaultValue={props.defaultValue}
       render={({ field }): JSX.Element => (

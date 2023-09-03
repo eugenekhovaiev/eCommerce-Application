@@ -17,10 +17,12 @@ const UnitInput = (props: RegistrationAddressProps): JSX.Element => {
     setMessage(messageValue);
   };
 
+  const name = props.default ? 'unit' : props.isShipping ? 'unitShipping' : 'unitBilling';
+
   return (
     <Controller
       control={props.control}
-      name={props.isShipping ? 'unitShipping' : 'unitBilling'}
+      name={name}
       rules={unitValidation}
       defaultValue={props.defaultValue}
       render={({ field }): JSX.Element => (

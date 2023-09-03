@@ -33,10 +33,12 @@ const PostalCodeInput = (props: RegistrationAddressProps): JSX.Element => {
     setMessage(messageValue);
   };
 
+  const name = props.default ? 'postalCode' : props.isShipping ? 'postalCodeShipping' : 'postalCodeBilling';
+
   return (
     <Controller
       control={props.control}
-      name={props.isShipping ? 'postalCodeShipping' : 'postalCodeBilling'}
+      name={name}
       rules={{
         required: 'Required',
         validate: (value: string): string | boolean => {

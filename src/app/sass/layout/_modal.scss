@@ -28,4 +28,10 @@
   &__button {
     width: 8rem;
   }
+
+  &_add-address {
+    .modal__form {
+      width: 90%;
+    }
+  }
 }
