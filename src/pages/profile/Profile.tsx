@@ -6,6 +6,7 @@ import DataEditModal from '../../widgets/profile/DataEditModal';
 import { useUserDataContext } from '../../shared/lib/contexts/UserDataContext';
 import getAddressString from '../../shared/lib/helpers/getAddressString';
 import formatDate from '../../shared/lib/helpers/formatDate';
+import PasswordEditModal from '../../widgets/profile/PasswordEditModal';
 
 const Profile = (): JSX.Element => {
   const { userData } = useUserDataContext();
@@ -46,6 +47,7 @@ const Profile = (): JSX.Element => {
             )}
             {userData?.defaultBillingAddressId && <p>(default)</p>}
             <DataEditModal />
+            <PasswordEditModal />
           </CardContent>
         </Card>
       </div>

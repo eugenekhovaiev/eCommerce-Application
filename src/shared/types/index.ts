@@ -32,6 +32,9 @@ export interface LogoProps {
 export interface Form {
   email: string;
   password: string;
+  currentPassword: string;
+  newPassword: string;
+  confirmPassword: string;
   firstName: string;
   lastName: string;
   dateOfBirth: string;
@@ -65,6 +68,10 @@ export interface InputProps {
   label?: string;
   defaultValue?: string;
   value?: string;
+}
+
+export interface PasswordInputProps extends InputProps {
+  name?: 'currentPassword' | 'newPassword' | 'confirmPassword';
 }
 
 export interface RegistrationAddressProps extends InputProps {
