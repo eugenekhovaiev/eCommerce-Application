@@ -84,6 +84,40 @@ const AddressEditModal = (props: { address: Address }): JSX.Element => {
     }
   };
 
+  const [successfullyDeleted, setSuccessfullyDeleted] = useState(false);
+
+  const handleDeleteClick = async (): Promise<void> => {
+    try {
+      if (userData) {
+        const deleteQuery: CustomerUpdateWithId = {
+          id: userData?.id,
+          version: userData?.version,
+          actions: [
+            {
+              action: 'removeAddress',
+              addressId: props.address.id,
+            },
+          ],
+        };
+        const updatedCustomerData = (await updateCustomer(deleteQuery)).body;
+        localStorage.setItem('currentUser', JSON.stringify(updatedCustomerData));
+        setRequestError(false);
+        setSuccessfullyDeleted(true);
+        setTimeout(() => {
+          closeModal();
+          updateUserData(updatedCustomerData);
+          setSuccessfullyDeleted(false);
+        }, 1500);
+      } else {
+        throw new Error('User data is missing!');
+      }
+    } catch (error) {
+      console.log(error);
+      setSuccessfullyDeleted(false);
+      setRequestError(true);
+    }
+  };
+
   return (
     <div className="address-row__wrapper">
       <CountryProvider>
@@ -109,7 +143,12 @@ const AddressEditModal = (props: { address: Address }): JSX.Element => {
               />
               {successfullySaved && (
                 <Alert severity="success" className="form__success-message">
-                  Your address has been successfully saved!
+                  Address has been successfully saved!
+                </Alert>
+              )}
+              {successfullyDeleted && (
+                <Alert severity="success" className="form__success-message">
+                  Address has been successfully deleted!
                 </Alert>
               )}
               {requestError && (
@@ -117,7 +156,15 @@ const AddressEditModal = (props: { address: Address }): JSX.Element => {
                   You already have this address!
                 </Alert>
               )}
-              <ButtonElement type="submit" title="Save" additionalClassName="form__submit" />
+              <div className="modal__buttons">
+                <ButtonElement type="submit" title="Save" additionalClassName="form__submit" />
+                <ButtonElement
+                  type="button"
+                  title="Delete address"
+                  additionalClassName="form__delete"
+                  onClick={handleDeleteClick}
+                />
+              </div>
             </form>
           </div>
         </Modal>

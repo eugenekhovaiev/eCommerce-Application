@@ -85,7 +85,6 @@ const AddressRow = (props: { id: string }): JSX.Element => {
           onClick={handleDefaultBillingClick}
         />
       </div>
-      {/* <hr /> */}
     </div>
   );
 };

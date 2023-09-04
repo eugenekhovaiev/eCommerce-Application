@@ -13,7 +13,6 @@ import { BaseAddress } from '@commercetools/platform-sdk';
 
 const AddressAddModal = (): JSX.Element => {
   const { userData, updateUserData } = useUserDataContext();
-  // const { userData } = useUserDataContext();
 
   const { handleSubmit, control } = useForm<Form>();
   const { errors } = useFormState({
@@ -94,7 +93,7 @@ const AddressAddModal = (): JSX.Element => {
               <RegistrationAddress control={control} errors={errors} default={true} />
               {successfullySaved && (
                 <Alert severity="success" className="form__success-message">
-                  Your address has been successfully saved!
+                  Your address has been successfully added!
                 </Alert>
               )}
               {requestError && (

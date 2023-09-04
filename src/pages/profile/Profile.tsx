@@ -35,37 +35,22 @@ const Profile = (): JSX.Element => {
             <PasswordChangeModal />
           </CardContent>
         </Card>
-        {/* {userData?.addresses && (
-          <ProfileRow title="Shipping Address" content={getAddressString(userData.addresses[0])} />
-        )}
-        {userData?.defaultShippingAddressId && <p>(default)</p>} */}
-        {/* <section className="profile__addresses adresses">
-          <Typography className="adresses__title" variant="h6" gutterBottom>
-            Shipping addresses
-          </Typography>
-          {(userData?.shippingAddressIds && (
-            <div className="addresses__item">
-              {userData.shippingAddressIds.map((id, index) => {
-                return <AddressRow id={id} key={index} />;
-              })}
-            </div>
-          )) || <div>No shipping addresses in your profile</div>}
-          <AddressAddModal />
-        </section> */}
-        <section className="profile__addresses adresses">
-          <Typography className="adresses__title" variant="h6" gutterBottom>
+        <section className="profile__addresses addresses">
+          <Typography className="addresses__title" variant="h5" gutterBottom>
             Addresses
           </Typography>
-          {(userData?.addresses && (
-            <div className="addresses__item">
-              {userData.addresses.map((address, index) => {
-                return <AddressRow id={address.id as string} key={index} />;
-              })}
-            </div>
-          )) || <div>No addresses in your profile</div>}
+          <div className="addresses__content">
+            {(userData?.addresses && (
+              <div className="addresses__item">
+                {userData.addresses.map((address, index) => {
+                  return <AddressRow id={address.id as string} key={index} />;
+                })}
+              </div>
+            )) ||
+              'No addresses in your profile'}
+          </div>
           <AddressAddModal />
         </section>
-        {/* {userData?.defaultBillingAddressId && <p>(default)</p>} */}
       </div>
     </main>
   );
