@@ -11,19 +11,16 @@ import ProductMessage from '../../shared/api/productMessage/productMessage';
 import { Modal, Paper, IconButton } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
 import ModalSwiper from '../modalSwiper/ModalSwiper';
+import { Image } from '@commercetools/platform-sdk';
 
-// interface SwiperElementProps {
-//   onClick: () => void;
-// }
-
-const SwiperElement = (): JSX.Element => {
+const SwiperElement = (props: { images: Image[] }): JSX.Element => {
   const [open, setOpen] = useState(false);
 
   const handleClose = (): void => {
     setOpen(false);
   };
   const [thumbsSwiper] = useState(null);
-  const photos = ProductMessage.body.masterVariant.images;
+  const photos = props.images;
   return (
     <>
       <Swiper
