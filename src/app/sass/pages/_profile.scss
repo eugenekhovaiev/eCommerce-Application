@@ -35,6 +35,8 @@
 .address-row {
   padding: 0.5rem 0;
 
+  height: 3rem;
+
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -42,6 +44,19 @@
   &__button,
   .css-1l9sosn-MuiButtonBase-root-MuiButton-root {
     margin: 0 0.5rem;
+
+    img {
+      width: 1.5rem;
+    }
+  }
+
+  &__wrapper {
+    .address-row__button {
+      // display: block;
+      margin-bottom: 0;
+    }
+    display: flex;
+    align-items: center;
   }
 
   &_default {

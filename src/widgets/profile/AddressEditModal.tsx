@@ -9,11 +9,12 @@ import updateCustomer from '../../shared/api/user/updateCustomer';
 import RegistrationAddress from '../../entities/registration/RegistrationAddress';
 import { CountryProvider } from '../../shared/lib/contexts/СountryContext';
 import getAddressString from '../../shared/lib/helpers/getAddressString';
-import { BaseAddress } from '@commercetools/platform-sdk';
+import { Address, BaseAddress, Customer } from '@commercetools/platform-sdk';
+import ImageElement from '../../shared/UI/imageElement/ImageElement';
+import editIcon from '../../shared/assets/edit.svg';
 
-const AddressAddModal = (): JSX.Element => {
+const AddressEditModal = (props: { address: Address }): JSX.Element => {
   const { userData, updateUserData } = useUserDataContext();
-  // const { userData } = useUserDataContext();
 
   const { handleSubmit, control } = useForm<Form>();
   const { errors } = useFormState({
@@ -28,7 +29,7 @@ const AddressAddModal = (): JSX.Element => {
     setModalIsOpen(false);
   };
 
-  const updateProfile = async (dataToUpdate: Form): Promise<void> => {
+  const updateProfile = async (dataToUpdate: Form): Promise<Customer> => {
     if (userData) {
       const newAddress: BaseAddress = {
         streetName: dataToUpdate.street,
@@ -41,12 +42,13 @@ const AddressAddModal = (): JSX.Element => {
 
       const newAddressKey = getAddressString(newAddress);
 
-      const addQuery: CustomerUpdateWithId = {
+      const changeQuery: CustomerUpdateWithId = {
         id: userData?.id,
         version: userData?.version,
         actions: [
           {
-            action: 'addAddress',
+            action: 'changeAddress',
+            addressId: props.address.id,
             address: {
               key: newAddressKey,
               ...newAddress,
@@ -54,9 +56,9 @@ const AddressAddModal = (): JSX.Element => {
           },
         ],
       };
-      const updatedCustomerData = (await updateCustomer(addQuery)).body;
-      updateUserData(updatedCustomerData);
+      const updatedCustomerData = (await updateCustomer(changeQuery)).body;
       localStorage.setItem('currentUser', JSON.stringify(updatedCustomerData));
+      return updatedCustomerData;
     } else {
       throw new Error('User data is missing!');
     }
@@ -67,11 +69,12 @@ const AddressAddModal = (): JSX.Element => {
 
   const onSubmit: SubmitHandler<Form> = async (data) => {
     try {
-      await updateProfile(data);
+      const updatedCustomerData = await updateProfile(data);
       setRequestError(false);
       setSuccessfullySaved(true);
       setTimeout(() => {
         closeModal();
+        updateUserData(updatedCustomerData);
         setSuccessfullySaved(false);
       }, 1500);
     } catch (error) {
@@ -82,16 +85,28 @@ const AddressAddModal = (): JSX.Element => {
   };
 
   return (
-    <div>
+    <div className="address-row__wrapper">
       <CountryProvider>
-        <Button variant="outlined" onClick={openModal} className="profile__button">
-          Add Address
+        <Button variant="outlined" onClick={openModal} className="address-row__button">
+          <ImageElement src={editIcon} alt="edit" />
         </Button>
         <Modal open={modalIsOpen} onClose={closeModal} className="modal modal_add-address">
           <div className="modal__content">
-            <Typography variant="h5">Add Address</Typography>
+            <Typography variant="h5">Edit address</Typography>
             <form className="modal__form form" onSubmit={handleSubmit(onSubmit)}>
-              <RegistrationAddress control={control} errors={errors} default={true} />
+              <RegistrationAddress
+                control={control}
+                errors={errors}
+                default={true}
+                defaultValues={{
+                  defaultCountry: props.address.country,
+                  defaultCity: props.address.city,
+                  defaultStreet: props.address.streetName,
+                  defaultBuilding: props.address.building,
+                  defaultUnit: props.address.apartment,
+                  defaultPostalCode: props.address.postalCode,
+                }}
+              />
               {successfullySaved && (
                 <Alert severity="success" className="form__success-message">
                   Your address has been successfully saved!
@@ -99,10 +114,10 @@ const AddressAddModal = (): JSX.Element => {
               )}
               {requestError && (
                 <Alert severity="error" className="form__error-message">
-                  Something is wrong!
+                  You already have this address!
                 </Alert>
               )}
-              <ButtonElement type="submit" title="Add" additionalClassName="form__submit" />
+              <ButtonElement type="submit" title="Save" additionalClassName="form__submit" />
             </form>
           </div>
         </Modal>
@@ -111,4 +126,4 @@ const AddressAddModal = (): JSX.Element => {
   );
 };
 
-export default AddressAddModal;
+export default AddressEditModal;

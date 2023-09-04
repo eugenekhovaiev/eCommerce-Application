@@ -5,7 +5,7 @@ import ProfileRow from '../../entities/profile/ProfileRow';
 import DataEditModal from '../../widgets/profile/DataEditModal';
 import { useUserDataContext } from '../../shared/lib/contexts/UserDataContext';
 import formatDate from '../../shared/lib/helpers/formatDate';
-import PasswordEditModal from '../../widgets/profile/PasswordEditModal';
+import PasswordChangeModal from '../../widgets/profile/PasswordChangeModal';
 import AddressAddModal from '../../widgets/profile/AddressAddModal';
 import AddressRow from '../../entities/profile/AddressRow';
 
@@ -32,7 +32,7 @@ const Profile = (): JSX.Element => {
             {userData && <ProfileRow title="Email" content={userData.email} />}
             <hr />
             <DataEditModal />
-            <PasswordEditModal />
+            <PasswordChangeModal />
           </CardContent>
         </Card>
         {/* {userData?.addresses && (

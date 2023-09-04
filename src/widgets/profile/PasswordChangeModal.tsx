@@ -9,7 +9,7 @@ import PasswordInput from '../../entities/inputs/PasswordInput';
 import { CustomerChangePassword } from '@commercetools/platform-sdk';
 import changePassword from '../../shared/api/user/changePassword';
 
-const PasswordEditModal = (): JSX.Element => {
+const PasswordChangeModal = (): JSX.Element => {
   const { userData, updateUserData } = useUserDataContext();
 
   const { handleSubmit, control } = useForm<Form>();
@@ -120,4 +120,4 @@ const PasswordEditModal = (): JSX.Element => {
   );
 };
 
-export default PasswordEditModal;
+export default PasswordChangeModal;

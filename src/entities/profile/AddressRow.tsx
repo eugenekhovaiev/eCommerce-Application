@@ -4,6 +4,7 @@ import getAddressString from '../../shared/lib/helpers/getAddressString';
 import ButtonElement from '../../shared/UI/buttonElement/ButtonElement';
 import updateCustomer from '../../shared/api/user/updateCustomer';
 import { CustomerUpdateWithId } from '../../shared/types';
+import AddressEditModal from '../../widgets/profile/AddressEditModal';
 
 const AddressRow = (props: { id: string }): JSX.Element => {
   const { userData, updateUserData } = useUserDataContext();
@@ -62,6 +63,7 @@ const AddressRow = (props: { id: string }): JSX.Element => {
 
   return (
     <div className={`address-row${isDefaultShipping || isDefaultBilling ? ' address-row_default' : ''}`}>
+      <AddressEditModal address={addressFromId} />
       <div className="address-row__address">
         {getAddressString(addressFromId)} {isDefaultShipping ? '(default shipping)' : ''}{' '}
         {isDefaultBilling ? '(default billing)' : ''}
