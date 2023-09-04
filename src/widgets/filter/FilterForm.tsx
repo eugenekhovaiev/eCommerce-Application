@@ -62,6 +62,20 @@ const FilterForm = (props: FilterFormProps): JSX.Element => {
     }
   }, [isCategoryUpdated]);
 
+  const handleResetClick = async (): Promise<void> => {
+    setColorStates(Object.values(FILTER_COLOR).map(() => false));
+    setSizeStates(Object.values(FILTER_SIZE).map(() => false));
+    setSortStates(Object.values(FILTER_SORT).map(() => false));
+    setPriceState([priceRange[0], priceRange[1]]);
+    const productsObj = await getProducts({
+      filters: {
+        categoriesIds: props.categoriesIds,
+      },
+    });
+    updateIsCategoryUpdated(false);
+    props.setProducts(productsObj.body.results);
+  };
+
   const onSubmit: SubmitHandler<FilterFormFields> = async (): Promise<void> => {
     const colors = transformToFilterAttributes('color', Object.values(FILTER_COLOR), colorStates);
     const sizes = transformToFilterAttributes('size', Object.values(FILTER_SIZE), sizeStates);
@@ -131,6 +145,12 @@ const FilterForm = (props: FilterFormProps): JSX.Element => {
         state={priceState}
         setState={setPriceState}
         additionalClassName="filter-form__item"
+      />
+      <ButtonElement
+        type="button"
+        additionalClassName="form__submit filter-form__submit"
+        title="Reset"
+        onClick={handleResetClick}
       />
       <ButtonElement type="submit" additionalClassName="form__submit filter-form__submit" title="Apply" />
     </form>
