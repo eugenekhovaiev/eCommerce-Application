@@ -7,6 +7,7 @@ import { DateValidationError } from '@mui/x-date-pickers';
 import { LocalizedString } from '@commercetools/platform-sdk';
 // import FilterForm from '../../widgets/filter/FilterForm';
 import { ProductProjection } from '@commercetools/platform-sdk';
+import Category from './Category';
 
 export interface LinkProps {
   to?: string;
@@ -213,6 +214,12 @@ export interface FilterFormProps {
   setProducts: React.Dispatch<React.SetStateAction<[] | ProductProjection[]>>;
   // isCategoryUpdated: boolean;
   categoriesIds?: string;
+}
+
+export interface ProductCategoriesProps {
+  setProducts: React.Dispatch<React.SetStateAction<[] | ProductProjection[]>>;
+  setCategoryId: React.Dispatch<React.SetStateAction<string>>;
+  mainCategories?: Category[];
 }
 
 export interface ProductsQueryParams {

@@ -114,7 +114,7 @@ const FilterForm = (props: FilterFormProps): JSX.Element => {
         setStates={setColorStates}
         selectItems={FILTER_COLOR}
         additionalClassName="filter-form__item"
-        multiple={true}
+        multiple={false}
       />
       <AccordionCheckbox
         label={<Typography>Size</Typography>}
@@ -122,7 +122,7 @@ const FilterForm = (props: FilterFormProps): JSX.Element => {
         setStates={setSizeStates}
         selectItems={FILTER_SIZE}
         additionalClassName="filter-form__item"
-        multiple={true}
+        multiple={false}
       />
       <AccordionSlider
         label="Price"

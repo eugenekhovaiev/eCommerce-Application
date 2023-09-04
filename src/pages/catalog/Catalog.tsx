@@ -1,21 +1,19 @@
 import { useState } from 'react';
 import FilterForm from '../../widgets/filter/FilterForm';
+import ProductCategories from '../../widgets/productCategories/productCategories';
 import ProductCard from '../../entities/productCard/ProductCard';
 import LinkElement from '../../shared/UI/linkElement/LinkElement';
 import getProducts from '../../shared/api/user/getProducts';
 import buildCategoryTree from '../../shared/lib/helpers/buildCategoryTree';
 import Category from '../../shared/types/Category';
 import { ProductProjection } from '@commercetools/platform-sdk';
-import { useFilterContext } from '../../shared/lib/contexts/FilterContext';
+import { FilterProvider } from '../../shared/lib/contexts/FilterContext';
 
 const Catalog = (): JSX.Element => {
   const [mainCategories, setMainCategories] = useState<Category[]>([]);
   const [isFilter, setIsFilter] = useState(false);
-  const [visibleCategory, setVisibleCategory] = useState<Category>();
-  const [isSubCategories, setIsSubCategories] = useState(false);
   const [productsArr, setProductsArr] = useState<ProductProjection[] | []>([]);
   const [categoryId, setCategoryId] = useState('');
-  const { updateIsCategoryUpdated } = useFilterContext();
 
   const handleShowPageClick = async (): Promise<void> => {
     try {
@@ -29,26 +27,6 @@ const Catalog = (): JSX.Element => {
     } catch (error) {
       console.log(error);
     }
-  };
-  const handleCategoryClick = async (id: string): Promise<void> => {
-    try {
-      const newQueryParams = {
-        filters: { categoriesIds: id },
-      };
-      const productsObj = await getProducts(newQueryParams);
-      setProductsArr(productsObj.body.results);
-      setCategoryId(id);
-      updateIsCategoryUpdated(true);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-  const handleMouseEnter = (category: Category): void => {
-    setIsSubCategories(true);
-    setVisibleCategory(category);
-  };
-  const handleMouseLeave = (category: Category): void => {
-    setVisibleCategory(category);
   };
 
   // const handleClick = async (): Promise<void> => {
@@ -69,92 +47,56 @@ const Catalog = (): JSX.Element => {
   // };
 
   return (
-    <main className="catalog">
-      <section className="start-screen">
-        <div className="container start-screen__wrapper">
-          <LinkElement title="Show page" onClick={handleShowPageClick} to="/catalog" />
-        </div>
-      </section>
-      <section className="catalog-products">
-        <div
-          className="container catalog-products__categories-wrapper"
-          onMouseLeave={(): void => setIsSubCategories(false)}
-        >
-          <div className="catalog-products__categories">
-            {mainCategories.map((category) => (
-              <LinkElement
-                additionalClassName="catalog-products__category"
-                key={category.name}
-                title={category.name}
-                onClick={(): Promise<void> => handleCategoryClick(category.id)}
-                onMouseEnter={(): void => handleMouseEnter(category)}
-                onMouseLeave={(): void => handleMouseLeave(category)}
-                to="/catalog"
-              />
-            ))}
+    <FilterProvider>
+      <main className="catalog">
+        <section className="start-screen">
+          <div className="container start-screen__wrapper">
+            <LinkElement title="Show page" onClick={handleShowPageClick} to="/catalog" />
           </div>
-          {isSubCategories && (
-            <div className="catalog-products__subcategories">
-              {visibleCategory
-                ? visibleCategory?.children?.map((subcategory) => (
-                    <div key={subcategory.name} className="catalog-products__subcategory-wrapper">
-                      <LinkElement
-                        additionalClassName=" catalog-products__subcategory catalog-products__subcategory_bold"
-                        title={subcategory.name}
-                        onClick={(): Promise<void> => handleCategoryClick(subcategory.id)}
-                        to="/catalog"
-                      />
-                      {subcategory.children?.map((child) => (
-                        <LinkElement
-                          additionalClassName="catalog-products__subcategory"
-                          key={child.name}
-                          title={child.name}
-                          onClick={(): Promise<void> => handleCategoryClick(child.id)}
-                          to="/catalog"
-                        />
-                      ))}
-                    </div>
-                  ))
-                : ''}
-            </div>
-          )}
-        </div>
-        <div className="container catalog-products__content">
-          <div className="catalog-products__filter">
-            {isFilter && (
-              <FilterForm
-                setProducts={setProductsArr}
-                categoriesIds={categoryId}
-                // isCategoryUpdates={isCategoryUpdated}
-              />
-            )}
-          </div>
-          <div className="catalog-products__products">
-            {productsArr.map((product, index) => {
-              const productImages = product.masterVariant.images;
-              const productPreviewUrl = productImages && productImages[0] && productImages[0].url;
-
-              const productPrices = product.masterVariant.prices;
-              const productOriginalPrice = productPrices && productPrices[0] && productPrices[0].value.centAmount;
-              const productDiscountedPrice =
-                productPrices && productPrices[0] && productPrices[0].discounted?.value.centAmount;
-
-              return (
-                <ProductCard
-                  url={product.slug['en-US']}
-                  image={productPreviewUrl}
-                  name={product.name}
-                  priceOriginal={productOriginalPrice}
-                  priceDiscounted={productDiscountedPrice}
-                  description={product.description}
-                  key={index}
+        </section>
+        <section className="catalog-products">
+          <ProductCategories
+            mainCategories={mainCategories}
+            setCategoryId={setCategoryId}
+            setProducts={setProductsArr}
+          />
+          <div className="container catalog-products__content">
+            <div className="catalog-products__filter">
+              {isFilter && (
+                <FilterForm
+                  setProducts={setProductsArr}
+                  categoriesIds={categoryId}
+                  // isCategoryUpdates={isCategoryUpdated}
                 />
-              );
-            })}
+              )}
+            </div>
+            <div className="catalog-products__products">
+              {productsArr.map((product, index) => {
+                const productImages = product.masterVariant.images;
+                const productPreviewUrl = productImages && productImages[0] && productImages[0].url;
+
+                const productPrices = product.masterVariant.prices;
+                const productOriginalPrice = productPrices && productPrices[0] && productPrices[0].value.centAmount;
+                const productDiscountedPrice =
+                  productPrices && productPrices[0] && productPrices[0].discounted?.value.centAmount;
+
+                return (
+                  <ProductCard
+                    url={product.slug['en-US']}
+                    image={productPreviewUrl}
+                    name={product.name}
+                    priceOriginal={productOriginalPrice}
+                    priceDiscounted={productDiscountedPrice}
+                    description={product.description}
+                    key={index}
+                  />
+                );
+              })}
+            </div>
           </div>
-        </div>
-      </section>
-    </main>
+        </section>
+      </main>
+    </FilterProvider>
   );
 };
 
