@@ -7,19 +7,23 @@ import 'swiper/scss/navigation';
 import 'swiper/scss/thumbs';
 
 import { FreeMode, Navigation, Thumbs } from 'swiper/modules';
-import { Modal, Paper, IconButton } from '@mui/material';
-import CloseIcon from '@mui/icons-material/Close';
+import { Modal, Paper } from '@mui/material';
 import ModalSwiper from '../modalSwiper/ModalSwiper';
 import { SwiperProps } from '../../shared/types';
+import ImageElement from '../../shared/UI/imageElement/ImageElement';
+import closeIcon from '../../shared/assets/close.svg';
 
 const SwiperElement = (props: SwiperProps): JSX.Element => {
-  const [open, setOpen] = useState(false);
+  const [modalIsOpen, setModalIsOpen] = useState(false);
 
-  const handleClose = (): void => {
-    setOpen(false);
+  const closeModal = (): void => {
+    setModalIsOpen(false);
   };
+
   const [thumbsSwiper] = useState(null);
+
   const images = props.images;
+
   return (
     <>
       <Swiper
@@ -27,8 +31,8 @@ const SwiperElement = (props: SwiperProps): JSX.Element => {
         navigation={true}
         thumbs={{ swiper: thumbsSwiper }}
         modules={[FreeMode, Navigation, Thumbs]}
-        className="mySwiper2"
-        onClick={(): void => setOpen(true)}
+        className="mySwiper"
+        onClick={(): void => setModalIsOpen(true)}
         style={{ cursor: 'pointer' }}
       >
         {images.map((photo, index) => (
@@ -44,7 +48,7 @@ const SwiperElement = (props: SwiperProps): JSX.Element => {
         freeMode={true}
         watchSlidesProgress={true}
         modules={[FreeMode, Navigation, Thumbs]}
-        className="mySwiper"
+        className="mySwiper mySwiper_small"
       >
         {images.map((photo, index) => (
           <SwiperSlide key={index}>
@@ -52,17 +56,11 @@ const SwiperElement = (props: SwiperProps): JSX.Element => {
           </SwiperSlide>
         ))}
       </Swiper>
-      <Modal open={open} onClose={handleClose} className="modal-window">
-        <Paper>
-          <IconButton
-            edge="end"
-            color="inherit"
-            onClick={handleClose}
-            aria-label="close"
-            style={{ position: 'absolute', top: 0, right: 0, padding: '1rem' }}
-          >
-            <CloseIcon />
-          </IconButton>
+      <Modal open={modalIsOpen} onClose={closeModal} className="modal">
+        <Paper className="modal__content">
+          <div className="modal__close" onClick={closeModal}>
+            <ImageElement src={closeIcon} alt="close-modal" />
+          </div>
           <ModalSwiper images={images} />
         </Paper>
       </Modal>

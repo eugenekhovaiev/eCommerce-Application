@@ -20,7 +20,7 @@ const ModalSwiper = (props: SwiperProps): JSX.Element => {
         }}
         navigation={true}
         modules={[Pagination, Navigation, HashNavigation]}
-        className="mySwiper2 swiper-element"
+        className="mySwiper swiper-element"
       >
         {props.images.map((photo, index) => (
           <SwiperSlide data-hash="slide1" key={index}>
