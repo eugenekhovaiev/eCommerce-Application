@@ -7,7 +7,6 @@ import 'swiper/scss/navigation';
 import 'swiper/scss/thumbs';
 
 import { FreeMode, Navigation, Thumbs } from 'swiper/modules';
-import ProductMessage from '../../shared/api/productMessage/productMessage';
 import { Modal, Paper, IconButton } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
 import ModalSwiper from '../modalSwiper/ModalSwiper';

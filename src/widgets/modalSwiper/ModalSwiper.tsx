@@ -1,17 +1,14 @@
-// Import Swiper React components
 import { Swiper, SwiperSlide } from 'swiper/react';
 
-// Import Swiper styles
 import 'swiper/scss';
 import 'swiper/scss/pagination';
 import 'swiper/scss/navigation';
 
-// import required modules
 import { Pagination, Navigation, HashNavigation } from 'swiper/modules';
-import ProductMessage from '../../shared/api/productMessage/productMessage';
+// import ProductMessage from '../../shared/api/productMessage/productMessage';
 
 const ModalSwiper = (): JSX.Element => {
-  const photos = ProductMessage.body.masterVariant.images;
+  // const photos = ProductMessage.body.masterVariant.images;
   return (
     <>
       <Swiper
@@ -26,11 +23,11 @@ const ModalSwiper = (): JSX.Element => {
         modules={[Pagination, Navigation, HashNavigation]}
         className="mySwiper swiper-element"
       >
-        {photos.map((photo, index) => (
+        {/* {photos.map((photo, index) => (
           <SwiperSlide data-hash="slide1" key={index}>
             <img src={photo.url} />
           </SwiperSlide>
-        ))}
+        ))} */}
       </Swiper>
     </>
   );
