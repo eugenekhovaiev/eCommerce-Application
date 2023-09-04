@@ -7,6 +7,7 @@ import { DateValidationError } from '@mui/x-date-pickers';
 import { Customer, CustomerUpdate } from '@commercetools/platform-sdk';
 import { Dayjs } from 'dayjs';
 import { LocalizedString } from '@commercetools/platform-sdk';
+import { Image } from '@commercetools/platform-sdk';
 
 export interface LinkProps {
   to?: string;
@@ -202,4 +203,8 @@ export interface PriceProps {
   priceOriginal?: string | number;
   priceDiscounted?: string | number;
   additionalClassName?: string;
+}
+
+export interface SwiperProps {
+  images: Image[];
 }
