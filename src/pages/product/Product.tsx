@@ -1,42 +1,70 @@
-import { useState, useEffect } from 'react';
 import { Typography } from '@mui/material';
 import SwiperElement from '../../widgets/swiper/Swiper';
 import PriceElement from '../../shared/UI/priceElement/PriceElement';
-import ProductMessage from '../../shared/api/productMessage/productMessage';
+import { useLocation, useNavigate, useParams } from 'react-router-dom';
+import getProductById from '../../shared/api/user/getProductById';
+import { useEffect, useState } from 'react';
+import { ProductProjection } from '@commercetools/platform-sdk';
 
 const Product = (): JSX.Element => {
-  const [name, setName] = useState('');
-  const [description, setDescription] = useState('');
-  const [centAmount, setCentAmount] = useState(0);
-  const [discountedCentAmount, setDiscountedCentAmount] = useState(0);
+  const { slug } = useParams();
+
+  const [product, setProduct] = useState<ProductProjection | null>(null);
+  const navigate = useNavigate();
+  const location = useLocation();
+  const from = location.state?.from?.pathname || '/404';
 
   useEffect(() => {
-    const product = ProductMessage.body;
+    const fetchData = async (): Promise<void> => {
+      try {
+        const response = await getProductById(slug as string);
+        setProduct(response.body);
+      } catch (error) {
+        navigate(from, { replace: true });
+        console.log('Product not found!');
+      }
+    };
 
-    setName(product.name['en-US']);
-    setDescription(product.description['en-US']);
-    setCentAmount(product.masterVariant.prices[0].value.centAmount);
-    setDiscountedCentAmount(product.masterVariant.prices[0].discounted.value.centAmount);
-  }, []);
+    fetchData();
+  }, [slug]);
+
+  if (!product) {
+    return <div>Loading...</div>;
+  }
+
+  const productName = product.name['en-US'];
+  const productDescription = product.description
+    ? product.description['en-US']
+    : 'Description for this product is missing!';
+
+  const productImages = product.masterVariant.images;
+
+  const productPrices = product.masterVariant.prices;
+  const productOriginalPrice = productPrices && productPrices[0] && productPrices[0].value.centAmount;
+  const productDiscountedPrice = productPrices && productPrices[0] && productPrices[0].discounted?.value.centAmount;
+
   return (
     <section className="product">
       <div className="container product__wrapper">
-        <Typography variant="h3" gutterBottom className="product__page-title">
-          Product
-        </Typography>
         <div className="product__elements">
-          <SwiperElement />
+          <SwiperElement
+            images={
+              productImages
+                ? productImages
+                : [{ url: 'src/shared/assets/image-placeholder.svg', dimensions: { w: 100, h: 100 } }]
+            }
+          />
           <div className="product__description">
             <Typography variant="h4" gutterBottom className="product__title">
-              {name}
+              {productName}
             </Typography>
             <PriceElement
-              additionalClassName="card__price product__price"
-              priceOriginal={centAmount}
-              priceDiscounted={discountedCentAmount}
+              additionalClassName="product__price"
+              priceOriginal={productOriginalPrice}
+              priceDiscounted={productDiscountedPrice}
             />
             <Typography variant="body1" gutterBottom>
-              {description}
+              {productDescription}
             </Typography>
           </div>
         </div>

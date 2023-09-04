@@ -7,11 +7,11 @@ import 'swiper/scss/navigation';
 import 'swiper/scss/thumbs';
 
 import { FreeMode, Navigation, Thumbs } from 'swiper/modules';
-import ProductMessage from '../../shared/api/productMessage/productMessage';
+import { Image } from '@commercetools/platform-sdk';
 
-const SwiperElement = (): JSX.Element => {
+const SwiperElement = (props: { images: Image[] }): JSX.Element => {
   const [thumbsSwiper] = useState(null);
-  const photos = ProductMessage.body.masterVariant.images;
+  const photos = props.images;
   return (
     <>
       <Swiper
