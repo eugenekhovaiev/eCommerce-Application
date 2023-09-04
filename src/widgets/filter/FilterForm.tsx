@@ -5,16 +5,12 @@ import AccordionSlider from '../../entities/accordion/AccordionSlider';
 import ButtonElement from '../../shared/UI/buttonElement/ButtonElement';
 import FILTER_SIZE from '../../shared/consts/FILTER_SIZE';
 import FILTER_COLOR from '../../shared/consts/FILTER_COLOR';
+import FILTER_SORT from '../../shared/consts/FILTER_SORT';
 import getProducts from '../../shared/api/user/getProducts';
 import { useFilterContext } from '../../shared/lib/contexts/FilterContext';
+import cartesianProduct from '../../shared/lib/helpers/cartesianProduct';
 import { FilterAttribute, FilterFormFields, FilterFormProps } from '../../shared/types';
 import Typography from '@mui/material/Typography/Typography';
-
-function cartesianProduct<Type1, Type2>(array1: Type1[], array2: Type2[]): (Type1 | Type2)[][] {
-  if (array1.length === 0) return [array2];
-  if (array2.length === 0) return [array1];
-  return array1.map((item1) => array2.map((item2) => [item1, item2])).flat();
-}
 
 const transformToFilterAttributes = (enumName: string, values: string[], state: boolean[]): FilterAttribute[] => {
   return values
@@ -26,10 +22,33 @@ const transformToFilterAttributes = (enumName: string, values: string[], state: 
     }));
 };
 
+const transformToFilterSortBy = (values: string[], state: boolean[]): ({ by: string; order: string } | undefined)[] => {
+  return values
+    .map((item, ind) => (state[ind] ? item : false))
+    .filter((item) => item)
+    .map((item) => {
+      if (item) {
+        if (item.indexOf('Asc') !== -1) {
+          return {
+            by: item.replace('Asc', ''),
+            order: 'asc',
+          };
+        }
+        return {
+          by: item.replace('Desc', ''),
+          order: 'desc',
+        };
+      }
+      return undefined;
+    });
+};
+
 const FilterForm = (props: FilterFormProps): JSX.Element => {
+  const priceRange = [0, 1000];
   const [colorStates, setColorStates] = useState(Object.values(FILTER_COLOR).map(() => false));
   const [sizeStates, setSizeStates] = useState(Object.values(FILTER_SIZE).map(() => false));
-  const [priceState, setPriceState] = useState<number[]>([0, 100]);
+  const [sortStates, setSortStates] = useState(Object.values(FILTER_SORT).map(() => false));
+  const [priceState, setPriceState] = useState<number[]>([priceRange[0], priceRange[1]]);
   const { handleSubmit } = useForm<FilterFormFields>();
   const { isCategoryUpdated, updateIsCategoryUpdated } = useFilterContext();
 
@@ -37,7 +56,8 @@ const FilterForm = (props: FilterFormProps): JSX.Element => {
     if (isCategoryUpdated) {
       setColorStates(Object.values(FILTER_COLOR).map(() => false));
       setSizeStates(Object.values(FILTER_SIZE).map(() => false));
-      setPriceState([0, 100]);
+      setSortStates(Object.values(FILTER_SORT).map(() => false));
+      setPriceState([priceRange[0], priceRange[1]]);
       updateIsCategoryUpdated(false);
     }
   }, [isCategoryUpdated]);
@@ -45,20 +65,34 @@ const FilterForm = (props: FilterFormProps): JSX.Element => {
   const onSubmit: SubmitHandler<FilterFormFields> = async (): Promise<void> => {
     const colors = transformToFilterAttributes('color', Object.values(FILTER_COLOR), colorStates);
     const sizes = transformToFilterAttributes('size', Object.values(FILTER_SIZE), sizeStates);
+    const sort = transformToFilterSortBy(Object.keys(FILTER_SORT), sortStates);
     const queryAttributes = cartesianProduct(sizes, colors);
     // console.log(cartesianProduct(result, sizes2).map((item) => item.flat()));
+
     try {
-      const promises = queryAttributes.map((item) =>
-        getProducts({
+      if (queryAttributes.length === 0) {
+        const productsObj = await getProducts({
+          sort: sort[0],
           filters: {
             categoriesIds: props.categoriesIds,
-            attributes: item,
             priceRange: { from: priceState[0] * 100, to: priceState[1] * 100 },
           },
-        }),
-      );
-      const productsObj = await Promise.all(promises);
-      props.setProducts(productsObj.map((item) => item.body.results).flat());
+        });
+        props.setProducts(productsObj.body.results);
+      } else {
+        const promises = queryAttributes.map((item) =>
+          getProducts({
+            sort: sort[0],
+            filters: {
+              categoriesIds: props.categoriesIds,
+              attributes: item,
+              priceRange: { from: priceState[0] * 100, to: priceState[1] * 100 },
+            },
+          }),
+        );
+        const productsObj = await Promise.all(promises);
+        props.setProducts(productsObj.map((item) => item.body.results).flat());
+      }
     } catch (error) {
       console.log(error);
     }
@@ -67,11 +101,20 @@ const FilterForm = (props: FilterFormProps): JSX.Element => {
   return (
     <form className="form filter-form" onSubmit={handleSubmit(onSubmit)}>
       <AccordionCheckbox
+        label={<Typography>Sort by</Typography>}
+        states={sortStates}
+        setStates={setSortStates}
+        selectItems={FILTER_SORT}
+        additionalClassName="filter-form__item"
+        multiple={false}
+      />
+      <AccordionCheckbox
         label={<Typography>Color</Typography>}
         states={colorStates}
         setStates={setColorStates}
         selectItems={FILTER_COLOR}
         additionalClassName="filter-form__item"
+        multiple={true}
       />
       <AccordionCheckbox
         label={<Typography>Size</Typography>}
@@ -79,11 +122,12 @@ const FilterForm = (props: FilterFormProps): JSX.Element => {
         setStates={setSizeStates}
         selectItems={FILTER_SIZE}
         additionalClassName="filter-form__item"
+        multiple={true}
       />
       <AccordionSlider
         label="Price"
-        min={0}
-        max={100}
+        min={priceRange[0]}
+        max={priceRange[1]}
         state={priceState}
         setState={setPriceState}
         additionalClassName="filter-form__item"

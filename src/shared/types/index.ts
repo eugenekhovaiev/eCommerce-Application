@@ -96,6 +96,7 @@ export interface AccordionCheckboxProps {
   setStates: React.Dispatch<React.SetStateAction<boolean[]>>;
   selectItems?: object;
   additionalClassName?: string;
+  multiple?: boolean;
 }
 
 export interface AccordionSliderProps {
@@ -146,16 +147,6 @@ export interface SelectProps {
   value?: string;
   onChange?: (event: SelectChangeEvent<string>, child: ReactNode) => void;
 }
-
-// export interface SelectSingleProps extends SelectProps {
-//   value?: string;
-//   onChange?: (event: SelectChangeEvent<string>, child: ReactNode) => void;
-// }
-
-// export interface SelectMultipleProps extends SelectProps {
-//   value?: string[];
-//   onChange?: (event: SelectChangeEvent<string[]>, child: ReactNode) => void;
-// }
 
 export interface CheckboxProps {
   onChange: ((event: React.ChangeEvent<HTMLInputElement>, checked: boolean) => void) | undefined;
@@ -226,8 +217,10 @@ export interface FilterFormProps {
 
 export interface ProductsQueryParams {
   sort?: {
-    by: 'price' | 'name.en-US';
-    order: 'asc' | 'desc';
+    // by: 'price' | 'name.en-US';
+    // order: 'asc' | 'desc';
+    by: string;
+    order: string;
   };
   filters?: Filters;
 }

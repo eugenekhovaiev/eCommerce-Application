@@ -6,8 +6,11 @@ import { AccordionCheckboxProps } from '../../shared/types';
 
 const AccordionCheckbox = (props: AccordionCheckboxProps): JSX.Element => {
   const fullClassName = getFullClassName('accordion', props.additionalClassName);
-  const handleCountryClick = (index: number): void => {
-    const updatedStates = [...props.states];
+  const handleClick = (index: number): void => {
+    let updatedStates = [...props.states];
+    if (!props.multiple) {
+      updatedStates = updatedStates.map(() => false);
+    }
     updatedStates[index] = !updatedStates[index];
     props.setStates(updatedStates);
   };
@@ -21,8 +24,8 @@ const AccordionCheckbox = (props: AccordionCheckboxProps): JSX.Element => {
           {props.selectItems &&
             Object.values(props.selectItems).map((item, ind) => (
               <div className="form__checkbox" key={item}>
-                <CheckboxElement checked={props.states[ind]} onChange={(): void => handleCountryClick(ind)} />
-                <div>{item}</div>
+                <CheckboxElement checked={props.states[ind]} onChange={(): void => handleClick(ind)} />
+                <div className="form__checkbox-title">{item}</div>
               </div>
             ))}
         </div>

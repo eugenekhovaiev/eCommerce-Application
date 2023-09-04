@@ -32,9 +32,10 @@ const Catalog = (): JSX.Element => {
   };
   const handleCategoryClick = async (id: string): Promise<void> => {
     try {
-      const productsObj = await getProducts({
+      const newQueryParams = {
         filters: { categoriesIds: id },
-      });
+      };
+      const productsObj = await getProducts(newQueryParams);
       setProductsArr(productsObj.body.results);
       setCategoryId(id);
       updateIsCategoryUpdated(true);
