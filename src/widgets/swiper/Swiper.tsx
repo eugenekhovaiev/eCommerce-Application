@@ -10,16 +10,16 @@ import { FreeMode, Navigation, Thumbs } from 'swiper/modules';
 import { Modal, Paper, IconButton } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
 import ModalSwiper from '../modalSwiper/ModalSwiper';
-import { Image } from '@commercetools/platform-sdk';
+import { SwiperProps } from '../../shared/types';
 
-const SwiperElement = (props: { images: Image[] }): JSX.Element => {
+const SwiperElement = (props: SwiperProps): JSX.Element => {
   const [open, setOpen] = useState(false);
 
   const handleClose = (): void => {
     setOpen(false);
   };
   const [thumbsSwiper] = useState(null);
-  const photos = props.images;
+  const images = props.images;
   return (
     <>
       <Swiper
@@ -31,7 +31,7 @@ const SwiperElement = (props: { images: Image[] }): JSX.Element => {
         onClick={(): void => setOpen(true)}
         style={{ cursor: 'pointer' }}
       >
-        {photos.map((photo, index) => (
+        {images.map((photo, index) => (
           <SwiperSlide key={index}>
             <img src={photo.url} />
           </SwiperSlide>
@@ -46,7 +46,7 @@ const SwiperElement = (props: { images: Image[] }): JSX.Element => {
         modules={[FreeMode, Navigation, Thumbs]}
         className="mySwiper"
       >
-        {photos.map((photo, index) => (
+        {images.map((photo, index) => (
           <SwiperSlide key={index}>
             <img src={photo.url} />
           </SwiperSlide>
@@ -63,7 +63,7 @@ const SwiperElement = (props: { images: Image[] }): JSX.Element => {
           >
             <CloseIcon />
           </IconButton>
-          <ModalSwiper />
+          <ModalSwiper images={images} />
         </Paper>
       </Modal>
     </>

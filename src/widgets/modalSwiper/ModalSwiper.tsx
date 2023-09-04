@@ -5,10 +5,9 @@ import 'swiper/scss/pagination';
 import 'swiper/scss/navigation';
 
 import { Pagination, Navigation, HashNavigation } from 'swiper/modules';
-// import ProductMessage from '../../shared/api/productMessage/productMessage';
+import { SwiperProps } from '../../shared/types';
 
-const ModalSwiper = (): JSX.Element => {
-  // const photos = ProductMessage.body.masterVariant.images;
+const ModalSwiper = (props: SwiperProps): JSX.Element => {
   return (
     <>
       <Swiper
@@ -21,13 +20,13 @@ const ModalSwiper = (): JSX.Element => {
         }}
         navigation={true}
         modules={[Pagination, Navigation, HashNavigation]}
-        className="mySwiper swiper-element"
+        className="mySwiper2 swiper-element"
       >
-        {/* {photos.map((photo, index) => (
+        {props.images.map((photo, index) => (
           <SwiperSlide data-hash="slide1" key={index}>
             <img src={photo.url} />
           </SwiperSlide>
-        ))} */}
+        ))}
       </Swiper>
     </>
   );

@@ -5,6 +5,7 @@ import { SelectChangeEvent } from '@mui/material';
 import { FieldChangeHandler } from '@mui/x-date-pickers/internals';
 import { DateValidationError } from '@mui/x-date-pickers';
 import { LocalizedString } from '@commercetools/platform-sdk';
+import { Image } from '@commercetools/platform-sdk';
 
 export interface LinkProps {
   to?: string;
@@ -161,4 +162,8 @@ export interface PriceProps {
   priceOriginal?: string | number;
   priceDiscounted?: string | number;
   additionalClassName?: string;
+}
+
+export interface SwiperProps {
+  images: Image[];
 }
