@@ -27,11 +27,11 @@ const Product = (): JSX.Element => {
         <div className="product__elements">
           <SwiperElement />
           <div className="product__description">
-            <Typography variant="h6" gutterBottom className="product__title">
+            <Typography variant="h4" gutterBottom className="product__title">
               {name}
             </Typography>
             <PriceElement
-              additionalClassName="card__price"
+              additionalClassName="card__price product__price"
               priceOriginal={centAmount}
               priceDiscounted={discountedCentAmount}
             />
