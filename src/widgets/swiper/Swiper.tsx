@@ -22,35 +22,47 @@ const SwiperElement = (): JSX.Element => {
         className="mySwiper2"
       >
         <SwiperSlide>
-          <img src="https://swiperjs.com/demos/images/nature-1.jpg" />
-        </SwiperSlide>
-        <SwiperSlide>
           <img src="https://swiperjs.com/demos/images/nature-2.jpg" />
         </SwiperSlide>
-        <SwiperSlide>
-          <img src="https://swiperjs.com/demos/images/nature-3.jpg" />
+        {/* <SwiperSlide>
+         <img src="https://swiperjs.com/demos/images/nature-2.jpg" />
+
         </SwiperSlide>
+
+        <SwiperSlide>
+           <img src="https://swiperjs.com/demos/images/nature-3.jpg" />
+
+        </SwiperSlide>
+
         <SwiperSlide>
           <img src="https://swiperjs.com/demos/images/nature-4.jpg" />
+
         </SwiperSlide>
+
         <SwiperSlide>
           <img src="https://swiperjs.com/demos/images/nature-5.jpg" />
+
         </SwiperSlide>
+
         <SwiperSlide>
           <img src="https://swiperjs.com/demos/images/nature-6.jpg" />
+
         </SwiperSlide>
+
         <SwiperSlide>
           <img src="https://swiperjs.com/demos/images/nature-7.jpg" />
+
         </SwiperSlide>
+
         <SwiperSlide>
-          <img src="https://swiperjs.com/demos/images/nature-8.jpg" />
+           <img src="https://swiperjs.com/demos/images/nature-8.jpg" />
         </SwiperSlide>
         <SwiperSlide>
           <img src="https://swiperjs.com/demos/images/nature-9.jpg" />
         </SwiperSlide>
         <SwiperSlide>
           <img src="https://swiperjs.com/demos/images/nature-10.jpg" />
-        </SwiperSlide>
+        </SwiperSlide> */}
       </Swiper>
       <Swiper
         // onSwiper={setThumbsSwiper}
@@ -62,9 +74,9 @@ const SwiperElement = (): JSX.Element => {
         className="mySwiper"
       >
         <SwiperSlide>
-          <img src="https://swiperjs.com/demos/images/nature-1.jpg" />
+          <img src="https://swiperjs.com/demos/images/nature-2.jpg" />
         </SwiperSlide>
-        <SwiperSlide>
+        {/* <SwiperSlide>
           <img src="https://swiperjs.com/demos/images/nature-2.jpg" />
         </SwiperSlide>
         <SwiperSlide>
@@ -90,7 +102,7 @@ const SwiperElement = (): JSX.Element => {
         </SwiperSlide>
         <SwiperSlide>
           <img src="https://swiperjs.com/demos/images/nature-10.jpg" />
-        </SwiperSlide>
+        </SwiperSlide> */}
       </Swiper>
       {/* </div> */}
     </>

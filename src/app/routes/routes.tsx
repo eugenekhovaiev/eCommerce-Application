@@ -14,7 +14,6 @@ import { useLoggedInContext } from '../../shared/lib/contexts/LoggedInContext';
 
 export const useRoutes = (): JSX.Element => {
   const { isLoggedIn } = useLoggedInContext();
-
   return (
     <Routes>
       <Route path="/" element={<Main />} />
