@@ -1,11 +1,12 @@
-import { useState } from 'react';
+// import { useState } from 'react';
 import { Typography } from '@mui/material';
 import SwiperElement from '../../widgets/swiper/Swiper';
 import PriceElement from '../../shared/UI/priceElement/PriceElement';
-import { ProductProjection } from '@commercetools/platform-sdk';
+// import { ProductProjection } from '@commercetools/platform-sdk';
+import ProductMessage from '../../shared/api/productMessage/productMessage';
 
 const Product = (): JSX.Element => {
-  const [productsArr] = useState<ProductProjection[] | []>([]);
+  //   const [productsArr] = useState<ProductProjection[] | []>([]);
   return (
     <section className="product">
       <div className="container product__wrapper">
@@ -15,14 +16,17 @@ const Product = (): JSX.Element => {
         <div className="product__elements">
           <SwiperElement />
           <div className="product__description">
-            {productsArr.map((product, index) => {
+            {/* {ProductMessage.body.map((product, index) => {
               return (
                 <Typography variant="h6" gutterBottom className="product__title" key={index}>
                   {product.name}
                 </Typography>
               );
-            })}
-            {productsArr.map((product, index) => {
+            })} */}
+            <Typography variant="h6" gutterBottom className="product__title">
+              {ProductMessage.body.name['en-US']}
+            </Typography>
+            {/* {bodyArray.map((product, index) => {
               const productPrices = product.masterVariant.prices;
               const productOriginalPrice = productPrices && productPrices[0] && productPrices[0].value.centAmount;
               const productDiscountedPrice =
@@ -36,13 +40,21 @@ const Product = (): JSX.Element => {
                 />
               );
             })}
-            {productsArr.map((product, index) => {
+            {bodyArray.map((product, index) => {
               return (
                 <Typography variant="body1" gutterBottom key={index}>
                   {product.description}
                 </Typography>
               );
-            })}
+            })} */}
+            <PriceElement
+              additionalClassName="card__price"
+              priceOriginal={ProductMessage.body.masterVariant.prices[0].value.centAmount}
+              priceDiscounted={ProductMessage.body.masterVariant.prices[0].discounted.value.centAmount}
+            />
+            <Typography variant="body1" gutterBottom>
+              {ProductMessage.body.description['en-US']}
+            </Typography>
           </div>
         </div>
       </div>

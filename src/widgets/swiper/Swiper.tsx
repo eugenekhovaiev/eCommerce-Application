@@ -7,10 +7,11 @@ import 'swiper/scss/navigation';
 import 'swiper/scss/thumbs';
 
 import { FreeMode, Navigation, Thumbs } from 'swiper/modules';
+import ProductMessage from '../../shared/api/productMessage/productMessage';
 
 const SwiperElement = (): JSX.Element => {
   const [thumbsSwiper] = useState(null);
-
+  const photos = ProductMessage.body.masterVariant.images;
   return (
     <>
       {/* <div className="swiper-wrapper"> */}
@@ -21,9 +22,11 @@ const SwiperElement = (): JSX.Element => {
         modules={[FreeMode, Navigation, Thumbs]}
         className="mySwiper2"
       >
-        <SwiperSlide>
-          <img src="https://swiperjs.com/demos/images/nature-2.jpg" />
-        </SwiperSlide>
+        {photos.map((photo, index) => (
+          <SwiperSlide key={index}>
+            <img src={photo.url} />
+          </SwiperSlide>
+        ))}
         {/* <SwiperSlide>
          <img src="https://swiperjs.com/demos/images/nature-2.jpg" />
 
@@ -73,9 +76,11 @@ const SwiperElement = (): JSX.Element => {
         modules={[FreeMode, Navigation, Thumbs]}
         className="mySwiper"
       >
-        <SwiperSlide>
-          <img src="https://swiperjs.com/demos/images/nature-2.jpg" />
-        </SwiperSlide>
+        {photos.map((photo, index) => (
+          <SwiperSlide key={index}>
+            <img src={photo.url} />
+          </SwiperSlide>
+        ))}
         {/* <SwiperSlide>
           <img src="https://swiperjs.com/demos/images/nature-2.jpg" />
         </SwiperSlide>
