@@ -35,11 +35,12 @@
   "dependencies": {
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
-    "@mui/icons-material": "^5.14.3",
+    "@mui/icons-material": "^5.14.7",
     "@mui/material": "^5.14.4",
     "@mui/x-date-pickers": "^6.11.1",
     "dayjs": "^1.11.9",
     "isomorphic-fetch": "^3.0.0",
+    "mdb-react-ui-kit": "^6.2.0",
     "normalize.css": "^8.0.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",

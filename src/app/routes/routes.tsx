@@ -10,19 +10,19 @@ import Cart from '../../pages/cart/Cart';
 import About from '../../pages/about/About';
 import Product from '../../pages/product/Product';
 
-import { useLoggedInContext } from '../../shared/lib/contexts/LoggedInContext';
+import { useUserDataContext } from '../../shared/lib/contexts/UserDataContext';
 
 export const useRoutes = (): JSX.Element => {
-  const { isLoggedIn } = useLoggedInContext();
+  const { userData } = useUserDataContext();
 
   return (
     <Routes>
       <Route path="/" element={<Main />} />
-      <Route path="/login" element={isLoggedIn ? <Navigate to="/" replace /> : <Login />} />
+      <Route path="/login" element={userData ? <Navigate to="/" replace /> : <Login />} />
       <Route path="*" element={<Page404 />} />
-      <Route path="/registration" element={isLoggedIn ? <Navigate to="/" replace /> : <Registration />} />
+      <Route path="/registration" element={userData ? <Navigate to="/" replace /> : <Registration />} />
       <Route path="/catalog" element={<Catalog />} />
-      <Route path="/profile" element={<Profile />} />
+      <Route path="/profile" element={!userData ? <Navigate to="/login" replace /> : <Profile />} />
       <Route path="/cart" element={<Cart />} />
       <Route path="/about" element={<About />} />
       <Route path="/catalog/:slug" element={<Product />} />

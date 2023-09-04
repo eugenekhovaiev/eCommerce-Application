@@ -1,0 +1,56 @@
+.modal {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &__content {
+    margin: 0 auto;
+    padding: 1rem;
+
+    position: relative;
+
+    width: 75vw;
+    height: 85vh;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+
+    overflow: auto;
+    background-color: $color-primary-s;
+  }
+
+  &__close {
+    width: 2rem;
+    height: 2rem;
+
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+
+    cursor: pointer;
+    transition: 0.3s all;
+
+    &:hover {
+      transform: translateY(-2px);
+    }
+  }
+
+  &__buttons {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+  }
+
+  &__button {
+    width: 8rem;
+  }
+
+  &_add-address {
+    .modal__form {
+      width: 90%;
+    }
+  }
+}

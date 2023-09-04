@@ -2,6 +2,7 @@ import { LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { DateField } from '@mui/x-date-pickers';
 import { DateFieldProps } from '../../types';
+import dayjs from 'dayjs';
 
 const DateFieldElement = (props: DateFieldProps): JSX.Element => {
   return (
@@ -9,7 +10,7 @@ const DateFieldElement = (props: DateFieldProps): JSX.Element => {
       <DateField
         format="DD-MM-YYYY"
         color="secondary"
-        value={props.value}
+        defaultValue={props.defaultValue ? dayjs(props.defaultValue) : ''}
         className={props.additionalClassName}
         onChange={props.onChange}
         slotProps={{
