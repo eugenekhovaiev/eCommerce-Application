@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import FilterForm from '../../widgets/filter/FilterForm';
-import ProductCategories from '../../widgets/productCategories/ProducC';
+import ProductCategories from '../../widgets/productCategories/ProductCategories';
 import ProductCard from '../../entities/productCard/ProductCard';
 import LinkElement from '../../shared/UI/linkElement/LinkElement';
 import getProducts from '../../shared/api/user/getProducts';
