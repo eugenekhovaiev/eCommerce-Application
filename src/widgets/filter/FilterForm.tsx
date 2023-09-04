@@ -146,13 +146,13 @@ const FilterForm = (props: FilterFormProps): JSX.Element => {
         setState={setPriceState}
         additionalClassName="filter-form__item"
       />
+      <ButtonElement type="submit" additionalClassName="form__submit filter-form__submit" title="Apply" />
       <ButtonElement
         type="button"
         additionalClassName="form__submit filter-form__submit"
         title="Reset"
         onClick={handleResetClick}
       />
-      <ButtonElement type="submit" additionalClassName="form__submit filter-form__submit" title="Apply" />
     </form>
   );
 };

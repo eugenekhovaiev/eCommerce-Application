@@ -8,25 +8,46 @@ import buildCategoryTree from '../../shared/lib/helpers/buildCategoryTree';
 import Category from '../../shared/types/Category';
 import { ProductProjection } from '@commercetools/platform-sdk';
 import { FilterProvider } from '../../shared/lib/contexts/FilterContext';
+import TextFieldElement from '../../shared/UI/textFieldElement/TextFieldElement';
+import { InputAdornment } from '@mui/material';
+import SearchIcon from '@mui/icons-material/Search';
 
 const Catalog = (): JSX.Element => {
   const [mainCategories, setMainCategories] = useState<Category[]>([]);
   const [isFilter, setIsFilter] = useState(false);
+  const [isSearch, setIsSearch] = useState(false);
   const [productsArr, setProductsArr] = useState<ProductProjection[] | []>([]);
   const [categoryId, setCategoryId] = useState('');
+  const [search, setSearch] = useState('');
 
   const handleShowPageClick = async (): Promise<void> => {
     try {
       const mainCategories = await buildCategoryTree();
       const productsObj = await getProducts();
-      console.log(mainCategories);
-      console.log(productsObj.body.results);
       setIsFilter(true);
+      setIsSearch(true);
       setMainCategories(mainCategories);
       setProductsArr(productsObj.body.results);
     } catch (error) {
       console.log(error);
     }
+  };
+
+  const handleEnterKey = async (event: React.KeyboardEvent<HTMLDivElement>): Promise<void> => {
+    if (event.key === 'Enter') {
+      console.log(search);
+      const newQueryParams = {
+        searchText: search,
+      };
+      const productsObj = await getProducts(newQueryParams);
+      setCategoryId('');
+      setProductsArr(productsObj.body.results);
+    }
+  };
+
+  const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>): void => {
+    const value = event.target.value;
+    setSearch(value);
   };
 
   // const handleClick = async (): Promise<void> => {
@@ -62,6 +83,22 @@ const Catalog = (): JSX.Element => {
           />
           <div className="container catalog-products__content">
             <div className="catalog-products__filter">
+              {isSearch && (
+                <div className="catalog-products__search">
+                  <TextFieldElement
+                    variant="outlined"
+                    label="Search"
+                    value={search}
+                    onChange={handleSearchChange}
+                    onKeyDown={handleEnterKey}
+                    endAdornment={
+                      <InputAdornment position="end">
+                        <SearchIcon />
+                      </InputAdornment>
+                    }
+                  />
+                </div>
+              )}
               {isFilter && (
                 <FilterForm
                   setProducts={setProductsArr}

@@ -12,6 +12,7 @@ const TextFieldElement = (props: TextFieldProps): JSX.Element => {
       color="secondary"
       className={fullClassName}
       variant={props.variant || 'standard'}
+      onKeyDown={props.onKeyDown}
       onChange={props.onChange}
       value={props.value}
       error={props.error}
