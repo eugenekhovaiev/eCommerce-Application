@@ -5,7 +5,7 @@ import getFullClassName from '../../lib/helpers/getFullClassName';
 const TextFieldElement = (props: TextFieldProps): JSX.Element => {
   const fullClassName = getFullClassName('text-input', props.additionalClassName);
 
-  return (
+  const controlledInput = (
     <TextField
       type={props.type || 'text'}
       label={props.label}
@@ -14,7 +14,7 @@ const TextFieldElement = (props: TextFieldProps): JSX.Element => {
       variant={props.variant || 'standard'}
       onKeyDown={props.onKeyDown}
       onChange={props.onChange}
-      value={props.value}
+      value={props.value ? props.value : ''}
       error={props.error}
       helperText={props.helperText}
       InputProps={{
@@ -22,6 +22,25 @@ const TextFieldElement = (props: TextFieldProps): JSX.Element => {
       }}
     />
   );
+
+  const uncontrolledInput = (
+    <TextField
+      type={props.type || 'text'}
+      label={props.label}
+      color="secondary"
+      className={fullClassName}
+      variant={props.variant || 'standard'}
+      onChange={props.onChange}
+      defaultValue={props.defaultValue ? props.defaultValue : ''}
+      error={props.error}
+      helperText={props.helperText}
+      InputProps={{
+        endAdornment: props.endAdornment,
+      }}
+    />
+  );
+
+  return props.value !== undefined ? controlledInput : uncontrolledInput;
 };
 
 export default TextFieldElement;

@@ -6,7 +6,13 @@ const ButtonElement: React.FC<ButtonProps> = (props: ButtonProps) => {
   const fullClassName = getFullClassName('button', props.additionalClassName);
 
   return (
-    <Button type={props.type} className={fullClassName} color="secondary" onClick={props.onClick}>
+    <Button
+      type={props.type}
+      variant={props.variant}
+      className={fullClassName}
+      color="secondary"
+      onClick={props.onClick}
+    >
       {props.title} {props.children}
     </Button>
   );

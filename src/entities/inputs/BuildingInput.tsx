@@ -17,11 +17,14 @@ const BuildingInput = (props: RegistrationAddressProps): JSX.Element => {
     setMessage(messageValue);
   };
 
+  const name = props.default ? 'building' : props.isShipping ? 'buildingShipping' : 'buildingBilling';
+
   return (
     <Controller
       control={props.control}
-      name={props.isShipping ? 'buildingShipping' : 'buildingBilling'}
+      name={name}
       rules={buildingValidation}
+      defaultValue={props.defaultValue}
       render={({ field }): JSX.Element => (
         <TextFieldElement
           label="Building"
@@ -31,7 +34,7 @@ const BuildingInput = (props: RegistrationAddressProps): JSX.Element => {
             field.onChange(e);
             handleValueChange(e);
           }}
-          value={field.value || ''}
+          defaultValue={props.defaultValue}
           error={!!props.errors.buildingBilling?.message || !isValid}
           helperText={!isValid ? message : props.errors.buildingBilling?.message}
         />
