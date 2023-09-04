@@ -1,3 +1,4 @@
+// import { Dayjs } from 'dayjs';
 import { ValidationRealTime } from '../../types';
 
 const validateRealTime = (value: string, inputValidation: (value: string) => string | boolean): ValidationRealTime => {

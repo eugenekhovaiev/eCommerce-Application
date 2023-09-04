@@ -1,14 +1,14 @@
 import LinkElement from '../../shared/UI/linkElement/LinkElement';
 import getFullClassName from '../../shared/lib/helpers/getFullClassName';
 import { LinkProps } from '../../shared/types';
-import { useLoggedInContext } from '../../shared/lib/contexts/LoggedInContext';
+import { useUserDataContext } from '../../shared/lib/contexts/UserDataContext';
 
 function LogOutLink(props: LinkProps): JSX.Element {
-  const { updateLoggedIn } = useLoggedInContext();
+  const { updateUserData } = useUserDataContext();
 
   const handleClick = (): void => {
     localStorage.clear();
-    updateLoggedIn(false);
+    updateUserData(undefined);
   };
 
   const fullClassName = getFullClassName('link_logout', props.additionalClassName);

@@ -7,21 +7,21 @@ import CatalogLink from '../../entities/links/CatalogLink';
 import Logo from '../../entities/logo/Logo';
 
 import logoIcon from '../../shared/assets/logo.svg';
-import { useLoggedInContext } from '../../shared/lib/contexts/LoggedInContext';
+import { useUserDataContext } from '../../shared/lib/contexts/UserDataContext';
 
 import { useEffect } from 'react';
 import LogOutLink from '../../entities/links/LogOutLink';
 
 function Header(): JSX.Element {
-  const { isLoggedIn, updateLoggedIn } = useLoggedInContext();
+  const { userData, updateUserData } = useUserDataContext();
 
   useEffect(() => {
-    const savedHasHeaderChanged = localStorage.getItem('isAuth');
+    const currentUser = localStorage.getItem('currentUser');
 
-    if (savedHasHeaderChanged === 'true') {
-      updateLoggedIn(true);
+    if (currentUser) {
+      updateUserData(JSON.parse(currentUser));
     }
-  }, [updateLoggedIn]);
+  }, []);
 
   return (
     <header className="header">
@@ -31,10 +31,10 @@ function Header(): JSX.Element {
           <nav className="nav header__nav">
             <AboutUsLink additionalClassName="nav__link" />
             <CatalogLink additionalClassName="nav__link" />
-            <ProfileLink additionalClassName="nav__link" />
-            {!isLoggedIn && <LogInLink additionalClassName="nav__link" />}
-            {!isLoggedIn && <SignUpLink additionalClassName="nav__link" />}
-            {isLoggedIn && <LogOutLink additionalClassName="nav__link" />}
+            {userData && <ProfileLink additionalClassName="nav__link" />}
+            {!userData && <LogInLink additionalClassName="nav__link" />}
+            {!userData && <SignUpLink additionalClassName="nav__link" />}
+            {userData && <LogOutLink additionalClassName="nav__link" />}
             <CartLink additionalClassName="nav__link" />
           </nav>
         </div>
