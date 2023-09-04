@@ -6,6 +6,7 @@ import { FieldChangeHandler } from '@mui/x-date-pickers/internals';
 import { DateValidationError } from '@mui/x-date-pickers';
 import { Customer, CustomerUpdate } from '@commercetools/platform-sdk';
 import { Dayjs } from 'dayjs';
+import { LocalizedString } from '@commercetools/platform-sdk';
 
 export interface LinkProps {
   to?: string;
@@ -65,7 +66,7 @@ export interface ButtonProps {
   additionalClassName?: string;
   type?: 'button' | 'submit' | 'reset';
   children?: JSX.Element;
-  onClick?: React.MouseEventHandler<HTMLElement>;
+  onClick?: React.MouseEventHandler<HTMLButtonElement>;
 }
 
 export interface InputProps {
@@ -164,4 +165,41 @@ export interface CountryContext {
 
 export interface CustomerUpdateWithId extends CustomerUpdate {
   id: string;
+}
+export interface ProductCardProps {
+  url: string;
+  name: LocalizedString;
+  image?: string;
+  priceOriginal?: string | number;
+  priceDiscounted?: string | number;
+  description?: LocalizedString;
+}
+
+interface FilterAttribute {
+  enumName: string;
+  value: string;
+}
+
+export interface Filters {
+  categoriesIds?: string;
+  priceRange?: {
+    from: number;
+    to: number;
+  };
+  attributes?: FilterAttribute[];
+  searchKeywords?: string;
+}
+
+export interface ProductsQueryParams {
+  sort?: {
+    by: 'price' | 'name.en-US';
+    order: 'asc' | 'desc';
+  };
+  filters?: Filters;
+}
+
+export interface PriceProps {
+  priceOriginal?: string | number;
+  priceDiscounted?: string | number;
+  additionalClassName?: string;
 }
