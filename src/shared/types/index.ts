@@ -223,6 +223,7 @@ export interface ProductCategoriesProps {
 }
 
 export interface ProductsQueryParams {
+  searchText?: string;
   sort?: {
     // by: 'price' | 'name.en-US';
     // order: 'asc' | 'desc';

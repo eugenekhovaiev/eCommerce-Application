@@ -13,6 +13,7 @@ const ProductCategories = (props: ProductCategoriesProps): JSX.Element => {
   const handleCategoryClick = async (id: string): Promise<void> => {
     try {
       const newQueryParams = {
+        searchText: 'Sample Necklace',
         filters: { categoriesIds: id },
       };
       const productsObj = await getProducts(newQueryParams);
@@ -30,6 +31,7 @@ const ProductCategories = (props: ProductCategoriesProps): JSX.Element => {
   const handleMouseLeave = (category: Category): void => {
     setVisibleCategory(category);
   };
+
   return (
     <div
       className="container catalog-products__categories-wrapper"

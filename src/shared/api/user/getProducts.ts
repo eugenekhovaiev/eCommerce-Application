@@ -14,6 +14,8 @@ const getProducts = async (
     .search()
     .get({
       queryArgs: {
+        'text.en-US': queryParams.searchText,
+        fuzzy: true,
         sort: queryParams.sort ? `${queryParams.sort.by} ${queryParams.sort.order}` : undefined,
         filter: filtersArr,
       },
