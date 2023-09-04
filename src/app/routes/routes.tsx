@@ -24,7 +24,7 @@ export const useRoutes = (): JSX.Element => {
       <Route path="/profile" element={<Profile />} />
       <Route path="/cart" element={<Cart />} />
       <Route path="/about" element={<About />} />
-      <Route path="/product" element={<Product />} />
+      <Route path="/catalog/:slug" element={<Product />} />
     </Routes>
   );
 };

@@ -14,7 +14,6 @@ const SwiperElement = (): JSX.Element => {
   const photos = ProductMessage.body.masterVariant.images;
   return (
     <>
-      {/* <div className="swiper-wrapper"> */}
       <Swiper
         spaceBetween={10}
         navigation={true}
@@ -27,45 +26,6 @@ const SwiperElement = (): JSX.Element => {
             <img src={photo.url} />
           </SwiperSlide>
         ))}
-        {/* <SwiperSlide>
-         <img src="https://swiperjs.com/demos/images/nature-2.jpg" />
-
-        </SwiperSlide>
-
-        <SwiperSlide>
-           <img src="https://swiperjs.com/demos/images/nature-3.jpg" />
-
-        </SwiperSlide>
-
-        <SwiperSlide>
-          <img src="https://swiperjs.com/demos/images/nature-4.jpg" />
-
-        </SwiperSlide>
-
-        <SwiperSlide>
-          <img src="https://swiperjs.com/demos/images/nature-5.jpg" />
-
-        </SwiperSlide>
-
-        <SwiperSlide>
-          <img src="https://swiperjs.com/demos/images/nature-6.jpg" />
-
-        </SwiperSlide>
-
-        <SwiperSlide>
-          <img src="https://swiperjs.com/demos/images/nature-7.jpg" />
-
-        </SwiperSlide>
-
-        <SwiperSlide>
-           <img src="https://swiperjs.com/demos/images/nature-8.jpg" />
-        </SwiperSlide>
-        <SwiperSlide>
-          <img src="https://swiperjs.com/demos/images/nature-9.jpg" />
-        </SwiperSlide>
-        <SwiperSlide>
-          <img src="https://swiperjs.com/demos/images/nature-10.jpg" />
-        </SwiperSlide> */}
       </Swiper>
       <Swiper
         // onSwiper={setThumbsSwiper}
@@ -81,35 +41,7 @@ const SwiperElement = (): JSX.Element => {
             <img src={photo.url} />
           </SwiperSlide>
         ))}
-        {/* <SwiperSlide>
-          <img src="https://swiperjs.com/demos/images/nature-2.jpg" />
-        </SwiperSlide>
-        <SwiperSlide>
-          <img src="https://swiperjs.com/demos/images/nature-3.jpg" />
-        </SwiperSlide>
-        <SwiperSlide>
-          <img src="https://swiperjs.com/demos/images/nature-4.jpg" />
-        </SwiperSlide>
-        <SwiperSlide>
-          <img src="https://swiperjs.com/demos/images/nature-5.jpg" />
-        </SwiperSlide>
-        <SwiperSlide>
-          <img src="https://swiperjs.com/demos/images/nature-6.jpg" />
-        </SwiperSlide>
-        <SwiperSlide>
-          <img src="https://swiperjs.com/demos/images/nature-7.jpg" />
-        </SwiperSlide>
-        <SwiperSlide>
-          <img src="https://swiperjs.com/demos/images/nature-8.jpg" />
-        </SwiperSlide>
-        <SwiperSlide>
-          <img src="https://swiperjs.com/demos/images/nature-9.jpg" />
-        </SwiperSlide>
-        <SwiperSlide>
-          <img src="https://swiperjs.com/demos/images/nature-10.jpg" />
-        </SwiperSlide> */}
       </Swiper>
-      {/* </div> */}
     </>
   );
 };

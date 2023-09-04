@@ -1,9 +1,28 @@
+import { useState, useEffect } from 'react';
+// import { useParams } from 'react-router-dom';
 import { Typography } from '@mui/material';
 import SwiperElement from '../../widgets/swiper/Swiper';
 import PriceElement from '../../shared/UI/priceElement/PriceElement';
 import ProductMessage from '../../shared/api/productMessage/productMessage';
 
 const Product = (): JSX.Element => {
+  //   const { slug } = useParams();
+  const [name, setName] = useState('');
+  const [description, setDescription] = useState('');
+  const [centAmount, setCentAmount] = useState(0);
+  const [discountedCentAmount, setDiscountedCentAmount] = useState(0);
+
+  useEffect(() => {
+    // Здесь вы можете использовать slug для поиска продукта в ProductMessage
+    // Например, можно пройти по массиву продуктов и найти продукт с соответствующим slug
+    const product = ProductMessage.body;
+
+    // if (product.slug['en-US'] === slug) {
+    setName(product.name['en-US']);
+    setDescription(product.description['en-US']);
+    setCentAmount(product.masterVariant.prices[0].value.centAmount);
+    setDiscountedCentAmount(product.masterVariant.prices[0].discounted.value.centAmount);
+  }, []);
   return (
     <section className="product">
       <div className="container product__wrapper">
@@ -14,15 +33,15 @@ const Product = (): JSX.Element => {
           <SwiperElement />
           <div className="product__description">
             <Typography variant="h6" gutterBottom className="product__title">
-              {ProductMessage.body.name['en-US']}
+              {name}
             </Typography>
             <PriceElement
               additionalClassName="card__price"
-              priceOriginal={ProductMessage.body.masterVariant.prices[0].value.centAmount}
-              priceDiscounted={ProductMessage.body.masterVariant.prices[0].discounted.value.centAmount}
+              priceOriginal={centAmount}
+              priceDiscounted={discountedCentAmount}
             />
             <Typography variant="body1" gutterBottom>
-              {ProductMessage.body.description['en-US']}
+              {description}
             </Typography>
           </div>
         </div>
