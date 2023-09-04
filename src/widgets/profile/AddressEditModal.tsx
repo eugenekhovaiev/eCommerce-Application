@@ -12,6 +12,7 @@ import getAddressString from '../../shared/lib/helpers/getAddressString';
 import { Address, BaseAddress, Customer } from '@commercetools/platform-sdk';
 import ImageElement from '../../shared/UI/imageElement/ImageElement';
 import editIcon from '../../shared/assets/edit.svg';
+import closeIcon from '../../shared/assets/close.svg';
 
 const AddressEditModal = (props: { address: Address }): JSX.Element => {
   const { userData, updateUserData } = useUserDataContext();
@@ -126,6 +127,9 @@ const AddressEditModal = (props: { address: Address }): JSX.Element => {
         </Button>
         <Modal open={modalIsOpen} onClose={closeModal} className="modal modal_add-address">
           <div className="modal__content">
+            <div className="modal__close" onClick={closeModal}>
+              <ImageElement src={closeIcon} alt="close-modal" />
+            </div>
             <Typography variant="h5">Edit address</Typography>
             <form className="modal__form form" onSubmit={handleSubmit(onSubmit)}>
               <RegistrationAddress
@@ -157,13 +161,13 @@ const AddressEditModal = (props: { address: Address }): JSX.Element => {
                 </Alert>
               )}
               <div className="modal__buttons">
-                <ButtonElement type="submit" title="Save" additionalClassName="form__submit" />
                 <ButtonElement
                   type="button"
                   title="Delete address"
                   additionalClassName="form__delete"
                   onClick={handleDeleteClick}
                 />
+                <ButtonElement type="submit" title="Save" additionalClassName="form__submit" />
               </div>
             </form>
           </div>

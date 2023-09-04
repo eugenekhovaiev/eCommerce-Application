@@ -10,6 +10,8 @@ import RegistrationAddress from '../../entities/registration/RegistrationAddress
 import { CountryProvider } from '../../shared/lib/contexts/СountryContext';
 import getAddressString from '../../shared/lib/helpers/getAddressString';
 import { BaseAddress } from '@commercetools/platform-sdk';
+import closeIcon from '../../shared/assets/close.svg';
+import ImageElement from '../../shared/UI/imageElement/ImageElement';
 
 const AddressAddModal = (): JSX.Element => {
   const { userData, updateUserData } = useUserDataContext();
@@ -88,6 +90,9 @@ const AddressAddModal = (): JSX.Element => {
         </Button>
         <Modal open={modalIsOpen} onClose={closeModal} className="modal modal_add-address">
           <div className="modal__content">
+            <div className="modal__close" onClick={closeModal}>
+              <ImageElement src={closeIcon} alt="close-modal" />
+            </div>
             <Typography variant="h5">Add Address</Typography>
             <form className="modal__form form" onSubmit={handleSubmit(onSubmit)}>
               <RegistrationAddress control={control} errors={errors} default={true} />

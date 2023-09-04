@@ -8,6 +8,8 @@ import ButtonElement from '../../shared/UI/buttonElement/ButtonElement';
 import PasswordInput from '../../entities/inputs/PasswordInput';
 import { CustomerChangePassword } from '@commercetools/platform-sdk';
 import changePassword from '../../shared/api/user/changePassword';
+import ImageElement from '../../shared/UI/imageElement/ImageElement';
+import closeIcon from '../../shared/assets/close.svg';
 
 const PasswordChangeModal = (): JSX.Element => {
   const { userData, updateUserData } = useUserDataContext();
@@ -71,6 +73,9 @@ const PasswordChangeModal = (): JSX.Element => {
       </Button>
       <Modal open={modalIsOpen} onClose={closeModal} className="modal">
         <div className="modal__content">
+          <div className="modal__close" onClick={closeModal}>
+            <ImageElement src={closeIcon} alt="close-modal" />
+          </div>
           <Typography variant="h5">Change Password</Typography>
           <form className="modal__form form" onSubmit={handleSubmit(onSubmit)}>
             <PasswordInput

@@ -23,7 +23,9 @@ const Profile = (): JSX.Element => {
             <AccountCircle sx={{ width: '100%', height: '100%' }} />
           </Avatar>
           <CardContent className="profile__card-content">
-            {userData && <ProfileRow title="Full name" content={userData.firstName + ' ' + userData.lastName} />}
+            {userData?.firstName && <ProfileRow title="First name" content={userData.firstName} />}
+            <hr />
+            {userData?.lastName && <ProfileRow title="Last name" content={userData.lastName} />}
             <hr />
             {userData?.dateOfBirth && (
               <ProfileRow title="Date of birth" content={formatDate(userData.dateOfBirth, 'DD-MM-YYYY')} />
@@ -31,8 +33,10 @@ const Profile = (): JSX.Element => {
             <hr />
             {userData && <ProfileRow title="Email" content={userData.email} />}
             <hr />
-            <DataEditModal />
-            <PasswordChangeModal />
+            <div className="profile__buttons">
+              <DataEditModal />
+              <PasswordChangeModal />
+            </div>
           </CardContent>
         </Card>
         <section className="profile__addresses addresses">

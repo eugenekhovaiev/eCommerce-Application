@@ -10,6 +10,8 @@ import EmailInput from '../../entities/inputs/EmailInput';
 import DateOfBirthInput from '../../entities/inputs/DateOfBirthInput';
 import formatDate from '../../shared/lib/helpers/formatDate';
 import updateCustomer from '../../shared/api/user/updateCustomer';
+import ImageElement from '../../shared/UI/imageElement/ImageElement';
+import closeIcon from '../../shared/assets/close.svg';
 
 const DataEditModal = (): JSX.Element => {
   const { userData, updateUserData } = useUserDataContext();
@@ -78,6 +80,9 @@ const DataEditModal = (): JSX.Element => {
       </Button>
       <Modal open={modalIsOpen} onClose={closeModal} className="modal">
         <div className="modal__content">
+          <div className="modal__close" onClick={closeModal}>
+            <ImageElement src={closeIcon} alt="close-modal" />
+          </div>
           <Typography variant="h5">Edit Profile</Typography>
           <form className="modal__form form" onSubmit={handleSubmit(onSubmit)}>
             <NameInput

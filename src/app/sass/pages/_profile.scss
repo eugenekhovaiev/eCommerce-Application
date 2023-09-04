@@ -18,6 +18,11 @@
     width: 35vw;
   }
 
+  &__buttons {
+    display: flex;
+    justify-content: space-between;
+  }
+
   &__button,
   .css-1rwt2y5-MuiButtonBase-root-MuiButton-root {
     margin-bottom: 1rem;
