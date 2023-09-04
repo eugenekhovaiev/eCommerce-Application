@@ -61,9 +61,11 @@ export interface Form {
 
 export interface ButtonProps {
   title: string;
+  variant?: 'outlined' | 'text' | 'contained';
   additionalClassName?: string;
   type?: 'button' | 'submit' | 'reset';
   children?: JSX.Element;
+  onClick?: React.MouseEventHandler<HTMLElement>;
 }
 
 export interface InputProps {

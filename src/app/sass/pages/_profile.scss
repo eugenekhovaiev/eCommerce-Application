@@ -35,6 +35,15 @@
 .address-row {
   padding: 0.5rem 0;
 
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  &__button,
+  .css-1l9sosn-MuiButtonBase-root-MuiButton-root {
+    margin: 0 0.5rem;
+  }
+
   &_default {
     background-color: $color-primary;
   }
