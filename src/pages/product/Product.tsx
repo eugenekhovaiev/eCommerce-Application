@@ -1,23 +1,18 @@
 import { useState, useEffect } from 'react';
-// import { useParams } from 'react-router-dom';
 import { Typography } from '@mui/material';
 import SwiperElement from '../../widgets/swiper/Swiper';
 import PriceElement from '../../shared/UI/priceElement/PriceElement';
 import ProductMessage from '../../shared/api/productMessage/productMessage';
 
 const Product = (): JSX.Element => {
-  //   const { slug } = useParams();
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
   const [centAmount, setCentAmount] = useState(0);
   const [discountedCentAmount, setDiscountedCentAmount] = useState(0);
 
   useEffect(() => {
-    // Здесь вы можете использовать slug для поиска продукта в ProductMessage
-    // Например, можно пройти по массиву продуктов и найти продукт с соответствующим slug
     const product = ProductMessage.body;
 
-    // if (product.slug['en-US'] === slug) {
     setName(product.name['en-US']);
     setDescription(product.description['en-US']);
     setCentAmount(product.masterVariant.prices[0].value.centAmount);
