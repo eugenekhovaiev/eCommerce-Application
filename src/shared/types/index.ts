@@ -276,6 +276,12 @@ export interface ProductsQueryParams {
   filters?: Filters;
 }
 
+export interface SearchInputProps {
+  additionalClassName?: string;
+  setCategoryId?: React.Dispatch<React.SetStateAction<string>>;
+  setProducts?: React.Dispatch<React.SetStateAction<[] | ProductProjection[]>>;
+}
+
 export interface PriceProps {
   priceOriginal?: string | number;
   priceDiscounted?: string | number;

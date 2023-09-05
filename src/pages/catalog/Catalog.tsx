@@ -2,15 +2,16 @@ import { useState } from 'react';
 import FilterForm from '../../widgets/filter/FilterForm';
 import ProductCategories from '../../widgets/productCategories/ProductCategories';
 import ProductCard from '../../entities/productCard/ProductCard';
+import SearchInput from '../../entities/inputs/SearchInput';
 import LinkElement from '../../shared/UI/linkElement/LinkElement';
 import getProducts from '../../shared/api/user/getProducts';
 import buildCategoryTree from '../../shared/lib/helpers/buildCategoryTree';
 import Category from '../../shared/types/Category';
 import { ProductProjection } from '@commercetools/platform-sdk';
 import { FilterProvider } from '../../shared/lib/contexts/FilterContext';
-import TextFieldElement from '../../shared/UI/textFieldElement/TextFieldElement';
-import { InputAdornment } from '@mui/material';
-import SearchIcon from '@mui/icons-material/Search';
+// import TextFieldElement from '../../shared/UI/textFieldElement/TextFieldElement';
+// import { InputAdornment } from '@mui/material';
+// import SearchIcon from '@mui/icons-material/Search';
 
 const Catalog = (): JSX.Element => {
   const [mainCategories, setMainCategories] = useState<Category[]>([]);
@@ -18,7 +19,6 @@ const Catalog = (): JSX.Element => {
   const [isSearch, setIsSearch] = useState(false);
   const [productsArr, setProductsArr] = useState<ProductProjection[] | []>([]);
   const [categoryId, setCategoryId] = useState('');
-  const [search, setSearch] = useState('');
 
   const handleShowPageClick = async (): Promise<void> => {
     try {
@@ -31,23 +31,6 @@ const Catalog = (): JSX.Element => {
     } catch (error) {
       console.log(error);
     }
-  };
-
-  const handleEnterKey = async (event: React.KeyboardEvent<HTMLDivElement>): Promise<void> => {
-    if (event.key === 'Enter') {
-      console.log(search);
-      const newQueryParams = {
-        searchText: search,
-      };
-      const productsObj = await getProducts(newQueryParams);
-      setCategoryId('');
-      setProductsArr(productsObj.body.results);
-    }
-  };
-
-  const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>): void => {
-    const value = event.target.value;
-    setSearch(value);
   };
 
   // const handleClick = async (): Promise<void> => {
@@ -84,20 +67,11 @@ const Catalog = (): JSX.Element => {
           <div className="container catalog-products__content">
             <div className="catalog-products__filter">
               {isSearch && (
-                <div className="catalog-products__search">
-                  <TextFieldElement
-                    variant="outlined"
-                    label="Search"
-                    value={search}
-                    onChange={handleSearchChange}
-                    onKeyDown={handleEnterKey}
-                    endAdornment={
-                      <InputAdornment position="end">
-                        <SearchIcon />
-                      </InputAdornment>
-                    }
-                  />
-                </div>
+                <SearchInput
+                  additionalClassName="catalog-products__search"
+                  setCategoryId={setCategoryId}
+                  setProducts={setProductsArr}
+                />
               )}
               {isFilter && (
                 <FilterForm
