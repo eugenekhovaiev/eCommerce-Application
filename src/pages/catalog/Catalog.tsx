@@ -2,8 +2,6 @@ import { useEffect, useState } from 'react';
 import FilterForm from '../../widgets/filter/FilterForm';
 import ProductCategories from '../../widgets/productCategories/ProductCategories';
 import ProductCard from '../../entities/productCard/ProductCard';
-import SearchInput from '../../entities/inputs/SearchInput';
-// import LinkElement from '../../shared/UI/linkElement/LinkElement';
 import getProducts from '../../shared/api/user/getProducts';
 import buildCategoryTree from '../../shared/lib/helpers/buildCategoryTree';
 import Category from '../../shared/types/Category';
@@ -13,7 +11,6 @@ import { FilterProvider } from '../../shared/lib/contexts/FilterContext';
 const Catalog = (): JSX.Element => {
   const [mainCategories, setMainCategories] = useState<Category[]>([]);
   const [isFilter, setIsFilter] = useState(false);
-  const [isSearch, setIsSearch] = useState(false);
   const [search, setSearch] = useState('');
   const [productsArr, setProductsArr] = useState<ProductProjection[] | []>([]);
   const [categoryId, setCategoryId] = useState('');
@@ -24,7 +21,6 @@ const Catalog = (): JSX.Element => {
         const mainCategories = await buildCategoryTree();
         const productsObj = await getProducts();
         setIsFilter(true);
-        setIsSearch(true);
         setMainCategories(mainCategories);
         setProductsArr(productsObj.body.results);
       } catch (error) {
@@ -48,17 +44,16 @@ const Catalog = (): JSX.Element => {
             mainCategories={mainCategories}
             setCategoryId={setCategoryId}
             setProducts={setProductsArr}
+            search={search}
+            setSearch={setSearch}
           />
           <div className="container catalog-products__content">
             <div className="catalog-products__filter">
-              {isSearch && (
-                <SearchInput
-                  search={search}
-                  setSearch={setSearch}
-                  additionalClassName="catalog-products__search"
-                  setCategoryId={setCategoryId}
-                  setProducts={setProductsArr}
-                />
+              {search !== '' && (
+                <div className="catalog-products__search-results-info">
+                  <h4 className="title">Search results</h4>
+                  <h3 className="subtitle">&quot;{search}&quot;</h3>
+                </div>
               )}
               {isFilter && <FilterForm search={search} setProducts={setProductsArr} categoriesIds={categoryId} />}
             </div>

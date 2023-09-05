@@ -262,6 +262,8 @@ export interface FilterFormProps {
 export interface ProductCategoriesProps {
   setProducts: React.Dispatch<React.SetStateAction<[] | ProductProjection[]>>;
   setCategoryId: React.Dispatch<React.SetStateAction<string>>;
+  search?: string;
+  setSearch?: React.Dispatch<React.SetStateAction<string>>;
   mainCategories?: Category[];
 }
 

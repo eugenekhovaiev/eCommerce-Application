@@ -68,6 +68,7 @@ const FilterForm = (props: FilterFormProps): JSX.Element => {
     setSortStates(Object.values(FILTER_SORT).map(() => false));
     setPriceState([priceRange[0], priceRange[1]]);
     const productsObj = await getProducts({
+      searchText: props.search || undefined,
       filters: {
         categoriesIds: props.categoriesIds,
       },
