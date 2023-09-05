@@ -5,7 +5,14 @@ import { Link } from 'react-router-dom';
 function LinkElement(props: LinkProps): JSX.Element {
   const fullClassName = getFullClassName('link', props.additionalClassName);
   return (
-    <Link className={fullClassName} onClick={props.onClick} to={props.to || '/'} target={props.target}>
+    <Link
+      className={fullClassName}
+      onMouseEnter={props.onMouseEnter}
+      onMouseLeave={props.onMouseLeave}
+      onClick={props.onClick}
+      to={props.to || '/'}
+      target={props.target}
+    >
       {props.title} {props.children}
     </Link>
   );

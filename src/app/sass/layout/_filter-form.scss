@@ -1,0 +1,28 @@
+.filter-form {
+  width: 100%;
+  gap: 0.2rem;
+  .form__checkbox-wrapper {
+    row-gap: 0.3rem;
+  }
+  .form__checkbox-title {
+    text-align: left;
+  }
+}
+
+.filter-form__item {
+  width: 100%;
+}
+
+.MuiButtonBase-root.filter-form__submit {
+  margin-top: 2rem;
+}
+
+.MuiPaper-root.Mui-expanded.filter-form__item {
+  margin: 0px;
+}
+
+.form__slider-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}

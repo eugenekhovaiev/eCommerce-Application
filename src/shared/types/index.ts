@@ -7,6 +7,8 @@ import { DateValidationError } from '@mui/x-date-pickers';
 import { Customer, CustomerUpdate } from '@commercetools/platform-sdk';
 import { Dayjs } from 'dayjs';
 import { LocalizedString } from '@commercetools/platform-sdk';
+import { ProductProjection } from '@commercetools/platform-sdk';
+import Category from './Category';
 import { Image } from '@commercetools/platform-sdk';
 
 export interface LinkProps {
@@ -16,6 +18,8 @@ export interface LinkProps {
   additionalClassName?: string;
   children?: JSX.Element;
   onClick?: React.MouseEventHandler<HTMLAnchorElement>;
+  onMouseEnter?: React.MouseEventHandler<HTMLAnchorElement>;
+  onMouseLeave?: React.MouseEventHandler<HTMLAnchorElement>;
 }
 
 export interface ImgProps {
@@ -61,6 +65,13 @@ export interface Form {
   defaultAddress: boolean;
 }
 
+export interface FilterFormFields {
+  category1: string;
+  category2: string;
+  category3: string;
+  category4: string;
+}
+
 export interface ButtonProps {
   title: string;
   variant?: 'outlined' | 'text' | 'contained';
@@ -82,6 +93,40 @@ export interface InputProps {
 
 export interface PasswordInputProps extends InputProps {
   name?: 'currentPassword' | 'newPassword' | 'confirmPassword';
+}
+
+export interface CatalogFilterProps {
+  name: keyof FilterFormFields;
+  label: string;
+  control: Control<FilterFormFields>;
+  selectItems: object;
+  errors: FieldErrors<FilterFormFields>;
+  className?: string;
+}
+
+export interface AccordionProps {
+  label: JSX.Element;
+  additionalClassName?: string;
+  details?: JSX.Element;
+}
+
+export interface AccordionCheckboxProps {
+  label: JSX.Element;
+  states: boolean[];
+  setStates: React.Dispatch<React.SetStateAction<boolean[]>>;
+  selectItems?: object;
+  additionalClassName?: string;
+  multiple?: boolean;
+}
+
+export interface AccordionSliderProps {
+  label: string;
+  state: number[];
+  setState: React.Dispatch<React.SetStateAction<number[]>>;
+  additionalClassName?: string;
+  min?: number;
+  max?: number;
+  step?: number;
 }
 
 export interface RegistrationAddressProps extends InputProps {
@@ -118,6 +163,7 @@ export interface TextFieldProps {
   helperText?: string;
   variant?: TextFieldVariants;
   onChange?: React.ChangeEventHandler<HTMLInputElement | HTMLTextAreaElement>;
+  onKeyDown?: React.KeyboardEventHandler<HTMLDivElement>;
   endAdornment?: JSX.Element;
 }
 
@@ -134,10 +180,11 @@ export interface SelectProps {
   label: string;
   selectItems: object;
   additionalClassName?: string;
-  // value?: string;
+  variant?: TextFieldVariants;
   defaultValue?: string;
   error?: boolean;
   helperText?: string;
+  value?: string;
   onChange?: (event: SelectChangeEvent<string>, child: ReactNode) => void;
 }
 
@@ -145,6 +192,15 @@ export interface CheckboxProps {
   onChange: ((event: React.ChangeEvent<HTMLInputElement>, checked: boolean) => void) | undefined;
   checked: boolean;
   additionalClassName?: string;
+}
+
+export interface SliderProps {
+  min?: number;
+  max?: number;
+  step?: number;
+  additionalClassName?: string;
+  value: number | number[];
+  onChange?: (event: Event, value: number | number[], activeThumb: number) => void;
 }
 
 export interface ValidationRealTime {
@@ -164,9 +220,15 @@ export interface CountryContext {
   setSelectedBillingCountry: (country: string) => void;
 }
 
+export interface FilterContext {
+  isCategoryUpdated: boolean;
+  updateIsCategoryUpdated: (isCategoryUpdated: boolean) => void;
+}
+
 export interface CustomerUpdateWithId extends CustomerUpdate {
   id: string;
 }
+
 export interface ProductCardProps {
   url: string;
   name: LocalizedString;
@@ -176,7 +238,7 @@ export interface ProductCardProps {
   description?: LocalizedString;
 }
 
-interface FilterAttribute {
+export interface FilterAttribute {
   enumName: string;
   value: string;
 }
@@ -191,12 +253,35 @@ export interface Filters {
   searchKeywords?: string;
 }
 
+export interface FilterFormProps {
+  search?: string;
+  setProducts: React.Dispatch<React.SetStateAction<[] | ProductProjection[]>>;
+  categoriesIds?: string;
+}
+
+export interface ProductCategoriesProps {
+  setProducts: React.Dispatch<React.SetStateAction<[] | ProductProjection[]>>;
+  setCategoryId: React.Dispatch<React.SetStateAction<string>>;
+  mainCategories?: Category[];
+}
+
 export interface ProductsQueryParams {
+  searchText?: string;
   sort?: {
-    by: 'price' | 'name.en-US';
-    order: 'asc' | 'desc';
+    // by: 'price' | 'name.en-US';
+    // order: 'asc' | 'desc';
+    by: string;
+    order: string;
   };
   filters?: Filters;
+}
+
+export interface SearchInputProps {
+  additionalClassName?: string;
+  search?: string;
+  setSearch?: React.Dispatch<React.SetStateAction<string>>;
+  setCategoryId?: React.Dispatch<React.SetStateAction<string>>;
+  setProducts?: React.Dispatch<React.SetStateAction<[] | ProductProjection[]>>;
 }
 
 export interface PriceProps {
