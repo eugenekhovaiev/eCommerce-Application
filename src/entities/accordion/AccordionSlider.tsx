@@ -8,7 +8,7 @@ const AccordionSlider = (props: AccordionSliderProps): JSX.Element => {
   const fullClassName = getFullClassName('accordion', props.additionalClassName);
   const minDistance = 5;
 
-  const handleChange = (event: Event, newValue: number | number[], activeThumb: number): void => {
+  const handleChange = (_event: Event, newValue: number | number[], activeThumb: number): void => {
     if (!Array.isArray(newValue)) {
       return;
     }
