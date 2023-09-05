@@ -3,6 +3,7 @@ import SearchIcon from '@mui/icons-material/Search';
 import { InputAdornment } from '@mui/material';
 import getProducts from '../../shared/api/user/getProducts';
 import TextFieldElement from '../../shared/UI/textFieldElement/TextFieldElement';
+import ButtonElement from '../../shared/UI/buttonElement/ButtonElement';
 import getFullClassName from '../../shared/lib/helpers/getFullClassName';
 import { SearchInputProps } from '../../shared/types';
 import { useFilterContext } from '../../shared/lib/contexts/FilterContext';
@@ -28,7 +29,19 @@ const SearchInput = (props: SearchInputProps): JSX.Element => {
       if (props.setCategoryId) props.setCategoryId('');
       if (props.setProducts) props.setProducts(productsObj.body.results);
       updateIsCategoryUpdated(true);
+      if (document.activeElement instanceof HTMLInputElement) document.activeElement.blur();
     }
+  };
+
+  const handleClick = async (): Promise<void> => {
+    const newQueryParams = {
+      searchText: search,
+    };
+    const productsObj = await getProducts(newQueryParams);
+    if (props.setSearch) props.setSearch(search);
+    if (props.setCategoryId) props.setCategoryId('');
+    if (props.setProducts) props.setProducts(productsObj.body.results);
+    updateIsCategoryUpdated(true);
   };
 
   const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>): void => {
@@ -50,6 +63,7 @@ const SearchInput = (props: SearchInputProps): JSX.Element => {
           </InputAdornment>
         }
       />
+      <ButtonElement additionalClassName="search-button" type="button" title="Go" onClick={handleClick} />
     </div>
   );
 };

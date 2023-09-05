@@ -4,6 +4,7 @@ import getProducts from '../../shared/api/user/getProducts';
 import Category from '../../shared/types/Category';
 import { ProductCategoriesProps } from '../../shared/types';
 import { useFilterContext } from '../../shared/lib/contexts/FilterContext';
+import SearchInput from '../../entities/inputs/SearchInput';
 
 const ProductCategories = (props: ProductCategoriesProps): JSX.Element => {
   const [isSubCategories, setIsSubCategories] = useState(false);
@@ -13,7 +14,6 @@ const ProductCategories = (props: ProductCategoriesProps): JSX.Element => {
   const handleCategoryClick = async (id: string): Promise<void> => {
     try {
       const newQueryParams = {
-        searchText: 'Sample Necklace',
         filters: { categoriesIds: id },
       };
       const productsObj = await getProducts(newQueryParams);
@@ -51,6 +51,13 @@ const ProductCategories = (props: ProductCategoriesProps): JSX.Element => {
             />
           ))}
       </div>
+      <SearchInput
+        search={props.search}
+        setSearch={props.setSearch}
+        additionalClassName="catalog-products__search"
+        setCategoryId={props.setCategoryId}
+        setProducts={props.setProducts}
+      />
       {isSubCategories && (
         <div className="catalog-products__subcategories">
           {visibleCategory
