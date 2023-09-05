@@ -9,14 +9,12 @@ import buildCategoryTree from '../../shared/lib/helpers/buildCategoryTree';
 import Category from '../../shared/types/Category';
 import { ProductProjection } from '@commercetools/platform-sdk';
 import { FilterProvider } from '../../shared/lib/contexts/FilterContext';
-// import TextFieldElement from '../../shared/UI/textFieldElement/TextFieldElement';
-// import { InputAdornment } from '@mui/material';
-// import SearchIcon from '@mui/icons-material/Search';
 
 const Catalog = (): JSX.Element => {
   const [mainCategories, setMainCategories] = useState<Category[]>([]);
   const [isFilter, setIsFilter] = useState(false);
   const [isSearch, setIsSearch] = useState(false);
+  const [search, setSearch] = useState('');
   const [productsArr, setProductsArr] = useState<ProductProjection[] | []>([]);
   const [categoryId, setCategoryId] = useState('');
 
@@ -32,23 +30,6 @@ const Catalog = (): JSX.Element => {
       console.log(error);
     }
   };
-
-  // const handleClick = async (): Promise<void> => {
-  //   try {
-  //     const productsObj = await getProducts({
-  //       // sort: { by: 'name.en-US', order: 'asc' },
-  //       // filters: { categoriesIds: '1ce34364-a540-4fc4-a3dd-13c2ba382c79' },
-  //       // filters: { attributes: [{ enumName: 'color', value: 'Pink' }] },
-  //       // filters: { attributes: [{ enumName: 'size', value: 'Medium' }] },
-  //       // filters: { searchKeywords: 'skinny' },
-  //     });
-
-  //     console.log(productsObj);
-  //     setProductsArr(productsObj.body.results);
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // };
 
   return (
     <FilterProvider>
@@ -68,18 +49,14 @@ const Catalog = (): JSX.Element => {
             <div className="catalog-products__filter">
               {isSearch && (
                 <SearchInput
+                  search={search}
+                  setSearch={setSearch}
                   additionalClassName="catalog-products__search"
                   setCategoryId={setCategoryId}
                   setProducts={setProductsArr}
                 />
               )}
-              {isFilter && (
-                <FilterForm
-                  setProducts={setProductsArr}
-                  categoriesIds={categoryId}
-                  // isCategoryUpdates={isCategoryUpdated}
-                />
-              )}
+              {isFilter && <FilterForm search={search} setProducts={setProductsArr} categoriesIds={categoryId} />}
             </div>
             <div className="catalog-products__products">
               {productsArr.map((product, index) => {

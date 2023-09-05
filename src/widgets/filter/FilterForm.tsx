@@ -86,6 +86,7 @@ const FilterForm = (props: FilterFormProps): JSX.Element => {
     try {
       if (queryAttributes.length === 0) {
         const productsObj = await getProducts({
+          searchText: props.search || undefined,
           sort: sort[0],
           filters: {
             categoriesIds: props.categoriesIds,
@@ -96,6 +97,7 @@ const FilterForm = (props: FilterFormProps): JSX.Element => {
       } else {
         const promises = queryAttributes.map((item) =>
           getProducts({
+            searchText: props.search || undefined,
             sort: sort[0],
             filters: {
               categoriesIds: props.categoriesIds,

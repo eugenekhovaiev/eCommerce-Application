@@ -254,8 +254,8 @@ export interface Filters {
 }
 
 export interface FilterFormProps {
+  search?: string;
   setProducts: React.Dispatch<React.SetStateAction<[] | ProductProjection[]>>;
-  // isCategoryUpdated: boolean;
   categoriesIds?: string;
 }
 
@@ -278,6 +278,8 @@ export interface ProductsQueryParams {
 
 export interface SearchInputProps {
   additionalClassName?: string;
+  search?: string;
+  setSearch?: React.Dispatch<React.SetStateAction<string>>;
   setCategoryId?: React.Dispatch<React.SetStateAction<string>>;
   setProducts?: React.Dispatch<React.SetStateAction<[] | ProductProjection[]>>;
 }
