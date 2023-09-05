@@ -1,9 +1,9 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import FilterForm from '../../widgets/filter/FilterForm';
 import ProductCategories from '../../widgets/productCategories/ProductCategories';
 import ProductCard from '../../entities/productCard/ProductCard';
 import SearchInput from '../../entities/inputs/SearchInput';
-import LinkElement from '../../shared/UI/linkElement/LinkElement';
+// import LinkElement from '../../shared/UI/linkElement/LinkElement';
 import getProducts from '../../shared/api/user/getProducts';
 import buildCategoryTree from '../../shared/lib/helpers/buildCategoryTree';
 import Category from '../../shared/types/Category';
@@ -18,27 +18,31 @@ const Catalog = (): JSX.Element => {
   const [productsArr, setProductsArr] = useState<ProductProjection[] | []>([]);
   const [categoryId, setCategoryId] = useState('');
 
-  const handleShowPageClick = async (): Promise<void> => {
-    try {
-      const mainCategories = await buildCategoryTree();
-      const productsObj = await getProducts();
-      setIsFilter(true);
-      setIsSearch(true);
-      setMainCategories(mainCategories);
-      setProductsArr(productsObj.body.results);
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  useEffect(() => {
+    const fetchData = async (): Promise<void> => {
+      try {
+        const mainCategories = await buildCategoryTree();
+        const productsObj = await getProducts();
+        setIsFilter(true);
+        setIsSearch(true);
+        setMainCategories(mainCategories);
+        setProductsArr(productsObj.body.results);
+      } catch (error) {
+        // navigate(from, { replace: true });
+        console.log('Something went wrong!');
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  if (!productsArr || !mainCategories) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <FilterProvider>
       <main className="catalog">
-        <section className="start-screen">
-          <div className="container start-screen__wrapper">
-            <LinkElement title="Show page" onClick={handleShowPageClick} to="/catalog" />
-          </div>
-        </section>
         <section className="catalog-products">
           <ProductCategories
             mainCategories={mainCategories}
