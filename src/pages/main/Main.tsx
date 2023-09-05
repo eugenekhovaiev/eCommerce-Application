@@ -8,7 +8,10 @@ function Main(): JSX.Element {
         <div className="container">
           <div className="start-screen__wrapper">
             <h2 className="start-screen__title">eCommerce-Application</h2>
-            <p>Большая просьба, подождите с проверкой до послезавтра, мы будем очень признательны</p>
+            <p>
+              Уважаемый проверяющий, просим Вас подождать с проверкой до шестого числа. Заранее большое спасибо за
+              понимание))
+            </p>
             <LogInLink additionalClassName="start-screen__link" />
             <SignUpLink additionalClassName="start-screen__link" />
           </div>
