@@ -163,7 +163,7 @@ export interface TextFieldProps {
   helperText?: string;
   variant?: TextFieldVariants;
   onChange?: React.ChangeEventHandler<HTMLInputElement | HTMLTextAreaElement>;
-  onKeyDown?:  React.KeyboardEventHandler<HTMLDivElement>;
+  onKeyDown?: React.KeyboardEventHandler<HTMLDivElement>;
   endAdornment?: JSX.Element;
 }
 
