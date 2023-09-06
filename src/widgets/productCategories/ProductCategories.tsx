@@ -20,6 +20,7 @@ const ProductCategories = (props: ProductCategoriesProps): JSX.Element => {
       props.setProducts(productsObj.body.results);
       props.setCategoryId(category.id);
       props.setCategory(category);
+      if (props.setSearch) props.setSearch('');
       updateIsCategoryUpdated(true);
     } catch (error) {
       console.log(error);
