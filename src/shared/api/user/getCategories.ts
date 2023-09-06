@@ -3,7 +3,14 @@ import { ClientResponse, CategoryPagedQueryResponse } from '@commercetools/platf
 import { apiRoot } from './getUserApiRoot';
 
 const getCategories = async (): Promise<ClientResponse<CategoryPagedQueryResponse>> => {
-  return apiRoot.categories().get().execute();
+  return apiRoot
+    .categories()
+    .get({
+      queryArgs: {
+        limit: 50,
+      },
+    })
+    .execute();
 };
 
 export default getCategories;

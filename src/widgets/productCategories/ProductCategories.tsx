@@ -11,14 +11,16 @@ const ProductCategories = (props: ProductCategoriesProps): JSX.Element => {
   const [visibleCategory, setVisibleCategory] = useState<Category>();
   const { updateIsCategoryUpdated } = useFilterContext();
 
-  const handleCategoryClick = async (id: string): Promise<void> => {
+  const handleCategoryClick = async (category: Category): Promise<void> => {
     try {
       const newQueryParams = {
-        filters: { categoriesIds: id },
+        filters: { categoriesIds: category.id },
       };
       const productsObj = await getProducts(newQueryParams);
       props.setProducts(productsObj.body.results);
-      props.setCategoryId(id);
+      props.setCategoryId(category.id);
+      props.setCategory(category);
+      if (props.setSearch) props.setSearch('');
       updateIsCategoryUpdated(true);
     } catch (error) {
       console.log(error);
@@ -44,7 +46,7 @@ const ProductCategories = (props: ProductCategoriesProps): JSX.Element => {
               additionalClassName="catalog-products__category"
               key={category.name}
               title={category.name}
-              onClick={(): Promise<void> => handleCategoryClick(category.id)}
+              onClick={(): Promise<void> => handleCategoryClick(category)}
               onMouseEnter={(): void => handleMouseEnter(category)}
               onMouseLeave={(): void => handleMouseLeave(category)}
               to="/catalog"
@@ -66,7 +68,7 @@ const ProductCategories = (props: ProductCategoriesProps): JSX.Element => {
                   <LinkElement
                     additionalClassName=" catalog-products__subcategory catalog-products__subcategory_bold"
                     title={subcategory.name}
-                    onClick={(): Promise<void> => handleCategoryClick(subcategory.id)}
+                    onClick={(): Promise<void> => handleCategoryClick(subcategory)}
                     to="/catalog"
                   />
                   {subcategory.children?.map((child) => (
@@ -74,7 +76,7 @@ const ProductCategories = (props: ProductCategoriesProps): JSX.Element => {
                       additionalClassName="catalog-products__subcategory"
                       key={child.name}
                       title={child.name}
-                      onClick={(): Promise<void> => handleCategoryClick(child.id)}
+                      onClick={(): Promise<void> => handleCategoryClick(child)}
                       to="/catalog"
                     />
                   ))}

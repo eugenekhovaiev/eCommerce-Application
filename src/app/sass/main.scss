@@ -7,6 +7,11 @@
 * {
   font-family: $font-primary !important;
 }
+html {
+  @media screen and (max-width: 500px) {
+    font-size: 13px;
+  }
+}
 
 @import './components/container';
 
@@ -28,7 +33,7 @@
 @import './pages/login';
 @import './pages/profile';
 @import './pages/catalog';
-@import './pages/_product';
+@import './pages/product';
 
 @import './components/swiper';
 @import './components/modalWindow';
