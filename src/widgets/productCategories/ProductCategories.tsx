@@ -35,10 +35,7 @@ const ProductCategories = (props: ProductCategoriesProps): JSX.Element => {
   };
 
   return (
-    <div
-      className="container catalog-products__categories-wrapper"
-      onMouseLeave={(): void => setIsSubCategories(false)}
-    >
+    <div className="catalog-products__categories-wrapper" onMouseLeave={(): void => setIsSubCategories(false)}>
       <div className="catalog-products__categories">
         {props.mainCategories &&
           props.mainCategories.map((category) => (
