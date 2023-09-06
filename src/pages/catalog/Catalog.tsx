@@ -14,6 +14,7 @@ const Catalog = (): JSX.Element => {
   const [search, setSearch] = useState('');
   const [productsArr, setProductsArr] = useState<ProductProjection[] | []>([]);
   const [categoryId, setCategoryId] = useState('');
+  const [category, setCategory] = useState<Category>();
 
   useEffect(() => {
     const fetchData = async (): Promise<void> => {
@@ -43,11 +44,19 @@ const Catalog = (): JSX.Element => {
           <ProductCategories
             mainCategories={mainCategories}
             setCategoryId={setCategoryId}
+            setCategory={setCategory}
             setProducts={setProductsArr}
             search={search}
             setSearch={setSearch}
           />
           <div className="container catalog-products__content">
+            {categoryId && (
+              <h2 className="catalog-products__title">
+                {category?.parent?.parent?.name && category?.parent?.parent?.name.concat(' /')}
+                {category?.parent?.name && category?.parent?.name.concat(' /')}
+                {category?.name}
+              </h2>
+            )}
             <div className="catalog-products__filter">
               {search !== '' && (
                 <div className="catalog-products__search-results-info">

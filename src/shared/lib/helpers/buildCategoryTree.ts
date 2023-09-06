@@ -7,8 +7,8 @@ const buildCategoryTree = async (): Promise<Category[]> => {
   const results = categories.body.results;
   const allNodes = results.map((item) => {
     return item.parent
-      ? new Category(item.id, Object.values(item.name)[0], item.parent.id, null)
-      : new Category(item.id, Object.values(item.name)[0], null, null);
+      ? new Category(item.id, Object.values(item.name)[0], item.parent.id, null, null)
+      : new Category(item.id, Object.values(item.name)[0], null, null, null);
   });
   const dictIdtoNode: { [key: string]: Category } = {};
   for (let i = 0; i < allNodes.length; i++) {
@@ -19,6 +19,7 @@ const buildCategoryTree = async (): Promise<Category[]> => {
     const parentId = dictIdtoNode[key].parentId;
     if (parentId) {
       dictIdtoNode[parentId].appendChild(dictIdtoNode[key]);
+      dictIdtoNode[key].parent = dictIdtoNode[parentId];
     }
   }
 
