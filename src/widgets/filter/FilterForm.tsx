@@ -3,8 +3,8 @@ import { useState, useEffect } from 'react';
 import AccordionCheckbox from '../../entities/accordion/AccordionCheckbox';
 import AccordionSlider from '../../entities/accordion/AccordionSlider';
 import ButtonElement from '../../shared/UI/buttonElement/ButtonElement';
-import FILTER_SIZE from '../../shared/consts/FILTER_SIZE';
-import FILTER_COLOR from '../../shared/consts/FILTER_COLOR';
+import FILTER_NECK_PAD from '../../shared/consts/FILTER_NECK_PAD';
+import FILTER_BREED_SIZE from '../../shared/consts/FILTER_BREED_SIZE';
 import FILTER_SORT from '../../shared/consts/FILTER_SORT';
 import getProducts from '../../shared/api/user/getProducts';
 import { useFilterContext } from '../../shared/lib/contexts/FilterContext';
@@ -44,9 +44,9 @@ const transformToFilterSortBy = (values: string[], state: boolean[]): ({ by: str
 };
 
 const FilterForm = (props: FilterFormProps): JSX.Element => {
-  const priceRange = [0, 1000];
-  const [colorStates, setColorStates] = useState(Object.values(FILTER_COLOR).map(() => false));
-  const [sizeStates, setSizeStates] = useState(Object.values(FILTER_SIZE).map(() => false));
+  const priceRange = [0, 30];
+  const [neckPadStates, setNeckPadStates] = useState(Object.values(FILTER_NECK_PAD).map(() => false));
+  const [breedSizeStates, setBreedSizeStates] = useState(Object.values(FILTER_BREED_SIZE).map(() => false));
   const [sortStates, setSortStates] = useState(Object.values(FILTER_SORT).map(() => false));
   const [priceState, setPriceState] = useState<number[]>([priceRange[0], priceRange[1]]);
   const { handleSubmit } = useForm<FilterFormFields>();
@@ -54,8 +54,8 @@ const FilterForm = (props: FilterFormProps): JSX.Element => {
 
   useEffect(() => {
     if (isCategoryUpdated) {
-      setColorStates(Object.values(FILTER_COLOR).map(() => false));
-      setSizeStates(Object.values(FILTER_SIZE).map(() => false));
+      setNeckPadStates(Object.values(FILTER_NECK_PAD).map(() => false));
+      setBreedSizeStates(Object.values(FILTER_BREED_SIZE).map(() => false));
       setSortStates(Object.values(FILTER_SORT).map(() => false));
       setPriceState([priceRange[0], priceRange[1]]);
       updateIsCategoryUpdated(false);
@@ -63,8 +63,8 @@ const FilterForm = (props: FilterFormProps): JSX.Element => {
   }, [isCategoryUpdated]);
 
   const handleResetClick = async (): Promise<void> => {
-    setColorStates(Object.values(FILTER_COLOR).map(() => false));
-    setSizeStates(Object.values(FILTER_SIZE).map(() => false));
+    setNeckPadStates(Object.values(FILTER_NECK_PAD).map(() => false));
+    setBreedSizeStates(Object.values(FILTER_BREED_SIZE).map(() => false));
     setSortStates(Object.values(FILTER_SORT).map(() => false));
     setPriceState([priceRange[0], priceRange[1]]);
     const productsObj = await getProducts({
@@ -78,11 +78,10 @@ const FilterForm = (props: FilterFormProps): JSX.Element => {
   };
 
   const onSubmit: SubmitHandler<FilterFormFields> = async (): Promise<void> => {
-    const colors = transformToFilterAttributes('color', Object.values(FILTER_COLOR), colorStates);
-    const sizes = transformToFilterAttributes('size', Object.values(FILTER_SIZE), sizeStates);
+    const breedSize = transformToFilterAttributes('dog-breed-size', Object.values(FILTER_BREED_SIZE), breedSizeStates);
+    const neckPad = transformToFilterAttributes('neck-pad', Object.values(FILTER_NECK_PAD), neckPadStates);
     const sort = transformToFilterSortBy(Object.keys(FILTER_SORT), sortStates);
-    const queryAttributes = cartesianProduct(sizes, colors);
-    // console.log(cartesianProduct(result, sizes2).map((item) => item.flat()));
+    const queryAttributes = cartesianProduct(breedSize, neckPad);
 
     try {
       if (queryAttributes.length === 0) {
@@ -126,18 +125,18 @@ const FilterForm = (props: FilterFormProps): JSX.Element => {
         multiple={false}
       />
       <AccordionCheckbox
-        label={<Typography>Color</Typography>}
-        states={colorStates}
-        setStates={setColorStates}
-        selectItems={FILTER_COLOR}
+        label={<Typography>Braided neck pad</Typography>}
+        states={neckPadStates}
+        setStates={setNeckPadStates}
+        selectItems={FILTER_NECK_PAD}
         additionalClassName="filter-form__item"
         multiple={false}
       />
       <AccordionCheckbox
-        label={<Typography>Size</Typography>}
-        states={sizeStates}
-        setStates={setSizeStates}
-        selectItems={FILTER_SIZE}
+        label={<Typography>Breed size</Typography>}
+        states={breedSizeStates}
+        setStates={setBreedSizeStates}
+        selectItems={FILTER_BREED_SIZE}
         additionalClassName="filter-form__item"
         multiple={false}
       />
