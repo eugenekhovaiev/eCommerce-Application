@@ -10,8 +10,8 @@ const PriceElement = (props: PriceProps): JSX.Element => {
 
   return (
     <div className={fullClassName}>
-      {priceDiscounted && <div className="price__line-through">{priceOriginal}</div>}
       <h3 className="price__final">{priceFinal}</h3>
+      {priceDiscounted && <div className="price__line-through">{priceOriginal}</div>}
     </div>
   );
 };
