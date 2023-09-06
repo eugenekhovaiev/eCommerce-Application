@@ -67,27 +67,29 @@ const Catalog = (): JSX.Element => {
               {isFilter && <FilterForm search={search} setProducts={setProductsArr} categoriesIds={categoryId} />}
             </div>
             <div className="catalog-products__products">
-              {productsArr.map((product, index) => {
-                const productImages = product.masterVariant.images;
-                const productPreviewUrl = productImages && productImages[0] && productImages[0].url;
+              {productsArr.length
+                ? productsArr.map((product, index) => {
+                    const productImages = product.masterVariant.images;
+                    const productPreviewUrl = productImages && productImages[0] && productImages[0].url;
 
-                const productPrices = product.masterVariant.prices;
-                const productOriginalPrice = productPrices && productPrices[0] && productPrices[0].value.centAmount;
-                const productDiscountedPrice =
-                  productPrices && productPrices[0] && productPrices[0].discounted?.value.centAmount;
+                    const productPrices = product.masterVariant.prices;
+                    const productOriginalPrice = productPrices && productPrices[0] && productPrices[0].value.centAmount;
+                    const productDiscountedPrice =
+                      productPrices && productPrices[0] && productPrices[0].discounted?.value.centAmount;
 
-                return (
-                  <ProductCard
-                    url={product.id}
-                    image={productPreviewUrl}
-                    name={product.name}
-                    priceOriginal={productOriginalPrice}
-                    priceDiscounted={productDiscountedPrice}
-                    description={product.description}
-                    key={index}
-                  />
-                );
-              })}
+                    return (
+                      <ProductCard
+                        url={product.id}
+                        image={productPreviewUrl}
+                        name={product.name}
+                        priceOriginal={productOriginalPrice}
+                        priceDiscounted={productDiscountedPrice}
+                        description={product.description}
+                        key={index}
+                      />
+                    );
+                  })
+                : 'No products matching your request.'}
             </div>
           </div>
         </section>
