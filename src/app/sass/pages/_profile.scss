@@ -115,8 +115,7 @@
     grid-template-columns: 0.1fr 1fr;
   }
 
-  &__button,
-  .css-1l9sosn-MuiButtonBase-root-MuiButton-root {
+  &__button.MuiButton-root {
     margin: 0 0.5rem;
 
     img {
