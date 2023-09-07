@@ -1,7 +1,9 @@
 .link {
   cursor: pointer;
+  color: $color-font-dark-l;
   &:hover {
     color: $color-font-dark-s;
+    text-decoration: underline;
   }
   text-decoration: none;
 }

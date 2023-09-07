@@ -83,9 +83,9 @@ const AddressAddModal = (): JSX.Element => {
   };
 
   return (
-    <div>
+    <div className="profile__button-wrapper">
       <CountryProvider>
-        <Button variant="outlined" onClick={openModal} className="profile__button">
+        <Button variant="outlined" color="secondary" onClick={openModal} className="profile__button">
           Add Address
         </Button>
         <Modal open={modalIsOpen} onClose={closeModal} className="modal modal_add-address">

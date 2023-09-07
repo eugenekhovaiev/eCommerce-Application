@@ -54,7 +54,7 @@ const Product = (): JSX.Element => {
                 : [{ url: 'src/shared/assets/image-placeholder.svg', dimensions: { w: 100, h: 100 } }]
             }
           />
-          <div className="product__description">
+          <div className="product__description-wrapper">
             <Typography variant="h4" gutterBottom className="product__title">
               {productName}
             </Typography>
@@ -63,7 +63,7 @@ const Product = (): JSX.Element => {
               priceOriginal={productOriginalPrice}
               priceDiscounted={productDiscountedPrice}
             />
-            <Typography variant="body1" gutterBottom>
+            <Typography variant="body1" className="product__description" gutterBottom>
               {productDescription}
             </Typography>
           </div>

@@ -122,7 +122,7 @@ const AddressEditModal = (props: { address: Address }): JSX.Element => {
   return (
     <div className="address-row__wrapper">
       <CountryProvider>
-        <Button variant="outlined" onClick={openModal} className="address-row__button">
+        <Button color="secondary" variant="outlined" onClick={openModal} className="address-row__button">
           <ImageElement src={editIcon} alt="edit" />
         </Button>
         <Modal open={modalIsOpen} onClose={closeModal} className="modal modal_add-address">

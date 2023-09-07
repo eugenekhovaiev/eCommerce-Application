@@ -42,6 +42,10 @@
     width: 100%;
     display: flex;
     justify-content: space-around;
+    @media screen and (max-width: 576px) {
+      flex-direction: column-reverse;
+      gap: 1rem;
+    }
   }
 
   &__button {
@@ -51,6 +55,49 @@
   &_add-address {
     .modal__form {
       width: 90%;
+    }
+  }
+
+  &__form {
+    width: 60%;
+
+    @media screen and (max-width: 992px) {
+      width: 70%;
+    }
+
+    @media screen and (max-width: 768px) {
+      width: 85%;
+    }
+
+    @media screen and (max-width: 576px) {
+      width: 100%;
+    }
+  }
+
+  .form__input.MuiTextField-root,
+  .form__input.MuiFormControl-root {
+    width: 80%;
+
+    @media screen and (max-width: 576px) {
+      width: 95%;
+    }
+  }
+
+  .registration__address-info {
+    .form__input.MuiTextField-root,
+    .form__input.MuiFormControl-root {
+      width: 100%;
+    }
+
+    @media screen and (max-width: 992px) {
+      row-gap: 0.5rem;
+      grid-template-columns: 1fr 1fr;
+      grid-template-areas:
+        'street street'
+        'building unit'
+        'city city'
+        'zip zip'
+        'country country';
     }
   }
 }

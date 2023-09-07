@@ -18,7 +18,7 @@
 }
 
 .form__input .MuiOutlinedInput-notchedOutline {
-  border: 3px solid $color-primary;
+  border: 1px solid $color-primary-l;
 }
 
 // .form__input_password .MuiInputBase-root {
@@ -141,8 +141,8 @@
 
 .MuiButtonBase-root.form__delete {
   width: 10rem;
-  background-color: red;
-  color: $color-primary;
+  background-color: $color-delete;
+  color: $color-primary-xs;
   align-self: center;
 
   &:hover {

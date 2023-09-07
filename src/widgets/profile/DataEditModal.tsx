@@ -74,8 +74,8 @@ const DataEditModal = (): JSX.Element => {
   };
 
   return (
-    <div>
-      <Button variant="outlined" onClick={openModal} className="profile__button">
+    <div className="profile__button-wrapper">
+      <Button variant="outlined" color="secondary" onClick={openModal} className="profile__button">
         Edit Profile
       </Button>
       <Modal open={modalIsOpen} onClose={closeModal} className="modal">
