@@ -67,8 +67,8 @@ const PasswordChangeModal = (): JSX.Element => {
   };
 
   return (
-    <div>
-      <Button variant="outlined" onClick={openModal} className="profile__button">
+    <div className="profile__button-wrapper">
+      <Button variant="outlined" color="secondary" onClick={openModal} className="profile__button">
         Change Password
       </Button>
       <Modal open={modalIsOpen} onClose={closeModal} className="modal">

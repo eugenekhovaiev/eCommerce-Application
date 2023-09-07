@@ -1,6 +1,7 @@
 // import { useState } from 'react';
-import { Card, CardContent, Typography, Avatar } from '@mui/material';
-import { AccountCircle } from '@mui/icons-material';
+// import { Card, CardContent, Typography, Avatar } from '@mui/material';
+import { Card, CardContent, Typography } from '@mui/material';
+// import { AccountCircle } from '@mui/icons-material';
 import ProfileRow from '../../entities/profile/ProfileRow';
 import DataEditModal from '../../widgets/profile/DataEditModal';
 import { useUserDataContext } from '../../shared/lib/contexts/UserDataContext';
@@ -19,9 +20,6 @@ const Profile = (): JSX.Element => {
           Information
         </Typography>
         <Card className="profile__card">
-          <Avatar sx={{ width: '30vh', height: '30vh', marginBottom: 2 }}>
-            <AccountCircle sx={{ width: '100%', height: '100%' }} />
-          </Avatar>
           <CardContent className="profile__card-content">
             {userData?.firstName && <ProfileRow title="First name" content={userData.firstName} />}
             <hr />
