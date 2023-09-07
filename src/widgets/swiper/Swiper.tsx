@@ -56,7 +56,7 @@ const SwiperElement = (props: SwiperProps): JSX.Element => {
           </SwiperSlide>
         ))}
       </Swiper>
-      <Modal open={modalIsOpen} onClose={closeModal} className="modal">
+      <Modal open={modalIsOpen} onClose={closeModal} className="modal mySwiper__modal">
         <Paper className="modal__content">
           <div className="modal__close" onClick={closeModal}>
             <ImageElement src={closeIcon} alt="close-modal" />
