@@ -42,6 +42,10 @@
     width: 100%;
     display: flex;
     justify-content: space-around;
+    @media screen and (max-width: 576px) {
+      flex-direction: column-reverse;
+      gap: 1rem;
+    }
   }
 
   &__button {
