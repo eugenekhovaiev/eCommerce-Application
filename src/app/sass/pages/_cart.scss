@@ -1,0 +1,102 @@
+.cart {
+  &__container {
+    display: grid;
+    grid-template-areas:
+      'items items'
+      'coupon total-cost';
+    grid-template-columns: 1fr 1fr;
+    justify-items: center;
+    align-items: center;
+    row-gap: 1rem;
+  }
+
+  &__items-wrapper {
+    grid-area: items;
+  }
+
+  &__coupon-wrapper {
+    grid-area: coupon;
+  }
+
+  &__total-cost-wrapper {
+    grid-area: total-cost;
+  }
+}
+
+.cart-items {
+  &__item {
+    cursor: default;
+    padding: 0.5rem;
+    display: grid;
+    grid-template-areas: 'name price quantity total close';
+    grid-template-columns: 3fr 1fr 1fr 1fr 1fr;
+    justify-content: center;
+    justify-items: start;
+    align-items: center;
+    column-gap: 0.5rem;
+    border-bottom: 1px solid $color-shadow;
+    transition: background-color 0.5s;
+
+    &:hover {
+      background-color: $color-primary-s;
+    }
+  }
+
+  &__item_header {
+    font-size: 1.2rem;
+    &:hover {
+      background-color: $color-primary-xs;
+    }
+  }
+  &__item_header &__total {
+    font-weight: 400;
+  }
+
+  &__name {
+    grid-area: name;
+    display: flex;
+    align-items: center;
+    .image {
+      width: 17%;
+    }
+    .title {
+      padding-left: 0.3rem;
+    }
+  }
+
+  &__price {
+    grid-area: price;
+  }
+
+  &__quantity {
+    grid-area: quantity;
+  }
+
+  &__total {
+    grid-area: total;
+    font-weight: 600;
+  }
+
+  &__close {
+    grid-area: close;
+    justify-self: end;
+    .button.MuiButtonBase-root {
+      padding: 0 0 0.1rem 0;
+      margin: 0;
+      width: 1rem;
+      height: 1rem;
+      min-width: 1rem;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      font-size: 1.2rem;
+      border-radius: 50%;
+      background-color: $color-secondary;
+      color: $color-primary-xs;
+
+      transform: rotate(45deg);
+    }
+  }
+}

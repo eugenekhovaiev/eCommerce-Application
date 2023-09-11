@@ -1,8 +1,14 @@
+import BasketItems from '../../widgets/basketItems/BasketItems';
+
 const Cart = (): JSX.Element => {
   return (
     <main className="cart">
       <div className="container cart__container">
-        <h2 className="cart__title">Cart page content will be here.</h2>
+        <div className="cart__items-wrapper">
+          <BasketItems />
+        </div>
+        <div className="cart__coupon-wrapper">coupon</div>
+        <div className="cart__total-cost-wrapper">total cost</div>
       </div>
     </main>
   );

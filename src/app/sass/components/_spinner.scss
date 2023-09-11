@@ -1,0 +1,30 @@
+.input-spinner {
+  display: flex;
+  border: 1px solid $color-shadow;
+  border-radius: 0.25rem;
+
+  &__text-field {
+    width: 2rem;
+    text-align: center;
+    border: 0px;
+
+    &:focus {
+      border: none;
+      outline: none;
+    }
+  }
+
+  &__decrease,
+  &__increase {
+    width: 1.5rem;
+    .button.MuiButtonBase-root {
+      width: 100%;
+      min-width: 0.5rem;
+      padding: 0px;
+      margin: 0px;
+      border-radius: 0.2rem;
+      color: $color-primary-xs;
+      background-color: $color-secondary;
+    }
+  }
+}
