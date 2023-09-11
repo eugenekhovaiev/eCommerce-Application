@@ -1,0 +1,12 @@
+.about {
+
+  &__title {
+    text-align: center;
+    font-size: 2rem;
+  }
+
+  &__members {
+    display: flex;
+    gap: 2rem;
+  }
+}
