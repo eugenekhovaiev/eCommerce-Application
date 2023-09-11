@@ -4,8 +4,55 @@
     font-size: 2rem;
   }
 
+  &__description {
+    padding: 4rem 0;
+    text-align: left;
+
+    &-wrapper {
+      display: flex;
+      gap: 3rem;
+      padding-bottom: 3rem;
+
+      &-list {
+        width: 50%;
+      }
+    }
+
+    &-list {
+      display: flex;
+      flex-direction: column;
+      padding-left: 1rem;
+      gap: 2rem;
+    }
+
+    &-list-title {
+      font-size: 1.2rem;
+      font-weight: bold;
+      padding: 1rem 0;
+      color: $color-secondary;
+    }
+
+    &-list-item-numeric {
+      list-style-type: decimal;
+      color: $color-font-dark-xl;
+      -webkit-text-stroke: 1px $color-shadow;
+    }
+
+    &-list-item-circle {
+      list-style-type: circle;
+    }
+
+    &-list-item-square {
+      list-style-type: square;
+    }
+  }
+
   &__members {
     display: flex;
     gap: 2rem;
+  }
+
+  &__methods {
+    width: 50%;
   }
 }
