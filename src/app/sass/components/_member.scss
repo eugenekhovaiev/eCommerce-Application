@@ -17,6 +17,17 @@
       font-style: italic;
     }
 
+    &-location {
+      display: flex;
+      align-items: center;
+      margin-left: -1rem;
+
+      &-img {
+        width: 14%;
+        height: 100%;
+      }
+    }
+
     &-link {
       display: flex;
       align-items: center;

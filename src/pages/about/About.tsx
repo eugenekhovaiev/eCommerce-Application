@@ -68,6 +68,7 @@ const About = (): JSX.Element => {
             description="Lorem, ipsum dolor sit amet consectetur adipisicing elit. Velit aperiam nesciunt eius doloremque
               reiciendis inventore doloribus sit non culpa? Odio assumenda quaerat id pariatur accusantium possimus
               molestiae incidunt voluptatibus debitis."
+            location="Kyiv, Ukraine"
             href="https://github.com/eugenekhovaiev"
             nickname="eugenekhovaiev"
           />
@@ -78,6 +79,7 @@ const About = (): JSX.Element => {
             description="Lorem, ipsum dolor sit amet consectetur adipisicing elit. Velit aperiam nesciunt eius doloremque
               reiciendis inventore doloribus sit non culpa? Odio assumenda quaerat id pariatur accusantium possimus
               molestiae incidunt voluptatibus debitis."
+            location="Warsaw, Poland"
             href="https://github.com/Alena636"
             nickname="alena636"
           />
@@ -88,6 +90,7 @@ const About = (): JSX.Element => {
             description="Lorem, ipsum dolor sit amet consectetur adipisicing elit. Velit aperiam nesciunt eius doloremque
               reiciendis inventore doloribus sit non culpa? Odio assumenda quaerat id pariatur accusantium possimus
               molestiae incidunt voluptatibus debitis."
+            location="Merced, USA"
             href="https://github.com/XeniyaMV"
             nickname="xeniyamv"
           />
