@@ -13,7 +13,7 @@ const About = (): JSX.Element => {
             description="Lorem, ipsum dolor sit amet consectetur adipisicing elit. Velit aperiam nesciunt eius doloremque
               reiciendis inventore doloribus sit non culpa? Odio assumenda quaerat id pariatur accusantium possimus
               molestiae incidunt voluptatibus debitis."
-            href="#"
+            href="https://github.com/eugenekhovaiev"
             nickname="eugenekhovaiev"
           />
           <Member
@@ -23,7 +23,7 @@ const About = (): JSX.Element => {
             description="Lorem, ipsum dolor sit amet consectetur adipisicing elit. Velit aperiam nesciunt eius doloremque
               reiciendis inventore doloribus sit non culpa? Odio assumenda quaerat id pariatur accusantium possimus
               molestiae incidunt voluptatibus debitis."
-            href="#"
+            href="https://github.com/Alena636"
             nickname="alena636"
           />
           <Member
@@ -33,7 +33,7 @@ const About = (): JSX.Element => {
             description="Lorem, ipsum dolor sit amet consectetur adipisicing elit. Velit aperiam nesciunt eius doloremque
               reiciendis inventore doloribus sit non culpa? Odio assumenda quaerat id pariatur accusantium possimus
               molestiae incidunt voluptatibus debitis."
-            href="#"
+            href="https://github.com/XeniyaMV"
             nickname="xeniyamv"
           />
         </div>
