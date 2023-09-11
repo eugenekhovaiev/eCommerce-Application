@@ -7,7 +7,7 @@ const About = (): JSX.Element => {
         <h2 className="about__title">Our Team</h2>
         <div className="about__members">
           <Member
-            src="#"
+            src="src/shared/assets/user-icon.svg"
             name="Yevhenii Khovaiev"
             role="Team leader, Frontend developer"
             description="Lorem, ipsum dolor sit amet consectetur adipisicing elit. Velit aperiam nesciunt eius doloremque
@@ -17,7 +17,7 @@ const About = (): JSX.Element => {
             nickname="eugenekhovaiev"
           />
           <Member
-            src="#"
+            src="src/shared/assets/user-icon.svg"
             name="Khomich Aliona"
             role="Frontend developer"
             description="Lorem, ipsum dolor sit amet consectetur adipisicing elit. Velit aperiam nesciunt eius doloremque
@@ -27,7 +27,7 @@ const About = (): JSX.Element => {
             nickname="alena636"
           />
           <Member
-            src="#"
+            src="src/shared/assets/user-icon.svg"
             name="Xeniya Gazizova"
             role="Frontend developer"
             description="Lorem, ipsum dolor sit amet consectetur adipisicing elit. Velit aperiam nesciunt eius doloremque

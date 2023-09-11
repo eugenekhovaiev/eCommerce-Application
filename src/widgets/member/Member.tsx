@@ -15,7 +15,7 @@ const Member = (props: MemberProps): JSX.Element => {
       <p className="about__member-role">{props.role}</p>
       <p className="about__member-description">{props.description}</p>
       <a className="about__member-link" href={props.href}>
-        <img src="#" alt="github-link" />
+        <img className="about__member-link-img" src="src/shared/assets/github-icon.svg" alt="github-link" />
         <span>{props.nickname}</span>
       </a>
     </div>
