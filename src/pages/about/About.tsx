@@ -95,6 +95,12 @@ const About = (): JSX.Element => {
             nickname="xeniyamv"
           />
         </div>
+        <div className="about__footer">
+          <a href="https://rs.school/" className="about__rss-link">
+            <img src="src/shared/assets/logo-rsschool.svg" alt="logo-rss" className="about__rss-logo" />
+          </a>
+          <p className="about__footer-date">2023</p>
+        </div>
       </div>
     </main>
   );

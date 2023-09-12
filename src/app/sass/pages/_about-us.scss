@@ -1,4 +1,5 @@
 .about {
+
   &__title {
     text-align: center;
     font-size: 2rem;
@@ -52,9 +53,31 @@
   &__members {
     display: flex;
     gap: 2rem;
+    padding-bottom: 4rem;
   }
 
   &__methods {
     width: 50%;
+  }
+
+  &__footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    padding: 1rem 0;
+
+    &-date {
+      font-size: 1.2rem;
+      font-weight: bold;
+    }
+  }
+
+  &__rss-link {
+    width: 20%;
+  }
+
+  &__rss-logo { 
+    width: 10vw;
+    height: 5vh;
   }
 }
