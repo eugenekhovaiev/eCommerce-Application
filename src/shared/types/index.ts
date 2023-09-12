@@ -296,3 +296,13 @@ export interface PriceProps {
 export interface SwiperProps {
   images: Image[];
 }
+
+export interface MemberProps {
+  src: string;
+  name: string;
+  role: string;
+  description: string;
+  location: string;
+  href: string;
+  nickname: string;
+}

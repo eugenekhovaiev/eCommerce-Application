@@ -1,12 +1,4 @@
-interface MemberProps {
-  src: string;
-  name: string;
-  role: string;
-  description: string;
-  location: string;
-  href: string;
-  nickname: string;
-}
+import { MemberProps } from '../../shared/types';
 
 const Member = (props: MemberProps): JSX.Element => {
   return (
