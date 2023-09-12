@@ -8,6 +8,7 @@ import Category from '../../shared/types/Category';
 import { ProductProjection } from '@commercetools/platform-sdk';
 import { FilterProvider } from '../../shared/lib/contexts/FilterContext';
 import LinkElement from '../../shared/UI/linkElement/LinkElement';
+import Pagination from '../../widgets/pagination/Pagination';
 
 const Catalog = (): JSX.Element => {
   const [mainCategories, setMainCategories] = useState<Category[]>([]);
@@ -16,6 +17,8 @@ const Catalog = (): JSX.Element => {
   const [productsArr, setProductsArr] = useState<ProductProjection[] | []>([]);
   const [categoryId, setCategoryId] = useState('');
   const [category, setCategory] = useState<Category>();
+  const [currentPage, setCurrentPage] = useState(1);
+  const [cardsPerPage] = useState(3);
 
   // TODO вынести в отдельный компонент BreadCrums
 
@@ -54,6 +57,12 @@ const Catalog = (): JSX.Element => {
   if (!productsArr || !mainCategories) {
     return <div>Loading...</div>;
   }
+
+  const lastCardIndex = currentPage * cardsPerPage;
+  const firstCardIndex = lastCardIndex - cardsPerPage;
+  const currentCard = productsArr.slice(firstCardIndex, lastCardIndex);
+
+  const paginate = (pageNumber: number): void => setCurrentPage(pageNumber);
 
   return (
     <FilterProvider>
@@ -106,8 +115,8 @@ const Catalog = (): JSX.Element => {
                 {isFilter && <FilterForm search={search} setProducts={setProductsArr} categoriesIds={categoryId} />}
               </div>
               <div className="catalog-products__products">
-                {productsArr.length
-                  ? productsArr.map((product, index) => {
+                {currentCard
+                  ? currentCard.map((product, index) => {
                       const productImages = product.masterVariant.images;
                       const productPreviewUrl = productImages && productImages[0] && productImages[0].url;
 
@@ -131,6 +140,7 @@ const Catalog = (): JSX.Element => {
                     })
                   : 'No products matching your request.'}
               </div>
+              <Pagination cardsPerPage={cardsPerPage} totalCards={productsArr.length} paginate={paginate} />
             </div>
           </div>
         </section>
