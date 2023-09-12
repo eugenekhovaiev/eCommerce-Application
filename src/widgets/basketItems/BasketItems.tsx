@@ -1,4 +1,5 @@
 import BasketItem from '../../entities/basket/BasketItem';
+import ButtonElement from '../../shared/UI/buttonElement/ButtonElement';
 
 const BasketItems = (): JSX.Element => {
   return (
@@ -21,6 +22,9 @@ const BasketItems = (): JSX.Element => {
         price={114}
         quantity={1}
       />
+      <div className="cart-items__clear-button">
+        <ButtonElement title="Clear cart" />
+      </div>
     </div>
   );
 };

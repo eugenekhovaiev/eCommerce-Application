@@ -27,6 +27,8 @@
 }
 
 .cart-items {
+  display: flex;
+  flex-direction: column;
   &__item {
     cursor: default;
     padding: 0.5rem;
@@ -51,6 +53,7 @@
       background-color: $color-primary-xs;
     }
   }
+
   &__item_header &__total {
     font-weight: 400;
   }
@@ -100,6 +103,23 @@
       color: $color-primary-xs;
 
       transform: rotate(45deg);
+    }
+  }
+
+  &__clear-button {
+    padding-top: 1rem;
+    align-self: center;
+    .button.MuiButtonBase-root {
+      padding: 0.5rem 1rem;
+      background-color: $color-primary;
+      color: $color-primary-l;
+      border: 0.01rem solid $color-primary-l;
+
+      &:hover {
+        background-color: $color-primary-xs;
+        color: $color-secondary;
+        border-color: $color-secondary;
+      }
     }
   }
 }

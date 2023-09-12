@@ -31,6 +31,12 @@
       padding: 0.8rem 1rem;
       background-color: $color-secondary;
       color: $color-primary-xs;
+
+      &:hover {
+        background-color: $color-primary-xs;
+        color: $color-secondary;
+        border: 0.01rem solid $color-secondary;
+      }
     }
   }
 }
