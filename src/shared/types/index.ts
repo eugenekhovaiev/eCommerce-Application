@@ -296,3 +296,15 @@ export interface PriceProps {
 export interface SwiperProps {
   images: Image[];
 }
+
+export interface BasketItemProps {
+  image?: string;
+  name?: string;
+  price?: string | number;
+  quantity?: number;
+}
+
+export interface SpinnerInputProps {
+  value?: number;
+  setQuantity?: React.Dispatch<React.SetStateAction<number>>;
+}

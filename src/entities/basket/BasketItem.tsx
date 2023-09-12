@@ -1,20 +1,27 @@
+import { useState } from 'react';
 import ButtonElement from '../../shared/UI/buttonElement/ButtonElement';
 import SpinnerInput from '../inputs/SpinnerInput';
+import { BasketItemProps } from '../../shared/types';
 
-const BasketItem = (): JSX.Element => {
+const BasketItem = (props: BasketItemProps): JSX.Element => {
+  const [quantity, setQuantity] = useState(props.quantity ? props.quantity : 0);
+
+  const price = props.price ? `$${(+props.price / 100).toFixed(2)}` : 'Price is missing!';
+  const total = props.price ? `$${((+props.price * quantity) / 100).toFixed(2)}` : '$0.00';
+
   return (
     <div className="cart-items__item">
       <div className="cart-items__name">
         <div className="image">
-          <img src={'src/shared/assets/image-example.jpg'} alt={'example'} />
+          <img src={props.image} alt={'example'} />
         </div>
-        <div className="title">Show Leash for Medium-Sized Dogs</div>
+        <div className="title">{props.name}</div>
       </div>
-      <div className="cart-items__price">$0.00</div>
+      <div className="cart-items__price">{price}</div>
       <div className="cart-items__quantity">
-        <SpinnerInput />
+        <SpinnerInput value={quantity} setQuantity={setQuantity} />
       </div>
-      <div className="cart-items__total">$0.00</div>
+      <div className="cart-items__total">{total}</div>
       <div className="cart-items__close">
         <ButtonElement title="+" />
       </div>

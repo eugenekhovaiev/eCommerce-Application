@@ -1,21 +1,25 @@
 import { useState } from 'react';
 import ButtonElement from '../../shared/UI/buttonElement/ButtonElement';
+import { SpinnerInputProps } from '../../shared/types';
 
-const SpinnerInput = (): JSX.Element => {
-  const [spinnerValue, setSpinnerValue] = useState(0);
+const SpinnerInput = (props: SpinnerInputProps): JSX.Element => {
+  const [spinnerValue, setSpinnerValue] = useState(props.value ? props.value : 0);
 
   const handleIncrease = (): void => {
     setSpinnerValue(spinnerValue + 1);
+    if (props.setQuantity) props.setQuantity(spinnerValue + 1);
   };
 
   const handleDecrease = (): void => {
-    setSpinnerValue(spinnerValue - 1 >= 0 ? spinnerValue - 1 : 0);
+    setSpinnerValue(spinnerValue - 1 >= 1 ? spinnerValue - 1 : 1);
+    if (props.setQuantity) props.setQuantity(spinnerValue - 1 >= 1 ? spinnerValue - 1 : 1);
   };
 
   const handleOnChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
     const value = e.target.value;
     if (!isNaN(+value)) {
       setSpinnerValue(+value);
+      if (props.setQuantity) props.setQuantity(+value);
     }
   };
 

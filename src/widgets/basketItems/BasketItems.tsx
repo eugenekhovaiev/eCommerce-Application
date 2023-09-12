@@ -9,8 +9,18 @@ const BasketItems = (): JSX.Element => {
         <div className="cart-items__quantity">Quantity</div>
         <div className="cart-items__total">Total</div>
       </div>
-      <BasketItem />
-      <BasketItem />
+      <BasketItem
+        name="Show Leash for Medium-Sized Dogs"
+        image="src/shared/assets/image-example.jpg"
+        price={100}
+        quantity={1}
+      />
+      <BasketItem
+        name="Show Leash for Medium-Sized Dogs"
+        image="src/shared/assets/image-example.jpg"
+        price={114}
+        quantity={1}
+      />
     </div>
   );
 };
