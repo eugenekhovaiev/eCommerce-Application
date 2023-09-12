@@ -1,5 +1,6 @@
 import BasketItems from '../../widgets/basketItems/BasketItems';
 import Coupon from '../../widgets/coupon/Coupon';
+import TotalCost from '../../widgets/totalCost/TotalCost';
 
 const Cart = (): JSX.Element => {
   return (
@@ -11,7 +12,9 @@ const Cart = (): JSX.Element => {
         <div className="cart__coupon-wrapper">
           <Coupon />
         </div>
-        <div className="cart__total-cost-wrapper">total cost</div>
+        <div className="cart__total-cost-wrapper">
+          <TotalCost />
+        </div>
       </div>
     </main>
   );

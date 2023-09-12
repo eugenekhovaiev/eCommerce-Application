@@ -6,8 +6,8 @@
       'coupon total-cost';
     grid-template-columns: 1fr 1fr;
     justify-items: center;
-    align-items: center;
-    row-gap: 1rem;
+    row-gap: 2rem;
+    column-gap: 3rem;
   }
 
   &__items-wrapper {
@@ -21,6 +21,8 @@
 
   &__total-cost-wrapper {
     grid-area: total-cost;
+    width: 100%;
+    background-color: $color-primary-s;
   }
 }
 
