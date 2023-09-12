@@ -1,4 +1,5 @@
 import BasketItems from '../../widgets/basketItems/BasketItems';
+import Coupon from '../../widgets/coupon/Coupon';
 
 const Cart = (): JSX.Element => {
   return (
@@ -7,7 +8,9 @@ const Cart = (): JSX.Element => {
         <div className="cart__items-wrapper">
           <BasketItems />
         </div>
-        <div className="cart__coupon-wrapper">coupon</div>
+        <div className="cart__coupon-wrapper">
+          <Coupon />
+        </div>
         <div className="cart__total-cost-wrapper">total cost</div>
       </div>
     </main>

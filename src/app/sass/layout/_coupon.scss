@@ -1,0 +1,36 @@
+.coupon {
+  cursor: default;
+  padding: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.3rem;
+
+  &__title {
+    padding: 0.8rem 0;
+    font-weight: 600;
+    font-size: 1.5rem;
+    border-bottom: 0.01rem solid $color-shadow;
+  }
+
+  &__helper-text {
+    font-size: 0.9rem;
+    color: $color-font-dark-s;
+  }
+
+  &__text-field.MuiTextField-root {
+    label {
+      font-size: 0.9rem;
+    }
+  }
+
+  &__apply-button {
+    .button.MuiButtonBase-root {
+      border: 0.01rem solid $color-shadow;
+      padding: 0.8rem 1.5rem;
+
+      &:hover {
+        border-color: $color-secondary;
+      }
+    }
+  }
+}
