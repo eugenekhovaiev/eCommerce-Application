@@ -11,17 +11,18 @@ const BasketItem = (props: BasketItemProps): JSX.Element => {
 
   return (
     <div className="cart-items__item">
-      <div className="cart-items__name">
-        <div className="image">
-          <img src={props.image} alt={'example'} />
-        </div>
-        <div className="title">{props.name}</div>
+      <div className="cart-items__image">
+        <img src={props.image} alt={'example'} />
       </div>
+      <div className="cart-items__name">{props.name}</div>
       <div className="cart-items__price">{price}</div>
       <div className="cart-items__quantity">
         <SpinnerInput value={quantity} setQuantity={setQuantity} />
       </div>
-      <div className="cart-items__total">{total}</div>
+      <div className="cart-items__total">
+        <span className="title">Total: </span>
+        {total}
+      </div>
       <div className="cart-items__close">
         <ButtonElement title="+" />
       </div>
