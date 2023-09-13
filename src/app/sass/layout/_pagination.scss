@@ -1,5 +1,4 @@
 .pagination {
-
   &__list {
     display: flex;
     gap: 1rem;
@@ -12,7 +11,7 @@
       border-radius: 50%;
       padding: 1rem 1.4rem;
       cursor: pointer;
-      transition: .6s;
+      transition: 0.6s;
     }
 
     &-item-link:hover {
@@ -22,7 +21,7 @@
 }
 
 .active {
-  box-shadow: $color-shadow 0px .1rem 1rem;
+  box-shadow: $color-shadow 0px 0.1rem 1rem;
   color: $color-secondary;
   font-size: 1.4rem;
   border: 0px solid $color-font-dark-l;
