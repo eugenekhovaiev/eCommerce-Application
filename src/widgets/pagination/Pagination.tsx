@@ -1,9 +1,4 @@
-interface PaginationProps {
-  cardsPerPage: number;
-  totalCards: number;
-  paginate: (arg: number) => void;
-  currentPage: number;
-}
+import { PaginationProps } from '../../shared/types';
 
 const Pagination = (props: PaginationProps): JSX.Element => {
   const pageNumbers = [];

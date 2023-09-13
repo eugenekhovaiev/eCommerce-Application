@@ -296,3 +296,10 @@ export interface PriceProps {
 export interface SwiperProps {
   images: Image[];
 }
+
+export interface PaginationProps {
+  cardsPerPage: number;
+  totalCards: number;
+  paginate: (arg: number) => void;
+  currentPage: number;
+}
