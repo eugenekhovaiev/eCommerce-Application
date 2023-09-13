@@ -143,7 +143,7 @@ const Catalog = (): JSX.Element => {
                   : 'No products matching your request.'}
                 <div className="catalog-products__pagination">
                   <button disabled={currentPage === 1} className="catalog-products__button" onClick={prevPage}>
-                    Prev
+                    <img className="catalog-products__button-arrow prev" src="src/shared/assets/row.svg" alt="" />
                   </button>
                   <Pagination
                     cardsPerPage={cardsPerPage}
@@ -152,7 +152,7 @@ const Catalog = (): JSX.Element => {
                     currentPage={currentPage}
                   />
                   <button disabled={currentPage === 3} className="catalog-products__button" onClick={nextPage}>
-                    Next
+                    <img className="catalog-products__button-arrow next" src="src/shared/assets/row.svg" alt="" />
                   </button>
                 </div>
               </div>

@@ -195,19 +195,35 @@
   }
 
   &__button {
+    background-color: $color-primary-xs;
     cursor: pointer;
-    padding: 1rem .4rem;
+    padding: 1rem 1rem;
     font-size: 1.4rem;
     border-radius: 50%;
-    border: 1px solid $color-font-dark-l;
+    border: 0px;
+    display: flex;
+    align-items: center;
+    transition: .6s;
+
+    &-arrow {
+      width: 1.4rem;
+    }
+
+    &-arrow.next {
+      transform: rotate(180deg);
+    }
   }
 
   &__button:hover {
-    border-color: $color-shadow;
+    transform: scale(1.1);
+  }
+
+  &__button:disabled {
+    cursor: auto;
+    background-color: $color-disabled;
   }
 
   &__button:disabled:hover {
-    cursor: auto;
-    border: 1px solid $color-font-dark-l;
+    transform: none;
   }
 }
