@@ -18,7 +18,7 @@ const Catalog = (): JSX.Element => {
   const [categoryId, setCategoryId] = useState('');
   const [category, setCategory] = useState<Category>();
   const [currentPage, setCurrentPage] = useState(1);
-  const [cardsPerPage] = useState(3);
+  const [cardsPerPage] = useState(6);
 
   // TODO вынести в отдельный компонент BreadCrums
 
@@ -63,6 +63,8 @@ const Catalog = (): JSX.Element => {
   const currentCard = productsArr.slice(firstCardIndex, lastCardIndex);
 
   const paginate = (pageNumber: number): void => setCurrentPage(pageNumber);
+  const nextPage = (): void => setCurrentPage((prev) => (prev + 1 <= 3 ? prev + 1 : prev));
+  const prevPage = (): void => setCurrentPage((prev) => (prev - 1 <= 0 ? prev : prev - 1));
 
   return (
     <FilterProvider>
@@ -139,8 +141,21 @@ const Catalog = (): JSX.Element => {
                       );
                     })
                   : 'No products matching your request.'}
+                <div className="catalog-products__pagination">
+                  <button disabled={currentPage === 1} className="catalog-products__button" onClick={prevPage}>
+                    Prev
+                  </button>
+                  <Pagination
+                    cardsPerPage={cardsPerPage}
+                    totalCards={productsArr.length}
+                    paginate={paginate}
+                    currentPage={currentPage}
+                  />
+                  <button disabled={currentPage === 3} className="catalog-products__button" onClick={nextPage}>
+                    Next
+                  </button>
+                </div>
               </div>
-              <Pagination cardsPerPage={cardsPerPage} totalCards={productsArr.length} paginate={paginate} />
             </div>
           </div>
         </section>

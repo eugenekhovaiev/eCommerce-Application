@@ -187,4 +187,27 @@
       color: $color-font-dark-l;
     }
   }
+
+  &__pagination {
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+  }
+
+  &__button {
+    cursor: pointer;
+    padding: 1rem .4rem;
+    font-size: 1.4rem;
+    border-radius: 50%;
+    border: 1px solid $color-font-dark-l;
+  }
+
+  &__button:hover {
+    border-color: $color-shadow;
+  }
+
+  &__button:disabled:hover {
+    cursor: auto;
+    border: 1px solid $color-font-dark-l;
+  }
 }

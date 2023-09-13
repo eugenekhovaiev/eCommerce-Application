@@ -1,31 +1,40 @@
 .pagination {
-  &__container {
-    position: relative;
-    bottom: -82vh;
-    left: 190%;
-  }
+  // &__container {
+  //   // display: flex;
+  //   // flex-direction: row;
+  //   // gap: 20px;
+  //   // padding-top: 16px;
+  //   // position: relative;
+  //   // bottom: -82vh;
+  //   // left: 190%;
+  // }
 
   &__list {
     display: flex;
     gap: 1rem;
-    padding-bottom: 1rem;
 
     &-item-link {
-      text-decoration: none;
       color: $color-secondary;
       font-size: 1.4rem;
       border: 1px solid $color-font-dark-l;
-      border-radius: 10%;
-      padding: .5rem .8rem;
+      border-radius: 50%;
+      padding: 1rem 1.4rem;
+      cursor: pointer;
     }
 
     &-item-link:hover {
       border-color: $color-shadow;
     }
-
-    &-item-link:active {
-      color: $color-primary-xs;
-      background-color: $color-font-dark-s;
-    }
   }
 }
+
+.active {
+  color: $color-secondary;
+  font-size: 1.4rem;
+  border: 1px solid $color-font-dark-l;
+  border-radius: 50%;
+  padding: 1rem 1.4rem;
+  cursor: pointer;
+  background-color: $color-primary;
+}
+

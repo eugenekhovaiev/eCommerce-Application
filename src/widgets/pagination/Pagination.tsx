@@ -2,6 +2,7 @@ interface PaginationProps {
   cardsPerPage: number;
   totalCards: number;
   paginate: (arg: number) => void;
+  currentPage: number;
 }
 
 const Pagination = (props: PaginationProps): JSX.Element => {
@@ -14,11 +15,14 @@ const Pagination = (props: PaginationProps): JSX.Element => {
   return (
     <div className="pagination__container">
       <ul className="pagination__list">
-        {pageNumbers.map((number) => (
+        {pageNumbers.map((number, index) => (
           <li className="pagination__list-item" key={number}>
-            <a className="pagination__list-item-link" href="##" onClick={(): void => props.paginate(number)}>
+            <button
+              className={props.currentPage === index + 1 ? 'active' : 'pagination__list-item-link'}
+              onClick={(): void => props.paginate(number)}
+            >
               {number}
-            </a>
+            </button>
           </li>
         ))}
       </ul>
