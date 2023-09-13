@@ -151,7 +151,11 @@ const Catalog = (): JSX.Element => {
                     paginate={paginate}
                     currentPage={currentPage}
                   />
-                  <button disabled={currentPage === 3} className="catalog-products__button" onClick={nextPage}>
+                  <button
+                    disabled={currentPage === currentCard.length}
+                    className="catalog-products__button"
+                    onClick={nextPage}
+                  >
                     <img className="catalog-products__button-arrow next" src="src/shared/assets/row.svg" alt="" />
                   </button>
                 </div>
