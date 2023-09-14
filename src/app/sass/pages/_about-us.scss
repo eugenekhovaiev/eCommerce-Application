@@ -58,6 +58,29 @@
 
   &__methods-wrapper {
     margin: 0 auto;
+    padding: 2rem 0 4rem 0;
+  }
+
+  &__methods-list {
+    display: flex;
+    gap: 6rem 3rem;
+
+    &-item {
+      display: flex;
+      flex-direction: column;
+      gap: 3rem;
+    }
+  }
+
+  &__methods-item-title {
+    text-align: center;
+    font-size: 1.2rem;
+    -webkit-text-stroke: 1px $color-secondary;
+  }
+
+  &__methods-item-description {
+    line-height: 1.4rem;
+    text-align: justify;
   }
 
   &__footer {
