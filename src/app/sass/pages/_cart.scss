@@ -2,6 +2,7 @@
   &__container {
     display: grid;
     grid-template-areas:
+      'empty-bag empty-bag'
       'items items'
       'coupon total-cost';
     grid-template-columns: 1fr 1fr;
@@ -11,6 +12,7 @@
 
     @media screen and (max-width: 992px) {
       grid-template-areas:
+        'empty-bag'
         'items'
         'coupon'
         'total-cost';
@@ -31,6 +33,11 @@
     grid-area: total-cost;
     width: 100%;
     background-color: $color-primary-s;
+  }
+
+  &__empty-wrapper {
+    grid-area: empty-bag;
+    width: 100%;
   }
 }
 

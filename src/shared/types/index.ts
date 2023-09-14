@@ -4,7 +4,7 @@ import { TextFieldVariants } from '@mui/material';
 import { SelectChangeEvent } from '@mui/material';
 import { FieldChangeHandler } from '@mui/x-date-pickers/internals';
 import { DateValidationError } from '@mui/x-date-pickers';
-import { Customer, CustomerUpdate } from '@commercetools/platform-sdk';
+import { Customer, CustomerUpdate, LineItem } from '@commercetools/platform-sdk';
 import { Dayjs } from 'dayjs';
 import { LocalizedString } from '@commercetools/platform-sdk';
 import { ProductProjection } from '@commercetools/platform-sdk';
@@ -302,6 +302,10 @@ export interface BasketItemProps {
   name?: string;
   price?: string | number;
   quantity?: number;
+}
+
+export interface BasketItemsProps {
+  cartItems?: LineItem[];
 }
 
 export interface SpinnerInputProps {
