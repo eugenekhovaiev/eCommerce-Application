@@ -5,11 +5,12 @@ import { SelectChangeEvent } from '@mui/material';
 import { FieldChangeHandler } from '@mui/x-date-pickers/internals';
 import { DateValidationError } from '@mui/x-date-pickers';
 import { Customer, CustomerUpdate, LineItem } from '@commercetools/platform-sdk';
-import { Dayjs } from 'dayjs';
 import { LocalizedString } from '@commercetools/platform-sdk';
 import { ProductProjection } from '@commercetools/platform-sdk';
-import Category from './Category';
 import { Image } from '@commercetools/platform-sdk';
+import { Cart } from '@commercetools/platform-sdk';
+import Category from './Category';
+import { Dayjs } from 'dayjs';
 
 export interface LinkProps {
   to?: string;
@@ -302,13 +303,21 @@ export interface BasketItemProps {
   name?: string;
   price?: string | number;
   quantity?: number;
+  setCart?:  React.Dispatch<React.SetStateAction<Cart | undefined>>;
 }
 
 export interface BasketItemsProps {
+  setCart?:  React.Dispatch<React.SetStateAction<Cart | undefined>>;
   cartItems?: LineItem[];
 }
 
 export interface SpinnerInputProps {
   value?: number;
   setQuantity?: React.Dispatch<React.SetStateAction<number>>;
+}
+
+export interface TotalCostProps {
+  subtotal?: number;
+  discount?: number;
+  total?: number;
 }

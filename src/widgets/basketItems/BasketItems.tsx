@@ -3,6 +3,9 @@ import ButtonElement from '../../shared/UI/buttonElement/ButtonElement';
 import { BasketItemsProps } from '../../shared/types';
 
 const BasketItems = (props: BasketItemsProps): JSX.Element => {
+  const handleOnClick = (): void => {
+    // props.setCart(props.);
+  };
   return (
     <div className="cart-items">
       <div className="cart-items__item cart-items__item_header">
@@ -21,12 +24,14 @@ const BasketItems = (props: BasketItemsProps): JSX.Element => {
                 ? item.variant.images[0].url
                 : 'src/shared/assets/image-placeholder.svg'
             }
-            price={item.price.value.centAmount}
+            price={item.price.discounted?.value.centAmount || item.price.value.centAmount}
             quantity={item.quantity}
+            setCart={props.setCart}
+            id={item.id}
           />
         ))}
       <div className="cart-items__clear-button">
-        <ButtonElement title="Clear cart" />
+        <ButtonElement title="Clear cart" onClick={handleOnClick} />
       </div>
     </div>
   );

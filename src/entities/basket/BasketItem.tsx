@@ -9,6 +9,12 @@ const BasketItem = (props: BasketItemProps): JSX.Element => {
   const price = props.price ? `$${(+props.price / 100).toFixed(2)}` : 'Price is missing!';
   const total = props.price ? `$${((+props.price * quantity) / 100).toFixed(2)}` : '$0.00';
 
+  const handleOnClick = (id?: string): void => {
+    console.log('product id: ', id);
+    // resp = async removeItem(id);
+    // props.setCart(resp);
+  };
+
   return (
     <div className="cart-items__item">
       <div className="cart-items__image">
@@ -24,7 +30,7 @@ const BasketItem = (props: BasketItemProps): JSX.Element => {
         {total}
       </div>
       <div className="cart-items__close">
-        <ButtonElement title="+" />
+        <ButtonElement title="+" onClick={(): void => handleOnClick(props.id)} />
       </div>
     </div>
   );
