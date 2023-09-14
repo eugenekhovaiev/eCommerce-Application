@@ -25,6 +25,10 @@ const Member = (props: MemberProps): JSX.Element => {
             <li className="about__description-list-item-circle">{props.contributionSecond}</li>
             <li className="about__description-list-item-circle">{props.contributionThird}</li>
           </ul>
+          <a className="about__member-link back-link" href={props.href} target="blank">
+            <img className="about__member-link-img" src="src/shared/assets/github-icon.svg" alt="github-link" />
+            <span>{props.nickname}</span>
+          </a>
         </div>
       </div>
     </div>

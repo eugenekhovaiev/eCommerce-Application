@@ -39,6 +39,7 @@
       align-items: center;
       text-decoration: none;
       width: 8rem;
+      color: $color-font-dark-xl;
     }
 
     &-link-img {
@@ -89,6 +90,12 @@
   display: flex;
   flex-direction: column;
   gap: 2rem;
+}
+
+.back-link {
+  position: absolute;
+  bottom: 0;
+  color: $color-secondary;
 }
 
 .card:hover > .front {
