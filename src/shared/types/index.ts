@@ -305,4 +305,7 @@ export interface MemberProps {
   location: string;
   href: string;
   nickname: string;
+  contributionFirst: string;
+  contributionSecond: string;
+  contributionThird: string;
 }
