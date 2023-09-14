@@ -2,7 +2,7 @@ import { MemberProps } from '../../shared/types';
 
 const Member = (props: MemberProps): JSX.Element => {
   return (
-    <div className="about__member center card">
+    <div className="about__member card">
       <div className="about__member-wrapper front">
         <img className="about__member-img" src={props.src} alt="member" />
         <p className="about__member-name">{props.name}</p>
@@ -18,18 +18,12 @@ const Member = (props: MemberProps): JSX.Element => {
         </a>
       </div>
       <div className="about__member-wrapper back">
-        <div className="back-content center">
+        <div className="back-content">
           <h2>Contributions</h2>
           <ul className="about__description-list">
-            <li className="about__description-list-item-circle">
-              {props.contributionFirst}
-            </li>
-            <li className="about__description-list-item-circle">
-              {props.contributionSecond}
-            </li>
-            <li className="about__description-list-item-circle">
-              {props.contributionThird}  
-            </li>
+            <li className="about__description-list-item-circle">{props.contributionFirst}</li>
+            <li className="about__description-list-item-circle">{props.contributionSecond}</li>
+            <li className="about__description-list-item-circle">{props.contributionThird}</li>
           </ul>
         </div>
       </div>
