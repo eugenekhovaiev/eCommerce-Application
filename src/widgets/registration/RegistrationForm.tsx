@@ -18,6 +18,8 @@ import ButtonElement from '../../shared/UI/buttonElement/ButtonElement';
 import createCustomer from '../../shared/api/user/createCustomer';
 import loginCustomer from '../../shared/api/user/loginCustomer';
 import { Form } from '../../shared/types';
+import { tokenCache } from '../../shared/api/user/BuildClient';
+// import tokenCache from '../../shared/api/user/tokenCache';
 
 const RegistrationForm = (): JSX.Element => {
   const { handleSubmit, control } = useForm<Form>();
@@ -62,12 +64,15 @@ const RegistrationForm = (): JSX.Element => {
 
       setRegisterError(false);
       setCustomerData(customer);
-      localStorage.setItem('currentUser', JSON.stringify(customer));
+      localStorage.setItem('token', tokenCache.get().token);
+      // console.log(localStorage.getItem('token'));
+
       setTimeout(() => {
         updateUserData(customer);
         return navigate(from, { replace: true });
       }, 1500);
     } catch (error) {
+      // console.log(error);
       setCustomerData(null);
       setRegisterError(true);
     }

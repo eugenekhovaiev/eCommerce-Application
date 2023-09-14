@@ -4,7 +4,7 @@ import { TextFieldVariants } from '@mui/material';
 import { SelectChangeEvent } from '@mui/material';
 import { FieldChangeHandler } from '@mui/x-date-pickers/internals';
 import { DateValidationError } from '@mui/x-date-pickers';
-import { Customer, CustomerUpdate } from '@commercetools/platform-sdk';
+import { Customer } from '@commercetools/platform-sdk';
 import { Dayjs } from 'dayjs';
 import { LocalizedString } from '@commercetools/platform-sdk';
 import { ProductProjection } from '@commercetools/platform-sdk';
@@ -223,10 +223,6 @@ export interface CountryContext {
 export interface FilterContext {
   isCategoryUpdated: boolean;
   updateIsCategoryUpdated: (isCategoryUpdated: boolean) => void;
-}
-
-export interface CustomerUpdateWithId extends CustomerUpdate {
-  id: string;
 }
 
 export interface ProductCardProps {

@@ -17,7 +17,7 @@ const Product = (): JSX.Element => {
   useEffect(() => {
     const fetchData = async (): Promise<void> => {
       try {
-        const response = await getProductById(slug as string);
+        const response = await getProductById(slug!);
         setProduct(response.body);
       } catch (error) {
         navigate(from, { replace: true });

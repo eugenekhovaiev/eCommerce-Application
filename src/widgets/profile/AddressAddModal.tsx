@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useForm, useFormState, SubmitHandler } from 'react-hook-form';
 import { Modal, Typography, Button } from '@mui/material';
-import { CustomerUpdateWithId, Form } from '../../shared/types';
+import { Form } from '../../shared/types';
 import { Alert } from '@mui/material';
 import { useUserDataContext } from '../../shared/lib/contexts/UserDataContext';
 import ButtonElement from '../../shared/UI/buttonElement/ButtonElement';
@@ -9,7 +9,7 @@ import updateCustomer from '../../shared/api/user/updateCustomer';
 import RegistrationAddress from '../../entities/registration/RegistrationAddress';
 import { CountryProvider } from '../../shared/lib/contexts/СountryContext';
 import getAddressString from '../../shared/lib/helpers/getAddressString';
-import { BaseAddress } from '@commercetools/platform-sdk';
+import { BaseAddress, MyCustomerUpdate } from '@commercetools/platform-sdk';
 import closeIcon from '../../shared/assets/close.svg';
 import ImageElement from '../../shared/UI/imageElement/ImageElement';
 
@@ -42,8 +42,7 @@ const AddressAddModal = (): JSX.Element => {
 
       const newAddressKey = getAddressString(newAddress);
 
-      const addQuery: CustomerUpdateWithId = {
-        id: userData?.id,
+      const addQuery: MyCustomerUpdate = {
         version: userData?.version,
         actions: [
           {
@@ -57,7 +56,6 @@ const AddressAddModal = (): JSX.Element => {
       };
       const updatedCustomerData = (await updateCustomer(addQuery)).body;
       updateUserData(updatedCustomerData);
-      localStorage.setItem('currentUser', JSON.stringify(updatedCustomerData));
     } else {
       throw new Error('User data is missing!');
     }

@@ -14,6 +14,8 @@ import loginCustomer from '../../shared/api/user/loginCustomer';
 
 import { useNavigate, useLocation } from 'react-router-dom';
 import { useUserDataContext } from '../../shared/lib/contexts/UserDataContext';
+import { tokenCache } from '../../shared/api/user/BuildClient';
+// import tokenCache from '../../shared/api/user/tokenCache';
 
 const LoginForm = (): JSX.Element => {
   const { handleSubmit, control } = useForm<Form>();
@@ -37,12 +39,15 @@ const LoginForm = (): JSX.Element => {
 
       setLoginError(false);
       setCustomerData(customer);
-      localStorage.setItem('currentUser', JSON.stringify(customer));
+      localStorage.setItem('token', tokenCache.get().token);
+      // console.log(localStorage.getItem('token'));
+
       setTimeout(() => {
         updateUserData(customer);
         return navigate(from, { replace: true });
       }, 1500);
     } catch (error) {
+      // console.log(error);
       setCustomerData(null);
       setLoginError(true);
     }

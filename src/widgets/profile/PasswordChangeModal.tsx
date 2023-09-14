@@ -6,7 +6,7 @@ import { Alert } from '@mui/material';
 import { useUserDataContext } from '../../shared/lib/contexts/UserDataContext';
 import ButtonElement from '../../shared/UI/buttonElement/ButtonElement';
 import PasswordInput from '../../entities/inputs/PasswordInput';
-import { CustomerChangePassword } from '@commercetools/platform-sdk';
+import { MyCustomerChangePassword } from '@commercetools/platform-sdk';
 import changePassword from '../../shared/api/user/changePassword';
 import ImageElement from '../../shared/UI/imageElement/ImageElement';
 import closeIcon from '../../shared/assets/close.svg';
@@ -29,15 +29,13 @@ const PasswordChangeModal = (): JSX.Element => {
 
   const updateProfile = async (dataForChange: { currentPassword: string; newPassword: string }): Promise<void> => {
     if (userData) {
-      const changeQuery: CustomerChangePassword = {
-        id: userData?.id,
+      const changeQuery: MyCustomerChangePassword = {
         version: userData?.version,
         currentPassword: dataForChange.currentPassword,
         newPassword: dataForChange.newPassword,
       };
       const updatedCustomerData = (await changePassword(changeQuery)).body;
       updateUserData(updatedCustomerData);
-      localStorage.setItem('currentUser', JSON.stringify(updatedCustomerData));
     } else {
       throw new Error('User data is missing!');
     }

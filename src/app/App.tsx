@@ -1,13 +1,38 @@
+import { useEffect, useState } from 'react';
+import { useUserDataContext } from '../shared/lib/contexts/UserDataContext';
 import Header from '../widgets/header/Header';
-import useRoutes from './routes/routes';
+import MyRoutes from './routes/routes';
+import getCustomerWithToken from '../shared/api/user/getCustomerWithToken';
 
 function App(): JSX.Element {
-  const routes = useRoutes();
+  const { updateUserData } = useUserDataContext();
+  const [isLoaded, setIsLoaded] = useState(false);
 
-  return (
+  useEffect(() => {
+    const fetchData = async (): Promise<void> => {
+      try {
+        const response = await getCustomerWithToken();
+        updateUserData(response.body);
+      } catch (error) {
+        console.log('No authorized user!');
+      } finally {
+        setIsLoaded(true);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  const routes = MyRoutes();
+
+  return isLoaded ? (
     <>
       <Header />
       {routes}
+    </>
+  ) : (
+    <>
+      <div>Loading...</div>
     </>
   );
 }

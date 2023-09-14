@@ -1,9 +1,8 @@
-import { Address } from '@commercetools/platform-sdk';
+import { Address, MyCustomerUpdate } from '@commercetools/platform-sdk';
 import { useUserDataContext } from '../../shared/lib/contexts/UserDataContext';
 import getAddressString from '../../shared/lib/helpers/getAddressString';
 import ButtonElement from '../../shared/UI/buttonElement/ButtonElement';
 import updateCustomer from '../../shared/api/user/updateCustomer';
-import { CustomerUpdateWithId } from '../../shared/types';
 import AddressEditModal from '../../widgets/profile/AddressEditModal';
 
 const AddressRow = (props: { id: string }): JSX.Element => {
@@ -16,8 +15,7 @@ const AddressRow = (props: { id: string }): JSX.Element => {
   const handleDefaultShippingClick = async (): Promise<void> => {
     try {
       if (userData) {
-        const setDefaultShippingQuery: CustomerUpdateWithId = {
-          id: userData?.id,
+        const setDefaultShippingQuery: MyCustomerUpdate = {
           version: userData?.version,
           actions: [
             {
@@ -28,7 +26,6 @@ const AddressRow = (props: { id: string }): JSX.Element => {
         };
         const updatedCustomerData = (await updateCustomer(setDefaultShippingQuery)).body;
         updateUserData(updatedCustomerData);
-        localStorage.setItem('currentUser', JSON.stringify(updatedCustomerData));
       } else {
         throw new Error('User data is missing!');
       }
@@ -40,8 +37,7 @@ const AddressRow = (props: { id: string }): JSX.Element => {
   const handleDefaultBillingClick = async (): Promise<void> => {
     try {
       if (userData) {
-        const setDefaultBillingQuery: CustomerUpdateWithId = {
-          id: userData?.id,
+        const setDefaultBillingQuery: MyCustomerUpdate = {
           version: userData?.version,
           actions: [
             {
@@ -52,7 +48,6 @@ const AddressRow = (props: { id: string }): JSX.Element => {
         };
         const updatedCustomerData = (await updateCustomer(setDefaultBillingQuery)).body;
         updateUserData(updatedCustomerData);
-        localStorage.setItem('currentUser', JSON.stringify(updatedCustomerData));
       } else {
         throw new Error('User data is missing!');
       }

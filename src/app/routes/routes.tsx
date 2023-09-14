@@ -12,7 +12,7 @@ import Product from '../../pages/product/Product';
 
 import { useUserDataContext } from '../../shared/lib/contexts/UserDataContext';
 
-export const useRoutes = (): JSX.Element => {
+export const MyRoutes = (): JSX.Element => {
   const { userData } = useUserDataContext();
 
   return (
@@ -30,4 +30,4 @@ export const useRoutes = (): JSX.Element => {
   );
 };
 
-export default useRoutes;
+export default MyRoutes;

@@ -1,13 +1,12 @@
-import { Customer } from '@commercetools/platform-sdk';
+import { Customer, MyCustomerUpdate } from '@commercetools/platform-sdk';
 import { ClientResponse } from '@commercetools/platform-sdk';
 
-import { apiRoot } from './getUserApiRoot';
-import { CustomerUpdateWithId } from '../../types';
+import tokenFlowRoot from './apiRoots/tokenFlowRoot';
 
-const updateCustomer = (dataToUpdate: CustomerUpdateWithId): Promise<ClientResponse<Customer>> => {
+const updateCustomer = (dataToUpdate: MyCustomerUpdate): Promise<ClientResponse<Customer>> => {
+  const apiRoot = tokenFlowRoot(`Bearer ${localStorage.getItem('token')}`);
   return apiRoot
-    .customers()
-    .withId({ ID: dataToUpdate.id })
+    .me()
     .post({ body: { version: dataToUpdate.version, actions: dataToUpdate.actions } })
     .execute();
 };

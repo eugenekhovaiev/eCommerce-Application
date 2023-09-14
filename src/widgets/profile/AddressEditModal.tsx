@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useForm, useFormState, SubmitHandler } from 'react-hook-form';
 import { Modal, Typography, Button } from '@mui/material';
-import { CustomerUpdateWithId, Form } from '../../shared/types';
+import { Form } from '../../shared/types';
 import { Alert } from '@mui/material';
 import { useUserDataContext } from '../../shared/lib/contexts/UserDataContext';
 import ButtonElement from '../../shared/UI/buttonElement/ButtonElement';
@@ -9,7 +9,7 @@ import updateCustomer from '../../shared/api/user/updateCustomer';
 import RegistrationAddress from '../../entities/registration/RegistrationAddress';
 import { CountryProvider } from '../../shared/lib/contexts/СountryContext';
 import getAddressString from '../../shared/lib/helpers/getAddressString';
-import { Address, BaseAddress, Customer } from '@commercetools/platform-sdk';
+import { Address, BaseAddress, Customer, MyCustomerUpdate } from '@commercetools/platform-sdk';
 import ImageElement from '../../shared/UI/imageElement/ImageElement';
 import editIcon from '../../shared/assets/edit.svg';
 import closeIcon from '../../shared/assets/close.svg';
@@ -43,8 +43,7 @@ const AddressEditModal = (props: { address: Address }): JSX.Element => {
 
       const newAddressKey = getAddressString(newAddress);
 
-      const changeQuery: CustomerUpdateWithId = {
-        id: userData?.id,
+      const changeQuery: MyCustomerUpdate = {
         version: userData?.version,
         actions: [
           {
@@ -58,7 +57,6 @@ const AddressEditModal = (props: { address: Address }): JSX.Element => {
         ],
       };
       const updatedCustomerData = (await updateCustomer(changeQuery)).body;
-      localStorage.setItem('currentUser', JSON.stringify(updatedCustomerData));
       return updatedCustomerData;
     } else {
       throw new Error('User data is missing!');
@@ -90,8 +88,7 @@ const AddressEditModal = (props: { address: Address }): JSX.Element => {
   const handleDeleteClick = async (): Promise<void> => {
     try {
       if (userData) {
-        const deleteQuery: CustomerUpdateWithId = {
-          id: userData?.id,
+        const deleteQuery: MyCustomerUpdate = {
           version: userData?.version,
           actions: [
             {
@@ -101,7 +98,6 @@ const AddressEditModal = (props: { address: Address }): JSX.Element => {
           ],
         };
         const updatedCustomerData = (await updateCustomer(deleteQuery)).body;
-        localStorage.setItem('currentUser', JSON.stringify(updatedCustomerData));
         setRequestError(false);
         setSuccessfullyDeleted(true);
         setTimeout(() => {
