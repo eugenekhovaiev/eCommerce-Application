@@ -49,27 +49,32 @@ const About = (): JSX.Element => {
             contributionThird="Ensured cross-browser compatibility and optimized performance for a seamless user experience."
           />
         </div>
-        <div className="about__description-wrapper">
-          <div className="about__methods">
-            <p className="about__description-list-title">Effective Collaboration Methods:</p>
-            <ul className="about__description-list">
-              <li className="about__description-list-item-square">
-                Agile Development: We adopted agile methodologies, such as Scrum, to foster flexibility and adaptability
-                in our development process. This allowed us to respond effectively to changing project requirements.
-              </li>
-              <li className="about__description-list-item-square">
-                Version Control and Collaboration Tools: The use of version control systems and collaboration tools like
-                Git and collaborative coding platforms enabled our team to work cohesively on codebases, track changes,
-                and resolve issues efficiently.
-              </li>
-              <li className="about__description-list-item-square">
-                Code Reviews: Regular code reviews within the frontend development team promoted code quality,
-                consistency, and knowledge sharing. This iterative feedback loop improved the overall codebase.
-              </li>
-            </ul>
+        <div className="about__methods-wrapper">
+          <h2 className="about__title">Effective Collaboration Methods</h2>
+          <div className="about__methods-list">
+            <div className="about__methods-list-item">
+              <p className="about__methods-item-title">Agile Development</p>
+              <p className="about__methods-item-description">
+                We adopted agile methodologies, such as Scrum, to foster flexibility and adaptability in our development
+                process. This allowed us to respond effectively to changing project requirements
+              </p>
+            </div>
+            <div className="about__methods-list-item">
+              <p className="about__methods-item-title">Version Control and Collaboration Tools</p>
+              <p className="about__methods-item-description">
+                The use of version control systems and collaboration tools like Git and collaborative coding platforms
+                enabled our team to work cohesively on codebases, track changes, and resolve issues efficiently
+              </p>
+            </div>
+            <div className="about__methods-list-item">
+              <p className="about__methods-item-title">Code Reviews</p>
+              <p className="about__methods-item-description">
+                Regular code reviews within the frontend development team promoted code quality, consistency, and
+                knowledge sharing. This iterative feedback loop improved the overall codebase.
+              </p>
+            </div>
           </div>
         </div>
-
         <div className="about__footer">
           <a href="https://rs.school/" className="about__rss-link">
             <img src="src/shared/assets/logo-rsschool.svg" alt="logo-rss" className="about__rss-logo" />
