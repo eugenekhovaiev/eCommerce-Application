@@ -299,20 +299,15 @@ export interface SwiperProps {
 }
 
 export interface BasketItemProps {
-  image?: string;
-  name?: string;
-  price?: string | number;
-  quantity?: number;
-  setCart?: React.Dispatch<React.SetStateAction<Cart | undefined>>;
-  id?: string;
+  lineItem: LineItem;
 }
 
 export interface BasketItemsProps {
-  setCart?: React.Dispatch<React.SetStateAction<Cart | undefined>>;
   cartItems?: LineItem[];
 }
 
 export interface SpinnerInputProps {
+  id: string;
   value?: number;
   setQuantity?: React.Dispatch<React.SetStateAction<number>>;
 }

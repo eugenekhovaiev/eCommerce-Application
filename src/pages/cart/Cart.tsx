@@ -1,99 +1,17 @@
-import { useEffect } from 'react';
 import BasketItems from '../../widgets/basketItems/BasketItems';
 import Coupon from '../../widgets/coupon/Coupon';
 import TotalCost from '../../widgets/totalCost/TotalCost';
 import ImageElement from '../../shared/UI/imageElement/ImageElement';
 import LinkElement from '../../shared/UI/linkElement/LinkElement';
 import emptyBag from '../../shared/assets/empty-bag.svg';
-import { LineItem } from '@commercetools/platform-sdk';
-import { Cart } from '@commercetools/platform-sdk';
 import { useCartContext } from '../../shared/lib/contexts/CartContext';
 
 const Cart = (): JSX.Element => {
-  const { cart, updateCart } = useCartContext();
-
-  useEffect(() => {
-    // const cartProducts: LineItem[] = [];
-    const cartProducts: LineItem[] = [
-      {
-        id: '',
-        productId: '2bf06edb-5b1b-4449-aaad-35c12ed46d86',
-        name: { 'en-US': 'Show Leash for Medium-Sized Dogs' },
-        productType: { typeId: 'product-type', id: '1fb08f90-f400-44fa-b62b-62a9411d3bbe' },
-        variant: {
-          id: 1,
-          images: [
-            {
-              dimensions: { w: 1280, h: 1280 },
-              url: 'https://14cbb9b792312c0664ca-642e150b804a0b87b7a54365aaa41086.ssl.cf3.rackcdn.com/photo_1_2023-09-06_0-W92THchf.jpg',
-            },
-          ],
-        },
-        price: {
-          id: '39955cca-cb53-40e3-bc98-bae460ca5b5d',
-          value: {
-            centAmount: 800,
-            currencyCode: 'USD',
-            fractionDigits: 2,
-            type: 'centPrecision',
-          },
-        },
-        quantity: 1,
-        totalPrice: {
-          centAmount: 800,
-          currencyCode: 'USD',
-          fractionDigits: 2,
-          type: 'centPrecision',
-        },
-        priceMode: 'Embedded',
-        discountedPricePerQuantity: [],
-        taxedPricePortions: [],
-        perMethodTaxRate: [],
-        state: [],
-        lineItemMode: 'Standard',
-      },
-    ];
-    const newCart: Cart = {
-      id: '',
-      version: 0,
-      lineItems: cartProducts,
-      customLineItems: [],
-      totalLineItemQuantity: 1,
-      totalPrice: {
-        centAmount: 800,
-        currencyCode: 'USD',
-        fractionDigits: 2,
-        type: 'centPrecision',
-      },
-      taxMode: '',
-      taxRoundingMode: '',
-      taxCalculationMode: '',
-      inventoryMode: '',
-      cartState: '',
-      shippingMode: '',
-      shipping: [],
-      itemShippingAddresses: [],
-      discountCodes: [],
-      directDiscounts: [],
-      refusedGifts: [],
-      origin: '',
-      createdAt: '',
-      lastModifiedAt: '',
-    };
-    const fetchData = async (): Promise<void> => {
-      try {
-        updateCart(newCart);
-      } catch (error) {
-        console.log('Something went wrong!');
-      }
-    };
-
-    fetchData();
-  }, []);
+  const { cart } = useCartContext();
 
   return (
     <main className="cart">
-      {cart?.lineItems.length !== 0 ? (
+      {cart && cart?.lineItems.length !== 0 ? (
         <div className="container cart__container">
           <div className="cart__items-wrapper">
             <BasketItems cartItems={cart?.lineItems} />
@@ -102,7 +20,7 @@ const Cart = (): JSX.Element => {
             <Coupon />
           </div>
           <div className="cart__total-cost-wrapper">
-            <TotalCost subtotal={cart?.totalPrice.centAmount} total={800} />
+            <TotalCost subtotal={cart?.totalPrice.centAmount} total={cart?.totalPrice.centAmount} />
           </div>
         </div>
       ) : (

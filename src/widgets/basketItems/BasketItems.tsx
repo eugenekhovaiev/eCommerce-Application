@@ -14,21 +14,7 @@ const BasketItems = (props: BasketItemsProps): JSX.Element => {
         <div className="cart-items__quantity">Quantity</div>
         <div className="cart-items__total">Total</div>
       </div>
-      {props.cartItems &&
-        props.cartItems.map((item) => (
-          <BasketItem
-            key={item.name['en-US']}
-            name={item.name['en-US']}
-            image={
-              item.variant.images && item.variant.images.length !== 0
-                ? item.variant.images[0].url
-                : 'src/shared/assets/image-placeholder.svg'
-            }
-            price={item.price.discounted?.value.centAmount || item.price.value.centAmount}
-            quantity={item.quantity}
-            id={item.id}
-          />
-        ))}
+      {props.cartItems && props.cartItems.map((item) => <BasketItem key={item.name['en-US']} lineItem={item} />)}
       <div className="cart-items__clear-button">
         <ButtonElement title="Clear cart" onClick={handleOnClick} />
       </div>
