@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import BasketItems from '../../widgets/basketItems/BasketItems';
 import Coupon from '../../widgets/coupon/Coupon';
 import TotalCost from '../../widgets/totalCost/TotalCost';
@@ -6,10 +6,11 @@ import ImageElement from '../../shared/UI/imageElement/ImageElement';
 import LinkElement from '../../shared/UI/linkElement/LinkElement';
 import emptyBag from '../../shared/assets/empty-bag.svg';
 import { LineItem } from '@commercetools/platform-sdk';
-import { Cart as CartType } from '@commercetools/platform-sdk';
+import { Cart } from '@commercetools/platform-sdk';
+import { useCartContext } from '../../shared/lib/contexts/CartContext';
 
 const Cart = (): JSX.Element => {
-  const [cart, setCart] = useState<CartType>();
+  const { cart, updateCart } = useCartContext();
 
   useEffect(() => {
     // const cartProducts: LineItem[] = [];
@@ -52,7 +53,7 @@ const Cart = (): JSX.Element => {
         lineItemMode: 'Standard',
       },
     ];
-    const newCart: CartType = {
+    const newCart: Cart = {
       id: '',
       version: 0,
       lineItems: cartProducts,
@@ -81,7 +82,7 @@ const Cart = (): JSX.Element => {
     };
     const fetchData = async (): Promise<void> => {
       try {
-        setCart(newCart);
+        updateCart(newCart);
       } catch (error) {
         console.log('Something went wrong!');
       }
@@ -95,7 +96,7 @@ const Cart = (): JSX.Element => {
       {cart?.lineItems.length !== 0 ? (
         <div className="container cart__container">
           <div className="cart__items-wrapper">
-            <BasketItems cartItems={cart?.lineItems} setCart={setCart} />
+            <BasketItems cartItems={cart?.lineItems} />
           </div>
           <div className="cart__coupon-wrapper">
             <Coupon />

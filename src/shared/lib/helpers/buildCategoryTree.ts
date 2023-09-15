@@ -1,4 +1,4 @@
-import getCategories from '../../api/user/getCategories';
+import getCategories from '../../api/user/products/getCategories';
 import Category from '../../types/Category';
 // import { LocalizedString } from '@commercetools/platform-sdk';
 

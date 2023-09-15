@@ -6,7 +6,7 @@ import ButtonElement from '../../shared/UI/buttonElement/ButtonElement';
 import FILTER_NECK_PAD from '../../shared/consts/FILTER_NECK_PAD';
 import FILTER_BREED_SIZE from '../../shared/consts/FILTER_BREED_SIZE';
 import FILTER_SORT from '../../shared/consts/FILTER_SORT';
-import getProducts from '../../shared/api/user/getProducts';
+import getProducts from '../../shared/api/user/products/getProducts';
 import { useFilterContext } from '../../shared/lib/contexts/FilterContext';
 import cartesianProduct from '../../shared/lib/helpers/cartesianProduct';
 import { FilterAttribute, FilterFormFields, FilterFormProps } from '../../shared/types';

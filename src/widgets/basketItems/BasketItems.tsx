@@ -26,7 +26,6 @@ const BasketItems = (props: BasketItemsProps): JSX.Element => {
             }
             price={item.price.discounted?.value.centAmount || item.price.value.centAmount}
             quantity={item.quantity}
-            setCart={props.setCart}
             id={item.id}
           />
         ))}

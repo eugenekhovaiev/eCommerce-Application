@@ -2,11 +2,16 @@ import { Typography } from '@mui/material';
 import SwiperElement from '../../widgets/swiper/Swiper';
 import PriceElement from '../../shared/UI/priceElement/PriceElement';
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
-import getProductById from '../../shared/api/user/getProductById';
+import getProductById from '../../shared/api/user/products/getProductById';
 import { useEffect, useState } from 'react';
 import { ProductProjection } from '@commercetools/platform-sdk';
+import ButtonElement from '../../shared/UI/buttonElement/ButtonElement';
+import addProductToCart from '../../shared/api/user/cart/addProductToCart';
+import { useCartContext } from '../../shared/lib/contexts/CartContext';
 
 const Product = (): JSX.Element => {
+  const { updateCart } = useCartContext();
+
   const { slug } = useParams();
 
   const [product, setProduct] = useState<ProductProjection | null>(null);
@@ -17,7 +22,7 @@ const Product = (): JSX.Element => {
   useEffect(() => {
     const fetchData = async (): Promise<void> => {
       try {
-        const response = await getProductById(slug as string);
+        const response = await getProductById(slug!);
         setProduct(response.body);
       } catch (error) {
         navigate(from, { replace: true });
@@ -43,6 +48,15 @@ const Product = (): JSX.Element => {
   const productOriginalPrice = productPrices && productPrices[0] && productPrices[0].value.centAmount;
   const productDiscountedPrice = productPrices && productPrices[0] && productPrices[0].discounted?.value.centAmount;
 
+  const handleAddToCartClick = async (): Promise<void> => {
+    try {
+      const newCart = await addProductToCart(product.id);
+      updateCart(newCart.body);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <section className="product">
       <div className="container product__wrapper">
@@ -63,6 +77,7 @@ const Product = (): JSX.Element => {
               priceOriginal={productOriginalPrice}
               priceDiscounted={productDiscountedPrice}
             />
+            <ButtonElement variant="outlined" title="Add To Cart" onClick={handleAddToCartClick} />
             <Typography variant="body1" className="product__description" gutterBottom>
               {productDescription}
             </Typography>
