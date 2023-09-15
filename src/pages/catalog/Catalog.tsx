@@ -152,7 +152,7 @@ const Catalog = (): JSX.Element => {
                     currentPage={currentPage}
                   />
                   <button
-                    disabled={currentPage === currentCard.length}
+                    disabled={currentPage === paginate.length}
                     className="catalog-products__button"
                     onClick={nextPage}
                   >
