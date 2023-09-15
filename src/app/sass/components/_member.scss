@@ -74,11 +74,11 @@
 }
 
 .front {
-  transform: perspective(18rem) rotateY(0deg);
+  transform: perspective(none) rotateY(0deg);
 }
 
 .back {
-  transform: perspective(18rem) rotateY(180deg);
+  transform: perspective(none) rotateY(180deg);
   background-color: #f1f1f1;
 }
 
@@ -96,7 +96,7 @@
   position: absolute;
   bottom: 0;
   color: $color-secondary;
-  transition: .8s;
+  transition: 0.8s;
 }
 
 .back-link:hover {
