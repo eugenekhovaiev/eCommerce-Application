@@ -54,6 +54,19 @@
     display: flex;
     gap: 2rem;
     padding-bottom: 4rem;
+
+    @media screen and (max-width: 993px) {
+      display: grid;
+      grid-template-columns: repeat(2, 36vw);
+      grid-template-rows: auto;
+    }
+
+    @media screen and (max-width: 648px) {
+      padding: 2rem;
+      display: flex ;
+      flex-direction: column;
+      gap: 4rem;
+    }
   }
 
   &__methods-wrapper {
@@ -64,6 +77,17 @@
   &__methods-list {
     display: flex;
     gap: 6rem 3rem;
+
+    @media screen and (max-width: 993px) {
+      display: grid;
+      grid-template-columns: repeat(2, 36vw);
+    }
+
+    @media screen and (max-width: 758px) {
+      display: flex ;
+      flex-direction: column;
+      padding: 2rem;
+    }
 
     &-item {
       display: flex;
