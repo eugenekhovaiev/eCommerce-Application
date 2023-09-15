@@ -1,10 +1,11 @@
 import BasketItem from '../../entities/basket/BasketItem';
 import ButtonElement from '../../shared/UI/buttonElement/ButtonElement';
+import deleteCart from '../../shared/api/user/cart/deleteCart';
 import { BasketItemsProps } from '../../shared/types';
 
 const BasketItems = (props: BasketItemsProps): JSX.Element => {
-  const handleOnClick = (): void => {
-    // props.setCart(props.);
+  const handleOnClick = async (): Promise<void> => {
+    await deleteCart();
   };
   return (
     <div className="cart-items">
