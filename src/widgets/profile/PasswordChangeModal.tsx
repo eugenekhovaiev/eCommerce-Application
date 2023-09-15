@@ -7,7 +7,7 @@ import { useUserDataContext } from '../../shared/lib/contexts/UserDataContext';
 import ButtonElement from '../../shared/UI/buttonElement/ButtonElement';
 import PasswordInput from '../../entities/inputs/PasswordInput';
 import { MyCustomerChangePassword } from '@commercetools/platform-sdk';
-import changePassword from '../../shared/api/user/changePassword';
+import changePassword from '../../shared/api/user/customer/changePassword';
 import ImageElement from '../../shared/UI/imageElement/ImageElement';
 import closeIcon from '../../shared/assets/close.svg';
 

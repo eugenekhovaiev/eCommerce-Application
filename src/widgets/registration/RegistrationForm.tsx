@@ -15,10 +15,11 @@ import { CountryProvider } from '../../shared/lib/contexts/СountryContext';
 import CheckboxElement from '../../shared/UI/checkboxElement/CheckboxElement';
 import ButtonElement from '../../shared/UI/buttonElement/ButtonElement';
 
-import createCustomer from '../../shared/api/user/createCustomer';
-import loginCustomer from '../../shared/api/user/loginCustomer';
+import createCustomer from '../../shared/api/user/customer/createCustomer';
+import loginCustomer from '../../shared/api/user/customer/loginCustomer';
 import { Form } from '../../shared/types';
 import { tokenCache } from '../../shared/api/user/BuildClient';
+import createCart from '../../shared/api/user/cart/createCart';
 // import tokenCache from '../../shared/api/user/tokenCache';
 
 const RegistrationForm = (): JSX.Element => {
@@ -60,12 +61,15 @@ const RegistrationForm = (): JSX.Element => {
         password: data.password,
       };
       const loginResponse = await loginCustomer(loginData);
-      const customer = loginResponse.body.customer;
+      localStorage.setItem('token', tokenCache.get().token);
+
+      const { customer, cart } = loginResponse.body;
+      if (!cart) {
+        await createCart();
+      }
 
       setRegisterError(false);
       setCustomerData(customer);
-      localStorage.setItem('token', tokenCache.get().token);
-      // console.log(localStorage.getItem('token'));
 
       setTimeout(() => {
         updateUserData(customer);

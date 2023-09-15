@@ -1,9 +1,9 @@
 import { ClientResponse, ProductProjectionPagedQueryResponse } from '@commercetools/platform-sdk';
 
 // import { apiRoot } from './getUserApiRoot';
-import { ProductsQueryParams } from '../../types';
-import getFiltersArray from '../../lib/helpers/getFiltersArray';
-import credentialsFlowRoot from './apiRoots/credentialsFlowRoot';
+import { ProductsQueryParams } from '../../../types';
+import getFiltersArray from '../../../lib/helpers/getFiltersArray';
+import credentialsFlowRoot from '../apiRoots/credentialsFlowRoot';
 
 const getProducts = async (
   queryParams: ProductsQueryParams = {},

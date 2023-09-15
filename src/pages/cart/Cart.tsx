@@ -1,10 +1,14 @@
 import ButtonElement from '../../shared/UI/buttonElement/ButtonElement';
-import createCart from '../../shared/api/user/createCart';
+import getActiveCart from '../../shared/api/user/cart/getActiveCart';
+import { useCartContext } from '../../shared/lib/contexts/CartContext';
 
 const Cart = (): JSX.Element => {
+  const { cart } = useCartContext();
+
   const handleClick = async (): Promise<void> => {
-    const response = await createCart();
+    const response = await getActiveCart();
     console.log(response);
+    console.log(cart);
   };
 
   return (

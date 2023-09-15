@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { useUserDataContext } from '../shared/lib/contexts/UserDataContext';
 import Header from '../widgets/header/Header';
 import MyRoutes from './routes/routes';
-import getCustomerWithToken from '../shared/api/user/getCustomerWithToken';
+import getCustomerWithToken from '../shared/api/user/customer/getCustomerWithToken';
 
 function App(): JSX.Element {
   const { updateUserData } = useUserDataContext();

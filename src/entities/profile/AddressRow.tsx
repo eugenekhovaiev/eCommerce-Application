@@ -2,7 +2,7 @@ import { Address, MyCustomerUpdate } from '@commercetools/platform-sdk';
 import { useUserDataContext } from '../../shared/lib/contexts/UserDataContext';
 import getAddressString from '../../shared/lib/helpers/getAddressString';
 import ButtonElement from '../../shared/UI/buttonElement/ButtonElement';
-import updateCustomer from '../../shared/api/user/updateCustomer';
+import updateCustomer from '../../shared/api/user/customer/updateCustomer';
 import AddressEditModal from '../../widgets/profile/AddressEditModal';
 
 const AddressRow = (props: { id: string }): JSX.Element => {

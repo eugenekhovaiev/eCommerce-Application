@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import FilterForm from '../../widgets/filter/FilterForm';
 import ProductCategories from '../../widgets/productCategories/ProductCategories';
 import ProductCard from '../../entities/productCard/ProductCard';
-import getProducts from '../../shared/api/user/getProducts';
+import getProducts from '../../shared/api/user/products/getProducts';
 import buildCategoryTree from '../../shared/lib/helpers/buildCategoryTree';
 import Category from '../../shared/types/Category';
 import { ProductProjection } from '@commercetools/platform-sdk';

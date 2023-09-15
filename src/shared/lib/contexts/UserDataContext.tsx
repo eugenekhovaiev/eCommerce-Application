@@ -8,7 +8,7 @@ const UserDataContext = createContext<UserDataContext | undefined>(undefined);
 export const useUserDataContext = (): UserDataContext => {
   const context = useContext(UserDataContext);
   if (!context) {
-    throw new Error('useUserDataContext must be used within a HeaderProvider');
+    throw new Error('useUserDataContext must be used within a UserDataProvider');
   }
   return context;
 };

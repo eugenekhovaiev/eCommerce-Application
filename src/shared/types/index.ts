@@ -4,7 +4,7 @@ import { TextFieldVariants } from '@mui/material';
 import { SelectChangeEvent } from '@mui/material';
 import { FieldChangeHandler } from '@mui/x-date-pickers/internals';
 import { DateValidationError } from '@mui/x-date-pickers';
-import { Customer } from '@commercetools/platform-sdk';
+import { Cart, Customer } from '@commercetools/platform-sdk';
 import { Dayjs } from 'dayjs';
 import { LocalizedString } from '@commercetools/platform-sdk';
 import { ProductProjection } from '@commercetools/platform-sdk';
@@ -211,6 +211,11 @@ export interface ValidationRealTime {
 export interface UserDataContext {
   userData: Customer | undefined;
   updateUserData: (userData: Customer | undefined) => void;
+}
+
+export interface CartContext {
+  cart: Cart | undefined;
+  updateCart: (cart: Cart | undefined) => void;
 }
 
 export interface CountryContext {

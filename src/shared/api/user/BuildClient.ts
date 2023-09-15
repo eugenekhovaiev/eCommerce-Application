@@ -8,7 +8,7 @@ import {
   ExistingTokenMiddlewareOptions,
 } from '@commercetools/sdk-client-v2';
 import USER_KEYS from './keys/USER_KEYS';
-import MyTokenCache from './MyTokenCache';
+import MyTokenCache from './token/MyTokenCache';
 
 // Configure httpMiddlewareOptions
 const httpMiddlewareOptions: HttpMiddlewareOptions = {
@@ -59,11 +59,13 @@ export const getCtpPasswordFlowClient = (username: string, password: string): Cl
     };
   };
 
-  return new ClientBuilder()
-    .withPasswordFlow(getPasswordAuthMiddlewareOptions(username, password))
-    .withHttpMiddleware(httpMiddlewareOptions)
-    .withLoggerMiddleware()
-    .build();
+  return (
+    new ClientBuilder()
+      .withPasswordFlow(getPasswordAuthMiddlewareOptions(username, password))
+      .withHttpMiddleware(httpMiddlewareOptions)
+      // .withLoggerMiddleware()
+      .build()
+  );
 };
 
 export const getCtpTokenFlowClient = (token: string): Client => {
@@ -71,9 +73,11 @@ export const getCtpTokenFlowClient = (token: string): Client => {
     force: true,
   };
 
-  return new ClientBuilder()
-    .withExistingTokenFlow(token, existingTokenMiddlewareOptions)
-    .withHttpMiddleware(httpMiddlewareOptions)
-    .withLoggerMiddleware()
-    .build();
+  return (
+    new ClientBuilder()
+      .withExistingTokenFlow(token, existingTokenMiddlewareOptions)
+      .withHttpMiddleware(httpMiddlewareOptions)
+      // .withLoggerMiddleware()
+      .build()
+  );
 };

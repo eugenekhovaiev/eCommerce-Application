@@ -5,7 +5,7 @@ import { Form } from '../../shared/types';
 import { Alert } from '@mui/material';
 import { useUserDataContext } from '../../shared/lib/contexts/UserDataContext';
 import ButtonElement from '../../shared/UI/buttonElement/ButtonElement';
-import updateCustomer from '../../shared/api/user/updateCustomer';
+import updateCustomer from '../../shared/api/user/customer/updateCustomer';
 import RegistrationAddress from '../../entities/registration/RegistrationAddress';
 import { CountryProvider } from '../../shared/lib/contexts/СountryContext';
 import getAddressString from '../../shared/lib/helpers/getAddressString';

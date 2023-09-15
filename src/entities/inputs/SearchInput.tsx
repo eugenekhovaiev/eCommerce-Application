@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import SearchIcon from '@mui/icons-material/Search';
 import { InputAdornment } from '@mui/material';
-import getProducts from '../../shared/api/user/getProducts';
+import getProducts from '../../shared/api/user/products/getProducts';
 import TextFieldElement from '../../shared/UI/textFieldElement/TextFieldElement';
 import ButtonElement from '../../shared/UI/buttonElement/ButtonElement';
 import getFullClassName from '../../shared/lib/helpers/getFullClassName';

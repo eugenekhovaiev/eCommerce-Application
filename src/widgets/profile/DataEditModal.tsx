@@ -9,7 +9,7 @@ import NameInput from '../../entities/inputs/NameInput';
 import EmailInput from '../../entities/inputs/EmailInput';
 import DateOfBirthInput from '../../entities/inputs/DateOfBirthInput';
 import formatDate from '../../shared/lib/helpers/formatDate';
-import updateCustomer from '../../shared/api/user/updateCustomer';
+import updateCustomer from '../../shared/api/user/customer/updateCustomer';
 import ImageElement from '../../shared/UI/imageElement/ImageElement';
 import closeIcon from '../../shared/assets/close.svg';
 import { MyCustomerUpdate } from '@commercetools/platform-sdk';

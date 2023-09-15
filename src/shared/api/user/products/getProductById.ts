@@ -1,5 +1,5 @@
 import { ClientResponse, ProductProjection } from '@commercetools/platform-sdk';
-import credentialsFlowRoot from './apiRoots/credentialsFlowRoot';
+import credentialsFlowRoot from '../apiRoots/credentialsFlowRoot';
 
 // import { apiRoot } from './getUserApiRoot';
 

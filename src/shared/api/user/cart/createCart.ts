@@ -1,5 +1,5 @@
 import { Cart, ClientResponse } from '@commercetools/platform-sdk';
-import tokenFlowRoot from './apiRoots/tokenFlowRoot';
+import tokenFlowRoot from '../apiRoots/tokenFlowRoot';
 
 const createCart = async (): Promise<ClientResponse<Cart>> => {
   const apiRoot = tokenFlowRoot(`Bearer ${localStorage.getItem('token')}`);
