@@ -192,7 +192,10 @@
     display: flex;
     gap: 2rem;
     align-items: center;
-    grid-area: pagination;
+    grid-area: product;
+    position: relative;
+    left: 8%;
+    width: 30vw;
 
     @media screen and (max-width: 769px) {
       gap: 0.4rem;
