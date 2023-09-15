@@ -1,24 +1,24 @@
 import { useState } from 'react';
 import ButtonElement from '../../shared/UI/buttonElement/ButtonElement';
 import { SpinnerInputProps } from '../../shared/types';
-import { useCartContext } from '../../shared/lib/contexts/CartContext';
+import { useActiveCartContext } from '../../shared/lib/contexts/ActiveCartContext';
 import changeProductQuantity from '../../shared/api/user/cart/changeProductQuantity';
 
 const SpinnerInput = (props: SpinnerInputProps): JSX.Element => {
   const [spinnerValue, setSpinnerValue] = useState(props.value ? props.value : 0);
-  const { updateCart } = useCartContext();
+  const { updateActiveCart } = useActiveCartContext();
 
   const handleIncrease = async (): Promise<void> => {
     const response = await changeProductQuantity(props.id, spinnerValue + 1);
     setSpinnerValue(spinnerValue + 1);
-    updateCart(response.body);
+    updateActiveCart(response.body);
   };
 
   const handleDecrease = async (): Promise<void> => {
     const value = spinnerValue - 1 >= 1 ? spinnerValue - 1 : 1;
     const response = await changeProductQuantity(props.id, value);
     setSpinnerValue(value);
-    updateCart(response.body);
+    updateActiveCart(response.body);
   };
 
   const handleOnChange = (e: React.ChangeEvent<HTMLInputElement>): void => {

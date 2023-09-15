@@ -7,10 +7,10 @@ import { useEffect, useState } from 'react';
 import { ProductProjection } from '@commercetools/platform-sdk';
 import ButtonElement from '../../shared/UI/buttonElement/ButtonElement';
 import addProductToCart from '../../shared/api/user/cart/addProductToCart';
-import { useCartContext } from '../../shared/lib/contexts/CartContext';
+import { useActiveCartContext } from '../../shared/lib/contexts/ActiveCartContext';
 
 const Product = (): JSX.Element => {
-  const { updateCart } = useCartContext();
+  const { updateActiveCart } = useActiveCartContext();
 
   const { slug } = useParams();
 
@@ -51,7 +51,7 @@ const Product = (): JSX.Element => {
   const handleAddToCartClick = async (): Promise<void> => {
     try {
       const newCart = await addProductToCart(product.id);
-      updateCart(newCart.body);
+      updateActiveCart(newCart.body);
     } catch (error) {
       console.log(error);
     }

@@ -2,7 +2,7 @@ import SpinnerInput from '../inputs/SpinnerInput';
 import ButtonElement from '../../shared/UI/buttonElement/ButtonElement';
 import { BasketItemProps } from '../../shared/types';
 import removeProductFromCart from '../../shared/api/user/cart/removeProductFromCart';
-import { useCartContext } from '../../shared/lib/contexts/CartContext';
+import { useActiveCartContext } from '../../shared/lib/contexts/ActiveCartContext';
 
 const BasketItem = (props: BasketItemProps): JSX.Element => {
   const quantity = props.lineItem.quantity;
@@ -14,11 +14,11 @@ const BasketItem = (props: BasketItemProps): JSX.Element => {
       : 'src/shared/assets/image-placeholder.svg';
   const name = props.lineItem.name['en-US'];
   const id = props.lineItem.id;
-  const { updateCart } = useCartContext();
+  const { updateActiveCart } = useActiveCartContext();
 
   const handleOnClick = async (id: string): Promise<void> => {
     const response = await removeProductFromCart(id);
-    updateCart(response.body);
+    updateActiveCart(response.body);
   };
 
   return (

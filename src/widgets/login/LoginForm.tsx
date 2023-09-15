@@ -16,6 +16,7 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import { useUserDataContext } from '../../shared/lib/contexts/UserDataContext';
 import { tokenCache } from '../../shared/api/user/BuildClient';
 import createCart from '../../shared/api/user/cart/createCart';
+import { useActiveCartContext } from '../../shared/lib/contexts/ActiveCartContext';
 // import tokenCache from '../../shared/api/user/tokenCache';
 
 const LoginForm = (): JSX.Element => {
@@ -32,15 +33,17 @@ const LoginForm = (): JSX.Element => {
   const [loginError, setLoginError] = useState(false);
 
   const { updateUserData } = useUserDataContext();
+  const { updateActiveCart } = useActiveCartContext();
 
   const onSubmit: SubmitHandler<Form> = async (data) => {
     try {
       const loginResponse = await loginCustomer(data);
       localStorage.setItem('token', tokenCache.get().token);
 
-      const { customer, cart } = loginResponse.body;
+      const { customer } = loginResponse.body;
+      let { cart } = loginResponse.body;
       if (!cart) {
-        await createCart();
+        cart = (await createCart()).body;
       }
 
       setLoginError(false);
@@ -48,6 +51,7 @@ const LoginForm = (): JSX.Element => {
 
       setTimeout(() => {
         updateUserData(customer);
+        updateActiveCart(cart);
         return navigate(from, { replace: true });
       }, 1500);
     } catch (error) {

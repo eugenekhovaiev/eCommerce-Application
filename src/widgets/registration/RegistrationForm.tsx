@@ -20,6 +20,7 @@ import loginCustomer from '../../shared/api/user/customer/loginCustomer';
 import { Form } from '../../shared/types';
 import { tokenCache } from '../../shared/api/user/BuildClient';
 import createCart from '../../shared/api/user/cart/createCart';
+import { useActiveCartContext } from '../../shared/lib/contexts/ActiveCartContext';
 // import tokenCache from '../../shared/api/user/tokenCache';
 
 const RegistrationForm = (): JSX.Element => {
@@ -49,6 +50,7 @@ const RegistrationForm = (): JSX.Element => {
   };
 
   const { updateUserData } = useUserDataContext();
+  const { updateActiveCart } = useActiveCartContext();
 
   const onSubmit: SubmitHandler<Form> = async (data) => {
     const newCustomerData = getNewCustomerData(data, sameAsShipping, defaultShipping, defaultBilling);
@@ -63,9 +65,10 @@ const RegistrationForm = (): JSX.Element => {
       const loginResponse = await loginCustomer(loginData);
       localStorage.setItem('token', tokenCache.get().token);
 
-      const { customer, cart } = loginResponse.body;
+      const { customer } = loginResponse.body;
+      let { cart } = loginResponse.body;
       if (!cart) {
-        await createCart();
+        cart = (await createCart()).body;
       }
 
       setRegisterError(false);
@@ -73,6 +76,7 @@ const RegistrationForm = (): JSX.Element => {
 
       setTimeout(() => {
         updateUserData(customer);
+        updateActiveCart(cart);
         return navigate(from, { replace: true });
       }, 1500);
     } catch (error) {

@@ -3,16 +3,21 @@ import { useUserDataContext } from '../shared/lib/contexts/UserDataContext';
 import Header from '../widgets/header/Header';
 import MyRoutes from './routes/routes';
 import getCustomerWithToken from '../shared/api/user/customer/getCustomerWithToken';
+import getActiveCart from '../shared/api/user/cart/getActiveCart';
+import { useActiveCartContext } from '../shared/lib/contexts/ActiveCartContext';
 
 function App(): JSX.Element {
   const { updateUserData } = useUserDataContext();
+  const { updateActiveCart } = useActiveCartContext();
   const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
     const fetchData = async (): Promise<void> => {
       try {
-        const response = await getCustomerWithToken();
-        updateUserData(response.body);
+        const customer = await getCustomerWithToken();
+        const cart = await getActiveCart();
+        updateUserData(customer.body);
+        updateActiveCart(cart.body);
       } catch (error) {
         console.log('No authorized user!');
       } finally {

@@ -213,9 +213,9 @@ export interface UserDataContext {
   updateUserData: (userData: Customer | undefined) => void;
 }
 
-export interface CartContext {
-  cart: Cart | undefined;
-  updateCart: (cart: Cart | undefined) => void;
+export interface ActiveCartContext {
+  activeCart: Cart | undefined;
+  updateActiveCart: (cart: Cart | undefined) => void;
 }
 
 export interface CountryContext {

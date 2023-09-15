@@ -4,23 +4,23 @@ import TotalCost from '../../widgets/totalCost/TotalCost';
 import ImageElement from '../../shared/UI/imageElement/ImageElement';
 import LinkElement from '../../shared/UI/linkElement/LinkElement';
 import emptyBag from '../../shared/assets/empty-bag.svg';
-import { useCartContext } from '../../shared/lib/contexts/CartContext';
+import { useActiveCartContext } from '../../shared/lib/contexts/ActiveCartContext';
 
 const Cart = (): JSX.Element => {
-  const { cart } = useCartContext();
+  const { activeCart } = useActiveCartContext();
 
   return (
     <main className="cart">
-      {cart && cart?.lineItems.length !== 0 ? (
+      {activeCart && activeCart?.lineItems.length !== 0 ? (
         <div className="container cart__container">
           <div className="cart__items-wrapper">
-            <BasketItems cartItems={cart?.lineItems} />
+            <BasketItems cartItems={activeCart?.lineItems} />
           </div>
           <div className="cart__coupon-wrapper">
             <Coupon />
           </div>
           <div className="cart__total-cost-wrapper">
-            <TotalCost subtotal={cart?.totalPrice.centAmount} total={cart?.totalPrice.centAmount} />
+            <TotalCost subtotal={activeCart?.totalPrice.centAmount} total={activeCart?.totalPrice.centAmount} />
           </div>
         </div>
       ) : (

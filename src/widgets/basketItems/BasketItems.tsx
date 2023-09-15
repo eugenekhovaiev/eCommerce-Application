@@ -1,11 +1,17 @@
 import BasketItem from '../../entities/basket/BasketItem';
 import ButtonElement from '../../shared/UI/buttonElement/ButtonElement';
+import createCart from '../../shared/api/user/cart/createCart';
 import deleteCart from '../../shared/api/user/cart/deleteCart';
+import { useActiveCartContext } from '../../shared/lib/contexts/ActiveCartContext';
 import { BasketItemsProps } from '../../shared/types';
 
 const BasketItems = (props: BasketItemsProps): JSX.Element => {
-  const handleOnClick = async (): Promise<void> => {
+  const { updateActiveCart } = useActiveCartContext();
+
+  const clearCart = async (): Promise<void> => {
     await deleteCart();
+    const newCart = (await createCart()).body;
+    updateActiveCart(newCart);
   };
   return (
     <div className="cart-items">
@@ -17,7 +23,7 @@ const BasketItems = (props: BasketItemsProps): JSX.Element => {
       </div>
       {props.cartItems && props.cartItems.map((item) => <BasketItem key={item.name['en-US']} lineItem={item} />)}
       <div className="cart-items__clear-button">
-        <ButtonElement title="Clear cart" onClick={handleOnClick} />
+        <ButtonElement title="Clear cart" onClick={clearCart} />
       </div>
     </div>
   );

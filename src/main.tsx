@@ -6,7 +6,7 @@ import { BrowserRouter } from 'react-router-dom';
 import App from './app/App.tsx';
 
 import { UserDataProvider } from './shared/lib/contexts/UserDataContext.tsx';
-import { CartContextProvider } from './shared/lib/contexts/CartContext.tsx';
+import { CartContextProvider } from './shared/lib/contexts/ActiveCartContext.tsx';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
