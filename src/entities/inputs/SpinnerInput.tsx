@@ -9,16 +9,16 @@ const SpinnerInput = (props: SpinnerInputProps): JSX.Element => {
   const { updateActiveCart } = useActiveCartContext();
 
   const handleIncrease = async (): Promise<void> => {
-    const response = await changeProductQuantity(props.id, spinnerValue + 1);
+    const updatedCart = (await changeProductQuantity(props.id, spinnerValue + 1)).body;
     setSpinnerValue(spinnerValue + 1);
-    updateActiveCart(response.body);
+    updateActiveCart(updatedCart);
   };
 
   const handleDecrease = async (): Promise<void> => {
     const value = spinnerValue - 1 >= 1 ? spinnerValue - 1 : 1;
-    const response = await changeProductQuantity(props.id, value);
+    const updatedCart = (await changeProductQuantity(props.id, value)).body;
     setSpinnerValue(value);
-    updateActiveCart(response.body);
+    updateActiveCart(updatedCart);
   };
 
   const handleOnChange = (e: React.ChangeEvent<HTMLInputElement>): void => {

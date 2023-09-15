@@ -22,8 +22,8 @@ const Product = (): JSX.Element => {
   useEffect(() => {
     const fetchData = async (): Promise<void> => {
       try {
-        const response = await getProductById(slug!);
-        setProduct(response.body);
+        const product = (await getProductById(slug!)).body;
+        setProduct(product);
       } catch (error) {
         navigate(from, { replace: true });
         console.log('Product not found!');
@@ -50,8 +50,8 @@ const Product = (): JSX.Element => {
 
   const handleAddToCartClick = async (): Promise<void> => {
     try {
-      const newCart = await addProductToCart(product.id);
-      updateActiveCart(newCart.body);
+      const updatedCart = (await addProductToCart(product.id)).body;
+      updateActiveCart(updatedCart);
     } catch (error) {
       console.log(error);
     }

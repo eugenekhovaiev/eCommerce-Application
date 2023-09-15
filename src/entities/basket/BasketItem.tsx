@@ -17,8 +17,8 @@ const BasketItem = (props: BasketItemProps): JSX.Element => {
   const { updateActiveCart } = useActiveCartContext();
 
   const handleOnClick = async (id: string): Promise<void> => {
-    const response = await removeProductFromCart(id);
-    updateActiveCart(response.body);
+    const updatedCart = (await removeProductFromCart(id)).body;
+    updateActiveCart(updatedCart);
   };
 
   return (

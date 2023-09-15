@@ -13,6 +13,7 @@ const BasketItems = (props: BasketItemsProps): JSX.Element => {
     const newCart = (await createCart()).body;
     updateActiveCart(newCart);
   };
+
   return (
     <div className="cart-items">
       <div className="cart-items__item cart-items__item_header">
