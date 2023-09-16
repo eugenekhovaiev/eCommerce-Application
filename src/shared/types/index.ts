@@ -269,6 +269,8 @@ export interface ProductCategoriesProps {
 }
 
 export interface ProductsQueryParams {
+  limit?: number;
+  offset?: number;
   searchText?: string;
   sort?: {
     // by: 'price' | 'name.en-US';

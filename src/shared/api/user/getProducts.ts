@@ -5,7 +5,7 @@ import { ProductsQueryParams } from '../../types';
 import getFiltersArray from '../../lib/helpers/getFiltersArray';
 
 const getProducts = async (
-  queryParams: ProductsQueryParams = {},
+  queryParams: ProductsQueryParams = { limit: 50, offset: 0 },
 ): Promise<ClientResponse<ProductProjectionPagedQueryResponse>> => {
   const filtersArr = getFiltersArray(queryParams.filters);
 
@@ -14,7 +14,8 @@ const getProducts = async (
     .search()
     .get({
       queryArgs: {
-        limit: 50,
+        limit: queryParams.limit,
+        offset: queryParams.offset,
         'text.en-US': queryParams.searchText,
         fuzzy: true,
         sort: queryParams.sort ? `${queryParams.sort.by} ${queryParams.sort.order}` : undefined,
