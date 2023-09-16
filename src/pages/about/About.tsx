@@ -26,9 +26,9 @@ const About = (): JSX.Element => {
             src={UserIcon}
             name="Aliona Khomich"
             role="Frontend developer"
-            description="Lorem, ipsum dolor sit amet consectetur adipisicing elit. Velit aperiam nesciunt eius doloremque
-              reiciendis inventore doloribus sit non culpa? Odio assumenda quaerat id pariatur accusantium possimus
-              molestiae incidunt voluptatibus debitis."
+            description="I graduated from Belarusian State University. After that I've been a teacher for 2 years.
+            My passion for sports, literature, and the natural world serves as a wellspring of inspiration.
+            As a frontend developer, my goal is to create applications that enhance the quality of life and provide user-friendly solutions."
             location="Warsaw, Poland"
             href="https://github.com/Alena636"
             nickname="alena636"
@@ -40,9 +40,9 @@ const About = (): JSX.Element => {
             src={UserIcon}
             name="Xeniya Gazizova"
             role="Frontend developer"
-            description="Lorem, ipsum dolor sit amet consectetur adipisicing elit. Velit aperiam nesciunt eius doloremque
-              reiciendis inventore doloribus sit non culpa? Odio assumenda quaerat id pariatur accusantium possimus
-              molestiae incidunt voluptatibus debitis."
+            description="I was a student at Moscow State University.
+            In my spare time, I find joy in drawing, quality family time, and Nintendo Switch games.
+            The process of crafting something meaningful from scratch truly resonates with me, and after a long search for my true calling, I believe I've finally found it in web development."
             location="Merced, USA"
             href="https://github.com/XeniyaMV"
             nickname="xeniyamv"

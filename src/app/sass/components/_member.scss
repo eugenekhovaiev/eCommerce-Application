@@ -48,7 +48,7 @@
       margin-left: -1rem;
     }
 
-    &-button {
+    &-contribution-btn {
       width: fit-content;
       border: 1px solid $color-shadow !important;
     }
@@ -103,9 +103,17 @@
   transform: scale(1.1);
 }
 
-.card:hover > .front {
-  transform: perspective(600px) rotateY(-180deg);
+// .card:hover > .front {
+//   transform: perspective(none) rotateY(-180deg);
+// }
+// .card:hover > .back {
+//   transform: perspective(none) rotateY(0deg);
+// }
+
+.card.flipped > .front {
+    transform: perspective(600px) rotateY(-180deg);
 }
-.card:hover > .back {
-  transform: perspective(600px) rotateY(0deg);
+
+.card.flipped > .back {
+    transform: perspective(600px) rotateY(0deg);
 }
