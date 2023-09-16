@@ -1,4 +1,6 @@
 import { MemberProps } from '../../shared/types';
+import LocationImg from '../../shared/assets/location.svg';
+import GithubImg from '../../shared/assets/github-icon.svg';
 
 const Member = (props: MemberProps): JSX.Element => {
   return (
@@ -8,12 +10,12 @@ const Member = (props: MemberProps): JSX.Element => {
         <p className="about__member-name">{props.name}</p>
         <p className="about__member-role">{props.role}</p>
         <p className="about__member-location">
-          <img className="about__member-location-img" src="src/shared/assets/location.svg" alt="location" />
+          <img className="about__member-location-img" src={LocationImg} alt="location" />
           {props.location}
         </p>
         <p className="about__member-description">{props.description}</p>
         <a className="about__member-link" href={props.href} target="blank">
-          <img className="about__member-link-img" src="src/shared/assets/github-icon.svg" alt="github-link" />
+          <img className="about__member-link-img" src={GithubImg} alt="github-link" />
           <span>{props.nickname}</span>
         </a>
       </div>
@@ -26,7 +28,7 @@ const Member = (props: MemberProps): JSX.Element => {
             <li className="about__description-list-item-circle">{props.contributionThird}</li>
           </ul>
           <a className="about__member-link back-link" href={props.href} target="blank">
-            <img className="about__member-link-img" src="src/shared/assets/github-icon.svg" alt="github-link" />
+            <img className="about__member-link-img" src={GithubImg} alt="github-link" />
             <span>{props.nickname}</span>
           </a>
         </div>

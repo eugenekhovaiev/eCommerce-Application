@@ -1,4 +1,6 @@
 import Member from '../../widgets/about/Member';
+import UserIcon from '../../shared/assets/user-icon.svg';
+import RssLogo from '../../shared/assets/logo-rsschool.svg';
 
 const About = (): JSX.Element => {
   return (
@@ -7,7 +9,7 @@ const About = (): JSX.Element => {
         <h2 className="about__title">Our Team</h2>
         <div className="about__members">
           <Member
-            src="src/shared/assets/user-icon.svg"
+            src={UserIcon}
             name="Yevhenii Khovaiev"
             role="Team leader, Frontend developer"
             description="Lorem, ipsum dolor sit amet consectetur adipisicing elit. Velit aperiam nesciunt eius doloremque
@@ -21,7 +23,7 @@ const About = (): JSX.Element => {
             contributionThird="Led the implementation of critical user-facing features."
           />
           <Member
-            src="src/shared/assets/user-icon.svg"
+            src={UserIcon}
             name="Aliona Khomich"
             role="Frontend developer"
             description="Lorem, ipsum dolor sit amet consectetur adipisicing elit. Velit aperiam nesciunt eius doloremque
@@ -35,7 +37,7 @@ const About = (): JSX.Element => {
             contributionThird="Ensured cross-browser compatibility and optimized performance for a seamless user experience."
           />
           <Member
-            src="src/shared/assets/user-icon.svg"
+            src={UserIcon}
             name="Xeniya Gazizova"
             role="Frontend developer"
             description="Lorem, ipsum dolor sit amet consectetur adipisicing elit. Velit aperiam nesciunt eius doloremque
@@ -77,7 +79,7 @@ const About = (): JSX.Element => {
         </div>
         <div className="about__footer">
           <a href="https://rs.school/" className="about__rss-link">
-            <img src="src/shared/assets/logo-rsschool.svg" alt="logo-rss" className="about__rss-logo" />
+            <img src={RssLogo} alt="logo-rss" className="about__rss-logo" />
           </a>
           <p className="about__footer-date">2023</p>
         </div>
