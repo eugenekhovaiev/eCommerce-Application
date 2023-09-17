@@ -17,7 +17,15 @@
     color: $color-font-dark-s;
   }
 
+  &__form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 1.3rem;
+  }
+
   &__text-field.MuiTextField-root {
+    width: 100%;
     label {
       font-size: 0.9rem;
     }
@@ -26,11 +34,37 @@
   &__apply-button {
     .button.MuiButtonBase-root {
       border: 0.01rem solid $color-shadow;
-      padding: 0.8rem 1.5rem;
+      padding: 0.5rem 1.3rem;
 
       &:hover {
         border-color: $color-secondary;
       }
     }
+  }
+
+  &__coupon-message {
+    padding: 0.7rem 1rem 0.7rem 0.8rem;
+    width: max-content;
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+    border-radius: 0.4rem;
+
+    &_applied {
+      border: 0.09rem solid $color-accept;
+    }
+
+    &_denied {
+      border: 0.09rem solid $color-delete;
+    }
+
+    .icon {
+      width: 2rem;
+    }
+  }
+
+  &__coupon-message-title {
+    font-size: 1.2rem;
+    font-weight: 600;
   }
 }

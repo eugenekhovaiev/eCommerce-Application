@@ -317,3 +317,7 @@ export interface TotalCostProps {
   discount?: number;
   total?: number;
 }
+
+export interface CouponForm {
+  coupon: string;
+}
