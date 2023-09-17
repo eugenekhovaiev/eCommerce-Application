@@ -194,11 +194,20 @@
     align-items: center;
     grid-area: product;
     position: relative;
-    left: 8%;
-    width: 30vw;
+    padding: 1rem 0;
+    left: 28%;
+    width: 100%;
+
+    @media screen and (max-width: 993px) {
+      left: 0%;
+    }
 
     @media screen and (max-width: 769px) {
       gap: 0.4rem;
+    }
+
+    @media screen and (max-width: 576px) {
+      left: 30%;
     }
   }
 
@@ -213,8 +222,15 @@
     align-items: center;
     transition: 0.6s;
 
+    @media screen and (max-width: 993px) {
+      width: 3rem !important;
+    }
+
     &-arrow {
       width: 1.4rem;
+      @media screen and (max-width: 993px) {
+        width: 3rem !important;
+      }
     }
 
     &-arrow.next {
