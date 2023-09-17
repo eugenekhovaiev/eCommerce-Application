@@ -8,7 +8,6 @@
     border-radius: 0.5rem 0.5rem 0 0;
     box-shadow: rgba(0, 0, 0, 0.16) 0px 0.1rem 0.3rem;
     padding: 1rem;
-    cursor: pointer;
 
     &-img {
       width: 20vw;
@@ -53,6 +52,10 @@
       border: 1px solid $color-shadow !important;
     }
   }
+}
+
+.card {
+  position: relative;
 }
 
 .front,
@@ -111,9 +114,9 @@
 // }
 
 .card.flipped > .front {
-    transform: perspective(600px) rotateY(-180deg);
+  transform: perspective(600px) rotateY(-180deg);
 }
 
 .card.flipped > .back {
-    transform: perspective(600px) rotateY(0deg);
+  transform: perspective(600px) rotateY(0deg);
 }
