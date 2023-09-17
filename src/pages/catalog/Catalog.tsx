@@ -9,6 +9,7 @@ import { ProductProjection } from '@commercetools/platform-sdk';
 import { FilterProvider } from '../../shared/lib/contexts/FilterContext';
 import LinkElement from '../../shared/UI/linkElement/LinkElement';
 import Pagination from '../../widgets/pagination/Pagination';
+import ArowIcon from '../../shared/assets/arow.svg';
 
 const Catalog = (): JSX.Element => {
   const [mainCategories, setMainCategories] = useState<Category[]>([]);
@@ -143,7 +144,7 @@ const Catalog = (): JSX.Element => {
                   : 'No products matching your request.'}
                 <div className="catalog-products__pagination">
                   <button disabled={currentPage === 1} className="catalog-products__button" onClick={prevPage}>
-                    <img className="catalog-products__button-arrow prev" src="src/shared/assets/row.svg" alt="" />
+                    <img className="catalog-products__button-arrow prev" src={ArowIcon} alt="" />
                   </button>
                   <Pagination
                     cardsPerPage={cardsPerPage}
@@ -156,7 +157,7 @@ const Catalog = (): JSX.Element => {
                     className="catalog-products__button"
                     onClick={nextPage}
                   >
-                    <img className="catalog-products__button-arrow next" src="src/shared/assets/row.svg" alt="" />
+                    <img className="catalog-products__button-arrow next" src={ArowIcon} alt="" />
                   </button>
                 </div>
               </div>
