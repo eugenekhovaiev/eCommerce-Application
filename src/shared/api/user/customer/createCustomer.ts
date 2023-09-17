@@ -1,13 +1,12 @@
-import { CustomerDraft, CustomerSignInResult } from '@commercetools/platform-sdk';
+import { CustomerSignInResult, MyCustomerDraft } from '@commercetools/platform-sdk';
 import { ClientResponse } from '@commercetools/platform-sdk';
-import credentialsFlowRoot from '../apiRoots/credentialsFlowRoot';
+import tokenFlowRoot from '../apiRoots/tokenFlowRoot';
 
-// import { apiRoot } from './getUserApiRoot';
-
-const createCustomer = (newCustomerData: CustomerDraft): Promise<ClientResponse<CustomerSignInResult>> => {
-  const apiRoot = credentialsFlowRoot();
+const createCustomer = (newCustomerData: MyCustomerDraft): Promise<ClientResponse<CustomerSignInResult>> => {
+  const apiRoot = tokenFlowRoot(`Bearer ${localStorage.getItem('token')}`);
   return apiRoot
-    .customers()
+    .me()
+    .signup()
     .post({
       body: newCustomerData,
     })

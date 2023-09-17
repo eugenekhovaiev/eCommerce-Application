@@ -43,7 +43,6 @@ const Catalog = (): JSX.Element => {
         setMainCategories(mainCategories);
         setProductsArr(productsObj.body.results);
       } catch (error) {
-        // navigate(from, { replace: true });
         console.log('Something went wrong!');
       }
     };
