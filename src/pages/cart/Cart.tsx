@@ -8,7 +8,7 @@ import { useActiveCartContext } from '../../shared/lib/contexts/ActiveCartContex
 
 const Cart = (): JSX.Element => {
   const { activeCart } = useActiveCartContext();
-
+  const subtotal = activeCart?.lineItems.reduce((sum, item) => sum + item.price.value.centAmount * item.quantity, 0);
   return (
     <main className="cart">
       {activeCart && activeCart?.lineItems.length !== 0 ? (
@@ -20,7 +20,11 @@ const Cart = (): JSX.Element => {
             <Coupon />
           </div>
           <div className="cart__total-cost-wrapper">
-            <TotalCost subtotal={activeCart?.totalPrice.centAmount} total={activeCart?.totalPrice.centAmount} />
+            <TotalCost
+              subtotal={subtotal}
+              total={activeCart?.totalPrice.centAmount}
+              discount={subtotal ? subtotal - activeCart?.totalPrice.centAmount : 0}
+            />
           </div>
         </div>
       ) : (
