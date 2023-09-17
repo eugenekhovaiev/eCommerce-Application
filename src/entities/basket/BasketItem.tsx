@@ -46,8 +46,8 @@ const BasketItem = (props: BasketItemProps): JSX.Element => {
         <span className="title">Total: </span>
         <PriceElement
           additionalClassName={props.lineItem.discountedPricePerQuantity.length !== 0 ? 'price_discounted' : ''}
-          priceOriginal={priceOriginal * quantity}
-          priceDiscounted={total}
+          priceOriginal={priceDiscounted ? priceOriginal * quantity : total}
+          priceDiscounted={priceDiscounted ? total : undefined}
         />
       </div>
       <div className="cart-items__close">
