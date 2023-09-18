@@ -1,9 +1,10 @@
 import SpinnerInput from '../inputs/SpinnerInput';
 import ButtonElement from '../../shared/UI/buttonElement/ButtonElement';
+import PriceElement from '../../shared/UI/priceElement/PriceElement';
+import LinkElement from '../../shared/UI/linkElement/LinkElement';
 import { BasketItemProps } from '../../shared/types';
 import removeProductFromCart from '../../shared/api/user/cart/removeProductFromCart';
 import { useActiveCartContext } from '../../shared/lib/contexts/ActiveCartContext';
-import PriceElement from '../../shared/UI/priceElement/PriceElement';
 
 const BasketItem = (props: BasketItemProps): JSX.Element => {
   const quantity = props.lineItem.quantity;
@@ -31,7 +32,9 @@ const BasketItem = (props: BasketItemProps): JSX.Element => {
       <div className="cart-items__image">
         <img className="image" src={image} alt={name} />
       </div>
-      <div className="cart-items__name">{name}</div>
+      <div className="cart-items__name">
+        <LinkElement title={name} to={`/catalog/${props.lineItem.productId}`} />
+      </div>
       <div className="cart-items__price">
         <PriceElement
           additionalClassName={props.lineItem.discountedPricePerQuantity.length !== 0 ? 'price_discounted' : ''}
