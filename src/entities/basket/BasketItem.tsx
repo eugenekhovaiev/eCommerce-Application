@@ -59,7 +59,7 @@ const BasketItem = (props: BasketItemProps): JSX.Element => {
           priceDiscounted={priceDiscounted ? total : undefined}
         />
       </div>
-      <div className="cart-items__close" onClick={(): Promise<void> => handleOnClick(id)}>
+      <div className="cart-items__close" onClick={handleRemoveFromCartClick}>
         <ImageElement src={closeIcon} alt="close" additionalClassName="icon" />
       </div>
     </div>
