@@ -5,10 +5,19 @@ import ImageElement from '../../shared/UI/imageElement/ImageElement';
 import LinkElement from '../../shared/UI/linkElement/LinkElement';
 import emptyBag from '../../shared/assets/empty-bag.svg';
 import { useActiveCartContext } from '../../shared/lib/contexts/ActiveCartContext';
+// import getDiscountCodeById from '../../shared/api/user/cart/getDiscountCodeById';
 
 const Cart = (): JSX.Element => {
   const { activeCart } = useActiveCartContext();
   const subtotal = activeCart?.lineItems.reduce((sum, item) => sum + item.price.value.centAmount * item.quantity, 0);
+  // (async function (): Promise<void> {
+  //   // const id = activeCart?.discountCodes[0].discountCode.id;
+  //   // const resp = await getDiscountCodeById(id || '');
+  //   const resp = await getDiscountCodeById('fe975518-3560-4e54-9096-b737d0d21540');
+  //   console.log(activeCart);
+  //   console.log(resp);
+  // })();
+
   return (
     <main className="cart">
       {activeCart && activeCart?.lineItems.length !== 0 ? (

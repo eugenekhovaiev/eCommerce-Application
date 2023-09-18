@@ -183,4 +183,34 @@
       padding-top: 2rem;
     }
   }
+
+  &__modal {
+    &-image {
+      width: 15%;
+      opacity: 0.85;
+      .image {
+        width: 100%;
+      }
+
+      @media screen and (max-width: 992px) {
+        width: 100%;
+        max-width: 10rem;
+      }
+    }
+
+    &-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 0.7rem;
+    }
+
+    &-title {
+      font-size: 1.5rem;
+    }
+
+    &-helper-text {
+      font-size: 1.1rem;
+      color: $color-font-dark-l;
+    }
+  }
 }
