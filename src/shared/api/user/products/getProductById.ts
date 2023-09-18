@@ -1,10 +1,8 @@
 import { ClientResponse, ProductProjection } from '@commercetools/platform-sdk';
-import credentialsFlowRoot from '../apiRoots/credentialsFlowRoot';
-
-// import { apiRoot } from './getUserApiRoot';
+import tokenFlowRoot from '../apiRoots/tokenFlowRoot';
 
 const getProductById = async (id: string): Promise<ClientResponse<ProductProjection>> => {
-  const apiRoot = credentialsFlowRoot();
+  const apiRoot = tokenFlowRoot(`Bearer ${localStorage.getItem('token')}`);
   return apiRoot.productProjections().withId({ ID: id }).get().execute();
 };
 

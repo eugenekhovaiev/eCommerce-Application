@@ -14,10 +14,9 @@ import loginCustomer from '../../shared/api/user/customer/loginCustomer';
 
 import { useNavigate, useLocation } from 'react-router-dom';
 import { useUserDataContext } from '../../shared/lib/contexts/UserDataContext';
-import { tokenCache } from '../../shared/api/user/BuildClient';
+import { passwordTokenCache } from '../../shared/api/user/BuildClient';
 import createCart from '../../shared/api/user/cart/createCart';
 import { useActiveCartContext } from '../../shared/lib/contexts/ActiveCartContext';
-// import tokenCache from '../../shared/api/user/tokenCache';
 
 const LoginForm = (): JSX.Element => {
   const { handleSubmit, control } = useForm<Form>();
@@ -38,7 +37,7 @@ const LoginForm = (): JSX.Element => {
   const onSubmit: SubmitHandler<Form> = async (data) => {
     try {
       const loginResponse = await loginCustomer(data);
-      localStorage.setItem('token', tokenCache.get().token);
+      localStorage.setItem('token', passwordTokenCache.get().token);
 
       const { customer } = loginResponse.body;
       let { cart } = loginResponse.body;
