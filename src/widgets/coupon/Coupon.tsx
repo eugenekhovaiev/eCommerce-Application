@@ -6,10 +6,10 @@ import ButtonElement from '../../shared/UI/buttonElement/ButtonElement';
 import addDiscountCode from '../../shared/api/user/cart/addDiscountCode';
 import { useActiveCartContext } from '../../shared/lib/contexts/ActiveCartContext';
 import { CouponForm } from '../../shared/types';
-import ImageElement from '../../shared/UI/imageElement/ImageElement';
-import checkMark from '../../shared/assets/check-mark.svg';
-import alarmLight from '../../shared/assets/alarm-light.svg';
-// import { Alert } from '@mui/material';
+// import ImageElement from '../../shared/UI/imageElement/ImageElement';
+// import checkMark from '../../shared/assets/check-mark.svg';
+// import alarmLight from '../../shared/assets/alarm-light.svg';
+import { Alert } from '@mui/material';
 
 const Coupon = (): JSX.Element => {
   const { handleSubmit, control } = useForm<CouponForm>();
@@ -50,24 +50,24 @@ const Coupon = (): JSX.Element => {
           )}
         />
         {appliedCoupon !== '' && (
-          <div className={'coupon__coupon-message coupon__coupon-message_applied'}>
-            <ImageElement additionalClassName="icon" src={checkMark} alt="check" />
-            <span className="coupon__coupon-message-title">{appliedCoupon}</span>
-            is applied
-          </div>
-          // <Alert severity="success" className="">
-          //   <span className="coupon__coupon-message-title">{appliedCoupon}</span> is applied
-          // </Alert>
+          // <div className={'coupon__coupon-message coupon__coupon-message_applied'}>
+          //   <ImageElement additionalClassName="icon" src={checkMark} alt="check" />
+          //   <span className="coupon__coupon-message-title">{appliedCoupon}</span>
+          //   is applied
+          // </div>
+          <Alert severity="success" className="">
+            <span className="coupon__coupon-message-title">{appliedCoupon}</span> is applied
+          </Alert>
         )}
         {currentCoupon !== '' && !isCouponApplied && (
-          <div className={'coupon__coupon-message coupon__coupon-message_denied'}>
-            <ImageElement additionalClassName="icon" src={alarmLight} alt="check" />
-            <span className="coupon__coupon-message-title">{currentCoupon}</span>
-            does not exist
-          </div>
-          // <Alert severity="error" className="">
-          //   <span className="coupon__coupon-message-title">{currentCoupon}</span> does not exist
-          // </Alert>
+          // <div className={'coupon__coupon-message coupon__coupon-message_denied'}>
+          //   <ImageElement additionalClassName="icon" src={alarmLight} alt="check" />
+          //   <span className="coupon__coupon-message-title">{currentCoupon}</span>
+          //   does not exist
+          // </div>
+          <Alert severity="error" className="">
+            <span className="coupon__coupon-message-title">{currentCoupon}</span> does not exist
+          </Alert>
         )}
         <div className="coupon__apply-button">
           <ButtonElement type="submit" title="Apply" />
