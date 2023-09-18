@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import LinkElement from '../../shared/UI/linkElement/LinkElement';
-import getProducts from '../../shared/api/user/getProducts';
+import getProducts from '../../shared/api/user/products/getProducts';
 import Category from '../../shared/types/Category';
 import { ProductCategoriesProps } from '../../shared/types';
 import { useFilterContext } from '../../shared/lib/contexts/FilterContext';

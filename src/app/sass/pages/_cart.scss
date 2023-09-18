@@ -1,0 +1,209 @@
+.cart {
+  &__container {
+    display: grid;
+    grid-template-areas:
+      'empty-bag empty-bag'
+      'items items'
+      'coupon total-cost';
+    grid-template-columns: 1fr 1fr;
+    justify-items: center;
+    row-gap: 2rem;
+    column-gap: 3rem;
+
+    @media screen and (max-width: 992px) {
+      grid-template-areas:
+        'empty-bag'
+        'items'
+        'coupon'
+        'total-cost';
+      grid-template-columns: 1fr;
+    }
+  }
+
+  &__items-wrapper {
+    grid-area: items;
+  }
+
+  &__coupon-wrapper {
+    grid-area: coupon;
+    width: 100%;
+  }
+
+  &__total-cost-wrapper {
+    grid-area: total-cost;
+    width: 100%;
+    background-color: $color-primary-s;
+  }
+
+  &__empty-wrapper {
+    grid-area: empty-bag;
+    width: 100%;
+  }
+}
+
+.cart-items {
+  display: flex;
+  flex-direction: column;
+  &__item {
+    cursor: default;
+    padding: 0.5rem;
+    display: grid;
+    grid-template-areas: 'image name price quantity total close';
+    grid-template-columns: 0.8fr 2.5fr 1fr 1fr 1fr 0.5fr;
+    justify-content: center;
+    justify-items: start;
+    align-items: center;
+    column-gap: 0.5rem;
+    row-gap: 0.5rem;
+    border-bottom: 1px solid $color-shadow;
+    transition: background-color 0.5s;
+    font-size: 1rem;
+
+    &:hover {
+      background-color: $color-primary-s;
+    }
+
+    @media screen and (max-width: 992px) {
+      grid-template-areas:
+        'image name name close'
+        'image price price close'
+        'image quantity total close';
+      grid-template-columns: 1fr 1fr 1fr 0.5fr;
+    }
+  }
+
+  &__item_header {
+    font-size: 1.2rem;
+    grid-template-areas: 'name name price quantity total close';
+    &:hover {
+      background-color: $color-primary-xs;
+    }
+
+    @media screen and (max-width: 992px) {
+      display: none;
+    }
+  }
+
+  &__item_header &__total {
+    font-weight: 400;
+  }
+
+  &__image {
+    grid-area: image;
+
+    .image {
+      border-radius: 0.35rem;
+    }
+
+    @media screen and (max-width: 992px) {
+      justify-self: center;
+      width: 70%;
+    }
+
+    @media screen and (max-width: 768px) {
+      width: 100%;
+      align-self: self-start;
+    }
+  }
+
+  &__name {
+    grid-area: name;
+    display: flex;
+    align-items: center;
+  }
+
+  &__price {
+    grid-area: price;
+  }
+
+  &__quantity {
+    grid-area: quantity;
+  }
+
+  &__total {
+    grid-area: total;
+    font-weight: 600;
+    display: flex;
+    flex-direction: column;
+    gap: 0.1rem;
+    .title {
+      display: none;
+      font-weight: 400;
+      @media screen and (max-width: 992px) {
+        display: inline;
+      }
+    }
+    .price {
+      &__final {
+        font-weight: 600;
+      }
+    }
+  }
+
+  &__close {
+    width: 1.4rem;
+    padding: 0.1rem;
+    grid-area: close;
+    justify-self: end;
+    display: flex;
+    align-items: center;
+    justify-items: center;
+    background-color: $color-secondary;
+    border-radius: 50%;
+
+    .icon {
+      filter: invert(100%) sepia(0%) saturate(3987%) hue-rotate(8deg) brightness(111%) contrast(100%);
+    }
+  }
+
+  &__clear-button {
+    padding-top: 1rem;
+    align-self: center;
+    .button.MuiButtonBase-root {
+      padding: 0.5rem 1rem;
+      background-color: $color-primary;
+      color: $color-primary-l;
+      border: 0.01rem solid $color-primary-l;
+
+      &:hover {
+        background-color: $color-primary-xs;
+        color: $color-secondary;
+        border-color: $color-secondary;
+      }
+    }
+
+    @media screen and (max-width: 992px) {
+      padding-top: 2rem;
+    }
+  }
+
+  &__modal {
+    &-image {
+      width: 15%;
+      opacity: 0.85;
+      .image {
+        width: 100%;
+      }
+
+      @media screen and (max-width: 992px) {
+        width: 100%;
+        max-width: 10rem;
+      }
+    }
+
+    &-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 0.7rem;
+    }
+
+    &-title {
+      font-size: 1.5rem;
+    }
+
+    &-helper-text {
+      font-size: 1.1rem;
+      color: $color-font-dark-l;
+    }
+  }
+}

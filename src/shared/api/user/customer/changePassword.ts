@@ -1,15 +1,14 @@
-import { Customer, CustomerChangePassword } from '@commercetools/platform-sdk';
+import { Customer, MyCustomerChangePassword } from '@commercetools/platform-sdk';
 import { ClientResponse } from '@commercetools/platform-sdk';
+import tokenFlowRoot from '../apiRoots/tokenFlowRoot';
 
-import { apiRoot } from './getUserApiRoot';
-
-const changePassword = (dataToPasswordChange: CustomerChangePassword): Promise<ClientResponse<Customer>> => {
+const changePassword = (dataToPasswordChange: MyCustomerChangePassword): Promise<ClientResponse<Customer>> => {
+  const apiRoot = tokenFlowRoot(`Bearer ${localStorage.getItem('token')}`);
   return apiRoot
-    .customers()
+    .me()
     .password()
     .post({
       body: {
-        id: dataToPasswordChange.id,
         version: dataToPasswordChange.version,
         currentPassword: dataToPasswordChange.currentPassword,
         newPassword: dataToPasswordChange.newPassword,

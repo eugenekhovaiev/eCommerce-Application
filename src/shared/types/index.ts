@@ -4,12 +4,12 @@ import { TextFieldVariants } from '@mui/material';
 import { SelectChangeEvent } from '@mui/material';
 import { FieldChangeHandler } from '@mui/x-date-pickers/internals';
 import { DateValidationError } from '@mui/x-date-pickers';
-import { Customer, CustomerUpdate } from '@commercetools/platform-sdk';
+import { Cart, Customer, LineItem } from '@commercetools/platform-sdk';
 import { Dayjs } from 'dayjs';
 import { LocalizedString } from '@commercetools/platform-sdk';
 import { ProductProjection } from '@commercetools/platform-sdk';
-import Category from './Category';
 import { Image } from '@commercetools/platform-sdk';
+import Category from './Category';
 
 export interface LinkProps {
   to?: string;
@@ -77,6 +77,7 @@ export interface ButtonProps {
   variant?: 'outlined' | 'text' | 'contained';
   additionalClassName?: string;
   type?: 'button' | 'submit' | 'reset';
+  disabled?: boolean;
   children?: JSX.Element;
   onClick?: React.MouseEventHandler<HTMLButtonElement>;
 }
@@ -213,6 +214,11 @@ export interface UserDataContext {
   updateUserData: (userData: Customer | undefined) => void;
 }
 
+export interface ActiveCartContext {
+  activeCart: Cart | undefined;
+  updateActiveCart: (cart: Cart | undefined) => void;
+}
+
 export interface CountryContext {
   selectedShippingCountry: string;
   setSelectedShippingCountry: (country: string) => void;
@@ -225,12 +231,8 @@ export interface FilterContext {
   updateIsCategoryUpdated: (isCategoryUpdated: boolean) => void;
 }
 
-export interface CustomerUpdateWithId extends CustomerUpdate {
-  id: string;
-}
-
 export interface ProductCardProps {
-  url: string;
+  id: string;
   name: LocalizedString;
   image?: string;
   priceOriginal?: string | number;
@@ -295,4 +297,28 @@ export interface PriceProps {
 
 export interface SwiperProps {
   images: Image[];
+}
+
+export interface BasketItemProps {
+  lineItem: LineItem;
+}
+
+export interface BasketItemsProps {
+  cartItems?: LineItem[];
+}
+
+export interface SpinnerInputProps {
+  id: string;
+  value?: number;
+  setQuantity?: React.Dispatch<React.SetStateAction<number>>;
+}
+
+export interface TotalCostProps {
+  subtotal?: number;
+  discount?: number;
+  total?: number;
+}
+
+export interface CouponForm {
+  coupon: string;
 }

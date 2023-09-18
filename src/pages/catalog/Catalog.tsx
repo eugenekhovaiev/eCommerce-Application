@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import FilterForm from '../../widgets/filter/FilterForm';
 import ProductCategories from '../../widgets/productCategories/ProductCategories';
 import ProductCard from '../../entities/productCard/ProductCard';
-import getProducts from '../../shared/api/user/getProducts';
+import getProducts from '../../shared/api/user/products/getProducts';
 import buildCategoryTree from '../../shared/lib/helpers/buildCategoryTree';
 import Category from '../../shared/types/Category';
 import { ProductProjection } from '@commercetools/platform-sdk';
@@ -43,7 +43,6 @@ const Catalog = (): JSX.Element => {
         setMainCategories(mainCategories);
         setProductsArr(productsObj.body.results);
       } catch (error) {
-        // navigate(from, { replace: true });
         console.log('Something went wrong!');
       }
     };
@@ -119,7 +118,7 @@ const Catalog = (): JSX.Element => {
 
                       return (
                         <ProductCard
-                          url={product.id}
+                          id={product.id}
                           image={productPreviewUrl}
                           name={product.name}
                           priceOriginal={productOriginalPrice}
