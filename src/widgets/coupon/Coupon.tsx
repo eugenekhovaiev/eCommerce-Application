@@ -21,11 +21,15 @@ const Coupon = (): JSX.Element => {
 
   const onSubmit: SubmitHandler<CouponForm> = async (data): Promise<void> => {
     try {
-      const discountId = activeCart?.discountCodes[0].discountCode.id;
-      if (discountId) {
-        await addDiscountCode(data.coupon);
-        const updatedCart = (await removeDiscountCode(discountId)).body;
-        updateActiveCart(updatedCart);
+      const discountCodes = activeCart?.discountCodes;
+      if (discountCodes && discountCodes.length) {
+        const discountId = activeCart?.discountCodes[0].discountCode.id;
+        const updatedCart = (await addDiscountCode(data.coupon)).body;
+
+        if (updatedCart.discountCodes.length > 1) {
+          const updatedCartAfterRemove = (await removeDiscountCode(discountId)).body;
+          updateActiveCart(updatedCartAfterRemove);
+        }
       } else {
         const updatedCart = (await addDiscountCode(data.coupon)).body;
         updateActiveCart(updatedCart);
@@ -33,7 +37,7 @@ const Coupon = (): JSX.Element => {
       setAppliedCoupon(data.coupon);
       setCurrentCoupon(data.coupon);
       setIsCouponApplied(true);
-    } catch {
+    } catch (error) {
       setCurrentCoupon(data.coupon);
       setIsCouponApplied(false);
     }
