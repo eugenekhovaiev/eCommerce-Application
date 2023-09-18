@@ -38,13 +38,13 @@ const Member = (props: MemberProps): JSX.Element => {
       </div>
       <div className="about__member-wrapper back">
         <div className="back-content">
+          <ButtonElement title="&laquo; Back" onClick={handleBackClick} additionalClassName="about__member-back-btn" />
           <h2>Contributions</h2>
           <ul className="about__description-list">
             <li className="about__description-list-item-circle">{props.contributionFirst}</li>
             <li className="about__description-list-item-circle">{props.contributionSecond}</li>
             <li className="about__description-list-item-circle">{props.contributionThird}</li>
           </ul>
-          <ButtonElement title="Back" onClick={handleBackClick} />
         </div>
       </div>
     </div>

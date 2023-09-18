@@ -40,13 +40,13 @@
       text-decoration: none;
       width: 8rem;
       color: $color-font-dark-xl;
-      transition: .6s;
+      transition: 0.6s;
     }
 
     &-link:hover {
       color: $color-secondary;
     }
-    
+
     &-link-img {
       width: 4rem;
       height: 4rem;
@@ -60,6 +60,11 @@
     &-contribution-btn {
       width: fit-content;
       border: 1px solid $color-shadow !important;
+    }
+
+    &-back-btn {
+      width: fit-content;
+      font-size: 1rem !important;
     }
   }
 }
