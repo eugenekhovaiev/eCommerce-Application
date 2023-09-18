@@ -308,4 +308,5 @@ export interface MemberProps {
   contributionFirst: string;
   contributionSecond: string;
   contributionThird: string;
+  contributionFourth: string;
 }

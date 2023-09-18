@@ -21,8 +21,9 @@ const About = (): JSX.Element => {
             href="https://github.com/eugenekhovaiev"
             nickname="eugenekhovaiev"
             contributionFirst="Provided technical leadership and expertise in frontend technologies. "
-            contributionSecond="Defined the frontend architecture and coding standards."
-            contributionThird="Led the implementation of critical user-facing features."
+            contributionSecond="Set up repository for the project."
+            contributionThird="Worked on User Profile page."
+            contributionFourth="Created Catalog page with enhancements."
           />
           <Member
             src={AlionaImg}
@@ -34,9 +35,10 @@ const About = (): JSX.Element => {
             location="Warsaw, Poland"
             href="https://github.com/Alena636"
             nickname="alena636"
-            contributionFirst="Transformed design concepts into responsive, interactive web interfaces."
-            contributionSecond="Implemented frontend features, user interfaces, and animations."
-            contributionThird="Ensured cross-browser compatibility and optimized performance for a seamless user experience."
+            contributionFirst="Set up project to work with React."
+            contributionSecond="Embedded Trello in the team workflow."
+            contributionThird="Implemented Product page."
+            contributionFourth="Worked on About Us page."
           />
           <Member
             src={XushaImg}
@@ -48,9 +50,10 @@ const About = (): JSX.Element => {
             location="Merced, CA, USA"
             href="https://github.com/XeniyaMV"
             nickname="xeniyamv"
-            contributionFirst="Transformed design concepts into responsive, interactive web interfaces."
-            contributionSecond="Implemented frontend features, user interfaces, and animations."
-            contributionThird="Ensured cross-browser compatibility and optimized performance for a seamless user experience."
+            contributionFirst="Implemented frontend features, user interfaces, and animations."
+            contributionSecond="Worked on Basket page."
+            contributionThird="Implemented filtering, sorting, and searching functionality."
+            contributionFourth="Created Registration page."
           />
         </div>
         <div className="about__methods-wrapper">

@@ -44,6 +44,7 @@ const Member = (props: MemberProps): JSX.Element => {
             <li className="about__description-list-item-circle">{props.contributionFirst}</li>
             <li className="about__description-list-item-circle">{props.contributionSecond}</li>
             <li className="about__description-list-item-circle">{props.contributionThird}</li>
+            <li className="about__description-list-item-circle">{props.contributionFourth}</li>
           </ul>
         </div>
       </div>
