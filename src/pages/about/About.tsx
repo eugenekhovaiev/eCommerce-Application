@@ -1,6 +1,8 @@
 import Member from '../../widgets/about/Member';
 import UserIcon from '../../shared/assets/user-icon.svg';
 import RssLogo from '../../shared/assets/logo-rsschool.svg';
+import AlionaImg from '../../shared/assets/aliona.jpg';
+import XushaImg from '../../shared/assets/Xusha-1.jpg';
 
 const About = (): JSX.Element => {
   return (
@@ -23,7 +25,7 @@ const About = (): JSX.Element => {
             contributionThird="Led the implementation of critical user-facing features."
           />
           <Member
-            src={UserIcon}
+            src={AlionaImg}
             name="Aliona Khomich"
             role="Frontend developer"
             description="I graduated from Belarusian State University. After that I've been a teacher for 2 years.
@@ -37,13 +39,13 @@ const About = (): JSX.Element => {
             contributionThird="Ensured cross-browser compatibility and optimized performance for a seamless user experience."
           />
           <Member
-            src={UserIcon}
+            src={XushaImg}
             name="Xeniya Gazizova"
             role="Frontend developer"
             description="I was a student at Moscow State University.
             In my spare time, I find joy in drawing, quality family time, and Nintendo Switch games.
             The process of crafting something meaningful from scratch truly resonates with me, and after a long search for my true calling, I believe I've finally found it in web development."
-            location="Merced, USA"
+            location="Merced, CA, USA"
             href="https://github.com/XeniyaMV"
             nickname="xeniyamv"
             contributionFirst="Transformed design concepts into responsive, interactive web interfaces."

@@ -45,10 +45,6 @@ const Member = (props: MemberProps): JSX.Element => {
             <li className="about__description-list-item-circle">{props.contributionThird}</li>
           </ul>
           <ButtonElement title="Back" onClick={handleBackClick} />
-          <a className="about__member-link back-link" href={props.href} target="blank">
-            <img className="about__member-link-img" src={GithubImg} alt="github-link" />
-            <span>{props.nickname}</span>
-          </a>
         </div>
       </div>
     </div>

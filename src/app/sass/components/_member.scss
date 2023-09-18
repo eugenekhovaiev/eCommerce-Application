@@ -6,12 +6,13 @@
     flex-direction: column;
     gap: 1rem;
     border-radius: 0.5rem 0.5rem 0 0;
-    box-shadow: rgba(0, 0, 0, 0.16) 0px 0.1rem 0.3rem;
+    box-shadow: rgba(154, 117, 117, 0.16) 0px 0.1rem 0.3rem;
     padding: 1rem;
 
     &-img {
-      width: 20vw;
-      height: 40vh;
+      width: 100%;
+      border-radius: 5px;
+      padding-bottom: 1rem;
     }
 
     &-name {
@@ -39,12 +40,21 @@
       text-decoration: none;
       width: 8rem;
       color: $color-font-dark-xl;
+      transition: .6s;
     }
 
+    &-link:hover {
+      color: $color-secondary;
+    }
+    
     &-link-img {
       width: 4rem;
       height: 4rem;
       margin-left: -1rem;
+    }
+
+    &-description {
+      padding-bottom: 1.2rem;
     }
 
     &-contribution-btn {
@@ -94,24 +104,6 @@
   flex-direction: column;
   gap: 2rem;
 }
-
-.back-link {
-  position: absolute;
-  bottom: 0;
-  color: $color-secondary;
-  transition: 0.8s;
-}
-
-.back-link:hover {
-  transform: scale(1.1);
-}
-
-// .card:hover > .front {
-//   transform: perspective(none) rotateY(-180deg);
-// }
-// .card:hover > .back {
-//   transform: perspective(none) rotateY(0deg);
-// }
 
 .card.flipped > .front {
   transform: perspective(600px) rotateY(-180deg);
