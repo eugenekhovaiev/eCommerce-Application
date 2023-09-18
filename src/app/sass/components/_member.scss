@@ -9,10 +9,19 @@
     box-shadow: rgba(154, 117, 117, 0.16) 0px 0.1rem 0.3rem;
     padding: 1rem;
 
+    &-container-img {
+      margin: 0 auto;
+      width: 16rem;
+      height: 17rem;
+    }
+
     &-img {
       width: 100%;
-      border-radius: 5px;
+      display: block;
+      height: 100%;
+      border-radius: 50%;
       padding-bottom: 1rem;
+      object-fit: cover;
     }
 
     &-name {

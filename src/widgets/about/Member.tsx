@@ -18,7 +18,9 @@ const Member = (props: MemberProps): JSX.Element => {
   return (
     <div className={`about__member card ${isFlipped ? 'flipped' : ''}`}>
       <div className="about__member-wrapper front">
-        <img className="about__member-img" src={props.src} alt="member" />
+        <div className="about__member-container-img">
+          <img className="about__member-img" src={props.src} alt="member" />
+        </div>
         <p className="about__member-name">{props.name}</p>
         <p className="about__member-role">{props.role}</p>
         <p className="about__member-location">
