@@ -2,7 +2,7 @@ import { Cart, ClientResponse } from '@commercetools/platform-sdk';
 import tokenFlowRoot from '../apiRoots/tokenFlowRoot';
 import getActiveCart from './getActiveCart';
 
-const addProductToCart = async (discountCodeId: string): Promise<ClientResponse<Cart>> => {
+const removeDiscountCode = async (discountCodeId: string): Promise<ClientResponse<Cart>> => {
   const activeCart = await getActiveCart();
   const activeCartId = activeCart.body.id;
   const activeCartVersion = activeCart.body.version;
@@ -29,4 +29,4 @@ const addProductToCart = async (discountCodeId: string): Promise<ClientResponse<
     .execute();
 };
 
-export default addProductToCart;
+export default removeDiscountCode;

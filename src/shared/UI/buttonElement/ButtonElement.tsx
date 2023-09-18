@@ -12,6 +12,7 @@ const ButtonElement: React.FC<ButtonProps> = (props: ButtonProps) => {
       className={fullClassName}
       color="secondary"
       onClick={props.onClick}
+      disabled={props.disabled ? true : false}
     >
       {props.title} {props.children}
     </Button>
