@@ -4,17 +4,19 @@ import PriceElement from '../../shared/UI/priceElement/PriceElement';
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import getProductById from '../../shared/api/user/products/getProductById';
 import { useEffect, useState } from 'react';
-import { ProductProjection } from '@commercetools/platform-sdk';
+import { LineItem, ProductProjection } from '@commercetools/platform-sdk';
 import ButtonElement from '../../shared/UI/buttonElement/ButtonElement';
-import addProductToCart from '../../shared/api/user/cart/addProductToCart';
+import addProduct from '../../shared/api/user/cart/addProductToCart';
 import { useActiveCartContext } from '../../shared/lib/contexts/ActiveCartContext';
+import removeProductFromCart from '../../shared/api/user/cart/removeProductFromCart';
 
 const Product = (): JSX.Element => {
-  const { updateActiveCart } = useActiveCartContext();
+  const { activeCart, updateActiveCart } = useActiveCartContext();
+  const [product, setProduct] = useState<ProductProjection | null>(null);
+  const [lineItem, setLineItem] = useState<LineItem | undefined>(undefined);
 
   const { slug } = useParams();
 
-  const [product, setProduct] = useState<ProductProjection | null>(null);
   const navigate = useNavigate();
   const location = useLocation();
   const from = location.state?.from?.pathname || '/404';
@@ -24,6 +26,7 @@ const Product = (): JSX.Element => {
       try {
         const product = (await getProductById(slug!)).body;
         setProduct(product);
+        setLineItem(activeCart?.lineItems.find((lineItem) => lineItem.productId === product.id));
       } catch (error) {
         navigate(from, { replace: true });
         console.log('Product not found!');
@@ -31,11 +34,32 @@ const Product = (): JSX.Element => {
     };
 
     fetchData();
-  }, [slug]);
+  }, [slug, activeCart]);
 
   if (!product) {
     return <div>Loading...</div>;
   }
+
+  const handleAddToCartClick = async (): Promise<void> => {
+    try {
+      const updatedCart = (await addProduct(product.id)).body;
+      updateActiveCart(updatedCart);
+    } catch (error) {
+      console.log('Unable to add product to cart on product page!');
+    }
+  };
+
+  const handleRemoveFromCartClick = async (): Promise<void> => {
+    try {
+      if (!lineItem) {
+        throw new Error('LineItem data is missing!');
+      }
+      const updatedCart = (await removeProductFromCart(lineItem?.id)).body;
+      updateActiveCart(updatedCart);
+    } catch (error) {
+      console.log('Unable to remove product from cart on product page!');
+    }
+  };
 
   const productName = product.name['en-US'];
   const productDescription = product.description
@@ -47,15 +71,6 @@ const Product = (): JSX.Element => {
   const productPrices = product.masterVariant.prices;
   const productOriginalPrice = productPrices && productPrices[0] && productPrices[0].value.centAmount;
   const productDiscountedPrice = productPrices && productPrices[0] && productPrices[0].discounted?.value.centAmount;
-
-  const handleAddToCartClick = async (): Promise<void> => {
-    try {
-      const updatedCart = (await addProductToCart(product.id)).body;
-      updateActiveCart(updatedCart);
-    } catch (error) {
-      console.log(error);
-    }
-  };
 
   return (
     <section className="product">
@@ -77,7 +92,10 @@ const Product = (): JSX.Element => {
               priceOriginal={productOriginalPrice}
               priceDiscounted={productDiscountedPrice}
             />
-            <ButtonElement variant="outlined" title="Add To Cart" onClick={handleAddToCartClick} />
+            {!lineItem && <ButtonElement variant="contained" title="Add to Cart" onClick={handleAddToCartClick} />}
+            {lineItem && (
+              <ButtonElement variant="outlined" title="Remove from Cart" onClick={handleRemoveFromCartClick} />
+            )}
             <Typography variant="body1" className="product__description" gutterBottom>
               {productDescription}
             </Typography>

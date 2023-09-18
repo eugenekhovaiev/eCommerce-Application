@@ -21,9 +21,13 @@ const BasketItem = (props: BasketItemProps): JSX.Element => {
   const id = props.lineItem.id;
   const { updateActiveCart } = useActiveCartContext();
 
-  const handleOnClick = async (id: string): Promise<void> => {
-    const updatedCart = (await removeProductFromCart(id)).body;
-    updateActiveCart(updatedCart);
+  const handleRemoveFromCartClick = async (): Promise<void> => {
+    try {
+      const updatedCart = (await removeProductFromCart(id)).body;
+      updateActiveCart(updatedCart);
+    } catch (error) {
+      console.log('Unable to remove product from cart on cart page!');
+    }
   };
 
   return (
@@ -51,7 +55,7 @@ const BasketItem = (props: BasketItemProps): JSX.Element => {
         />
       </div>
       <div className="cart-items__close">
-        <ButtonElement title="+" onClick={(): Promise<void> => handleOnClick(id)} />
+        <ButtonElement title="+" onClick={handleRemoveFromCartClick} />
       </div>
     </div>
   );
