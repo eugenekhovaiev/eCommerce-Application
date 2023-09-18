@@ -1,9 +1,12 @@
 import SpinnerInput from '../inputs/SpinnerInput';
-import ButtonElement from '../../shared/UI/buttonElement/ButtonElement';
+// import ButtonElement from '../../shared/UI/buttonElement/ButtonElement';
+import PriceElement from '../../shared/UI/priceElement/PriceElement';
+import LinkElement from '../../shared/UI/linkElement/LinkElement';
+import ImageElement from '../../shared/UI/imageElement/ImageElement';
 import { BasketItemProps } from '../../shared/types';
 import removeProductFromCart from '../../shared/api/user/cart/removeProductFromCart';
 import { useActiveCartContext } from '../../shared/lib/contexts/ActiveCartContext';
-import PriceElement from '../../shared/UI/priceElement/PriceElement';
+import closeIcon from '../../shared/assets/close.svg';
 
 const BasketItem = (props: BasketItemProps): JSX.Element => {
   const quantity = props.lineItem.quantity;
@@ -35,7 +38,9 @@ const BasketItem = (props: BasketItemProps): JSX.Element => {
       <div className="cart-items__image">
         <img className="image" src={image} alt={name} />
       </div>
-      <div className="cart-items__name">{name}</div>
+      <div className="cart-items__name">
+        <LinkElement title={name} to={`/catalog/${props.lineItem.productId}`} />
+      </div>
       <div className="cart-items__price">
         <PriceElement
           additionalClassName={props.lineItem.discountedPricePerQuantity.length !== 0 ? 'price_discounted' : ''}
@@ -54,8 +59,8 @@ const BasketItem = (props: BasketItemProps): JSX.Element => {
           priceDiscounted={priceDiscounted ? total : undefined}
         />
       </div>
-      <div className="cart-items__close">
-        <ButtonElement title="+" onClick={handleRemoveFromCartClick} />
+      <div className="cart-items__close" onClick={(): Promise<void> => handleOnClick(id)}>
+        <ImageElement src={closeIcon} alt="close" additionalClassName="icon" />
       </div>
     </div>
   );

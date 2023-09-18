@@ -18,10 +18,9 @@ import ButtonElement from '../../shared/UI/buttonElement/ButtonElement';
 import createCustomer from '../../shared/api/user/customer/createCustomer';
 import loginCustomer from '../../shared/api/user/customer/loginCustomer';
 import { Form } from '../../shared/types';
-import { tokenCache } from '../../shared/api/user/BuildClient';
+import { passwordTokenCache } from '../../shared/api/user/BuildClient';
 import createCart from '../../shared/api/user/cart/createCart';
 import { useActiveCartContext } from '../../shared/lib/contexts/ActiveCartContext';
-// import tokenCache from '../../shared/api/user/tokenCache';
 
 const RegistrationForm = (): JSX.Element => {
   const { handleSubmit, control } = useForm<Form>();
@@ -63,7 +62,7 @@ const RegistrationForm = (): JSX.Element => {
         password: data.password,
       };
       const loginResponse = await loginCustomer(loginData);
-      localStorage.setItem('token', tokenCache.get().token);
+      localStorage.setItem('token', passwordTokenCache.get().token);
 
       const { customer } = loginResponse.body;
       let { cart } = loginResponse.body;

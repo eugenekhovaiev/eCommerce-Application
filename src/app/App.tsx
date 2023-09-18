@@ -5,6 +5,7 @@ import MyRoutes from './routes/routes';
 import getCustomerWithToken from '../shared/api/user/customer/getCustomerWithToken';
 import getActiveCart from '../shared/api/user/cart/getActiveCart';
 import { useActiveCartContext } from '../shared/lib/contexts/ActiveCartContext';
+import initAnonymousSession from '../shared/lib/helpers/initAnonymousSession';
 
 function App(): JSX.Element {
   const { updateUserData } = useUserDataContext();
@@ -14,13 +15,15 @@ function App(): JSX.Element {
   useEffect(() => {
     const fetchData = async (): Promise<void> => {
       try {
-        const customer = await getCustomerWithToken();
-        const cart = await getActiveCart();
-        updateUserData(customer.body);
-        updateActiveCart(cart.body);
+        const customer = (await getCustomerWithToken()).body;
+        updateUserData(customer);
       } catch (error) {
-        console.log('No authorized user!');
+        if (!localStorage.getItem('token')) {
+          await initAnonymousSession();
+        }
       } finally {
+        const cart = (await getActiveCart()).body;
+        updateActiveCart(cart);
         setIsLoaded(true);
       }
     };
@@ -36,9 +39,7 @@ function App(): JSX.Element {
       {routes}
     </>
   ) : (
-    <>
-      <div>Loading...</div>
-    </>
+    <div>Loading...</div>
   );
 }
 
