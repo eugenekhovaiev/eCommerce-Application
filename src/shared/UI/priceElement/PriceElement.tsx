@@ -8,6 +8,7 @@ const PriceElement = (props: PriceProps): JSX.Element => {
     props.priceOriginal !== undefined ? `$${(+props.priceOriginal / 100).toFixed(2)}` : 'Price is missing!';
   const priceDiscounted =
     props.priceDiscounted !== undefined ? `$${(+props.priceDiscounted / 100).toFixed(2)}` : undefined;
+
   const priceFinal = priceDiscounted ? priceDiscounted : priceOriginal;
 
   return (

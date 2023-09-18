@@ -1,5 +1,4 @@
 import SpinnerInput from '../inputs/SpinnerInput';
-// import ButtonElement from '../../shared/UI/buttonElement/ButtonElement';
 import PriceElement from '../../shared/UI/priceElement/PriceElement';
 import LinkElement from '../../shared/UI/linkElement/LinkElement';
 import ImageElement from '../../shared/UI/imageElement/ImageElement';
@@ -55,8 +54,8 @@ const BasketItem = (props: BasketItemProps): JSX.Element => {
         <span className="title">Total: </span>
         <PriceElement
           additionalClassName={props.lineItem.discountedPricePerQuantity.length !== 0 ? 'price_discounted' : ''}
-          priceOriginal={priceDiscounted ? priceOriginal * quantity : total}
-          priceDiscounted={priceDiscounted ? total : undefined}
+          priceOriginal={priceDiscounted !== undefined ? priceOriginal * quantity : total}
+          priceDiscounted={priceDiscounted !== undefined ? total : undefined}
         />
       </div>
       <div className="cart-items__close" onClick={handleRemoveFromCartClick}>

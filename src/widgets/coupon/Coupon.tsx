@@ -4,6 +4,7 @@ import { Controller } from 'react-hook-form';
 import TextFieldElement from '../../shared/UI/textFieldElement/TextFieldElement';
 import ButtonElement from '../../shared/UI/buttonElement/ButtonElement';
 import addDiscountCode from '../../shared/api/user/cart/addDiscountCode';
+import removeDiscountCode from '../../shared/api/user/cart/removeDiscountCode';
 import { useActiveCartContext } from '../../shared/lib/contexts/ActiveCartContext';
 import { CouponForm } from '../../shared/types';
 // import ImageElement from '../../shared/UI/imageElement/ImageElement';
@@ -13,16 +14,22 @@ import { Alert } from '@mui/material';
 
 const Coupon = (): JSX.Element => {
   const { handleSubmit, control } = useForm<CouponForm>();
-  const { updateActiveCart } = useActiveCartContext();
+  const { activeCart, updateActiveCart } = useActiveCartContext();
   const [appliedCoupon, setAppliedCoupon] = useState('');
   const [currentCoupon, setCurrentCoupon] = useState('');
   const [isCouponApplied, setIsCouponApplied] = useState(false);
 
   const onSubmit: SubmitHandler<CouponForm> = async (data): Promise<void> => {
     try {
-      //'testDiscountCode'
-      const updatedCart = (await addDiscountCode(data.coupon)).body;
-      updateActiveCart(updatedCart);
+      const discountId = activeCart?.discountCodes[0].discountCode.id;
+      if (discountId) {
+        await addDiscountCode(data.coupon);
+        const updatedCart = (await removeDiscountCode(discountId)).body;
+        updateActiveCart(updatedCart);
+      } else {
+        const updatedCart = (await addDiscountCode(data.coupon)).body;
+        updateActiveCart(updatedCart);
+      }
       setAppliedCoupon(data.coupon);
       setCurrentCoupon(data.coupon);
       setIsCouponApplied(true);
