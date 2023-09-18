@@ -1,10 +1,12 @@
 import SpinnerInput from '../inputs/SpinnerInput';
-import ButtonElement from '../../shared/UI/buttonElement/ButtonElement';
+// import ButtonElement from '../../shared/UI/buttonElement/ButtonElement';
 import PriceElement from '../../shared/UI/priceElement/PriceElement';
 import LinkElement from '../../shared/UI/linkElement/LinkElement';
+import ImageElement from '../../shared/UI/imageElement/ImageElement';
 import { BasketItemProps } from '../../shared/types';
 import removeProductFromCart from '../../shared/api/user/cart/removeProductFromCart';
 import { useActiveCartContext } from '../../shared/lib/contexts/ActiveCartContext';
+import closeIcon from '../../shared/assets/close.svg';
 
 const BasketItem = (props: BasketItemProps): JSX.Element => {
   const quantity = props.lineItem.quantity;
@@ -53,8 +55,9 @@ const BasketItem = (props: BasketItemProps): JSX.Element => {
           priceDiscounted={priceDiscounted ? total : undefined}
         />
       </div>
-      <div className="cart-items__close">
-        <ButtonElement title="+" onClick={(): Promise<void> => handleOnClick(id)} />
+      <div className="cart-items__close" onClick={(): Promise<void> => handleOnClick(id)}>
+        {/* <ButtonElement title='' onClick={(): Promise<void> => handleOnClick(id)} /> */}
+        <ImageElement src={closeIcon} alt="close" additionalClassName="icon" />
       </div>
     </div>
   );
