@@ -119,7 +119,7 @@ const Catalog = (): JSX.Element => {
 
                       return (
                         <ProductCard
-                          url={product.id}
+                          id={product.id}
                           image={productPreviewUrl}
                           name={product.name}
                           priceOriginal={productOriginalPrice}

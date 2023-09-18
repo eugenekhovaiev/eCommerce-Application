@@ -77,6 +77,7 @@ export interface ButtonProps {
   variant?: 'outlined' | 'text' | 'contained';
   additionalClassName?: string;
   type?: 'button' | 'submit' | 'reset';
+  disabled?: boolean;
   children?: JSX.Element;
   onClick?: React.MouseEventHandler<HTMLButtonElement>;
 }
@@ -231,7 +232,7 @@ export interface FilterContext {
 }
 
 export interface ProductCardProps {
-  url: string;
+  id: string;
   name: LocalizedString;
   image?: string;
   priceOriginal?: string | number;

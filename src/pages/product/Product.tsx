@@ -6,7 +6,7 @@ import getProductById from '../../shared/api/user/products/getProductById';
 import { useEffect, useState } from 'react';
 import { LineItem, ProductProjection } from '@commercetools/platform-sdk';
 import ButtonElement from '../../shared/UI/buttonElement/ButtonElement';
-import addProduct from '../../shared/api/user/cart/addProductToCart';
+import addProductToCart from '../../shared/api/user/cart/addProductToCart';
 import { useActiveCartContext } from '../../shared/lib/contexts/ActiveCartContext';
 import removeProductFromCart from '../../shared/api/user/cart/removeProductFromCart';
 
@@ -42,7 +42,7 @@ const Product = (): JSX.Element => {
 
   const handleAddToCartClick = async (): Promise<void> => {
     try {
-      const updatedCart = (await addProduct(product.id)).body;
+      const updatedCart = (await addProductToCart(product.id)).body;
       updateActiveCart(updatedCart);
     } catch (error) {
       console.log('Unable to add product to cart on product page!');
