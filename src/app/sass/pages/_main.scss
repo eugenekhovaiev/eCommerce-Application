@@ -49,6 +49,7 @@
   }
 
   &__card {
+    cursor: default;
     max-width: 27rem;
     padding: 1rem;
     display: grid;
@@ -87,6 +88,7 @@
   }
 
   &__code {
+    cursor: text;
     grid-area: code;
     width: 70%;
     padding: 1rem;
