@@ -1,15 +1,16 @@
 import { ClientResponse, ProductProjectionPagedQueryResponse } from '@commercetools/platform-sdk';
 
-import { apiRoot } from './getUserApiRoot';
-import { ProductsQueryParams } from '../../types';
-import getFiltersArray from '../../lib/helpers/getFiltersArray';
-import CARDS_PER_PAGE from '../../consts/CARDS_PER_PAGE';
+import { ProductsQueryParams } from '../../../types';
+import getFiltersArray from '../../../lib/helpers/getFiltersArray';
+import tokenFlowRoot from '../apiRoots/tokenFlowRoot';
+import CARDS_PER_PAGE from '../../../consts/CARDS_PER_PAGE';
 
 const getProducts = async (
   queryParams: ProductsQueryParams = {},
 ): Promise<ClientResponse<ProductProjectionPagedQueryResponse>> => {
   const filtersArr = getFiltersArray(queryParams.filters);
 
+  const apiRoot = tokenFlowRoot(`Bearer ${localStorage.getItem('token')}`);
   return apiRoot
     .productProjections()
     .search()

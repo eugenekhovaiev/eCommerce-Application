@@ -4,7 +4,7 @@
 
 .start-screen__wrapper {
   width: 100%;
-  min-height: 60vh;
+  min-height: 20rem;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -29,5 +29,125 @@
   }
   @media screen and (max-width: 500px) {
     font-size: 1.9rem;
+  }
+}
+
+.coupons {
+  &__wrapper {
+    padding: 3rem 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+  }
+
+  &__cards {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  &__card {
+    cursor: default;
+    max-width: 28rem;
+    padding: 1rem;
+    display: grid;
+    grid-template-areas:
+      'image description'
+      'image code'
+      'image exceptions';
+    align-items: center;
+    justify-items: center;
+    border-radius: 0.5rem;
+    box-shadow: 0.3rem 0.4rem 1rem $color-shadow;
+
+    &_purple {
+      background-color: $color-secondary-m;
+    }
+    &_orange {
+      background-color: $color-coupon-orange;
+    }
+    &_green {
+      background-color: $color-coupon-green;
+    }
+  }
+
+  &__image {
+    grid-area: image;
+    width: 10rem;
+    height: 10rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 3.5rem;
+
+    &_purple {
+      color: $color-primary-xs;
+    }
+    &_orange {
+      color: $color-coupon-orange-xs;
+    }
+    &_green {
+      color: $color-coupon-green-xs;
+    }
+  }
+
+  &__code {
+    cursor: text;
+    grid-area: code;
+    width: 70%;
+    padding: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.1rem;
+    border-radius: 0.5rem;
+
+    &_purple {
+      background-color: $color-secondary-s;
+    }
+    &_orange {
+      background-color: $color-coupon-orange-s;
+    }
+    &_green {
+      background-color: $color-coupon-green-s;
+    }
+  }
+
+  &__description {
+    grid-area: description;
+    font-size: 1.1rem;
+    font-weight: 600;
+    text-align: center;
+    &_purple {
+      color: $color-primary-xs;
+    }
+    &_orange {
+      color: $color-coupon-orange-xs;
+    }
+    &_green {
+      color: $color-coupon-green-xs;
+    }
+  }
+
+  &__category {
+    font-size: 1.5rem;
+  }
+
+  &__exceptions {
+    min-height: 1.8rem;
+    grid-area: exceptions;
+    font-size: 0.85rem;
+    text-align: center;
+    &_purple {
+      color: $color-secondary-s;
+    }
+    &_orange {
+      color: $color-coupon-orange-xs;
+    }
+    &_green {
+      color: $color-coupon-green-xs;
+    }
   }
 }

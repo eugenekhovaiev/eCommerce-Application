@@ -8,7 +8,7 @@
   font-family: $font-primary !important;
 }
 html {
-  @media screen and (max-width: 500px) {
+  @media screen and (max-width: 576px) {
     font-size: 13px;
   }
 }
@@ -19,6 +19,8 @@ html {
 // @import './components/form';
 @import './components/price';
 @import './components/burger';
+@import './components/spinner';
+@import './components/cart-icon';
 
 @import './layout/header';
 @import './layout/registration-form';
@@ -26,7 +28,9 @@ html {
 @import './layout/filter-form';
 @import './layout/modal';
 @import './layout/product-card';
-@import './layout/pagination';
+@import './layout/coupon';
+@import './layout/total-cost';
+@import './layout/cart-empty';
 
 @import './pages/main';
 @import './pages/page-404';
@@ -35,6 +39,7 @@ html {
 @import './pages/profile';
 @import './pages/catalog';
 @import './pages/product';
+@import './pages/cart';
 
 @import './components/swiper';
 @import './components/modalWindow';

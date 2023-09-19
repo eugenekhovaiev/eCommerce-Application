@@ -1,8 +1,8 @@
 import { ClientResponse, CategoryPagedQueryResponse } from '@commercetools/platform-sdk';
-
-import { apiRoot } from './getUserApiRoot';
+import tokenFlowRoot from '../apiRoots/tokenFlowRoot';
 
 const getCategories = async (): Promise<ClientResponse<CategoryPagedQueryResponse>> => {
+  const apiRoot = tokenFlowRoot(`Bearer ${localStorage.getItem('token')}`);
   return apiRoot
     .categories()
     .get({
