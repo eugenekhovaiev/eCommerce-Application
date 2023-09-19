@@ -6,6 +6,7 @@ import getCustomerWithToken from '../shared/api/user/customer/getCustomerWithTok
 import getActiveCart from '../shared/api/user/cart/getActiveCart';
 import { useActiveCartContext } from '../shared/lib/contexts/ActiveCartContext';
 import initAnonymousSession from '../shared/lib/helpers/initAnonymousSession';
+import { InvalidTokenError } from '@commercetools/platform-sdk';
 
 function App(): JSX.Element {
   const { updateUserData } = useUserDataContext();
@@ -18,7 +19,7 @@ function App(): JSX.Element {
         const customer = (await getCustomerWithToken()).body;
         updateUserData(customer);
       } catch (error) {
-        if (!localStorage.getItem('token')) {
+        if (!localStorage.getItem('token') || (error as InvalidTokenError).message === 'invalid_token') {
           await initAnonymousSession();
         }
       } finally {
