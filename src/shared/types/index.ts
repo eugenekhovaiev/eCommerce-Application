@@ -214,6 +214,11 @@ export interface UserDataContext {
   updateUserData: (userData: Customer | undefined) => void;
 }
 
+export interface LastQueryParametersContext {
+  lastQueryParameters: ProductsQueryParams | undefined;
+  updateLastQueryParameters: (queryParameters: ProductsQueryParams) => void;
+}
+
 export interface ActiveCartContext {
   activeCart: Cart | undefined;
   updateActiveCart: (cart: Cart | undefined) => void;
@@ -224,6 +229,11 @@ export interface CountryContext {
   setSelectedShippingCountry: (country: string) => void;
   selectedBillingCountry: string;
   setSelectedBillingCountry: (country: string) => void;
+}
+
+export interface ProductsArrayContext {
+  productsArray: ProductProjection[] | [];
+  updateProductsArray: (productsArray: ProductProjection[] | []) => void;
 }
 
 export interface FilterContext {
@@ -257,12 +267,10 @@ export interface Filters {
 
 export interface FilterFormProps {
   search?: string;
-  setProducts: React.Dispatch<React.SetStateAction<[] | ProductProjection[]>>;
   categoriesIds?: string;
 }
 
 export interface ProductCategoriesProps {
-  setProducts: React.Dispatch<React.SetStateAction<[] | ProductProjection[]>>;
   setCategoryId: React.Dispatch<React.SetStateAction<string>>;
   setCategory: React.Dispatch<React.SetStateAction<Category | undefined>>;
   search?: string;
@@ -271,6 +279,8 @@ export interface ProductCategoriesProps {
 }
 
 export interface ProductsQueryParams {
+  limit?: number;
+  offset?: number;
   searchText?: string;
   sort?: {
     // by: 'price' | 'name.en-US';
@@ -286,7 +296,6 @@ export interface SearchInputProps {
   search?: string;
   setSearch?: React.Dispatch<React.SetStateAction<string>>;
   setCategoryId?: React.Dispatch<React.SetStateAction<string>>;
-  setProducts?: React.Dispatch<React.SetStateAction<[] | ProductProjection[]>>;
 }
 
 export interface PriceProps {

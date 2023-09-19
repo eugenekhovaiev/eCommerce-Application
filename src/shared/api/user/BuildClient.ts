@@ -29,13 +29,10 @@ export const getCtpCredentialsFlowClient = (): Client => {
     fetch,
   };
 
-  return (
-    new ClientBuilder()
-      .withClientCredentialsFlow(authMiddlewareOptions)
-      .withHttpMiddleware(httpMiddlewareOptions)
-      // .withLoggerMiddleware()
-      .build()
-  );
+  return new ClientBuilder()
+    .withClientCredentialsFlow(authMiddlewareOptions)
+    .withHttpMiddleware(httpMiddlewareOptions)
+    .build();
 };
 
 export let anonymousTokenCache: MyTokenCache;
@@ -56,7 +53,6 @@ export const getCtpAnonymousSessionFlowClient = (): Client => {
   return new ClientBuilder()
     .withAnonymousSessionFlow(anonymousAuthMiddlewareOptions)
     .withHttpMiddleware(httpMiddlewareOptions)
-    .withLoggerMiddleware()
     .build();
 };
 
@@ -82,13 +78,10 @@ export const getCtpPasswordFlowClient = (username: string, password: string): Cl
     };
   };
 
-  return (
-    new ClientBuilder()
-      .withPasswordFlow(getPasswordAuthMiddlewareOptions(username, password))
-      .withHttpMiddleware(httpMiddlewareOptions)
-      // .withLoggerMiddleware()
-      .build()
-  );
+  return new ClientBuilder()
+    .withPasswordFlow(getPasswordAuthMiddlewareOptions(username, password))
+    .withHttpMiddleware(httpMiddlewareOptions)
+    .build();
 };
 
 export const getCtpTokenFlowClient = (token: string): Client => {
@@ -96,11 +89,8 @@ export const getCtpTokenFlowClient = (token: string): Client => {
     force: true,
   };
 
-  return (
-    new ClientBuilder()
-      .withExistingTokenFlow(token, existingTokenMiddlewareOptions)
-      .withHttpMiddleware(httpMiddlewareOptions)
-      // .withLoggerMiddleware()
-      .build()
-  );
+  return new ClientBuilder()
+    .withExistingTokenFlow(token, existingTokenMiddlewareOptions)
+    .withHttpMiddleware(httpMiddlewareOptions)
+    .build();
 };

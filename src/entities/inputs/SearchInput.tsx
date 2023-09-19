@@ -7,8 +7,13 @@ import ButtonElement from '../../shared/UI/buttonElement/ButtonElement';
 import getFullClassName from '../../shared/lib/helpers/getFullClassName';
 import { SearchInputProps } from '../../shared/types';
 import { useFilterContext } from '../../shared/lib/contexts/FilterContext';
+import { useProductsArrayContext } from '../../shared/lib/contexts/ProductsArrayContext';
+import { useLastQueryParametersContext } from '../../shared/lib/contexts/LastQueryParametersContext';
 
 const SearchInput = (props: SearchInputProps): JSX.Element => {
+  const { updateProductsArray } = useProductsArrayContext();
+  const { updateLastQueryParameters } = useLastQueryParametersContext();
+
   const fullClassName = getFullClassName('search-input', props.additionalClassName);
   const [search, setSearch] = useState('');
   const { isCategoryUpdated, updateIsCategoryUpdated } = useFilterContext();
@@ -25,9 +30,10 @@ const SearchInput = (props: SearchInputProps): JSX.Element => {
         searchText: search,
       };
       const productsObj = await getProducts(newQueryParams);
+      updateLastQueryParameters(newQueryParams);
       if (props.setSearch) props.setSearch(search);
       if (props.setCategoryId) props.setCategoryId('');
-      if (props.setProducts) props.setProducts(productsObj.body.results);
+      if (updateProductsArray) updateProductsArray(productsObj.body.results);
       updateIsCategoryUpdated(true);
       if (document.activeElement instanceof HTMLInputElement) document.activeElement.blur();
     }
@@ -38,9 +44,10 @@ const SearchInput = (props: SearchInputProps): JSX.Element => {
       searchText: search,
     };
     const productsObj = await getProducts(newQueryParams);
+    updateLastQueryParameters(newQueryParams);
     if (props.setSearch) props.setSearch(search);
     if (props.setCategoryId) props.setCategoryId('');
-    if (props.setProducts) props.setProducts(productsObj.body.results);
+    if (updateProductsArray) updateProductsArray(productsObj.body.results);
     updateIsCategoryUpdated(true);
   };
 
