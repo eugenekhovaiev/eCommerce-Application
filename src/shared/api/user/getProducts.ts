@@ -3,9 +3,10 @@ import { ClientResponse, ProductProjectionPagedQueryResponse } from '@commerceto
 import { apiRoot } from './getUserApiRoot';
 import { ProductsQueryParams } from '../../types';
 import getFiltersArray from '../../lib/helpers/getFiltersArray';
+import CARDS_PER_PAGE from '../../consts/CARDS_PER_PAGE';
 
 const getProducts = async (
-  queryParams: ProductsQueryParams = { limit: 50, offset: 0 },
+  queryParams: ProductsQueryParams = {},
 ): Promise<ClientResponse<ProductProjectionPagedQueryResponse>> => {
   const filtersArr = getFiltersArray(queryParams.filters);
 
@@ -14,8 +15,8 @@ const getProducts = async (
     .search()
     .get({
       queryArgs: {
-        limit: queryParams.limit,
-        offset: queryParams.offset,
+        limit: queryParams.limit ? queryParams.limit : CARDS_PER_PAGE,
+        offset: queryParams.offset ? queryParams.offset : 0,
         'text.en-US': queryParams.searchText,
         fuzzy: true,
         sort: queryParams.sort ? `${queryParams.sort.by} ${queryParams.sort.order}` : undefined,

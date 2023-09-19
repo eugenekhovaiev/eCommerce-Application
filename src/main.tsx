@@ -6,12 +6,18 @@ import { BrowserRouter } from 'react-router-dom';
 import App from './app/App.tsx';
 
 import { UserDataProvider } from './shared/lib/contexts/UserDataContext.tsx';
+import { ProductsArrayProvider } from './shared/lib/contexts/ProductsArrayContext.tsx';
+import { LastQueryProvider } from './shared/lib/contexts/LastQueryParametersContext.tsx';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
     <BrowserRouter>
       <UserDataProvider>
-        <App />
+        <ProductsArrayProvider>
+          <LastQueryProvider>
+            <App />
+          </LastQueryProvider>
+        </ProductsArrayProvider>
       </UserDataProvider>
     </BrowserRouter>
   </React.StrictMode>,

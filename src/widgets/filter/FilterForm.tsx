@@ -11,6 +11,7 @@ import { useFilterContext } from '../../shared/lib/contexts/FilterContext';
 import cartesianProduct from '../../shared/lib/helpers/cartesianProduct';
 import { FilterAttribute, FilterFormFields, FilterFormProps } from '../../shared/types';
 import Typography from '@mui/material/Typography/Typography';
+import { useProductsArrayContext } from '../../shared/lib/contexts/ProductsArrayContext';
 
 const transformToFilterAttributes = (enumName: string, values: string[], state: boolean[]): FilterAttribute[] => {
   return values
@@ -44,6 +45,8 @@ const transformToFilterSortBy = (values: string[], state: boolean[]): ({ by: str
 };
 
 const FilterForm = (props: FilterFormProps): JSX.Element => {
+  const { updateProductsArray } = useProductsArrayContext();
+
   const priceRange = [0, 30];
   const [neckPadStates, setNeckPadStates] = useState(Object.values(FILTER_NECK_PAD).map(() => false));
   const [breedSizeStates, setBreedSizeStates] = useState(Object.values(FILTER_BREED_SIZE).map(() => false));
@@ -74,7 +77,7 @@ const FilterForm = (props: FilterFormProps): JSX.Element => {
       },
     });
     updateIsCategoryUpdated(false);
-    props.setProducts(productsObj.body.results);
+    updateProductsArray(productsObj.body.results);
   };
 
   const onSubmit: SubmitHandler<FilterFormFields> = async (): Promise<void> => {
@@ -93,7 +96,7 @@ const FilterForm = (props: FilterFormProps): JSX.Element => {
             priceRange: { from: priceState[0] * 100, to: priceState[1] * 100 },
           },
         });
-        props.setProducts(productsObj.body.results);
+        updateProductsArray(productsObj.body.results);
       } else {
         const promises = queryAttributes.map((item) =>
           getProducts({
@@ -107,7 +110,7 @@ const FilterForm = (props: FilterFormProps): JSX.Element => {
           }),
         );
         const productsObj = await Promise.all(promises);
-        props.setProducts(productsObj.map((item) => item.body.results).flat());
+        updateProductsArray(productsObj.map((item) => item.body.results).flat());
       }
     } catch (error) {
       console.log(error);

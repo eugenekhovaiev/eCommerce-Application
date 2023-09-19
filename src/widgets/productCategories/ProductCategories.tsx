@@ -5,8 +5,11 @@ import Category from '../../shared/types/Category';
 import { ProductCategoriesProps } from '../../shared/types';
 import { useFilterContext } from '../../shared/lib/contexts/FilterContext';
 import SearchInput from '../../entities/inputs/SearchInput';
+import { useProductsArrayContext } from '../../shared/lib/contexts/ProductsArrayContext';
 
 const ProductCategories = (props: ProductCategoriesProps): JSX.Element => {
+  const { updateProductsArray } = useProductsArrayContext();
+
   const [isSubCategories, setIsSubCategories] = useState(false);
   const [visibleCategory, setVisibleCategory] = useState<Category>();
   const { updateIsCategoryUpdated } = useFilterContext();
@@ -17,7 +20,7 @@ const ProductCategories = (props: ProductCategoriesProps): JSX.Element => {
         filters: { categoriesIds: category.id },
       };
       const productsObj = await getProducts(newQueryParams);
-      props.setProducts(productsObj.body.results);
+      updateProductsArray(productsObj.body.results);
       props.setCategoryId(category.id);
       props.setCategory(category);
       if (props.setSearch) props.setSearch('');
@@ -35,12 +38,12 @@ const ProductCategories = (props: ProductCategoriesProps): JSX.Element => {
   };
 
   return (
-    <div className="catalog-products__categories-wrapper" onMouseLeave={(): void => setIsSubCategories(false)}>
-      <div className="catalog-products__categories">
+    <div className="catalog__categories-wrapper" onMouseLeave={(): void => setIsSubCategories(false)}>
+      <div className="catalog__categories">
         {props.mainCategories &&
           props.mainCategories.map((category) => (
             <LinkElement
-              additionalClassName="catalog-products__category"
+              additionalClassName="catalog__category"
               key={category.name}
               title={category.name}
               onClick={(): Promise<void> => handleCategoryClick(category)}
@@ -53,24 +56,23 @@ const ProductCategories = (props: ProductCategoriesProps): JSX.Element => {
       <SearchInput
         search={props.search}
         setSearch={props.setSearch}
-        additionalClassName="catalog-products__search"
+        additionalClassName="catalog__search"
         setCategoryId={props.setCategoryId}
-        setProducts={props.setProducts}
       />
       {isSubCategories && (
-        <div className="catalog-products__subcategories">
+        <div className="catalog__subcategories">
           {visibleCategory
             ? visibleCategory?.children?.map((subcategory) => (
-                <div key={subcategory.name} className="catalog-products__subcategory-wrapper">
+                <div key={subcategory.name} className="catalog__subcategory-wrapper">
                   <LinkElement
-                    additionalClassName=" catalog-products__subcategory catalog-products__subcategory_bold"
+                    additionalClassName=" catalog__subcategory catalog__subcategory_bold"
                     title={subcategory.name}
                     onClick={(): Promise<void> => handleCategoryClick(subcategory)}
                     to="/catalog"
                   />
                   {subcategory.children?.map((child) => (
                     <LinkElement
-                      additionalClassName="catalog-products__subcategory"
+                      additionalClassName="catalog__subcategory"
                       key={child.name}
                       title={child.name}
                       onClick={(): Promise<void> => handleCategoryClick(child)}

@@ -5,21 +5,22 @@ import ProductCard from '../../entities/productCard/ProductCard';
 import getProducts from '../../shared/api/user/getProducts';
 import buildCategoryTree from '../../shared/lib/helpers/buildCategoryTree';
 import Category from '../../shared/types/Category';
-import { ProductProjection } from '@commercetools/platform-sdk';
 import { FilterProvider } from '../../shared/lib/contexts/FilterContext';
 import LinkElement from '../../shared/UI/linkElement/LinkElement';
-import Pagination from '../../widgets/pagination/Pagination';
-import ArowIcon from '../../shared/assets/arow.svg';
+import ButtonElement from '../../shared/UI/buttonElement/ButtonElement';
+// import CARDS_PER_PAGE from '../../shared/consts/CARDS_PER_PAGE';
+import { useProductsArrayContext } from '../../shared/lib/contexts/ProductsArrayContext';
+// import { useLastQueryParametersContext } from '../../shared/lib/contexts/LastQueryParametersContext';
 
 const Catalog = (): JSX.Element => {
+  const { productsArray, updateProductsArray } = useProductsArrayContext();
+  // const { lastQueryParameters, updateLastQueryParameters } = useLastQueryParametersContext();
+
   const [mainCategories, setMainCategories] = useState<Category[]>([]);
   const [isFilter, setIsFilter] = useState(false);
   const [search, setSearch] = useState('');
-  const [productsArr, setProductsArr] = useState<ProductProjection[] | []>([]);
   const [categoryId, setCategoryId] = useState('');
   const [category, setCategory] = useState<Category>();
-  const [currentPage, setCurrentPage] = useState(1);
-  const [cardsPerPage] = useState(6);
 
   // TODO вынести в отдельный компонент BreadCrums
 
@@ -29,12 +30,22 @@ const Catalog = (): JSX.Element => {
         filters: { categoriesIds: category.id },
       };
       const productsObj = await getProducts(newQueryParams);
-      setProductsArr(productsObj.body.results);
+      updateProductsArray(productsObj.body.results);
       setCategoryId(category.id);
       setCategory(category);
       if (setSearch) setSearch('');
     } catch (error) {
       console.log(error);
+    }
+  };
+
+  const handleLoadMoreClick = async (): Promise<void> => {
+    try {
+      const cardsOnPage = productsArray.length;
+      const moreProducts = (await getProducts({ offset: cardsOnPage })).body.results;
+      updateProductsArray([...productsArray, ...moreProducts]);
+    } catch (error) {
+      console.log('Can not get more products');
     }
   };
 
@@ -45,81 +56,72 @@ const Catalog = (): JSX.Element => {
         const productsObj = await getProducts();
         setIsFilter(true);
         setMainCategories(mainCategories);
-        setProductsArr(productsObj.body.results);
+        updateProductsArray(productsObj.body.results);
       } catch (error) {
         // navigate(from, { replace: true });
-        console.log('Something went wrong!');
+        console.log('Unable to get categories or products!');
       }
     };
 
     fetchData();
   }, []);
 
-  if (!productsArr || !mainCategories) {
+  if (!productsArray || !mainCategories) {
     return <div>Loading...</div>;
   }
-
-  const lastCardIndex = currentPage * cardsPerPage;
-  const firstCardIndex = lastCardIndex - cardsPerPage;
-  const currentCard = productsArr.slice(firstCardIndex, lastCardIndex);
-
-  const paginate = (pageNumber: number): void => setCurrentPage(pageNumber);
-  const nextPage = (): void => setCurrentPage((prev) => (prev + 1 <= 3 ? prev + 1 : prev));
-  const prevPage = (): void => setCurrentPage((prev) => (prev - 1 <= 0 ? prev : prev - 1));
 
   return (
     <FilterProvider>
       <main className="catalog">
-        <section className="catalog-products">
-          <ProductCategories
-            mainCategories={mainCategories}
-            setCategoryId={setCategoryId}
-            setCategory={setCategory}
-            setProducts={setProductsArr}
-            search={search}
-            setSearch={setSearch}
-          />
-          <div className="container">
-            <div className="catalog-products__content">
-              {categoryId && (
-                <h2 className="catalog-products__title">
-                  {category?.parent?.parent?.name && (
-                    <span>
-                      <LinkElement
-                        key={category?.parent?.parent?.name}
-                        title={category?.parent?.parent?.name}
-                        onClick={(): Promise<void> => handleCategoryClick(category?.parent?.parent as Category)}
-                        to="/catalog"
-                      />
-                      {' / '}
-                    </span>
-                  )}
-                  {category?.parent?.name && (
-                    <span>
-                      <LinkElement
-                        key={category?.parent?.name}
-                        title={category?.parent?.name}
-                        onClick={(): Promise<void> => handleCategoryClick(category?.parent as Category)}
-                        to="/catalog"
-                      />
-                      {' / '}
-                    </span>
-                  )}
-                  <span>{category?.name}</span>
-                </h2>
-              )}
-              <div className="catalog-products__filter">
-                {search !== '' && (
-                  <div className="catalog-products__search-results-info">
-                    <h4 className="title">Search results</h4>
-                    <h3 className="subtitle">&quot;{search}&quot;</h3>
-                  </div>
+        <ProductCategories
+          mainCategories={mainCategories}
+          setCategoryId={setCategoryId}
+          setCategory={setCategory}
+          search={search}
+          setSearch={setSearch}
+        />
+        <div className="container">
+          <div className="catalog__content">
+            {categoryId && (
+              <h2 className="catalog__title">
+                {category?.parent?.parent?.name && (
+                  <span>
+                    <LinkElement
+                      key={category?.parent?.parent?.name}
+                      title={category?.parent?.parent?.name}
+                      onClick={(): Promise<void> => handleCategoryClick(category?.parent?.parent as Category)}
+                      to="/catalog"
+                    />
+                    {' / '}
+                  </span>
                 )}
-                {isFilter && <FilterForm search={search} setProducts={setProductsArr} categoriesIds={categoryId} />}
-              </div>
-              <div className="catalog-products__products">
-                {currentCard
-                  ? currentCard.map((product, index) => {
+                {category?.parent?.name && (
+                  <span>
+                    <LinkElement
+                      key={category?.parent?.name}
+                      title={category?.parent?.name}
+                      onClick={(): Promise<void> => handleCategoryClick(category?.parent as Category)}
+                      to="/catalog"
+                    />
+                    {' / '}
+                  </span>
+                )}
+                <span>{category?.name}</span>
+              </h2>
+            )}
+            <div className="catalog__filter">
+              {search !== '' && (
+                <div className="catalog__search-results-info">
+                  <h4 className="title">Search results</h4>
+                  <h3 className="subtitle">&quot;{search}&quot;</h3>
+                </div>
+              )}
+              {isFilter && <FilterForm search={search} categoriesIds={categoryId} />}
+            </div>
+            <div className="catalog__products">
+              <div className="catalog__cards">
+                {productsArray.length
+                  ? productsArray.map((product, index) => {
                       const productImages = product.masterVariant.images;
                       const productPreviewUrl = productImages && productImages[0] && productImages[0].url;
 
@@ -142,28 +144,16 @@ const Catalog = (): JSX.Element => {
                       );
                     })
                   : 'No products matching your request.'}
-                <div className="catalog-products__pagination">
-                  <button disabled={currentPage === 1} className="catalog-products__button" onClick={prevPage}>
-                    <img className="catalog-products__button-arrow prev" src={ArowIcon} alt="" />
-                  </button>
-                  <Pagination
-                    cardsPerPage={cardsPerPage}
-                    totalCards={productsArr.length}
-                    paginate={paginate}
-                    currentPage={currentPage}
-                  />
-                  <button
-                    disabled={currentPage === Math.ceil(productsArr.length / cardsPerPage)}
-                    className="catalog-products__button"
-                    onClick={nextPage}
-                  >
-                    <img className="catalog-products__button-arrow next" src={ArowIcon} alt="" />
-                  </button>
-                </div>
               </div>
+              <ButtonElement
+                additionalClassName="catalog__load-more"
+                variant="contained"
+                title="Load More"
+                onClick={handleLoadMoreClick}
+              />
             </div>
           </div>
-        </section>
+        </div>
       </main>
     </FilterProvider>
   );
