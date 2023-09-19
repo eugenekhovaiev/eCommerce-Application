@@ -6,9 +6,11 @@ import { ProductCategoriesProps } from '../../shared/types';
 import { useFilterContext } from '../../shared/lib/contexts/FilterContext';
 import SearchInput from '../../entities/inputs/SearchInput';
 import { useProductsArrayContext } from '../../shared/lib/contexts/ProductsArrayContext';
+import { useLastQueryParametersContext } from '../../shared/lib/contexts/LastQueryParametersContext';
 
 const ProductCategories = (props: ProductCategoriesProps): JSX.Element => {
   const { updateProductsArray } = useProductsArrayContext();
+  const { updateLastQueryParameters } = useLastQueryParametersContext();
 
   const [isSubCategories, setIsSubCategories] = useState(false);
   const [visibleCategory, setVisibleCategory] = useState<Category>();
@@ -20,6 +22,7 @@ const ProductCategories = (props: ProductCategoriesProps): JSX.Element => {
         filters: { categoriesIds: category.id },
       };
       const productsObj = await getProducts(newQueryParams);
+      updateLastQueryParameters(newQueryParams);
       updateProductsArray(productsObj.body.results);
       props.setCategoryId(category.id);
       props.setCategory(category);

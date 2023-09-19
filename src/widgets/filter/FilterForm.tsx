@@ -12,6 +12,7 @@ import cartesianProduct from '../../shared/lib/helpers/cartesianProduct';
 import { FilterAttribute, FilterFormFields, FilterFormProps } from '../../shared/types';
 import Typography from '@mui/material/Typography/Typography';
 import { useProductsArrayContext } from '../../shared/lib/contexts/ProductsArrayContext';
+import { useLastQueryParametersContext } from '../../shared/lib/contexts/LastQueryParametersContext';
 
 const transformToFilterAttributes = (enumName: string, values: string[], state: boolean[]): FilterAttribute[] => {
   return values
@@ -46,6 +47,7 @@ const transformToFilterSortBy = (values: string[], state: boolean[]): ({ by: str
 
 const FilterForm = (props: FilterFormProps): JSX.Element => {
   const { updateProductsArray } = useProductsArrayContext();
+  const { updateLastQueryParameters } = useLastQueryParametersContext();
 
   const priceRange = [0, 30];
   const [neckPadStates, setNeckPadStates] = useState(Object.values(FILTER_NECK_PAD).map(() => false));
@@ -70,12 +72,16 @@ const FilterForm = (props: FilterFormProps): JSX.Element => {
     setBreedSizeStates(Object.values(FILTER_BREED_SIZE).map(() => false));
     setSortStates(Object.values(FILTER_SORT).map(() => false));
     setPriceState([priceRange[0], priceRange[1]]);
-    const productsObj = await getProducts({
+
+    const resetQuery = {
       searchText: props.search || undefined,
       filters: {
         categoriesIds: props.categoriesIds,
       },
-    });
+    };
+
+    const productsObj = await getProducts(resetQuery);
+    updateLastQueryParameters(resetQuery);
     updateIsCategoryUpdated(false);
     updateProductsArray(productsObj.body.results);
   };
@@ -88,18 +94,21 @@ const FilterForm = (props: FilterFormProps): JSX.Element => {
 
     try {
       if (queryAttributes.length === 0) {
-        const productsObj = await getProducts({
+        const query = {
           searchText: props.search || undefined,
           sort: sort[0],
           filters: {
             categoriesIds: props.categoriesIds,
             priceRange: { from: priceState[0] * 100, to: priceState[1] * 100 },
           },
-        });
+        };
+
+        const productsObj = await getProducts(query);
+        updateLastQueryParameters(query);
         updateProductsArray(productsObj.body.results);
       } else {
-        const promises = queryAttributes.map((item) =>
-          getProducts({
+        const promises = queryAttributes.map((item) => {
+          const query = {
             searchText: props.search || undefined,
             sort: sort[0],
             filters: {
@@ -107,8 +116,11 @@ const FilterForm = (props: FilterFormProps): JSX.Element => {
               attributes: item,
               priceRange: { from: priceState[0] * 100, to: priceState[1] * 100 },
             },
-          }),
-        );
+          };
+
+          updateLastQueryParameters(query);
+          return getProducts(query);
+        });
         const productsObj = await Promise.all(promises);
         updateProductsArray(productsObj.map((item) => item.body.results).flat());
       }

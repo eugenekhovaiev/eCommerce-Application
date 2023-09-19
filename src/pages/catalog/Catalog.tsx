@@ -8,19 +8,28 @@ import Category from '../../shared/types/Category';
 import { FilterProvider } from '../../shared/lib/contexts/FilterContext';
 import LinkElement from '../../shared/UI/linkElement/LinkElement';
 import ButtonElement from '../../shared/UI/buttonElement/ButtonElement';
-// import CARDS_PER_PAGE from '../../shared/consts/CARDS_PER_PAGE';
 import { useProductsArrayContext } from '../../shared/lib/contexts/ProductsArrayContext';
-// import { useLastQueryParametersContext } from '../../shared/lib/contexts/LastQueryParametersContext';
+import { useLastQueryParametersContext } from '../../shared/lib/contexts/LastQueryParametersContext';
+import CARDS_PER_PAGE from '../../shared/consts/CARDS_PER_PAGE';
 
 const Catalog = (): JSX.Element => {
   const { productsArray, updateProductsArray } = useProductsArrayContext();
-  // const { lastQueryParameters, updateLastQueryParameters } = useLastQueryParametersContext();
+  const { lastQueryParameters, updateLastQueryParameters } = useLastQueryParametersContext();
+  const [allProductsLoaded, setAllProductsLoaded] = useState(false);
 
   const [mainCategories, setMainCategories] = useState<Category[]>([]);
   const [isFilter, setIsFilter] = useState(false);
   const [search, setSearch] = useState('');
   const [categoryId, setCategoryId] = useState('');
   const [category, setCategory] = useState<Category>();
+
+  useEffect(() => {
+    if (productsArray.length % CARDS_PER_PAGE !== 0) {
+      setAllProductsLoaded(true);
+    } else {
+      setAllProductsLoaded(false);
+    }
+  }, [productsArray.length]);
 
   // TODO вынести в отдельный компонент BreadCrums
 
@@ -30,6 +39,7 @@ const Catalog = (): JSX.Element => {
         filters: { categoriesIds: category.id },
       };
       const productsObj = await getProducts(newQueryParams);
+      updateLastQueryParameters(newQueryParams);
       updateProductsArray(productsObj.body.results);
       setCategoryId(category.id);
       setCategory(category);
@@ -42,10 +52,18 @@ const Catalog = (): JSX.Element => {
   const handleLoadMoreClick = async (): Promise<void> => {
     try {
       const cardsOnPage = productsArray.length;
-      const moreProducts = (await getProducts({ offset: cardsOnPage })).body.results;
+
+      const offsetedQuery = lastQueryParameters ? lastQueryParameters : {};
+      offsetedQuery.offset = cardsOnPage;
+
+      const moreProducts = (await getProducts(offsetedQuery)).body.results;
       updateProductsArray([...productsArray, ...moreProducts]);
+      if (moreProducts.length < CARDS_PER_PAGE) {
+        setAllProductsLoaded(true);
+      }
+      updateLastQueryParameters(offsetedQuery);
     } catch (error) {
-      console.log('Can not get more products');
+      console.log('Can not get products');
     }
   };
 
@@ -54,6 +72,7 @@ const Catalog = (): JSX.Element => {
       try {
         const mainCategories = await buildCategoryTree();
         const productsObj = await getProducts();
+        updateLastQueryParameters({});
         setIsFilter(true);
         setMainCategories(mainCategories);
         updateProductsArray(productsObj.body.results);
@@ -145,12 +164,14 @@ const Catalog = (): JSX.Element => {
                     })
                   : 'No products matching your request.'}
               </div>
-              <ButtonElement
-                additionalClassName="catalog__load-more"
-                variant="contained"
-                title="Load More"
-                onClick={handleLoadMoreClick}
-              />
+              {!allProductsLoaded && (
+                <ButtonElement
+                  additionalClassName="catalog__load-more"
+                  variant="contained"
+                  title="Load More"
+                  onClick={handleLoadMoreClick}
+                />
+              )}
             </div>
           </div>
         </div>
