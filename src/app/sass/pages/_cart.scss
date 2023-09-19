@@ -141,6 +141,7 @@
   }
 
   &__close {
+    cursor: pointer;
     width: 1.4rem;
     padding: 0.1rem;
     grid-area: close;
