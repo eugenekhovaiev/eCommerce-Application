@@ -7,7 +7,7 @@ const CountryContext = createContext<CountryContext | undefined>(undefined);
 export const useCountryContext = (): CountryContext => {
   const context = useContext(CountryContext);
   if (!context) {
-    throw new Error('useCountryContext must be used within a CountryContext');
+    throw new Error('useCountryContext must be used within a CountryProvider');
   }
   return context;
 };

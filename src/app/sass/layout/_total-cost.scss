@@ -1,0 +1,42 @@
+.total-cost {
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+
+  &__row {
+    padding: 1.5rem 0;
+    border-bottom: 0.01rem solid $color-shadow;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &__title {
+    font-weight: 600;
+    font-size: 1.5rem;
+  }
+
+  &__pricing-element {
+    text-transform: uppercase;
+  }
+
+  &__price {
+    font-weight: 600;
+    font-size: 1.1rem;
+  }
+
+  &__checkout {
+    padding: 1.5rem 0;
+    align-self: flex-end;
+    .button.MuiButtonBase-root {
+      padding: 0.8rem 1rem;
+      background-color: $color-secondary;
+      color: $color-primary-xs;
+
+      &:hover {
+        background-color: $color-primary-xs;
+        color: $color-secondary;
+        border: 0.01rem solid $color-secondary;
+      }
+    }
+  }
+}

@@ -4,12 +4,12 @@ import { TextFieldVariants } from '@mui/material';
 import { SelectChangeEvent } from '@mui/material';
 import { FieldChangeHandler } from '@mui/x-date-pickers/internals';
 import { DateValidationError } from '@mui/x-date-pickers';
-import { Customer, CustomerUpdate } from '@commercetools/platform-sdk';
+import { Cart, Customer, LineItem } from '@commercetools/platform-sdk';
 import { Dayjs } from 'dayjs';
 import { LocalizedString } from '@commercetools/platform-sdk';
 import { ProductProjection } from '@commercetools/platform-sdk';
-import Category from './Category';
 import { Image } from '@commercetools/platform-sdk';
+import Category from './Category';
 
 export interface LinkProps {
   to?: string;
@@ -77,6 +77,7 @@ export interface ButtonProps {
   variant?: 'outlined' | 'text' | 'contained';
   additionalClassName?: string;
   type?: 'button' | 'submit' | 'reset';
+  disabled?: boolean;
   children?: JSX.Element;
   onClick?: React.MouseEventHandler<HTMLButtonElement>;
 }
@@ -213,6 +214,16 @@ export interface UserDataContext {
   updateUserData: (userData: Customer | undefined) => void;
 }
 
+export interface LastQueryParametersContext {
+  lastQueryParameters: ProductsQueryParams | undefined;
+  updateLastQueryParameters: (queryParameters: ProductsQueryParams) => void;
+}
+
+export interface ActiveCartContext {
+  activeCart: Cart | undefined;
+  updateActiveCart: (cart: Cart | undefined) => void;
+}
+
 export interface CountryContext {
   selectedShippingCountry: string;
   setSelectedShippingCountry: (country: string) => void;
@@ -220,17 +231,18 @@ export interface CountryContext {
   setSelectedBillingCountry: (country: string) => void;
 }
 
+export interface ProductsArrayContext {
+  productsArray: ProductProjection[] | [];
+  updateProductsArray: (productsArray: ProductProjection[] | []) => void;
+}
+
 export interface FilterContext {
   isCategoryUpdated: boolean;
   updateIsCategoryUpdated: (isCategoryUpdated: boolean) => void;
 }
 
-export interface CustomerUpdateWithId extends CustomerUpdate {
-  id: string;
-}
-
 export interface ProductCardProps {
-  url: string;
+  id: string;
   name: LocalizedString;
   image?: string;
   priceOriginal?: string | number;
@@ -255,12 +267,10 @@ export interface Filters {
 
 export interface FilterFormProps {
   search?: string;
-  setProducts: React.Dispatch<React.SetStateAction<[] | ProductProjection[]>>;
   categoriesIds?: string;
 }
 
 export interface ProductCategoriesProps {
-  setProducts: React.Dispatch<React.SetStateAction<[] | ProductProjection[]>>;
   setCategoryId: React.Dispatch<React.SetStateAction<string>>;
   setCategory: React.Dispatch<React.SetStateAction<Category | undefined>>;
   search?: string;
@@ -269,6 +279,8 @@ export interface ProductCategoriesProps {
 }
 
 export interface ProductsQueryParams {
+  limit?: number;
+  offset?: number;
   searchText?: string;
   sort?: {
     // by: 'price' | 'name.en-US';
@@ -284,7 +296,6 @@ export interface SearchInputProps {
   search?: string;
   setSearch?: React.Dispatch<React.SetStateAction<string>>;
   setCategoryId?: React.Dispatch<React.SetStateAction<string>>;
-  setProducts?: React.Dispatch<React.SetStateAction<[] | ProductProjection[]>>;
 }
 
 export interface PriceProps {
@@ -309,4 +320,28 @@ export interface MemberProps {
   contributionSecond: string;
   contributionThird: string;
   contributionFourth: string;
+}
+
+export interface BasketItemProps {
+  lineItem: LineItem;
+}
+
+export interface BasketItemsProps {
+  cartItems?: LineItem[];
+}
+
+export interface SpinnerInputProps {
+  id: string;
+  value?: number;
+  setQuantity?: React.Dispatch<React.SetStateAction<number>>;
+}
+
+export interface TotalCostProps {
+  subtotal?: number;
+  discount?: number;
+  total?: number;
+}
+
+export interface CouponForm {
+  coupon: string;
 }

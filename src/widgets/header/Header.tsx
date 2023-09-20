@@ -9,19 +9,10 @@ import Logo from '../../entities/logo/Logo';
 import logoIcon from '../../shared/assets/logo.svg';
 import { useUserDataContext } from '../../shared/lib/contexts/UserDataContext';
 
-import { useEffect } from 'react';
 import LogOutLink from '../../entities/links/LogOutLink';
 
 function Header(): JSX.Element {
-  const { userData, updateUserData } = useUserDataContext();
-
-  useEffect(() => {
-    const currentUser = localStorage.getItem('currentUser');
-
-    if (currentUser) {
-      updateUserData(JSON.parse(currentUser));
-    }
-  }, []);
+  const { userData } = useUserDataContext();
 
   return (
     <header className="header">
