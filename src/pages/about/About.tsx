@@ -1,8 +1,8 @@
 import Member from '../../widgets/about/Member';
-import UserIcon from '../../shared/assets/user-icon.svg';
 import RssLogo from '../../shared/assets/logo-rsschool.svg';
 import AlionaImg from '../../shared/assets/aliona.jpg';
 import XushaImg from '../../shared/assets/Xusha-1.jpg';
+import ZhenyaImg from '../../shared/assets/TupaTip.jpg';
 
 const About = (): JSX.Element => {
   return (
@@ -11,19 +11,19 @@ const About = (): JSX.Element => {
         <h2 className="about__title">Our Team</h2>
         <div className="about__members">
           <Member
-            src={UserIcon}
+            src={ZhenyaImg}
             name="Yevhenii Khovaiev"
             role="Team leader, Frontend developer"
-            description="Lorem, ipsum dolor sit amet consectetur adipisicing elit. Velit aperiam nesciunt eius doloremque
-              reiciendis inventore doloribus sit non culpa? Odio assumenda quaerat id pariatur accusantium possimus
-              molestiae incidunt voluptatibus debitis."
+            description="I learned computer engineering in Kyiv Politecnical Institute. 
+            Frontend and programming in general are, perhaps, areas my future will be connected with. And I'd be happy if I`m not wrong about it. 
+            In couple years I see myself as an excellent full-stack developer, which I am persistently and confidently pursuing. We'll se:)"
             location="Kyiv, Ukraine"
             href="https://github.com/eugenekhovaiev"
             nickname="eugenekhovaiev"
-            contributionFirst="Provided technical leadership and expertise in frontend technologies. "
-            contributionSecond="Set up repository for the project."
-            contributionThird="Worked on User Profile page."
-            contributionFourth="Created Catalog page with enhancements."
+            contributionFirst="Provided technical leadership and expertise in frontend technologies."
+            contributionSecond="Managed project architecture and repository."
+            contributionThird="Worked on User Profile and Catalog pages."
+            contributionFourth="Integratad CommerceTools into the project."
           />
           <Member
             src={AlionaImg}
@@ -37,7 +37,7 @@ const About = (): JSX.Element => {
             nickname="alena636"
             contributionFirst="Set up project to work with React."
             contributionSecond="Embedded Trello in the team workflow."
-            contributionThird="Implemented Product page."
+            contributionThird="Implemented Product and Login pages."
             contributionFourth="Worked on About Us page."
           />
           <Member
