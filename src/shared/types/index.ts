@@ -308,6 +308,20 @@ export interface SwiperProps {
   images: Image[];
 }
 
+export interface MemberProps {
+  src: string;
+  name: string;
+  role: string;
+  description: string;
+  location: string;
+  href: string;
+  nickname: string;
+  contributionFirst: string;
+  contributionSecond: string;
+  contributionThird: string;
+  contributionFourth: string;
+}
+
 export interface BasketItemProps {
   lineItem: LineItem;
 }
