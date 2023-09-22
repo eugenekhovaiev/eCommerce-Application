@@ -1,4 +1,4 @@
-import { Typography } from '@mui/material';
+import { CircularProgress, Typography } from '@mui/material';
 import SwiperElement from '../../widgets/swiper/Swiper';
 import PriceElement from '../../shared/UI/priceElement/PriceElement';
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
@@ -37,7 +37,11 @@ const Product = (): JSX.Element => {
   }, [slug, activeCart]);
 
   if (!product) {
-    return <div>Loading...</div>;
+    return (
+      <div className="loading-overlay">
+        <CircularProgress size={60} className="loading-indicator loading-overlay__indicator" color="secondary" />
+      </div>
+    );
   }
 
   const handleAddToCartClick = async (): Promise<void> => {

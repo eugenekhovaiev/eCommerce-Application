@@ -11,6 +11,7 @@ import ButtonElement from '../../shared/UI/buttonElement/ButtonElement';
 import { useProductsArrayContext } from '../../shared/lib/contexts/ProductsArrayContext';
 import { useLastQueryParametersContext } from '../../shared/lib/contexts/LastQueryParametersContext';
 import CARDS_PER_PAGE from '../../shared/consts/CARDS_PER_PAGE';
+import { CircularProgress } from '@mui/material';
 
 const Catalog = (): JSX.Element => {
   const { productsArray, updateProductsArray } = useProductsArrayContext();
@@ -84,8 +85,12 @@ const Catalog = (): JSX.Element => {
     fetchData();
   }, []);
 
-  if (!productsArray || !mainCategories) {
-    return <div>Loading...</div>;
+  if (!productsArray.length) {
+    return (
+      <div className="loading-overlay">
+        <CircularProgress size={60} className="loading-indicator loading-overlay__indicator" color="secondary" />
+      </div>
+    );
   }
 
   return (

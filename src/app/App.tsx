@@ -7,6 +7,7 @@ import getActiveCart from '../shared/api/user/cart/getActiveCart';
 import { useActiveCartContext } from '../shared/lib/contexts/ActiveCartContext';
 import initAnonymousSession from '../shared/lib/helpers/initAnonymousSession';
 import { InvalidTokenError } from '@commercetools/platform-sdk';
+import { CircularProgress } from '@mui/material';
 
 function App(): JSX.Element {
   const { updateUserData } = useUserDataContext();
@@ -40,7 +41,9 @@ function App(): JSX.Element {
       {routes}
     </>
   ) : (
-    <div>Loading...</div>
+    <div className="loading-overlay">
+      <CircularProgress size={60} className="loading-indicator loading-overlay__indicator" color="secondary" />
+    </div>
   );
 }
 
