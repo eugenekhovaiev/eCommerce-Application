@@ -7,18 +7,34 @@
 * {
   font-family: $font-primary !important;
 }
+html {
+  @media screen and (max-width: 500px) {
+    font-size: 13px;
+  }
+}
 
 @import './components/container';
-
 @import './components/logo';
 @import './components/link';
 // @import './components/form';
+@import './components/price';
+@import './components/burger';
 
 @import './layout/header';
 @import './layout/registration-form';
 @import './layout/login-form';
+@import './layout/filter-form';
+@import './layout/modal';
+@import './layout/product-card';
 
 @import './pages/main';
 @import './pages/page-404';
 @import './pages/registration';
 @import './pages/login';
+@import './pages/profile';
+@import './pages/catalog';
+@import './pages/product';
+
+@import './components/swiper';
+@import './components/modalWindow';
+@import './components/modalSwiper';

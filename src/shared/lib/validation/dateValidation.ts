@@ -1,8 +1,8 @@
-import dayjs from 'dayjs';
+import dayjs, { Dayjs } from 'dayjs';
 
 const dateOfBirthValidtion = {
   required: 'Required',
-  validate: (value: string): boolean | string => {
+  validate: (value: Dayjs | string): boolean | string => {
     const minAge = 13;
     const today = new Date();
     const dateOfBirth = dayjs(value).toDate();

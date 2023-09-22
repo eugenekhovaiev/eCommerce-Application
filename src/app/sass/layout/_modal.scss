@@ -1,0 +1,103 @@
+.modal {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &__content {
+    margin: 0 auto;
+    padding: 1rem;
+
+    position: relative;
+
+    width: 75vw;
+    height: 85vh;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+
+    overflow: auto;
+    background-color: $color-primary-s;
+  }
+
+  &__close {
+    width: 2rem;
+    height: 2rem;
+
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+
+    cursor: pointer;
+    transition: 0.3s all;
+
+    &:hover {
+      transform: translateY(-2px);
+    }
+  }
+
+  &__buttons {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    @media screen and (max-width: 576px) {
+      flex-direction: column-reverse;
+      gap: 1rem;
+    }
+  }
+
+  &__button {
+    width: 8rem;
+  }
+
+  &_add-address {
+    .modal__form {
+      width: 90%;
+    }
+  }
+
+  &__form {
+    width: 60%;
+
+    @media screen and (max-width: 992px) {
+      width: 70%;
+    }
+
+    @media screen and (max-width: 768px) {
+      width: 85%;
+    }
+
+    @media screen and (max-width: 576px) {
+      width: 100%;
+    }
+  }
+
+  .form__input.MuiTextField-root,
+  .form__input.MuiFormControl-root {
+    width: 80%;
+
+    @media screen and (max-width: 576px) {
+      width: 95%;
+    }
+  }
+
+  .registration__address-info {
+    .form__input.MuiTextField-root,
+    .form__input.MuiFormControl-root {
+      width: 100%;
+    }
+
+    @media screen and (max-width: 992px) {
+      row-gap: 0.5rem;
+      grid-template-columns: 1fr 1fr;
+      grid-template-areas:
+        'street street'
+        'building unit'
+        'city city'
+        'zip zip'
+        'country country';
+    }
+  }
+}

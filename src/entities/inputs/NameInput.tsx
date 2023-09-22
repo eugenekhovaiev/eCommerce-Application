@@ -22,6 +22,7 @@ const NameInput = (props: RegistrationUserInfoProps): JSX.Element => {
       control={props.control}
       name={props.isFirstName ? 'firstName' : 'lastName'}
       rules={nameValidation}
+      defaultValue={props.defaultValue}
       render={({ field }): JSX.Element => (
         <TextFieldElement
           label={props.isFirstName ? 'First Name' : 'Last Name'}
@@ -31,7 +32,7 @@ const NameInput = (props: RegistrationUserInfoProps): JSX.Element => {
             field.onChange(e);
             handleValueChange(e);
           }}
-          value={field.value || ''}
+          defaultValue={props.defaultValue}
           error={!!props.errors.firstName?.message || !isValid}
           helperText={!isValid ? message : props.errors.firstName?.message}
         />

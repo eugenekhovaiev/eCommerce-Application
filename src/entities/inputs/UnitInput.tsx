@@ -17,11 +17,14 @@ const UnitInput = (props: RegistrationAddressProps): JSX.Element => {
     setMessage(messageValue);
   };
 
+  const name = props.default ? 'unit' : props.isShipping ? 'unitShipping' : 'unitBilling';
+
   return (
     <Controller
       control={props.control}
-      name={props.isShipping ? 'unitShipping' : 'unitBilling'}
+      name={name}
       rules={unitValidation}
+      defaultValue={props.defaultValue}
       render={({ field }): JSX.Element => (
         <TextFieldElement
           label="Unit"
@@ -31,7 +34,7 @@ const UnitInput = (props: RegistrationAddressProps): JSX.Element => {
             field.onChange(e);
             handleValueChange(e);
           }}
-          value={field.value || ''}
+          defaultValue={props.defaultValue}
           error={!!props.errors.unitBilling?.message || !isValid}
           helperText={!isValid ? message : props.errors.unitBilling?.message}
         />

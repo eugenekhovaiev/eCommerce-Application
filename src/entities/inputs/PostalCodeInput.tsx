@@ -8,13 +8,18 @@ import { RegistrationAddressProps } from '../../shared/types';
 const PostalCodeInput = (props: RegistrationAddressProps): JSX.Element => {
   const [isValid, setIsValid] = useState(true);
   const [message, setMessage] = useState('');
-  const [postalCode, setPostalCode] = useState('');
+  const [postalCode, setPostalCode] = useState(props.value || '');
   const { selectedBillingCountry, selectedShippingCountry } = useCountryContext();
   const selectedCountry = props.isShipping ? selectedShippingCountry : selectedBillingCountry;
 
   useEffect(() => {
-    setMessage('New country selected.');
-    setPostalCode('');
+    const isValidValue = postCodeValidation(postalCode, selectedCountry) !== true ? false : true;
+    const messageValue =
+      postCodeValidation(postalCode, selectedCountry) !== true
+        ? postCodeValidation(postalCode, selectedCountry).toString()
+        : '';
+    setIsValid(isValidValue);
+    setMessage(messageValue);
   }, [selectedCountry]);
 
   const handleValueChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>): void => {
@@ -28,16 +33,19 @@ const PostalCodeInput = (props: RegistrationAddressProps): JSX.Element => {
     setMessage(messageValue);
   };
 
+  const name = props.default ? 'postalCode' : props.isShipping ? 'postalCodeShipping' : 'postalCodeBilling';
+
   return (
     <Controller
       control={props.control}
-      name={props.isShipping ? 'postalCodeShipping' : 'postalCodeBilling'}
+      name={name}
       rules={{
         required: 'Required',
         validate: (value: string): string | boolean => {
           return postCodeValidation(value, selectedCountry);
         },
       }}
+      defaultValue={props.value}
       render={({ field }): JSX.Element => (
         <TextFieldElement
           label="Postal/Zip code"
@@ -47,7 +55,6 @@ const PostalCodeInput = (props: RegistrationAddressProps): JSX.Element => {
             field.onChange(e);
             handleValueChange(e);
           }}
-          // value={field.value || ''}
           value={postalCode}
           error={!!props.errors.postalCodeBilling?.message || !isValid}
           helperText={!isValid ? message : props.errors.postalCodeBilling?.message}
