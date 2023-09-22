@@ -10,10 +10,13 @@ import PasswordInput from '../../entities/inputs/PasswordInput';
 import { Form } from '../../shared/types';
 import { Customer } from '@commercetools/platform-sdk';
 
-import loginCustomer from '../../shared/api/user/loginCustomer';
+import loginCustomer from '../../shared/api/user/customer/loginCustomer';
 
 import { useNavigate, useLocation } from 'react-router-dom';
 import { useUserDataContext } from '../../shared/lib/contexts/UserDataContext';
+import { passwordTokenCache } from '../../shared/api/user/BuildClient';
+import createCart from '../../shared/api/user/cart/createCart';
+import { useActiveCartContext } from '../../shared/lib/contexts/ActiveCartContext';
 
 const LoginForm = (): JSX.Element => {
   const { handleSubmit, control } = useForm<Form>();
@@ -29,20 +32,29 @@ const LoginForm = (): JSX.Element => {
   const [loginError, setLoginError] = useState(false);
 
   const { updateUserData } = useUserDataContext();
+  const { updateActiveCart } = useActiveCartContext();
 
   const onSubmit: SubmitHandler<Form> = async (data) => {
     try {
       const loginResponse = await loginCustomer(data);
-      const customer = loginResponse.body.customer;
+      localStorage.setItem('token', passwordTokenCache.get().token);
+
+      const { customer } = loginResponse.body;
+      let { cart } = loginResponse.body;
+      if (!cart) {
+        cart = (await createCart()).body;
+      }
 
       setLoginError(false);
       setCustomerData(customer);
-      localStorage.setItem('currentUser', JSON.stringify(customer));
+
       setTimeout(() => {
         updateUserData(customer);
+        updateActiveCart(cart);
         return navigate(from, { replace: true });
       }, 1500);
     } catch (error) {
+      // console.log(error);
       setCustomerData(null);
       setLoginError(true);
     }

@@ -32,9 +32,13 @@
   .nav__link {
     padding: 0.5rem;
     text-align: center;
+
+    @media screen and (max-width: 576px) {
+      padding: 0.3rem;
+    }
   }
 
-  @media screen and (max-width: 450px) {
+  @media screen and (max-width: 576px) {
     font-size: 0.85rem;
   }
 }

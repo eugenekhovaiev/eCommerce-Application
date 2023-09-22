@@ -50,6 +50,21 @@
 
   &__button {
     width: 8rem;
+
+    &_confirm,
+    &_confirm.MuiButtonBase-root {
+      width: 5rem;
+      color: $color-accept;
+      border: 0.01rem solid $color-accept;
+      background-color: $color-accept-s;
+    }
+    &_deny,
+    &_deny.MuiButtonBase-root {
+      width: 5rem;
+      color: $color-delete;
+      border: 0.01rem solid $color-delete;
+      background-color: $color-delete-s;
+    }
   }
 
   &_add-address {

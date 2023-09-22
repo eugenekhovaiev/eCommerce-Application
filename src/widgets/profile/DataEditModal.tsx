@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useForm, useFormState, SubmitHandler } from 'react-hook-form';
 import { Modal, Typography, Button } from '@mui/material';
-import { CustomerUpdateWithId, Form } from '../../shared/types';
+import { Form } from '../../shared/types';
 import { Alert } from '@mui/material';
 import { useUserDataContext } from '../../shared/lib/contexts/UserDataContext';
 import ButtonElement from '../../shared/UI/buttonElement/ButtonElement';
@@ -9,9 +9,10 @@ import NameInput from '../../entities/inputs/NameInput';
 import EmailInput from '../../entities/inputs/EmailInput';
 import DateOfBirthInput from '../../entities/inputs/DateOfBirthInput';
 import formatDate from '../../shared/lib/helpers/formatDate';
-import updateCustomer from '../../shared/api/user/updateCustomer';
+import updateCustomer from '../../shared/api/user/customer/updateCustomer';
 import ImageElement from '../../shared/UI/imageElement/ImageElement';
 import closeIcon from '../../shared/assets/close.svg';
+import { MyCustomerUpdate } from '@commercetools/platform-sdk';
 
 const DataEditModal = (): JSX.Element => {
   const { userData, updateUserData } = useUserDataContext();
@@ -36,8 +37,7 @@ const DataEditModal = (): JSX.Element => {
     dateOfBirth: string;
   }): Promise<void> => {
     if (userData) {
-      const updateQuery: CustomerUpdateWithId = {
-        id: userData?.id,
+      const updateQuery: MyCustomerUpdate = {
         version: userData?.version,
         actions: [
           { action: 'setFirstName', firstName: dataToUpdate.firstName },
@@ -48,7 +48,6 @@ const DataEditModal = (): JSX.Element => {
       };
       const updatedCustomerData = (await updateCustomer(updateQuery)).body;
       updateUserData(updatedCustomerData);
-      localStorage.setItem('currentUser', JSON.stringify(updatedCustomerData));
     } else {
       throw new Error('User data is missing!');
     }
