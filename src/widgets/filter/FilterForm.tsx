@@ -8,7 +8,7 @@ import FILTER_BREED_SIZE from '../../shared/consts/FILTER_BREED_SIZE';
 import FILTER_SORT from '../../shared/consts/FILTER_SORT';
 import getProducts from '../../shared/api/user/products/getProducts';
 import { useFilterContext } from '../../shared/lib/contexts/FilterContext';
-import cartesianProduct from '../../shared/lib/helpers/cartesianProduct';
+import getCartesianProduct from '../../shared/lib/helpers/getCartesianProduct';
 import { FilterAttribute, FilterFormFields, FilterFormProps } from '../../shared/types';
 import Typography from '@mui/material/Typography/Typography';
 import { useProductsArrayContext } from '../../shared/lib/contexts/ProductsArrayContext';
@@ -90,7 +90,7 @@ const FilterForm = (props: FilterFormProps): JSX.Element => {
     const breedSize = transformToFilterAttributes('dog-breed-size', Object.values(FILTER_BREED_SIZE), breedSizeStates);
     const neckPad = transformToFilterAttributes('neck-pad', Object.values(FILTER_NECK_PAD), neckPadStates);
     const sort = transformToFilterSortBy(Object.keys(FILTER_SORT), sortStates);
-    const queryAttributes = cartesianProduct(breedSize, neckPad);
+    const queryAttributes = getCartesianProduct(breedSize, neckPad);
 
     try {
       if (queryAttributes.length === 0) {
