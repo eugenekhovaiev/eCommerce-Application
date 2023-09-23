@@ -1,4 +1,4 @@
-import { Typography } from '@mui/material';
+import { CircularProgress, Typography } from '@mui/material';
 import SwiperElement from '../../widgets/swiper/Swiper';
 import PriceElement from '../../shared/UI/priceElement/PriceElement';
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
@@ -14,6 +14,7 @@ const Product = (): JSX.Element => {
   const { activeCart, updateActiveCart } = useActiveCartContext();
   const [product, setProduct] = useState<ProductProjection | null>(null);
   const [lineItem, setLineItem] = useState<LineItem | undefined>(undefined);
+  const [productIsProcessing, setProductIsProcessing] = useState(false);
 
   const { slug } = useParams();
 
@@ -22,11 +23,14 @@ const Product = (): JSX.Element => {
   const from = location.state?.from?.pathname || '/404';
 
   useEffect(() => {
+    setProductIsProcessing(true);
+
     const fetchData = async (): Promise<void> => {
       try {
         const product = (await getProductById(slug!)).body;
         setProduct(product);
         setLineItem(activeCart?.lineItems.find((lineItem) => lineItem.productId === product.id));
+        setProductIsProcessing(false);
       } catch (error) {
         navigate(from, { replace: true });
         console.log('Product not found!');
@@ -37,25 +41,34 @@ const Product = (): JSX.Element => {
   }, [slug, activeCart]);
 
   if (!product) {
-    return <div>Loading...</div>;
+    return (
+      <div className="loading-overlay">
+        <CircularProgress size={60} className="loading-indicator loading-overlay__indicator" color="secondary" />
+      </div>
+    );
   }
 
   const handleAddToCartClick = async (): Promise<void> => {
+    setProductIsProcessing(true);
     try {
-      const updatedCart = (await addProductToCart(product.id)).body;
+      const updatedCartResponse = await addProductToCart(product.id);
+      const updatedCart = updatedCartResponse.body;
       updateActiveCart(updatedCart);
+      setProductIsProcessing(false);
     } catch (error) {
       console.log('Unable to add product to cart on product page!');
     }
   };
 
   const handleRemoveFromCartClick = async (): Promise<void> => {
+    setProductIsProcessing(true);
     try {
       if (!lineItem) {
         throw new Error('LineItem data is missing!');
       }
-      const updatedCart = (await removeProductFromCart(lineItem?.id)).body;
+      const updatedCart = (await removeProductFromCart(lineItem.id)).body;
       updateActiveCart(updatedCart);
+      setProductIsProcessing(false);
     } catch (error) {
       console.log('Unable to remove product from cart on product page!');
     }
@@ -92,9 +105,20 @@ const Product = (): JSX.Element => {
               priceOriginal={productOriginalPrice}
               priceDiscounted={productDiscountedPrice}
             />
-            {!lineItem && <ButtonElement variant="contained" title="Add to Cart" onClick={handleAddToCartClick} />}
-            {lineItem && (
-              <ButtonElement variant="outlined" title="Remove from Cart" onClick={handleRemoveFromCartClick} />
+            {!productIsProcessing ? (
+              !lineItem ? (
+                <ButtonElement variant="contained" title="Add to Cart" onClick={handleAddToCartClick} />
+              ) : (
+                <ButtonElement variant="outlined" title="Remove from Cart" onClick={handleRemoveFromCartClick} />
+              )
+            ) : (
+              <ButtonElement variant="outlined" title="">
+                <CircularProgress
+                  size={25}
+                  className="loading-indicator loading-overlay__indicator"
+                  color="secondary"
+                />
+              </ButtonElement>
             )}
             <Typography variant="body1" className="product__description" gutterBottom>
               {productDescription}

@@ -5,10 +5,12 @@ import { ProductCardProps } from '../../shared/types';
 import ButtonElement from '../../shared/UI/buttonElement/ButtonElement';
 import addProductToCart from '../../shared/api/user/cart/addProductToCart';
 import { useEffect, useState } from 'react';
+import { CircularProgress } from '@mui/material';
 
 const ProductCard = (props: ProductCardProps): JSX.Element => {
   const { activeCart, updateActiveCart } = useActiveCartContext();
   const [lineItem, setLineItem] = useState(activeCart?.lineItems.find((lineItem) => lineItem.productId === props.id));
+  const [productIsAdding, setProductIsAdding] = useState(false);
 
   useEffect(() => {
     setLineItem(activeCart?.lineItems.find((lineItem) => lineItem.productId === props.id));
@@ -16,10 +18,12 @@ const ProductCard = (props: ProductCardProps): JSX.Element => {
 
   const handleAddToCartClick = async (event: React.MouseEvent): Promise<void> => {
     event.preventDefault();
+    setProductIsAdding(true);
 
     try {
       const updatedCart = (await addProductToCart(props.id)).body;
       updateActiveCart(updatedCart);
+      setProductIsAdding(false);
     } catch (error) {
       console.log('Unable to add product to cart on product page!');
     }
@@ -42,21 +46,31 @@ const ProductCard = (props: ProductCardProps): JSX.Element => {
               priceOriginal={props.priceOriginal}
               priceDiscounted={props.priceDiscounted}
             />
-            {!lineItem ? (
-              <ButtonElement
-                additionalClassName="card__button"
-                variant="contained"
-                title="Add to Cart"
-                onClick={handleAddToCartClick}
-              />
+            {!productIsAdding ? (
+              !lineItem ? (
+                <ButtonElement
+                  additionalClassName="card__button"
+                  variant="contained"
+                  title="Add to Cart"
+                  onClick={handleAddToCartClick}
+                />
+              ) : (
+                <ButtonElement
+                  additionalClassName="card__button button_disabled"
+                  variant="outlined"
+                  title="Is in Cart"
+                  disabled={true}
+                  onClick={handleAddToCartClick}
+                />
+              )
             ) : (
-              <ButtonElement
-                additionalClassName="card__button button_disabled"
-                variant="outlined"
-                title="Add to Cart"
-                disabled={true}
-                onClick={handleAddToCartClick}
-              />
+              <ButtonElement variant="outlined" title="">
+                <CircularProgress
+                  size={25}
+                  className="loading-indicator loading-overlay__indicator"
+                  color="secondary"
+                />
+              </ButtonElement>
             )}
           </div>
         </div>
