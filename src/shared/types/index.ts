@@ -345,3 +345,8 @@ export interface TotalCostProps {
 export interface CouponForm {
   coupon: string;
 }
+
+export interface BreadcrumbProps {
+  linkAttributes: LinkProps[];
+  additionalClassName?: string;
+}

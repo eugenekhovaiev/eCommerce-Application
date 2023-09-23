@@ -1,12 +1,14 @@
 import { useEffect, useState } from 'react';
 import FilterForm from '../../widgets/filter/FilterForm';
 import ProductCategories from '../../widgets/productCategories/ProductCategories';
+import Breadcrumb from '../../entities/breadcrumb/Breadcrumb';
 import ProductCard from '../../entities/productCard/ProductCard';
 import getProducts from '../../shared/api/user/products/getProducts';
 import buildCategoryTree from '../../shared/lib/helpers/buildCategoryTree';
 import Category from '../../shared/types/Category';
+import { LinkProps } from '../../shared/types';
 import { FilterProvider } from '../../shared/lib/contexts/FilterContext';
-import LinkElement from '../../shared/UI/linkElement/LinkElement';
+import addCategoryLinkToBreadcrumb from '../../shared/lib/helpers/addCategoryLinkToBreadcrumb';
 import ButtonElement from '../../shared/UI/buttonElement/ButtonElement';
 import { useProductsArrayContext } from '../../shared/lib/contexts/ProductsArrayContext';
 import { useLastQueryParametersContext } from '../../shared/lib/contexts/LastQueryParametersContext';
@@ -24,26 +26,17 @@ const Catalog = (): JSX.Element => {
   const [search, setSearch] = useState('');
   const [categoryId, setCategoryId] = useState('');
   const [category, setCategory] = useState<Category>();
+  const [breadcrumbLinks, setBreadcrumbLinks] = useState<LinkProps[]>([]);
 
-  useEffect(() => {
-    if (productsArray.length % CARDS_PER_PAGE !== 0) {
-      setAllProductsLoaded(true);
-    } else {
-      setAllProductsLoaded(false);
-    }
-  }, [productsArray.length]);
-
-  // TODO вынести в отдельный компонент BreadCrums
-
-  const handleCategoryClick = async (category: Category): Promise<void> => {
+  const handleCategoryClick = async (category?: Category): Promise<void> => {
     try {
       const newQueryParams = {
-        filters: { categoriesIds: category.id },
+        filters: { categoriesIds: category ? category.id : undefined },
       };
       const productsObj = await getProducts(newQueryParams);
       updateLastQueryParameters(newQueryParams);
       updateProductsArray(productsObj.body.results);
-      setCategoryId(category.id);
+      setCategoryId(category ? category.id : '');
       setCategory(category);
       if (setSearch) setSearch('');
     } catch (error) {
@@ -90,6 +83,22 @@ const Catalog = (): JSX.Element => {
     fetchData();
   }, []);
 
+  useEffect(() => {
+    if (productsArray.length % CARDS_PER_PAGE !== 0) {
+      setAllProductsLoaded(true);
+    } else {
+      setAllProductsLoaded(false);
+    }
+  }, [productsArray.length]);
+
+  useEffect(() => {
+    const headBreadcrumbLinks: LinkProps[] = [
+      { title: 'Products', onClick: () => handleCategoryClick(), to: '/catalog' },
+    ];
+    const tailBreadcrumbLinks: LinkProps[] = addCategoryLinkToBreadcrumb(handleCategoryClick, category).reverse();
+    setBreadcrumbLinks(headBreadcrumbLinks.concat(...tailBreadcrumbLinks));
+  }, [category]);
+
   if ((productsLoading && !productsArray.length) || !mainCategories.length) {
     return (
       <div className="loading-overlay">
@@ -110,33 +119,7 @@ const Catalog = (): JSX.Element => {
         />
         <div className="container">
           <div className="catalog__content">
-            {categoryId && (
-              <h2 className="catalog__title">
-                {category?.parent?.parent?.name && (
-                  <span>
-                    <LinkElement
-                      key={category?.parent?.parent?.name}
-                      title={category?.parent?.parent?.name}
-                      onClick={(): Promise<void> => handleCategoryClick(category?.parent?.parent as Category)}
-                      to="/catalog"
-                    />
-                    {' / '}
-                  </span>
-                )}
-                {category?.parent?.name && (
-                  <span>
-                    <LinkElement
-                      key={category?.parent?.name}
-                      title={category?.parent?.name}
-                      onClick={(): Promise<void> => handleCategoryClick(category?.parent as Category)}
-                      to="/catalog"
-                    />
-                    {' / '}
-                  </span>
-                )}
-                <span>{category?.name}</span>
-              </h2>
-            )}
+            <Breadcrumb linkAttributes={breadcrumbLinks} additionalClassName="catalog__breadcrumb" />
             <div className="catalog__filter">
               {search !== '' && (
                 <div className="catalog__search-results-info">
