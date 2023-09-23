@@ -1,0 +1,28 @@
+.breadcrumb {
+  display: flex;
+  gap: 0.5rem;
+  &__item {
+    display: flex;
+    gap: 0.5rem;
+    &::after {
+      content: '/';
+      display: block;
+    }
+
+    &:last-child::after {
+      content: '';
+    }
+
+    &:last-child .breadcrumb__link {
+      color: $color-font-dark-s;
+      &:hover {
+        cursor: default;
+        text-decoration: none;
+      }
+    }
+  }
+
+  &__link {
+    color: $color-font-dark-l;
+  }
+}

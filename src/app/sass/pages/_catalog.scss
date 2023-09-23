@@ -115,11 +115,11 @@
     }
   }
 
-  &__title {
+  &__breadcrumb {
     grid-area: title;
-    font-size: 1.1rem;
-    color: $color-font-dark-s;
     justify-self: start;
+    color: $color-font-dark-s;
+    font-size: 1.1rem;
   }
 
   &__filter {
