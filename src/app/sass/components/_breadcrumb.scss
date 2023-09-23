@@ -1,16 +1,17 @@
 .breadcrumb {
   display: flex;
   gap: 0.5rem;
+  flex-wrap: wrap;
   &__item {
     display: flex;
     gap: 0.5rem;
-    &::after {
+    &::before {
       content: '/';
       display: block;
     }
 
-    &:last-child::after {
-      content: '';
+    &:first-child::before {
+      content: none;
     }
 
     &:last-child .breadcrumb__link {
