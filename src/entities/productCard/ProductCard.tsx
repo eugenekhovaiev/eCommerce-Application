@@ -64,7 +64,13 @@ const ProductCard = (props: ProductCardProps): JSX.Element => {
                 />
               )
             ) : (
-              <CircularProgress size={30} className="loading-indicator loading-overlay__indicator" color="secondary" />
+              <ButtonElement variant="outlined" title="">
+                <CircularProgress
+                  size={25}
+                  className="loading-indicator loading-overlay__indicator"
+                  color="secondary"
+                />
+              </ButtonElement>
             )}
           </div>
         </div>
