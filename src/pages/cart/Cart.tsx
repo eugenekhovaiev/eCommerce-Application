@@ -10,13 +10,6 @@ import { useActiveCartContext } from '../../shared/lib/contexts/ActiveCartContex
 const Cart = (): JSX.Element => {
   const { activeCart } = useActiveCartContext();
   const subtotal = activeCart?.lineItems.reduce((sum, item) => sum + item.price.value.centAmount * item.quantity, 0);
-  // (async function (): Promise<void> {
-  //   // const id = activeCart?.discountCodes[0].discountCode.id;
-  //   // const resp = await getDiscountCodeById(id || '');
-  //   const resp = await getDiscountCodeById('fe975518-3560-4e54-9096-b737d0d21540');
-  //   console.log(activeCart);
-  //   console.log(resp);
-  // })();
 
   return (
     <main className="cart">

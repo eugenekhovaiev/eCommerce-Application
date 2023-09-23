@@ -6,6 +6,8 @@ import { BasketItemProps } from '../../shared/types';
 import removeProductFromCart from '../../shared/api/user/cart/removeProductFromCart';
 import { useActiveCartContext } from '../../shared/lib/contexts/ActiveCartContext';
 import closeIcon from '../../shared/assets/close.svg';
+import { useState } from 'react';
+import { CircularProgress } from '@mui/material';
 
 const BasketItem = (props: BasketItemProps): JSX.Element => {
   const quantity = props.lineItem.quantity;
@@ -21,12 +23,16 @@ const BasketItem = (props: BasketItemProps): JSX.Element => {
       : 'src/shared/assets/image-placeholder.svg';
   const name = props.lineItem.name['en-US'];
   const id = props.lineItem.id;
+
+  const [removementIsProcessing, setRemovementIsProcessing] = useState(false);
   const { updateActiveCart } = useActiveCartContext();
 
   const handleRemoveFromCartClick = async (): Promise<void> => {
+    setRemovementIsProcessing(true);
     try {
       const updatedCart = (await removeProductFromCart(id)).body;
       updateActiveCart(updatedCart);
+      setRemovementIsProcessing(false);
     } catch (error) {
       console.log('Unable to remove product from cart on cart page!');
     }
@@ -58,9 +64,15 @@ const BasketItem = (props: BasketItemProps): JSX.Element => {
           priceDiscounted={priceDiscounted !== undefined ? total : undefined}
         />
       </div>
-      <div className="cart-items__close" onClick={handleRemoveFromCartClick}>
-        <ImageElement src={closeIcon} alt="close" additionalClassName="icon" />
-      </div>
+      {!removementIsProcessing ? (
+        <div className="cart-items__close" onClick={handleRemoveFromCartClick}>
+          <ImageElement src={closeIcon} alt="close" additionalClassName="icon" />
+        </div>
+      ) : (
+        <div className="cart-items__close">
+          <CircularProgress size={20} className="loading-indicator loading-overlay__indicator" color="inherit" />
+        </div>
+      )}
     </div>
   );
 };

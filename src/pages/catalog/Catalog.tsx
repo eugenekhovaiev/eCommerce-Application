@@ -13,11 +13,13 @@ import ButtonElement from '../../shared/UI/buttonElement/ButtonElement';
 import { useProductsArrayContext } from '../../shared/lib/contexts/ProductsArrayContext';
 import { useLastQueryParametersContext } from '../../shared/lib/contexts/LastQueryParametersContext';
 import CARDS_PER_PAGE from '../../shared/consts/CARDS_PER_PAGE';
+import { CircularProgress } from '@mui/material';
 
 const Catalog = (): JSX.Element => {
   const { productsArray, updateProductsArray } = useProductsArrayContext();
   const { lastQueryParameters, updateLastQueryParameters } = useLastQueryParametersContext();
   const [allProductsLoaded, setAllProductsLoaded] = useState(false);
+  const [productsLoading, setProductsLoading] = useState(false);
 
   const [mainCategories, setMainCategories] = useState<Category[]>([]);
   const [isFilter, setIsFilter] = useState(false);
@@ -43,6 +45,7 @@ const Catalog = (): JSX.Element => {
   };
 
   const handleLoadMoreClick = async (): Promise<void> => {
+    setProductsLoading(true);
     try {
       const cardsOnPage = productsArray.length;
 
@@ -51,6 +54,7 @@ const Catalog = (): JSX.Element => {
 
       const moreProducts = (await getProducts(offsetedQuery)).body.results;
       updateProductsArray([...productsArray, ...moreProducts]);
+      setProductsLoading(false);
       if (moreProducts.length < CARDS_PER_PAGE) {
         setAllProductsLoaded(true);
       }
@@ -61,6 +65,7 @@ const Catalog = (): JSX.Element => {
   };
 
   useEffect(() => {
+    setProductsLoading(true);
     const fetchData = async (): Promise<void> => {
       try {
         const mainCategories = await buildCategoryTree();
@@ -69,6 +74,7 @@ const Catalog = (): JSX.Element => {
         setIsFilter(true);
         setMainCategories(mainCategories);
         updateProductsArray(productsObj.body.results);
+        setProductsLoading(false);
       } catch (error) {
         console.log('Unable to get categories or products!');
       }
@@ -93,8 +99,12 @@ const Catalog = (): JSX.Element => {
     setBreadcrumbLinks(headBreadcrumbLinks.concat(...tailBreadcrumbLinks));
   }, [category]);
 
-  if (!productsArray || !mainCategories) {
-    return <div>Loading...</div>;
+  if ((productsLoading && !productsArray.length) || !mainCategories.length) {
+    return (
+      <div className="loading-overlay">
+        <CircularProgress size={60} className="loading-indicator loading-overlay__indicator" color="secondary" />
+      </div>
+    );
   }
 
   return (
@@ -146,12 +156,19 @@ const Catalog = (): JSX.Element => {
                     })
                   : 'No products matching your request.'}
               </div>
-              {!allProductsLoaded && (
+              {!allProductsLoaded && !productsLoading && (
                 <ButtonElement
                   additionalClassName="catalog__load-more"
                   variant="contained"
                   title="Load More"
                   onClick={handleLoadMoreClick}
+                />
+              )}
+              {productsLoading && (
+                <CircularProgress
+                  size={40}
+                  className="loading-indicator loading-overlay__indicator"
+                  color="secondary"
                 />
               )}
             </div>
