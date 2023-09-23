@@ -6,12 +6,11 @@ const addCategoryLinkToBreadcrumb = (
   category?: Category,
 ): LinkProps[] => {
   if (category) {
-    let breadcrumbLinks: LinkProps[] = [
+    const breadcrumbLinks: LinkProps[] = [
       { title: category.name, onClick: () => handleCategoryClick(category), to: '/catalog' },
     ];
     if (category?.parent) {
-      breadcrumbLinks = breadcrumbLinks.concat(...addCategoryLinkToBreadcrumb(handleCategoryClick, category?.parent));
-      return breadcrumbLinks;
+      return breadcrumbLinks.concat(...addCategoryLinkToBreadcrumb(handleCategoryClick, category?.parent));
     }
     return breadcrumbLinks;
   }
