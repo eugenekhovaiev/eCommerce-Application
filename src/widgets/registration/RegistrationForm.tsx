@@ -15,9 +15,12 @@ import { CountryProvider } from '../../shared/lib/contexts/СountryContext';
 import CheckboxElement from '../../shared/UI/checkboxElement/CheckboxElement';
 import ButtonElement from '../../shared/UI/buttonElement/ButtonElement';
 
-import createCustomer from '../../shared/api/user/createCustomer';
-import loginCustomer from '../../shared/api/user/loginCustomer';
+import createCustomer from '../../shared/api/user/customer/createCustomer';
+import loginCustomer from '../../shared/api/user/customer/loginCustomer';
 import { Form } from '../../shared/types';
+import { passwordTokenCache } from '../../shared/api/user/BuildClient';
+import createCart from '../../shared/api/user/cart/createCart';
+import { useActiveCartContext } from '../../shared/lib/contexts/ActiveCartContext';
 
 const RegistrationForm = (): JSX.Element => {
   const { handleSubmit, control } = useForm<Form>();
@@ -46,6 +49,7 @@ const RegistrationForm = (): JSX.Element => {
   };
 
   const { updateUserData } = useUserDataContext();
+  const { updateActiveCart } = useActiveCartContext();
 
   const onSubmit: SubmitHandler<Form> = async (data) => {
     const newCustomerData = getNewCustomerData(data, sameAsShipping, defaultShipping, defaultBilling);
@@ -58,16 +62,24 @@ const RegistrationForm = (): JSX.Element => {
         password: data.password,
       };
       const loginResponse = await loginCustomer(loginData);
-      const customer = loginResponse.body.customer;
+      localStorage.setItem('token', passwordTokenCache.get().token);
+
+      const { customer } = loginResponse.body;
+      let { cart } = loginResponse.body;
+      if (!cart) {
+        cart = (await createCart()).body;
+      }
 
       setRegisterError(false);
       setCustomerData(customer);
-      localStorage.setItem('currentUser', JSON.stringify(customer));
+
       setTimeout(() => {
         updateUserData(customer);
+        updateActiveCart(cart);
         return navigate(from, { replace: true });
       }, 1500);
     } catch (error) {
+      // console.log(error);
       setCustomerData(null);
       setRegisterError(true);
     }

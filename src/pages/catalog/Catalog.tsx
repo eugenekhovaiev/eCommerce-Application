@@ -1,32 +1,42 @@
 import { useEffect, useState } from 'react';
 import FilterForm from '../../widgets/filter/FilterForm';
 import ProductCategories from '../../widgets/productCategories/ProductCategories';
+import Breadcrumb from '../../entities/breadcrumb/Breadcrumb';
 import ProductCard from '../../entities/productCard/ProductCard';
-import getProducts from '../../shared/api/user/getProducts';
+import getProducts from '../../shared/api/user/products/getProducts';
 import buildCategoryTree from '../../shared/lib/helpers/buildCategoryTree';
 import Category from '../../shared/types/Category';
-import { ProductProjection } from '@commercetools/platform-sdk';
+import { LinkProps } from '../../shared/types';
 import { FilterProvider } from '../../shared/lib/contexts/FilterContext';
-import LinkElement from '../../shared/UI/linkElement/LinkElement';
+import addCategoryLinkToBreadcrumb from '../../shared/lib/helpers/addCategoryLinkToBreadcrumb';
+import ButtonElement from '../../shared/UI/buttonElement/ButtonElement';
+import { useProductsArrayContext } from '../../shared/lib/contexts/ProductsArrayContext';
+import { useLastQueryParametersContext } from '../../shared/lib/contexts/LastQueryParametersContext';
+import CARDS_PER_PAGE from '../../shared/consts/CARDS_PER_PAGE';
+import { CircularProgress } from '@mui/material';
 
 const Catalog = (): JSX.Element => {
+  const { productsArray, updateProductsArray } = useProductsArrayContext();
+  const { lastQueryParameters, updateLastQueryParameters } = useLastQueryParametersContext();
+  const [allProductsLoaded, setAllProductsLoaded] = useState(false);
+  const [productsLoading, setProductsLoading] = useState(false);
+
   const [mainCategories, setMainCategories] = useState<Category[]>([]);
   const [isFilter, setIsFilter] = useState(false);
   const [search, setSearch] = useState('');
-  const [productsArr, setProductsArr] = useState<ProductProjection[] | []>([]);
   const [categoryId, setCategoryId] = useState('');
   const [category, setCategory] = useState<Category>();
+  const [breadcrumbLinks, setBreadcrumbLinks] = useState<LinkProps[]>([]);
 
-  // TODO вынести в отдельный компонент BreadCrums
-
-  const handleCategoryClick = async (category: Category): Promise<void> => {
+  const handleCategoryClick = async (category?: Category): Promise<void> => {
     try {
       const newQueryParams = {
-        filters: { categoriesIds: category.id },
+        filters: { categoriesIds: category ? category.id : undefined },
       };
       const productsObj = await getProducts(newQueryParams);
-      setProductsArr(productsObj.body.results);
-      setCategoryId(category.id);
+      updateLastQueryParameters(newQueryParams);
+      updateProductsArray(productsObj.body.results);
+      setCategoryId(category ? category.id : '');
       setCategory(category);
       if (setSearch) setSearch('');
     } catch (error) {
@@ -34,80 +44,95 @@ const Catalog = (): JSX.Element => {
     }
   };
 
+  const handleLoadMoreClick = async (): Promise<void> => {
+    setProductsLoading(true);
+    try {
+      const cardsOnPage = productsArray.length;
+
+      const offsetedQuery = lastQueryParameters ? lastQueryParameters : {};
+      offsetedQuery.offset = cardsOnPage;
+
+      const moreProducts = (await getProducts(offsetedQuery)).body.results;
+      updateProductsArray([...productsArray, ...moreProducts]);
+      setProductsLoading(false);
+      if (moreProducts.length < CARDS_PER_PAGE) {
+        setAllProductsLoaded(true);
+      }
+      updateLastQueryParameters(offsetedQuery);
+    } catch (error) {
+      console.log('Can not get products');
+    }
+  };
+
   useEffect(() => {
+    setProductsLoading(true);
     const fetchData = async (): Promise<void> => {
       try {
         const mainCategories = await buildCategoryTree();
         const productsObj = await getProducts();
+        updateLastQueryParameters({});
         setIsFilter(true);
         setMainCategories(mainCategories);
-        setProductsArr(productsObj.body.results);
+        updateProductsArray(productsObj.body.results);
+        setProductsLoading(false);
       } catch (error) {
-        // navigate(from, { replace: true });
-        console.log('Something went wrong!');
+        console.log('Unable to get categories or products!');
       }
     };
 
     fetchData();
   }, []);
 
-  if (!productsArr || !mainCategories) {
-    return <div>Loading...</div>;
+  useEffect(() => {
+    if (productsArray.length % CARDS_PER_PAGE !== 0) {
+      setAllProductsLoaded(true);
+    } else {
+      setAllProductsLoaded(false);
+    }
+  }, [productsArray.length]);
+
+  useEffect(() => {
+    const headBreadcrumbLinks: LinkProps[] = [
+      { title: 'Products', onClick: () => handleCategoryClick(), to: '/catalog' },
+    ];
+    const tailBreadcrumbLinks: LinkProps[] = addCategoryLinkToBreadcrumb(handleCategoryClick, category).reverse();
+    setBreadcrumbLinks(headBreadcrumbLinks.concat(...tailBreadcrumbLinks));
+  }, [category]);
+
+  if ((productsLoading && !productsArray.length) || !mainCategories.length) {
+    return (
+      <div className="loading-overlay">
+        <CircularProgress size={60} className="loading-indicator loading-overlay__indicator" color="secondary" />
+      </div>
+    );
   }
 
   return (
     <FilterProvider>
       <main className="catalog">
-        <section className="catalog-products">
-          <ProductCategories
-            mainCategories={mainCategories}
-            setCategoryId={setCategoryId}
-            setCategory={setCategory}
-            setProducts={setProductsArr}
-            search={search}
-            setSearch={setSearch}
-          />
-          <div className="container">
-            <div className="catalog-products__content">
-              {categoryId && (
-                <h2 className="catalog-products__title">
-                  {category?.parent?.parent?.name && (
-                    <span>
-                      <LinkElement
-                        key={category?.parent?.parent?.name}
-                        title={category?.parent?.parent?.name}
-                        onClick={(): Promise<void> => handleCategoryClick(category?.parent?.parent as Category)}
-                        to="/catalog"
-                      />
-                      {' / '}
-                    </span>
-                  )}
-                  {category?.parent?.name && (
-                    <span>
-                      <LinkElement
-                        key={category?.parent?.name}
-                        title={category?.parent?.name}
-                        onClick={(): Promise<void> => handleCategoryClick(category?.parent as Category)}
-                        to="/catalog"
-                      />
-                      {' / '}
-                    </span>
-                  )}
-                  <span>{category?.name}</span>
-                </h2>
+        <ProductCategories
+          mainCategories={mainCategories}
+          setCategoryId={setCategoryId}
+          setCategory={setCategory}
+          search={search}
+          setSearch={setSearch}
+        />
+        <div className="container">
+          <div className="catalog__content">
+            <Breadcrumb linkAttributes={breadcrumbLinks} additionalClassName="catalog__breadcrumb" />
+            <div className="catalog__filter">
+              {search !== '' && (
+                <div className="catalog__search-results-info">
+                  <h4 className="title">Search results</h4>
+                  <h3 className="subtitle">&quot;{search}&quot;</h3>
+                </div>
               )}
-              <div className="catalog-products__filter">
-                {search !== '' && (
-                  <div className="catalog-products__search-results-info">
-                    <h4 className="title">Search results</h4>
-                    <h3 className="subtitle">&quot;{search}&quot;</h3>
-                  </div>
-                )}
-                {isFilter && <FilterForm search={search} setProducts={setProductsArr} categoriesIds={categoryId} />}
-              </div>
-              <div className="catalog-products__products">
-                {productsArr.length
-                  ? productsArr.map((product, index) => {
+              {isFilter && <FilterForm search={search} categoriesIds={categoryId} />}
+            </div>
+            <div className="catalog__products">
+              <div className="catalog__cards">
+                {productsArray.length
+                  ? productsArray.map((product, index) => {
                       const productImages = product.masterVariant.images;
                       const productPreviewUrl = productImages && productImages[0] && productImages[0].url;
 
@@ -119,7 +144,7 @@ const Catalog = (): JSX.Element => {
 
                       return (
                         <ProductCard
-                          url={product.id}
+                          id={product.id}
                           image={productPreviewUrl}
                           name={product.name}
                           priceOriginal={productOriginalPrice}
@@ -131,9 +156,24 @@ const Catalog = (): JSX.Element => {
                     })
                   : 'No products matching your request.'}
               </div>
+              {!allProductsLoaded && !productsLoading && (
+                <ButtonElement
+                  additionalClassName="catalog__load-more"
+                  variant="contained"
+                  title="Load More"
+                  onClick={handleLoadMoreClick}
+                />
+              )}
+              {productsLoading && (
+                <CircularProgress
+                  size={40}
+                  className="loading-indicator loading-overlay__indicator"
+                  color="secondary"
+                />
+              )}
             </div>
           </div>
-        </section>
+        </div>
       </main>
     </FilterProvider>
   );

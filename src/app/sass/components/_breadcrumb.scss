@@ -1,0 +1,33 @@
+.breadcrumb {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  &__item {
+    display: flex;
+    gap: 0.5rem;
+    &::before {
+      content: '/';
+      display: block;
+    }
+
+    &:first-child::before {
+      content: none;
+    }
+
+    &:last-child .breadcrumb__link {
+      color: $color-font-dark-s;
+      &:hover {
+        cursor: default;
+        text-decoration: none;
+      }
+    }
+  }
+
+  &__link {
+    color: $color-font-dark-l;
+  }
+
+  @media screen and (max-width: 576px) {
+    padding: 0rem 1rem;
+  }
+}

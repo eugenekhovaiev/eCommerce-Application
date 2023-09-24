@@ -1,0 +1,131 @@
+.about {
+  &__title {
+    text-align: center;
+    font-size: 2rem;
+    padding-bottom: 3rem;
+  }
+
+  &__description {
+    padding: 4rem 0;
+    text-align: left;
+    font-size: 1.1rem;
+    line-height: 2rem;
+
+    &-wrapper {
+      display: flex;
+      gap: 3rem;
+      padding-bottom: 3rem;
+
+      &-list {
+        width: 50%;
+      }
+    }
+
+    &-list {
+      display: flex;
+      flex-direction: column;
+      padding-left: 1rem;
+      gap: 2rem;
+    }
+
+    &-list-title {
+      font-size: 1.2rem;
+      font-weight: bold;
+      padding: 1rem 0;
+      color: $color-secondary;
+    }
+
+    &-list-item-numeric {
+      list-style-type: decimal;
+      color: $color-font-dark-xl;
+      -webkit-text-stroke: 1px $color-shadow;
+    }
+
+    &-list-item-circle {
+      list-style-type: circle;
+    }
+
+    &-list-item-square {
+      list-style-type: square;
+    }
+  }
+
+  &__members {
+    margin: 0 auto;
+    display: flex;
+    gap: 2rem;
+    padding-bottom: 4rem;
+
+    @media screen and (max-width: 993px) {
+      display: grid;
+      grid-template-columns: repeat(2, 36vw);
+      grid-template-rows: auto;
+    }
+
+    @media screen and (max-width: 648px) {
+      padding: 2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 4rem;
+    }
+  }
+
+  &__methods-wrapper {
+    margin: 0 auto;
+    padding: 2rem 0 4rem 0;
+  }
+
+  &__methods-list {
+    display: flex;
+    gap: 6rem 3rem;
+
+    @media screen and (max-width: 993px) {
+      display: grid;
+      grid-template-columns: repeat(2, 36vw);
+    }
+
+    @media screen and (max-width: 758px) {
+      display: flex;
+      flex-direction: column;
+      padding: 2rem;
+    }
+
+    &-item {
+      display: flex;
+      flex-direction: column;
+      gap: 3rem;
+    }
+  }
+
+  &__methods-item-title {
+    text-align: center;
+    font-size: 1.2rem;
+    -webkit-text-stroke: 1px $color-secondary;
+  }
+
+  &__methods-item-description {
+    line-height: 1.4rem;
+    text-align: justify;
+  }
+
+  &__footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    padding: 1rem 0;
+
+    &-date {
+      font-size: 1.2rem;
+      font-weight: bold;
+    }
+  }
+
+  &__rss-link {
+    width: 20%;
+  }
+
+  &__rss-logo {
+    width: 10vw;
+    height: 5vh;
+  }
+}
